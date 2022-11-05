@@ -6,10 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".StartActivity">
 
-    <ImageView
-        android:layout_width="512px"
-        android:layout_height="512px"
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:progressDrawable="@drawable/custom_progress"
+        android:id="@+id/progess"
         android:layout_gravity="center"
-        android:src="@drawable/icon"/>
+        android:progress="100"/>
 
+    <ImageView
+        android:layout_width="64px"
+        android:layout_height="64px"
+        android:layout_gravity="center"
+        android:src="@drawable/icon"
+        android:id="@+id/logo"/>
 </FrameLayout>
