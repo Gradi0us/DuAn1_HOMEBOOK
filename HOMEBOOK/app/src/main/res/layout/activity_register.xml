@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emailUp"
+            android:textSize="25dp"
+            android:hint="Email"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/passUp"
+            android:textSize="25dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/passUpAgain"
+            android:textSize="25dp"
+            android:hint="Password Again"
+            android:inputType="textPassword"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/birthUp"
+            android:textSize="25dp"
+            android:hint="dd/MM/yyyy"
+            android:editable="false"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/roleUp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/bossUP"
+            android:text="BOSS"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/memberUp"
+            android:text="Thành Viên"
+            android:layout_weight="1"/>
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameUp"
+            android:textSize="25dp"
+            android:hint="Fullname"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corner"
+        android:layout_marginVertical="15dp"
+        android:text="Sign Up"
+        android:layout_marginHorizontal="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wanttologin"
+        android:textSize="20dp"
+        android:id="@+id/backToLogin"
+        android:textStyle="bold"
+        android:gravity="center|bottom"/>
+
+</LinearLayout>
