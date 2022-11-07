@@ -6,14 +6,14 @@
 
     <item android:id="@android:id/progress">
         <scale
-            android:scaleHeight="100%">
+            android:scaleWidth="100%">
             <shape android:shape="rectangle">
                 <gradient
                     android:type="linear"
                     android:angle="0"
-                    android:startColor="#91D4C2"
-                    android:centerColor="#3D82AB"
-                    android:endColor="#40384d"/>
+                    android:startColor="#FF5722"
+                    android:centerColor="#FFC107"
+                    android:endColor="#CDDC39"/>
             </shape>
         </scale>
     </item>

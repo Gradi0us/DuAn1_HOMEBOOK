@@ -32,8 +32,8 @@ public class StartActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progess);
 
         ObjectAnimator ani1 = ObjectAnimator.ofFloat(logo,"alpha",0f,1f);
-        ObjectAnimator aniX = ObjectAnimator.ofFloat(logo,"scaleX",0f,1f);
-        ObjectAnimator aniY = ObjectAnimator.ofFloat(logo,"scaleY",0f,1f);
+        ObjectAnimator aniX = ObjectAnimator.ofFloat(logo,"scaleX",0f,2.5f);
+        ObjectAnimator aniY = ObjectAnimator.ofFloat(logo,"scaleY",0f,2.5f);
         ani1.setDuration(1500);
         aniX.setDuration(1500);
         aniY.setDuration(1500);
@@ -63,7 +63,7 @@ public class StartActivity extends AppCompatActivity {
                     final int progress = i + 1;
 
                     // Do something (Download, Upload, Update database,..)
-                    SystemClock.sleep(200); // Sleep 200 milliseconds.
+                    SystemClock.sleep(50); // Sleep 50 milliseconds.
 
                     // Update interface.
                     handler.post(new Runnable() {
