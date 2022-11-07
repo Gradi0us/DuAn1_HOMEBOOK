@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
+
         birthUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
