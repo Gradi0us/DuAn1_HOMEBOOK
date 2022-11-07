@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Newspaper"
+        android:title="New" />
+
+    <item
+        android:id="@+id/Music"
+        android:title="Music" />
+
+    <item
+        android:id="@+id/Account"
+        android:title="Acc" />
+
+</menu>
