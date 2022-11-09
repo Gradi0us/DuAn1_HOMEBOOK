@@ -1,4 +1,4 @@
-package com.example.home_book;
+package com.example.home_book.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

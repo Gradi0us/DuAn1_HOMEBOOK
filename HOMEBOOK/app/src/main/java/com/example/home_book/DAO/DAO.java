@@ -1,15 +1,9 @@
-package com.example.home_book;
+package com.example.home_book.DAO;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.example.home_book.database.AppSQL;
 
 public class DAO {
     private SQLiteDatabase db;
