@@ -17,7 +17,7 @@ public class AppSQL extends SQLiteOpenHelper {
 
     // cái category tôi chưa hiểu gồm những gì đâu, có gì check nhé
     // thiếu gì thêm sao
-
+        
     Context context;
     SQLiteDatabase database;
 
