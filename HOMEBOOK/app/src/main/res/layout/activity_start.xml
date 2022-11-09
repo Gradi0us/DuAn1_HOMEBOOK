@@ -16,9 +16,9 @@
         android:progress="100"/>
 
     <ImageView
-        android:layout_width="256px"
-        android:layout_height="256px"
+        android:layout_width="50pt"
+        android:layout_height="25pt"
         android:layout_gravity="center"
-        android:src="@drawable/icon"
+        android:src="@drawable/logo"
         android:id="@+id/logo"/>
 </FrameLayout>
