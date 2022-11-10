@@ -2,8 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/Newspaper"
-        android:title="New" />
+        android:id="@+id/Find"
+        android:title="Find"
+        android:icon="@drawable/find"/>
 
     <item
         android:id="@+id/Music"

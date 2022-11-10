@@ -23,9 +23,11 @@ public class BottomNavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_nav);
 
-        final Fragment fragment1 = new Fragment1();
+        final Fragment fragment1 = new FindFragment();
         final Fragment fragment2 = new Fragment2();
         final Fragment fragment3 = new Fragment3();
+
+        replaceFragment(new FindFragment());
 
         bottomNavigationView = findViewById(R.id.navigation);
 
@@ -34,8 +36,9 @@ public class BottomNavActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()) {
-                    case R.id.Newspaper:
+                    case R.id.Find:
                         replaceFragment(fragment1);
+
                         break;
 
                     case R.id.Music:

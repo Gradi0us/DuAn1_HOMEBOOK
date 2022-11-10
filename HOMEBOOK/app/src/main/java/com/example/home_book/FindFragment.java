@@ -29,6 +29,8 @@ public class FindFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_find, container, false);
 
+        ngayNhan = view.findViewById(R.id.ngayNhanUp);
+        ngayTra = view.findViewById(R.id.ngayTraUp);
 
         ngayNhan.setOnClickListener(new View.OnClickListener() {
             @Override
