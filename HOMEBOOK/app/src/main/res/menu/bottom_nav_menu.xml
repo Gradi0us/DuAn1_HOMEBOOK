@@ -8,10 +8,11 @@
 
     <item
         android:id="@+id/Music"
-        android:title="Music" />
+        android:title="Fragment2" />
 
     <item
         android:id="@+id/Account"
-        android:title="Acc" />
+        android:icon="@drawable/profile_icon"
+        android:title="Cá nhân" />
 
 </menu>
