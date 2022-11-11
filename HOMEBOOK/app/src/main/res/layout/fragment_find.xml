@@ -152,10 +152,13 @@
         android:text="Tìm Kiếm"
         android:id="@+id/timKiem"/>
 
-<!--    <ListView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:id="@+id/listTimKiem"/>-->
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="10dp"
+        android:id="@+id/showKetQua"
+        android:name="com.example.home_book.fragment.FindFragment"
+        tools:layout="@layout/activity_start" />
 
 </LinearLayout>
