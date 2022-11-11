@@ -12,15 +12,15 @@
         android:id="@+id/nav_host_fragment_activity_main"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        tools:layout="@layout/activity_start" />
+        android:layout_height="0dp"
+        android:layout_weight="4.65"
+        tools:layout="@layout/fragment_find" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"
         app:menu="@menu/bottom_nav_menu"
         android:background="@color/white"/>
 

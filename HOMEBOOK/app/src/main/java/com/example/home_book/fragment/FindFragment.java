@@ -1,4 +1,4 @@
-package com.example.home_book;
+package com.example.home_book.fragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.DatePicker;
 
+import com.example.home_book.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
