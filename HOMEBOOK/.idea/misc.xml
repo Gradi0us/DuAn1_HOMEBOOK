@@ -5,6 +5,28 @@
       <map>
         <entry key="..\:/Users/Admin/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/src/main/res/drawable/custom_progress.xml" value="0.2095" />
         <entry key="..\:/Users/Admin/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/src/main/res/layout/activity_start.xml" value="0.14402173913043478" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1585" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/changepass_item.xml" value="0.1265" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/contact_item.xml" value="0.1265" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/custom_progress.xml" value="0.1265" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.1" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1585" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1585" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1585" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/item_location.xml" value="0.1265" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/profile_icon.xml" value="0.1265" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/round_corner.xml" value="0.1585" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/drawable/setting_item.xml" value="0.1265" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/layout/activity_bottom_nav.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/layout/activity_login.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/layout/activity_register.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/layout/activity_start.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/layout/fragment_1.xml" value="0.1" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/layout/fragment_2.xml" value="0.1" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/layout/fragment_3.xml" value="0.1" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/layout/fragment_find.xml" value="0.22" />
+        <entry key="..\:/Users/thanh/Desktop/DuAn1_HOMEBOOK/HOMEBOOK/app/HOMEBOOK/app/src/main/res/menu/bottom_nav_menu.xml" value="0.17552083333333332" />
       </map>
     </option>
   </component>
