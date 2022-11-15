@@ -11,12 +11,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.home_book.BottomNavActivity;
-import com.example.home_book.ChangePassActivity;
-import com.example.home_book.LienHeActivity;
+import com.example.home_book.Language;
+import com.example.home_book.menu.ChangeLanguage;
+import com.example.home_book.menu.ChangePassActivity;
+import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
-import com.example.home_book.TaiKhoan;
-import com.example.home_book.ThongTin;
+import com.example.home_book.menu.TaiKhoan;
+import com.example.home_book.menu.ThongTin;
 import com.example.home_book.adapter.ListMenuAdapter;
 import com.example.home_book.model.ListModelMenu;
 
@@ -46,6 +47,7 @@ public class Fragment3 extends Fragment {
         list.add(new ListModelMenu(R.drawable.changepass_item, "Đổi mật khẩu"));
         list.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
         list.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
+        list.add(new ListModelMenu(R.drawable.language, "Ngôn ngữ"));
         list.add(new ListModelMenu(R.drawable.exit, "Thoát ứng dụng"));
 
         ListMenuAdapter adapter = new ListMenuAdapter(getContext(), R.layout.item_menu, list);
@@ -67,6 +69,9 @@ public class Fragment3 extends Fragment {
                     startActivity(new Intent(getContext(), ThongTin.class));
                 }
                 if(i==4){
+                    startActivity(new Intent(getContext(), ChangeLanguage.class));
+                }
+                if(i==5){
                     System.exit(0);
                 }
 
