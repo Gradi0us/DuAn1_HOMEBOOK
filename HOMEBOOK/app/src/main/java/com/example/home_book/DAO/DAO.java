@@ -1,6 +1,7 @@
 package com.example.home_book.DAO;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.home_book.database.AppSQL;
@@ -16,6 +17,16 @@ public class DAO {
         db = appSQL.getWritableDatabase();
     }
     /////////////////////////////////////////////////////////////////////
+
+    public boolean checkLogin(String email,String pass) {
+        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
+        db = appSQL.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql,new String[]{email,pass});
+        if(cursor.getCount() != 0){
+            return true;
+        }
+        return false;
+    }
 
 //    public List<PhieuMuon> getPhieuMuon(String sql, String... args) {
 //        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
