@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#03A9F4</color>
     <color name="blue1">#2196F3</color>
+
+    <!--colors for modern ui-->
+    <color name="primaryTextColor">#00a5ff</color>
+    <color name="tears_morden">#00b9ff</color>
+    <color name="loginBkColor">#f0f0f0</color>
+
+
 </resources>

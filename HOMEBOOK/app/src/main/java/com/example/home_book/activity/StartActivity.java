@@ -1,21 +1,18 @@
-package com.example.home_book;
+package com.example.home_book.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.dynamicanimation.animation.DynamicAnimation;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.home_book.R;
 
 public class StartActivity extends AppCompatActivity {
 

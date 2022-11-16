@@ -1,4 +1,4 @@
-package com.example.home_book;
+package com.example.home_book.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.home_book.R;
 import com.example.home_book.fragment.FindFragment;
 import com.example.home_book.fragment.Fragment1;
 import com.example.home_book.fragment.Fragment2;

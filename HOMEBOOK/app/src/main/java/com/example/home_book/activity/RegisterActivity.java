@@ -1,14 +1,13 @@
-package com.example.home_book;
+package com.example.home_book.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.home_book.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
