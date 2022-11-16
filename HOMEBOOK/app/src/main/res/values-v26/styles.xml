@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="modifiedEditText" parent="parent">
+        <item name="android:textSize">20dp</item>
+        <item name="android:backgroundTint">@color/primaryTextColor</item>
+        <item name="android:paddingVertical">10dp</item>
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="5dp"
+    </style>
+</resources>

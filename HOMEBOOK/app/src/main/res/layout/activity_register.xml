@@ -5,98 +5,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.RegisterActivity">
+    tools:context=".activity.RegisterActivity"
+    android:gravity="center">
+
+    <TextView
+        android:layout_marginBottom="30dp"
+        style="@style/headerTextPrimary"
+        android:text="REGISTER"
+        android:layout_marginTop="20dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:startIconDrawable="@drawable/ic_baseline_email_24"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusBottomEnd="8dp">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/emailUp"
-            android:textSize="25dp"
             android:hint="Email"
             android:paddingVertical="10dp"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp" />
+            android:layout_marginVertical="5dp"
+            style="@style/modifiedEditText" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusBottomEnd="8dp">
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/passUp"
-            android:textSize="25dp"
             android:hint="Password"
             android:inputType="textPassword"
             android:paddingVertical="10dp"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp" />
+            android:layout_marginVertical="5dp"
+            android:backgroundTint="@color/primaryTextColor"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusBottomEnd="8dp">
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/passUpAgain"
-            android:textSize="25dp"
             android:hint="Password Again"
             android:inputType="textPassword"
             android:paddingVertical="10dp"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp" />
+            android:layout_marginVertical="5dp"
+            android:backgroundTint="@color/primaryTextColor"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        app:startIconDrawable="@drawable/ic_baseline_date_range_24"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusBottomEnd="8dp">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/birthUp"
-            android:textSize="25dp"
             android:hint="dd/MM/yyyy"
             android:editable="false"
             android:paddingVertical="10dp"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp" />
+            android:layout_marginVertical="5dp"
+            android:backgroundTint="@color/primaryTextColor"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,18 +109,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusBottomEnd="8dp">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nameUp"
-            android:textSize="25dp"
             android:hint="Fullname"
             android:paddingVertical="10dp"
             android:layout_marginHorizontal="15dp"
@@ -146,12 +123,9 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_corner"
+        style="@style/loginButton"
         android:layout_marginVertical="15dp"
-        android:text="Sign Up"
-        android:layout_marginHorizontal="20dp"/>
+        android:text="Sign Up"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -160,6 +134,7 @@
         android:textSize="20dp"
         android:id="@+id/backToLogin"
         android:textStyle="bold"
-        android:gravity="center|bottom"/>
+        android:gravity="center|bottom"
+        android:textColor="@color/primaryTextColor"/>
 
 </LinearLayout>

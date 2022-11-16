@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:elevation="5dp">
 
     <TextView
         style="@style/headerTextPrimary"
         android:text="Login"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginVertical="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,13 +26,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/emailIn"
-                android:textSize="25dp"
                 android:hint="Email"
+                style="@style/modifiedEditText"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:paddingVertical="10dp"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp" />
+                android:layout_marginVertical="5dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passIn"
-                android:textSize="25dp"
+                style="@style/modifiedEditText"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:paddingVertical="10dp"
@@ -56,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
+            android:layout_marginVertical="5dp"
             android:weightSum="2"
             android:gravity="center_vertical">
 
@@ -64,7 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/rememberBox"
-                android:text="NHỚ MẬT KHẨU"/>
+                android:text="@string/remember"
+                android:textColor="@color/primaryTextColor"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,22 +77,18 @@
                 android:textSize="20dp"
                 android:id="@+id/quenMatKhau"
                 android:textStyle="bold"
-                android:gravity="right"/>
+                android:gravity="right"
+                android:textColor="@color/primaryTextColor"/>
 
         </LinearLayout>
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Đăng nhập"
+            style="@style/loginButton"
+            android:layout_gravity="center"
             android:id="@+id/signIn"
-            android:paddingVertical="7pt"
-            android:layout_marginVertical="15dp"
-            android:layout_marginHorizontal="15dp"
-            android:backgroundTint="#e6f5fb"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:background="@drawable/round_corner"/>
+            android:layout_marginVertical="20dp"
+            android:textSize="20dp"/>
 
     </LinearLayout>
 
@@ -97,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_marginHorizontal="20dp"
-        android:background="@android:color/black"/>
+        android:background="@color/primaryTextColor"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -138,6 +137,7 @@
         android:textSize="20dp"
         android:id="@+id/dangky"
         android:textStyle="bold"
+        android:textColor="@color/primaryTextColor"
         android:gravity="center|bottom"/>
 
 </LinearLayout>
