@@ -3,11 +3,15 @@ package com.example.home_book.fragment;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -19,6 +23,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.home_book.R;
+import com.example.home_book.fragment.fragmentNav.AcountFragment;
+import com.example.home_book.fragment.fragmentNav.HomeFragment;
+import com.example.home_book.fragment.fragmentNav.RateFragment;
+import com.example.home_book.fragment.fragmentNav.SettingFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -52,7 +60,48 @@ static final float END_SCALE = 0.7f;
         contentView = view.findViewById(R.id.content);
         drawerLayout = view.findViewById(R.id.drawer_layout);
         navigationView = view.findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.mHome:
+                        Fragment fragment = new HomeFragment();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame, fragment).commit();
+                        drawerLayout.close();
+                        break;
+                    case R.id.mAcount:
+                        Fragment fragment1 = new AcountFragment();
+                        FragmentManager fragmentManager1 = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
+                        fragmentTransaction1.replace(R.id.frame, fragment1).commit();
+                        drawerLayout.close();
+                        break;
 
+                    case R.id.mRate:
+                        Fragment fragment2 = new RateFragment();
+                        FragmentManager fragmentManager2 = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
+                        fragmentTransaction2.replace(R.id.frame, fragment2).commit();
+                        drawerLayout.close();
+                        break;
+                    case R.id.mSetting:
+                        Fragment fragment3 = new SettingFragment();
+                        FragmentManager fragmentManager3 = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction3 = fragmentManager3.beginTransaction();
+                        fragmentTransaction3.replace(R.id.frame, fragment3).commit();
+                        drawerLayout.close();
+                        break;
+//                    case R.id.back:
+////                        Intent intent = new Intent(MainActivity.this, SensorService.class);
+////                        startService(intent);
+////                        finish();
+//                        break;
+                }
+                return false;
+            }
+        });
         naviagtionDrawer();
 //        ngayNhan = view.findViewById(R.id.ngayNhanUp);
 //        ngayTra = view.findViewById(R.id.ngayTraUp);

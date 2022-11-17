@@ -11,9 +11,4 @@
     tools:context=".fragment.FindFragment">
     <include
         layout="@layout/mainscreen"/>
-
-
-
-
-
 </ScrollView>
