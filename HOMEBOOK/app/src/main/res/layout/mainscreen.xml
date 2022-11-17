@@ -24,7 +24,7 @@
             android:layout_width="220dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#CEAD82"
+            android:background="@drawable/color_gradient"
             app:menu="@menu/menu_drawer" />
 
         <LinearLayout
@@ -48,11 +48,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:layout_marginLeft="90dp"
                     android:fontFamily="sans-serif-medium"
                     android:padding="5px"
                     android:text="Hi!"
-                    android:textColor="#78593C"
+                    android:textColor="#797B7C"
                     android:textSize="40dp"
                     android:textStyle="bold" />
 
@@ -64,7 +65,8 @@
                     android:layout_marginTop="20dp"
                     android:padding="5px"
                     android:text="GUEST"
-                    android:textColor="#78593C"
+
+                    android:textColor="#797B7C"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -78,22 +80,24 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:orientation="vertical">
 
                 <TextView
                     style="@style/headersearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="30dp"
                     android:layout_marginLeft="30dp"
-                    android:text="Where Would" />
+                    android:text="Where Would You" />
 
                 <TextView
                     style="@style/headersearch"
+                    android:textSize="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp"
-                    android:text="You Like to Go" />
+                    android:layout_marginLeft="30dp"
+                    android:text="Like to Go ?" />
             </LinearLayout>
 
             <RelativeLayout
@@ -108,7 +112,7 @@
                     <EditText
                         style="@style/modifiedEditText"
                         android:layout_marginLeft="30dp"
-                        android:hint="Name"
+                        android:hint="Search"
                         android:inputType="text"
                         android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -121,9 +125,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="285dp"
+                    android:layout_marginStart="270dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginBottom="16dp"
                     android:text="Find"
                     android:textAlignment="center" />
@@ -131,6 +135,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_height="50dp">
 
                 <HorizontalScrollView
@@ -159,12 +165,12 @@
                                 android:layout_height="match_parent">
 
                                 <Button
-                                    style="@style/loginButton"
+                                    style="@style/categories"
                                     android:layout_width="120dp"
                                     android:layout_height="match_parent"
                                     android:layout_alignParentBottom="true"
-                                    android:src="@drawable/ic_baseline_house_24"
-                                    android:text="hotel"
+                                    android:text="Hotel"
+
                                     android:textAlignment="center" />
                             </RelativeLayout>
                         </LinearLayout>
@@ -182,12 +188,12 @@
                                 android:onClick="sontung">
 
                                 <Button
-                                    style="@style/loginButton"
+                                    style="@style/categories"
                                     android:layout_width="120dp"
                                     android:layout_height="match_parent"
                                     android:layout_alignParentBottom="true"
-                                    android:src="@drawable/ic_baseline_house_24"
-                                    android:text="hotel"
+
+                                    android:text="Apartmanet"
                                     android:textAlignment="center" />
                             </RelativeLayout>
                         </LinearLayout>
@@ -216,12 +222,12 @@
                                 android:layout_height="match_parent">
 
                                 <Button
-                                    style="@style/loginButton"
+                                    style="@style/categories"
                                     android:layout_width="120dp"
                                     android:layout_height="match_parent"
                                     android:layout_alignParentBottom="true"
-                                    android:src="@drawable/ic_baseline_house_24"
-                                    android:text="hotel"
+
+                                    android:text="Motel"
                                     android:textAlignment="center" />
                             </RelativeLayout>
                         </LinearLayout>
@@ -244,6 +250,7 @@
                     android:scrollbars="none">
 
                     <LinearLayout
+
                         android:layout_width="wrap_content"
                         android:layout_height="250dp"
                         android:gravity="center_vertical"
@@ -261,11 +268,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
                                     android:layout_width="200dp"
                                     android:layout_height="match_parent"
-                                    android:layout_alignParentBottom="true"
-                                    android:onClick="mono"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -278,12 +318,47 @@
                             <RelativeLayout
                                 android:layout_width="fill_parent"
                                 android:layout_height="match_parent"
-                                android:onClick="sontung">
+                                >
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
 
                                 <ImageView
                                     android:layout_width="200dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -299,10 +374,44 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="ngaydautien"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -317,10 +426,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="condau"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -335,10 +478,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="ngoisaocodon"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -353,10 +530,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="phutbandau"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -371,10 +582,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="ido"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -389,10 +634,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="whynotme"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -403,10 +682,15 @@
                 android:id="@+id/visual3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp">
 
                 <TextView
+                    android:layout_marginLeft="30dp"
                     style="@style/headersearch"
+                    android:textSize="30dp"
+                    android:textColor="#797B7C"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Popular hotel" />
@@ -448,11 +732,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
                                     android:layout_width="200dp"
                                     android:layout_height="match_parent"
-                                    android:layout_alignParentBottom="true"
-                                    android:onClick="mono"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -469,9 +786,44 @@
                                 android:onClick="sontung">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -488,10 +840,44 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="ngaydautien"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -507,10 +893,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="condau"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -526,10 +946,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="ngoisaocodon"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -545,10 +999,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="phutbandau"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -564,10 +1052,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="ido"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -583,10 +1105,44 @@
                                 android:layout_height="match_parent">
 
                                 <ImageView
-                                    android:layout_width="200dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="whynotme"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:src="@drawable/favorite" />
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParenttop="true"
                                     android:src="@drawable/ic_baseline_house_24" />
+
+                                <TextView
+                                    style="@style/item_size"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_marginBottom="30dp"
+                                    android:text="Hotel_name" />
+
+
+                                <ImageView
+                                    android:layout_marginLeft="@dimen/edt_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="8dp"
+                                    android:src="@drawable/location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="hotel_location"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>
