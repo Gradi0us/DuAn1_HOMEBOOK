@@ -6,8 +6,11 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -39,7 +42,8 @@ public class StartActivity extends AppCompatActivity {
         set.play(ani1).with(aniX).with(aniY);
         set.start();
 
-        doStartProgressBar();
+//        doStartProgressBar();
+        aniprogress();
 
     }
 
@@ -82,5 +86,25 @@ public class StartActivity extends AppCompatActivity {
             }
         });
         thread.start();
+    }
+    public void aniprogress(){
+//        if(android.os.Build.VERSION.SDK_INT >= 11){
+        // will update the "progress" propriety of seekbar until it reaches progress
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0,30000);
+        animation.setDuration(3000); // 0.5 second
+        animation.setInterpolator(new LinearInterpolator());
+        animation.start();
+        CountDownTimer countDownTimer = new CountDownTimer(3000,1000) {
+            @Override
+            public void onTick(long l) {
+
+            }
+            @Override
+            public void onFinish() {
+                startActivity(new Intent(StartActivity.this,MainActivity.class));
+                finish();
+            }
+        }.start();
+//        }
     }
 }
