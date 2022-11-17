@@ -2,32 +2,47 @@ package com.example.home_book.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.home_book.R;
+import com.example.home_book.fragment.CartFragment;
 import com.example.home_book.fragment.FindFragment;
-import com.example.home_book.fragment.Fragment1;
 import com.example.home_book.fragment.Fragment2;
 import com.example.home_book.fragment.Fragment3;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 
 public class BottomNavActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_bottom_nav);
+
+
 
         final Fragment fragment1 = new FindFragment();
         final Fragment fragment2 = new Fragment2();
         final Fragment fragment3 = new Fragment3();
+        final Fragment fragment4 = new CartFragment();
 
         replaceFragment(new FindFragment());
 
@@ -40,6 +55,10 @@ public class BottomNavActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.Find:
                         replaceFragment(fragment1);
+
+                        break;
+                    case R.id.Cart:
+                        replaceFragment(fragment4);
 
                         break;
 
@@ -59,6 +78,7 @@ public class BottomNavActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

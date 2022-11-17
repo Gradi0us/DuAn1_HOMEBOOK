@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#03A9F4</color>
     <color name="blue1">#2196F3</color>
+    <color name="gray">#797B7C</color>
 
     <!--colors for modern ui-->
     <color name="primaryTextColor">#00a5ff</color>
