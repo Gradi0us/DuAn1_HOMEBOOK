@@ -1,140 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.RegisterActivity"
-    android:gravity="center">
-
-    <TextView
-        android:layout_marginBottom="30dp"
-        style="@style/headerTextPrimary"
-        android:text="REGISTER"
-        android:layout_marginTop="20dp"/>
-
-    <com.google.android.material.textfield.TextInputLayout
+    android:layout_gravity="center_vertical"
+    app:cardCornerRadius="@dimen/loginCardRadius"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:gravity="center">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:layout_marginBottom="30dp"
+            style="@style/headerTextPrimary"
+            android:text="REGISTER"
+            android:layout_marginTop="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailUp"
+                android:hint="Email"
+                android:paddingVertical="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                style="@style/modifiedEditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/emailUp"
-            android:hint="Email"
-            android:paddingVertical="10dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp"
-            style="@style/modifiedEditText" />
+            app:passwordToggleEnabled="true">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passUp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingVertical="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@color/primaryTextColor"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/passUp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:paddingVertical="10dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp"
-            android:backgroundTint="@color/primaryTextColor"/>
+            app:passwordToggleEnabled="true">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passUpAgain"
+                android:hint="Password Again"
+                android:inputType="textPassword"
+                android:paddingVertical="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@color/primaryTextColor"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/birthUp"
+                android:hint="dd/MM/yyyy"
+                android:editable="false"
+                android:paddingVertical="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@color/primaryTextColor"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/passUpAgain"
-            android:hint="Password Again"
-            android:inputType="textPassword"
-            android:paddingVertical="10dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp"
-            android:backgroundTint="@color/primaryTextColor"/>
+            android:id="@+id/roleUp"
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <RadioButton
+                android:id="@+id/bossUP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                android:text="Collaborate" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/memberUp"
+                android:text="Member"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+        </RadioGroup>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameUp"
+                android:hint="Fullname"
+                android:paddingVertical="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            style="@style/loginButton"
+            android:layout_marginVertical="15dp"
+            android:text="Sign Up"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/birthUp"
-            android:hint="dd/MM/yyyy"
-            android:editable="false"
-            android:paddingVertical="10dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp"
-            android:backgroundTint="@color/primaryTextColor"/>
+            android:text="@string/wanttologin"
+            android:textSize="20dp"
+            android:id="@+id/backToLogin"
+            android:textStyle="bold"
+            android:gravity="center|bottom"
+            android:textColor="@color/primaryTextColor"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <RadioGroup
-        android:layout_margin="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/roleUp"
-        android:layout_marginVertical="10dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/bossUP"
-            android:text="BOSS"
-            android:layout_weight="1"/>
-
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/memberUp"
-            android:text="Thành Viên"
-            android:layout_weight="1"/>
-    </RadioGroup>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/nameUp"
-            android:hint="Fullname"
-            android:paddingVertical="10dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        style="@style/loginButton"
-        android:layout_marginVertical="15dp"
-        android:text="Sign Up"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/wanttologin"
-        android:textSize="20dp"
-        android:id="@+id/backToLogin"
-        android:textStyle="bold"
-        android:gravity="center|bottom"
-        android:textColor="@color/primaryTextColor"/>
-
-</LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
