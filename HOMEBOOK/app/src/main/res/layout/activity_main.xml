@@ -7,14 +7,78 @@
     tools:context=".activity.MainActivity"
     android:orientation="vertical"
     android:weightSum="5">
+    <ScrollView
+        style="@style/parent">
+        <RelativeLayout
+            style="@style/parent">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment_activity_main"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:weightSum="12">
+
+                <LinearLayout
+                    style="@style/parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/search_form"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/parent"
+
+                        android:contentDescription="login background" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp">
+
+
+                <TextView
+                    style="@style/headersearchh"
+                    android:text="                  Easy to pick easy to use"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="5dp"
+                    />
+
+<!--                <androidx.fragment.app.FragmentContainerView-->
+<!--                    android:id="@+id/nav_host_fragment_activity_main"-->
+<!--                    android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:layout_weight="4.65"-->
+<!--                    tools:layout="@layout/fragment_find" />-->
+                <include
+                    layout="@layout/search_layout"/>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+    <RelativeLayout
+        android:layout_marginTop="410dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4.65"
-        tools:layout="@layout/fragment_find" />
+        android:layout_height="match_parent">
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

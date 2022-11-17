@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/Find"
-        android:title="Find"
-        android:icon="@drawable/find"/>
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_house_24"/>
 
     <item
         android:id="@+id/Music"

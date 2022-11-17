@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title=""/>
+    <item android:id="@+id/mThu"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_house_24"/>
+    <item android:id="@+id/mChi"
+        android:title="Account"
+
+        android:icon="@drawable/ic_baseline_house_24"/>
+
+    <item android:id="@+id/mThongtin"
+        android:title="Music"
+        
+        android:icon="@drawable/ic_baseline_house_24"/>
+
+    <item android:id="@+id/news"
+        android:title="News"
+
+        android:icon="@drawable/ic_baseline_house_24"/>
+
+    <item android:id="@+id/setting"
+        android:title="Seting"
+
+        android:icon="@drawable/ic_baseline_house_24"/>
+
+    <item
+        android:textColor="#78593C"
+        android:title="________________________________"/>
+
+    <item android:id="@+id/mthoat"
+        android:title="Log out"
+        android:icon="@drawable/ic_baseline_house_24"/>
+
+</menu>
