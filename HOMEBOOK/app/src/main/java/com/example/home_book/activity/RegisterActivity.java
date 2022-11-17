@@ -51,3 +51,4 @@ public class RegisterActivity extends AppCompatActivity {
         }
     };
 }
+//Chuyển qua dùng fragment nhá lai

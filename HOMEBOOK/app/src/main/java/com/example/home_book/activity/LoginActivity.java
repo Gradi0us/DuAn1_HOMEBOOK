@@ -59,16 +59,16 @@ public class LoginActivity extends AppCompatActivity {
                     check = false;
                 }
                 if(check){
-                    if(dao.checkLogin(eI,pI)){
-                        rememberUser(eI,pI,remember.isChecked());
-                        editor.putString("Email",eI);
-                        editor.commit();
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
-                    }else{
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
-                    }
+//                    if(dao.checkLogin(eI,pI)){
+//                        rememberUser(eI,pI,remember.isChecked());
+//                        editor.putString("Email",eI);
+//                        editor.commit();
+//                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                        finish();
+//                    }else{
+//                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+//                    }
                 }
             }
         });
@@ -87,4 +87,5 @@ public class LoginActivity extends AppCompatActivity {
         }
         editor.commit();
     }
+    //Chuyển qua dùng fragment nhá lai
 }
