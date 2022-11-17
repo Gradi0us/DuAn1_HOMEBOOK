@@ -50,6 +50,9 @@
     </style>
 
     <style name="loginCard" parent="parent"></style>
+    <style name="backgroundcardview" parent="parent">
+        <item name="android:background">#8FE38F</item>
+    </style>
 
     <style name="linearParent" parent="parent">
         <item name="android:orientation">vertical</item>
@@ -87,4 +90,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="Theme.AnAutomaticAndroidSlider" parent="Theme.AppCompat.Light.DarkActionBar"></style>
+
 </resources>
