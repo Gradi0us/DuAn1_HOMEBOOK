@@ -1,9 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/loginCard"
     app:cardCornerRadius="20dp"
     android:elevation="5dp"
+    android:scrollbarStyle="outsideOverlay"
     android:layout_gravity="center"
     android:layout_marginBottom="20dp"
     android:background="@color/white"
@@ -14,4 +15,5 @@
 
 
 
-</LinearLayout>
+
+</ScrollView>
