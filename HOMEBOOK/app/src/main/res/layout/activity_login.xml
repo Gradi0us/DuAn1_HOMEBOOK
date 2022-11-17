@@ -1,143 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:elevation="5dp">
-
-    <TextView
-        style="@style/headerTextPrimary"
-        android:text="Login"
-        android:layout_marginVertical="20dp"/>
-
+    style="@style/loginCard"
+    app:cardCornerRadius="20dp"
+    android:layout_gravity="center_vertical"
+    android:layout_height="wrap_content"
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:elevation="5dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/emailIn"
-                android:hint="Email"
-                style="@style/modifiedEditText"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:paddingVertical="10dp"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            app:passwordToggleEnabled="true"
-            style="@style/parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/passIn"
-                style="@style/modifiedEditText"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:paddingVertical="10dp"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            style="@style/headerTextPrimary"
+            android:text="Login"
+            android:layout_marginVertical="20dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
-            android:layout_marginVertical="5dp"
-            android:weightSum="2"
-            android:gravity="center_vertical">
+            android:orientation="vertical">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/rememberBox"
-                android:text="@string/remember"
-                android:textColor="@color/primaryTextColor"/>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/emailIn"
+                    android:hint="Email"
+                    style="@style/modifiedEditText"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:paddingVertical="10dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="5dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:passwordToggleEnabled="true"
+                style="@style/parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/passIn"
+                    style="@style/modifiedEditText"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:paddingVertical="10dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="5dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/quenmatkhau"
-                android:textSize="20dp"
-                android:id="@+id/quenMatKhau"
-                android:textStyle="bold"
-                android:gravity="right"
-                android:textColor="@color/primaryTextColor"/>
+                android:paddingHorizontal="10dp"
+                android:layout_marginVertical="5dp"
+                android:weightSum="2"
+                android:gravity="center_vertical">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:id="@+id/rememberBox"
+                    android:text="Rêmmber"
+                    android:textColor="@color/primaryTextColor"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/quenmatkhau"
+                    android:textSize="20dp"
+                    android:id="@+id/quenMatKhau"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:textColor="@color/primaryTextColor"/>
+
+            </LinearLayout>
+
+            <Button
+                android:text="Đăng nhập"
+                style="@style/loginButton"
+                android:layout_gravity="center"
+                android:id="@+id/signIn"
+                android:layout_marginVertical="20dp"
+                android:textSize="20dp"/>
 
         </LinearLayout>
 
-        <Button
-            android:text="Đăng nhập"
-            style="@style/loginButton"
-            android:layout_gravity="center"
-            android:id="@+id/signIn"
-            android:layout_marginVertical="20dp"
-            android:textSize="20dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/primaryTextColor"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/googleIn"
+                android:layout_width="25pt"
+                android:layout_height="25pt"
+                android:layout_margin="2mm"
+                android:src="@drawable/google_icon"
+                app:shapeAppearanceOverlay="@style/roundedIcon" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/facebookIn"
+                android:layout_width="25pt"
+                android:layout_height="25pt"
+                android:layout_margin="2mm"
+                android:src="@drawable/fb_icon"
+                app:shapeAppearanceOverlay="@style/roundedIcon" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/twitterIn"
+                android:layout_width="25pt"
+                android:layout_height="25pt"
+                android:layout_margin="2mm"
+                android:src="@drawable/twitter_icon"
+                app:shapeAppearanceOverlay="@style/roundedIcon" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wanttoregister"
+            android:textSize="20dp"
+            android:id="@+id/dangky"
+            android:textStyle="bold"
+            android:textColor="@color/primaryTextColor"
+            android:gravity="center|bottom"/>
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_marginHorizontal="20dp"
-        android:background="@color/primaryTextColor"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/googleIn"
-            android:layout_width="25pt"
-            android:layout_height="25pt"
-            android:layout_margin="2mm"
-            android:src="@drawable/google_icon"
-            app:shapeAppearanceOverlay="@style/roundedIcon" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/facebookIn"
-            android:layout_width="25pt"
-            android:layout_height="25pt"
-            android:layout_margin="2mm"
-            android:src="@drawable/fb_icon"
-            app:shapeAppearanceOverlay="@style/roundedIcon" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/twitterIn"
-            android:layout_width="25pt"
-            android:layout_height="25pt"
-            android:layout_margin="2mm"
-            android:src="@drawable/twitter_icon"
-            app:shapeAppearanceOverlay="@style/roundedIcon" />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/wanttoregister"
-        android:textSize="20dp"
-        android:id="@+id/dangky"
-        android:textStyle="bold"
-        android:textColor="@color/primaryTextColor"
-        android:gravity="center|bottom"/>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

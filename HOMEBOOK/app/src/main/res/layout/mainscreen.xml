@@ -75,7 +75,7 @@
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="350dp"
-                    android:src="@drawable/ic_baseline_house_24" />
+                    android:src="@drawable/usermanage" />
             </RelativeLayout>
 
             <LinearLayout

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,27 @@ public class Fragment3 extends Fragment {
         View v = inflater.inflate(R.layout.fragment_3, container, false);
 
         ListView listView = v.findViewById(R.id.lvmenu);
+        v.findViewById(R.id.regis).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame,new RegisterFragment())
+                        .commit();
+            }
+
+        });
+        v.findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame,new LoginFragment())
+                        .commit();
+            }
+        });
 
         ArrayList<ListModelMenu> list = new ArrayList<>();
 
