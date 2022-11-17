@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="70dp"
+    style="@style/loginCard"
+    android:layout_marginTop="45dp"
+    android:layout_marginBottom="40dp"
+    app:cardCornerRadius="@dimen/loginCardRadius"
     android:background="@drawable/border_background">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+
 
     <ImageView
         android:id="@+id/imgMenu"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center_vertical"
         android:src="@drawable/changepass_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,25 +30,24 @@
     <TextView
         android:id="@+id/tvMenu"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="60dp"
         android:text="TextView"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
-        app:layout_constraintStart_toEndOf="@+id/imgMenu"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/right"
+        android:layout_gravity="center_vertical"
+     android:layout_marginLeft="370dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.959"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
