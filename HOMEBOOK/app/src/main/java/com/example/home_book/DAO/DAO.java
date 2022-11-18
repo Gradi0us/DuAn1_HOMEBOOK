@@ -8,10 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.home_book.database.AppSQL;
 import com.example.home_book.model.user;
 
+import java.text.SimpleDateFormat;
+
 public class DAO {
     private SQLiteDatabase db;
     AppSQL appSQL;
     private Context context;
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     public DAO(Context context) {
         this.context = context;
@@ -76,28 +79,29 @@ public class DAO {
 
     public long AddUser(user x){
         ContentValues value = new ContentValues();
-        value.put("avatar",0);
+        value.put("avatar",x.getAvatar());
         value.put("fullname",x.getFullname());
         value.put("email",x.getEmail());
         value.put("password",x.getPassword());
         value.put("role",x.getRole());
-        value.put("birthday",x.getBirth_day());
+        value.put("birthday",format.format(x.getBirth_day()));
         value.put("phonenumber","0");
-        value.put("money",0);
+        value.put("money",x.getMoney());
         return db.insert("user_tb",null,value);
     }
 //
-//    public long UpdatePhieuMuon(PhieuMuon x){
-//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-//        ContentValues values = new ContentValues();
-//        values.put("usertt",x.getUsertt());
-//        values.put("idtv",x.getIdtv());
-//        values.put("idsach",x.getIdsach());
-//        values.put("tien",x.getPrice());
-//        values.put("date",format.format(x.getDate()));
-//        values.put("trasach",x.getTra());
-//        return db.update("phieuMuon_tb",values,"idphieu=?",new String[]{String.valueOf(x.getId())});
-//    }
+    public long UpdateUser(user x){
+        ContentValues value = new ContentValues();
+        value.put("avatar",x.getAvatar());
+        value.put("fullname",x.getFullname());
+        value.put("email",x.getEmail());
+        value.put("password",x.getPassword());
+        value.put("role",x.getRole());
+        value.put("birthday",format.format(x.getBirth_day()));
+        value.put("phonenumber","0");
+        value.put("money",x.getMoney());
+        return db.update("user_tb",value,"id=?",new String[]{String.valueOf(x.getId())});
+    }
 //
 //    public void DeletePhieuMuon(int ID){
 //        db.delete("phieuMuon_tb","idphieu=?",new String[]{String.valueOf(ID)});

@@ -1,19 +1,19 @@
 package com.example.home_book.model;
 
 public class user {
-    int id,role,money;
+    int id,role,money,avatar;
     String fullname,email,password,birth_day;
 
     public user() {
     }
 
-    public user(String fullname, String email, String password, String birth_day, int role, int money) {
+    public user(int avatar, String fullname, String email, String password, String birth_day, int role, int money) {
         this.role = role;
         this.fullname = fullname;
         this.email = email;
         this.password = password;
         this.birth_day = birth_day;
-        this.money = money;
+        this.avatar = avatar;
     }
 
     public int getId() {
@@ -70,5 +70,13 @@ public class user {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public int getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(int avatar) {
+        this.avatar = avatar;
     }
 }
