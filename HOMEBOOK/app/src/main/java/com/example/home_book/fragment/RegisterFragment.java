@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
@@ -22,6 +23,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 
@@ -33,6 +35,8 @@ public class RegisterFragment extends Fragment {
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     Button signUp;
     DAO dao;
+    Date date;
+    TextView already;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +58,7 @@ public class RegisterFragment extends Fragment {
         RadioButton radioCollaborate = view.findViewById(R.id.collaborateUP);
         RadioButton radioMember = view.findViewById(R.id.memberUp);
         dao = new DAO(getActivity());
+        already = view.findViewById(R.id.backToLogin);
 
         DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -61,6 +66,7 @@ public class RegisterFragment extends Fragment {
                 yY = year; mM = month; dD = dayOfMonth;
                 GregorianCalendar gC = new GregorianCalendar(yY,mM,dD);
                 birthUp.setText(format.format(gC.getTime()));
+                date = gC.getTime();
             }
         };
         birthUp.setOnClickListener(new View.OnClickListener() {
@@ -76,13 +82,17 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        //BUG BIRTH
+        already.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // trở về đăng nhập
+            }
+        });
 
         String email = emailUp.getText().toString();
         String pass = passUp.getText().toString();
         String passAgain = passUpAgain.getText().toString();
         String name = nameUp.getText().toString();
-        String birth = birthUp.getText().toString();
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,9 +124,10 @@ public class RegisterFragment extends Fragment {
                     }else{
                         role = 1;
                     }
-                    user x = new user(ava,name,email,pass,birth,role,money);
+                    user x = new user(ava,name,email,pass,date,role,money);
                     dao.AddUser(x);
                     list.add(x);
+                    list = (ArrayList<user>) dao.getUser("select * from user_tb",null);
                 }
             }
         });
