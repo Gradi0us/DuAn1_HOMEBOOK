@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class AppSQL extends SQLiteOpenHelper {
-    final String AdminstratorTable = "CREATE TABLE adminstrator_tb(id int primary key autoincrement, avatar int NOT NULL, money_reciever money NOT NULL, user_id int references user_tb(id) NOT NULL)";
+    final String AdminstratorTable = "CREATE TABLE adminstrator_tb(id int primary key autoincrement, avatar int NOT NULL, money_reciever int NOT NULL, user_id int references user_tb(id) NOT NULL)";
     final String UserTable = "CREATE TABLE user_tb(id int primary key autoincrement, avatar int NOT NULL, fullname text NOT NULL, email text NOT NULL,password text NOT NULL, role int NOT NULL, birthday date NOT NULL, phonenumber nvarchar(11) NOT NULL, money int NOT NULL)";
     final String BrandTable = "create table brand_tb(id int primary key autoincrement, fullname text NOT NULL, vote int NOT NULL, location text NOT NULL)";
     final String OrderTable = "create table order_tb(id int primary key autoincrement, user_id int references user_tb(id) NOT NULL, number_people int NOT NULL, booking_date date NOT NULL, return_date date, time_checkin time NOT NULL, time_checkout time NOT NULL, category_id int references category_tb(id) NOT NULL, note text, brand_id references brand_tb(id) NOT NULL)";

@@ -127,7 +127,7 @@ public class RegisterFragment extends Fragment {
                     user x = new user(ava,name,email,pass,date,role,money);
                     dao.AddUser(x);
                     list.add(x);
-                    list = (ArrayList<user>) dao.getUser();
+                    list = (ArrayList<user>) dao.getUser("select * from user_tb",null);
                 }
             }
         });

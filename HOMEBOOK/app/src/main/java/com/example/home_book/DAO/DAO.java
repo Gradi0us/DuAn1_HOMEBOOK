@@ -37,10 +37,9 @@ public class DAO {
         return false;
     }
 
-    public List<user> getUser() {
-        String sql = "select * from user_tb";
+    public List<user> getUser(String sql, String... args) {
         List<user> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sql, null);
+        Cursor c = db.rawQuery(sql, args);
         c.moveToFirst();
         while (!c.isAfterLast()) {
             int id = c.getInt(0);
@@ -64,13 +63,13 @@ public class DAO {
         c.close();
         return list;
     }
-//
-//    public PhieuMuon getPhieuMuonId(String id){
-//        String sql = "select * from phieuMuon_tb where idmuon=?";
-//        List<PhieuMuon> list = getPhieuMuon(sql,id);
-//        return list.get(0);
-//    }
-//
+
+    public user getUserId(String id){
+        String sql = "select * from user_tb where id=?";
+        List<user> list = getUser(sql,id);
+        return list.get(0);
+    }
+
 
     public long AddUser(user x){
         ContentValues value = new ContentValues();
