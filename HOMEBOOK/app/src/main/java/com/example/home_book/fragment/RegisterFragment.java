@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -29,14 +30,16 @@ import java.util.GregorianCalendar;
 
 public class RegisterFragment extends Fragment {
 
-    TextInputEditText birthUp,emailUp,passUp,passUpAgain,nameUp;
+    TextInputEditText birthUp,emailUp,passUp,passUpAgain,nameUp,phoneUp;
+    RadioButton radioCollaborate,radioMember;
     ArrayList<user> list = new ArrayList<>();
     int dD,mM,yY,role;
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     Button signUp;
     DAO dao;
     Date date;
-    TextView already;
+    TextView already,clickForDetails;
+    CheckBox checkAccept;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,15 +53,7 @@ public class RegisterFragment extends Fragment {
                     .commit();
         });
 
-        signUp = view.findViewById(R.id.signUp);
-        emailUp = view.findViewById(R.id.emailUp);
-        passUp = view.findViewById(R.id.passUp);
-        passUpAgain = view.findViewById(R.id.passUpAgain);
-        nameUp = view.findViewById(R.id.nameUp);
-        RadioButton radioCollaborate = view.findViewById(R.id.collaborateUP);
-        RadioButton radioMember = view.findViewById(R.id.memberUp);
-        dao = new DAO(getActivity());
-        already = view.findViewById(R.id.backToLogin);
+        AnhXa(view);
 
         DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -89,10 +84,18 @@ public class RegisterFragment extends Fragment {
             }
         });
 
+        clickForDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Điều khoản
+            }
+        });
+
         String email = emailUp.getText().toString();
         String pass = passUp.getText().toString();
         String passAgain = passUpAgain.getText().toString();
         String name = nameUp.getText().toString();
+        String phone = phoneUp.getText().toString();
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,19 +115,26 @@ public class RegisterFragment extends Fragment {
                 if(name.trim().length() <= 0){
                     check = false;
                 }
+                if(phone.trim().length() <= 0){
+                    check = false;
+                }
                 if(!radioCollaborate.isChecked() || !radioMember.isChecked()){
                     check = false;
                 }
-                if(!passAgain.equals(pass)){
+                else if(!passAgain.equals(pass)){
                     check = false;
                 }
-                else if(check == true){
-                    if(radioCollaborate.isChecked()){
+                else if(!checkAccept.isChecked()){
+                    check = false;
+                }
+
+                if(check == true){
+                    if(radioCollaborate.isChecked() && !radioMember.isChecked() ){
                         role = 0;
-                    }else{
+                    }else if(radioMember.isChecked() && !radioCollaborate.isChecked()){
                         role = 1;
                     }
-                    user x = new user(ava,name,email,pass,date,role,money);
+                    user x = new user(ava,name,email,pass,date,phone,role,money);
                     dao.AddUser(x);
                     list.add(x);
                     list = (ArrayList<user>) dao.getUser("select * from user_tb",null);
@@ -135,5 +145,21 @@ public class RegisterFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void AnhXa(View view){
+        signUp = view.findViewById(R.id.signUp);
+        emailUp = view.findViewById(R.id.emailUp);
+        passUp = view.findViewById(R.id.passUp);
+        passUpAgain = view.findViewById(R.id.passUpAgain);
+        nameUp = view.findViewById(R.id.nameUp);
+        phoneUp = view.findViewById(R.id.phoneUp);
+        birthUp = view.findViewById(R.id.birthUp);
+        checkAccept = view.findViewById(R.id.checkAccept);
+        clickForDetails = view.findViewById(R.id.clickForDetails);
+        radioCollaborate = view.findViewById(R.id.collaborateUP);
+        radioMember = view.findViewById(R.id.memberUp);
+        dao = new DAO(getActivity());
+        already = view.findViewById(R.id.backToLogin);
     }
 }

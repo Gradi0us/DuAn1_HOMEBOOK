@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class user {
     int id,role,money,avatar;
-    String fullname,email,password;
+    String fullname,email,password,phone,cccd;
     Date birth_day;
 
     public user() {
     }
 
-    public user(int id, int avatar, String fullname, String email, String password, Date birth_day, int role, int money) {
+    public user(int id, int avatar, String fullname, String email, String password, Date birth_day, String phone, int role, int money) {
         this.id = id;
         this.role = role;
         this.fullname = fullname;
@@ -18,15 +18,19 @@ public class user {
         this.password = password;
         this.birth_day = birth_day;
         this.avatar = avatar;
+        this.phone = phone;
+        this.money = money;
     }
 
-    public user(int avatar, String fullname, String email, String password, Date birth_day, int role, int money) {
+    public user(int avatar, String fullname, String email, String password, Date birth_day, String phone, int role, int money) {
         this.role = role;
         this.fullname = fullname;
         this.email = email;
         this.password = password;
         this.birth_day = birth_day;
         this.avatar = avatar;
+        this.phone = phone;
+        this.money = money;
     }
 
     public int getId() {
@@ -91,5 +95,21 @@ public class user {
 
     public void setAvatar(int avatar) {
         this.avatar = avatar;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getCccd() {
+        return cccd;
+    }
+
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
     }
 }

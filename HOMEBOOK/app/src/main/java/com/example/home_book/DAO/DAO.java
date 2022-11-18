@@ -56,7 +56,7 @@ public class DAO {
             }
             String phone = c.getString(7);
             int money = c.getInt(8);
-            user x = new user(id, ava, name, email, pass, ngay, role, money);
+            user x = new user(id, ava, name, email, pass, ngay, phone, role, money);
             list.add(x);
             c.moveToNext();
         }
