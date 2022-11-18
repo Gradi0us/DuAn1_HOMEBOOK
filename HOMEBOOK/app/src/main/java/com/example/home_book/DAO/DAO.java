@@ -1,10 +1,12 @@
 package com.example.home_book.DAO;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.home_book.database.AppSQL;
+import com.example.home_book.model.user;
 
 public class DAO {
     private SQLiteDatabase db;
@@ -71,6 +73,19 @@ public class DAO {
 //        values.put("trasach",0);
 //        db.insert("phieuMuon_tb",null,values);
 //    }
+
+    public long AddUser(user x){
+        ContentValues value = new ContentValues();
+        value.put("avatar",0);
+        value.put("fullname",x.getFullname());
+        value.put("email",x.getEmail());
+        value.put("password",x.getPassword());
+        value.put("role",x.getRole());
+        value.put("birthday",x.getBirth_day());
+        value.put("phonenumber","0");
+        value.put("money",0);
+        return db.insert("user_tb",null,value);
+    }
 //
 //    public long UpdatePhieuMuon(PhieuMuon x){
 //        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
