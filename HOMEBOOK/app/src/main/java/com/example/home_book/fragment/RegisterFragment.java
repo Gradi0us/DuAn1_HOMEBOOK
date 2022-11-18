@@ -76,6 +76,8 @@ public class RegisterFragment extends Fragment {
             }
         });
 
+        //BUG BIRTH
+
         String email = emailUp.getText().toString();
         String pass = passUp.getText().toString();
         String passAgain = passUpAgain.getText().toString();
@@ -87,6 +89,7 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 Boolean check = true;
                 role = 1;
+                int ava = 0,money = 0;
                 if(email.trim().length() <= 0){
                     check = false;
                 }
@@ -102,16 +105,16 @@ public class RegisterFragment extends Fragment {
                 if(!radioCollaborate.isChecked() || !radioMember.isChecked()){
                     check = false;
                 }
-                if(passAgain.equals(pass)){
+                if(!passAgain.equals(pass)){
                     check = false;
                 }
-                if(check == true){
+                else if(check == true){
                     if(radioCollaborate.isChecked()){
                         role = 0;
                     }else{
                         role = 1;
                     }
-                    user x = new user(name,email,pass,birth,role,0);
+                    user x = new user(ava,name,email,pass,birth,role,money);
                     dao.AddUser(x);
                     list.add(x);
                 }
