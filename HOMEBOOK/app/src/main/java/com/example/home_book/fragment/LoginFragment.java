@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.activity.LoginActivity;
 import com.example.home_book.activity.MainActivity;
 import com.google.android.material.textfield.TextInputEditText;
 

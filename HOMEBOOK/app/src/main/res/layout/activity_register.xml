@@ -98,7 +98,7 @@
             android:weightSum="2">
 
             <RadioButton
-                android:id="@+id/bossUP"
+                android:id="@+id/collaborateUP"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -134,7 +134,8 @@
         <Button
             style="@style/loginButton"
             android:layout_marginVertical="15dp"
-            android:text="Sign Up"/>
+            android:text="Sign Up"
+            android:id="@+id/signUp"/>
 
         <TextView
             android:layout_width="match_parent"

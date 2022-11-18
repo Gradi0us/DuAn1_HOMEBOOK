@@ -9,29 +9,30 @@ import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.activity.RegisterActivity;
+import com.example.home_book.model.user;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
 public class RegisterFragment extends Fragment {
 
-    TextInputEditText birthUp;
-    int dD,mM,yY;
+    TextInputEditText birthUp,emailUp,passUp,passUpAgain,nameUp;
+    ArrayList<user> list = new ArrayList<>();
+    int dD,mM,yY,role;
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+    Button signUp;
+    DAO dao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +45,16 @@ public class RegisterFragment extends Fragment {
                     .replace(R.id.frame,new Fragment3())
                     .commit();
         });
+
+        signUp = view.findViewById(R.id.signUp);
+        emailUp = view.findViewById(R.id.emailUp);
+        passUp = view.findViewById(R.id.passUp);
+        passUpAgain = view.findViewById(R.id.passUpAgain);
+        nameUp = view.findViewById(R.id.nameUp);
+        RadioButton radioCollaborate = view.findViewById(R.id.collaborateUP);
+        RadioButton radioMember = view.findViewById(R.id.memberUp);
+        dao = new DAO(getActivity());
+
         DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -64,6 +75,50 @@ public class RegisterFragment extends Fragment {
                 d.show();
             }
         });
+
+        String email = emailUp.getText().toString();
+        String pass = passUp.getText().toString();
+        String passAgain = passUpAgain.getText().toString();
+        String name = nameUp.getText().toString();
+        String birth = birthUp.getText().toString();
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Boolean check = true;
+                role = 1;
+                if(email.trim().length() <= 0){
+                    check = false;
+                }
+                if(pass.trim().length() <= 0){
+                    check = false;
+                }
+                if(passAgain.trim().length() <= 0){
+                    check = false;
+                }
+                if(name.trim().length() <= 0){
+                    check = false;
+                }
+                if(!radioCollaborate.isChecked() || !radioMember.isChecked()){
+                    check = false;
+                }
+                if(passAgain.equals(pass)){
+                    check = false;
+                }
+                if(check == true){
+                    if(radioCollaborate.isChecked()){
+                        role = 0;
+                    }else{
+                        role = 1;
+                    }
+                    user x = new user(name,email,pass,birth,role,0);
+                    dao.AddUser(x);
+                    list.add(x);
+                }
+            }
+        });
+
+
 
         return view;
     }
