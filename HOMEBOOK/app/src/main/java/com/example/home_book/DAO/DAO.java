@@ -80,7 +80,7 @@ public class DAO {
         value.put("password",x.getPassword());
         value.put("role",x.getRole());
         value.put("birthday",format.format(x.getBirth_day()));
-        value.put("phonenumber","0");
+        value.put("phonenumber",x.getPhone());
         value.put("money",x.getMoney());
         return db.insert("user_tb",null,value);
     }
@@ -93,7 +93,7 @@ public class DAO {
         value.put("password",x.getPassword());
         value.put("role",x.getRole());
         value.put("birthday",format.format(x.getBirth_day()));
-        value.put("phonenumber","0");
+        value.put("phonenumber",x.getPhone());
         value.put("money",x.getMoney());
         return db.update("user_tb",value,"id=?",new String[]{String.valueOf(x.getId())});
     }

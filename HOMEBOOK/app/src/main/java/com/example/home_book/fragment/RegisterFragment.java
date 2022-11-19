@@ -6,9 +6,12 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -91,58 +94,71 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        String email = emailUp.getText().toString();
-        String pass = passUp.getText().toString();
-        String passAgain = passUpAgain.getText().toString();
-        String name = nameUp.getText().toString();
-        String phone = phoneUp.getText().toString();
-
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = emailUp.getText().toString();
+                String pass = passUp.getText().toString();
+                String passAgain = passUpAgain.getText().toString();
+                String name = nameUp.getText().toString();
+                String phone = phoneUp.getText().toString();
+                Animation animShake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
+
                 Boolean check = true;
                 role = 1;
                 int ava = 0,money = 0;
+
+                if(!radioCollaborate.isChecked() && !radioMember.isChecked()){
+                    check = false;
+                    Toast.makeText(getActivity(),"Choose your role",Toast.LENGTH_SHORT).show();
+                    radioCollaborate.setAnimation(animShake);
+                    radioMember.setAnimation(animShake);
+                }
+                if(!checkAccept.isChecked()){
+                    check = false;
+                    Toast.makeText(getActivity(),"Accept the license",Toast.LENGTH_SHORT).show();
+                    checkAccept.setAnimation(animShake);
+                }
                 if(email.trim().length() <= 0){
                     check = false;
+                    emailUp.setError("Enter the email.");
                 }
                 if(pass.trim().length() <= 0){
                     check = false;
+                    passUp.setError("Enter the password.");
                 }
                 if(passAgain.trim().length() <= 0){
                     check = false;
+                    passUpAgain.setError("Enter the password again.");
                 }
                 if(name.trim().length() <= 0){
                     check = false;
+                    nameUp.setError("Enter your name.");
                 }
                 if(phone.trim().length() <= 0){
                     check = false;
-                }
-                if(!radioCollaborate.isChecked() || !radioMember.isChecked()){
-                    check = false;
+                    phoneUp.setError("Enter your phone number.");
                 }
                 else if(!passAgain.equals(pass)){
                     check = false;
-                }
-                else if(!checkAccept.isChecked()){
-                    check = false;
+                    passUpAgain.setError("The password again is not same as the password.");
                 }
 
                 if(check == true){
-                    if(radioCollaborate.isChecked() && !radioMember.isChecked() ){
+                    if(radioCollaborate.isChecked()){
                         role = 0;
-                    }else if(radioMember.isChecked() && !radioCollaborate.isChecked()){
+                    }else if(radioMember.isChecked()){
                         role = 1;
                     }
+                    Log.d("User","ADD OK");
                     user x = new user(ava,name,email,pass,date,phone,role,money);
                     dao.AddUser(x);
                     list.add(x);
+                    Toast.makeText(getActivity(),"Add completed",Toast.LENGTH_SHORT).show();
                     list = (ArrayList<user>) dao.getUser("select * from user_tb",null);
                 }
             }
         });
-
-
 
         return view;
     }
@@ -162,4 +178,5 @@ public class RegisterFragment extends Fragment {
         dao = new DAO(getActivity());
         already = view.findViewById(R.id.backToLogin);
     }
+
 }
