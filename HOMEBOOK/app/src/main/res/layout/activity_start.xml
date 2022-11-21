@@ -13,8 +13,8 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:progressDrawable="@drawable/custom_progress"
         android:id="@+id/progess"
-        android:layout_gravity="center"
-        android:progress="100"/>
+        android:max="30000"
+        android:layout_gravity="center" />
 
     <ImageView
         android:layout_width="50pt"

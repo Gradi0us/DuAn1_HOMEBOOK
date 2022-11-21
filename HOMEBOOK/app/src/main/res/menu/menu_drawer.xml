@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title=""/>
-    <item android:id="@+id/mThu"
+    <item android:id="@+id/mHome"
         android:title="Home"
         android:icon="@drawable/ic_baseline_house_24"/>
-    <item android:id="@+id/mChi"
+    <item android:id="@+id/mAcount"
         android:title="Account"
         android:icon="@drawable/rate"/>
 
-    <item android:id="@+id/news"
+    <item android:id="@+id/mRate"
         android:title="Rate"
         android:icon="@drawable/graph"/>
 
-    <item android:id="@+id/setting"
+    <item android:id="@+id/mSetting"
         android:title="Seting"
         android:icon="@drawable/setting"/>
 

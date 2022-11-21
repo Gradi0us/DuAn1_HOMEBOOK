@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/birthUp"
-                android:hint="dd/MM/yyyy"
+                android:hint="Birthday"
                 android:editable="false"
                 android:paddingVertical="10dp"
                 android:layout_marginHorizontal="15dp"
@@ -98,7 +98,7 @@
             android:weightSum="2">
 
             <RadioButton
-                android:id="@+id/bossUP"
+                android:id="@+id/collaborateUP"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -131,10 +131,52 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneUp"
+                android:hint="Mobile Phone"
+                android:inputType="phone"
+                android:paddingVertical="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="5dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Accept all license."
+                android:id="@+id/checkAccept"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clickhere"
+                android:id="@+id/clickForDetails"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+
+
         <Button
             style="@style/loginButton"
             android:layout_marginVertical="15dp"
-            android:text="Sign Up"/>
+            android:text="Sign Up"
+            android:id="@+id/signUp"/>
 
         <TextView
             android:layout_width="match_parent"
