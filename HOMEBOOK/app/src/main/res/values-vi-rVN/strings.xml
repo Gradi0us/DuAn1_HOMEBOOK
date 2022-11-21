@@ -15,4 +15,6 @@
     <string name="fullname">Họ tên</string>
     <string name="mobile_phone">Số điện thoại</string>
     <string name="accept_license">Đồng ý các điều khoản.</string>
+    <string name="collaborate">Người hợp tác</string>
+    <string name="member">Thành viên</string>
 </resources>
