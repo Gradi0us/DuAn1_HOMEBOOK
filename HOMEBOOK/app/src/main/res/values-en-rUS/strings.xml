@@ -1,11 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HomeBook</string>
-    <string name="quenmatkhau">Quên Mật Khẩu?</string>
+    <string name="quenmatkhau">Forget the password?</string>
     <string name="wanttoregister"><u>Create a new account with email</u></string>
     <string name="wanttologin">Already have a account? | <u>Sign In Now</u></string>
     <string name="remember"><u>REMEMBER</u></string>
     <string name="clickhere"><u>Click here for details</u></string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

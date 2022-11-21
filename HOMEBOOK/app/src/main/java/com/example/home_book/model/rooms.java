@@ -1,21 +1,41 @@
 package com.example.home_book.model;
 
 public class rooms {
-    int id,brands_id,category_id,rate_id;
-            String status,service,cost,note,size;
+    int id, rate, max_people, rooms, beds, status, cost;
+    String service, note, size, name, brand, category;
 
     public rooms() {
     }
 
-    public rooms(int brands_id, int category_id, int rate_id, String status, String service, String cost, String note, String size) {
-        this.brands_id = brands_id;
-        this.category_id = category_id;
-        this.rate_id = rate_id;
+    public rooms(String name, String brand, String category, int max_people, int beds, int rooms, int rate, String note, String size, String service, int cost, int status) {
+        this.rate = rate;
+        this.max_people = max_people;
+        this.rooms = rooms;
+        this.beds = beds;
         this.status = status;
-        this.service = service;
         this.cost = cost;
+        this.service = service;
         this.note = note;
         this.size = size;
+        this.name = name;
+        this.brand = brand;
+        this.category = category;
+    }
+
+    public rooms(int id, String name, String brand, String category, int max_people, int beds, int rooms, int rate, String note, String size, String service, int cost, int status) {
+        this.id = id;
+        this.rate = rate;
+        this.max_people = max_people;
+        this.rooms = rooms;
+        this.beds = beds;
+        this.status = status;
+        this.cost = cost;
+        this.service = service;
+        this.note = note;
+        this.size = size;
+        this.name = name;
+        this.brand = brand;
+        this.category = category;
     }
 
     public int getId() {
@@ -26,35 +46,19 @@ public class rooms {
         this.id = id;
     }
 
-    public int getBrands_id() {
-        return brands_id;
+    public int getRate() {
+        return rate;
     }
 
-    public void setBrands_id(int brands_id) {
-        this.brands_id = brands_id;
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 
-    public int getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
-    }
-
-    public int getRate_id() {
-        return rate_id;
-    }
-
-    public void setRate_id(int rate_id) {
-        this.rate_id = rate_id;
-    }
-
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -66,11 +70,11 @@ public class rooms {
         this.service = service;
     }
 
-    public String getCost() {
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 
@@ -88,5 +92,53 @@ public class rooms {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public int getMax_people() {
+        return max_people;
+    }
+
+    public void setMax_people(int max_people) {
+        this.max_people = max_people;
+    }
+
+    public int getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(int rooms) {
+        this.rooms = rooms;
+    }
+
+    public int getBeds() {
+        return beds;
+    }
+
+    public void setBeds(int beds) {
+        this.beds = beds;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

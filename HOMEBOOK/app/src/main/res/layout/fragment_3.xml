@@ -59,6 +59,7 @@
                 android:background="@drawable/color_gradient"
                 android:layout_width="100dp"
                 android:text="Register"
+                android:id="@+id/regis"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAllCaps="false"
@@ -67,6 +68,7 @@
             <Button
                 android:background="@drawable/color_gradient"
                 android:layout_marginLeft="15dp"
+                android:id="@+id/login"
                 android:text="Login"
                 android:textColor="@color/white"
                 android:textStyle="bold"
