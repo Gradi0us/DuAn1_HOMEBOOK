@@ -18,7 +18,7 @@
 
         <TextView
             style="@style/headerTextPrimary"
-            android:text="Login"
+            android:text="@string/dangnhap"
             android:layout_marginVertical="20dp"/>
 
         <LinearLayout
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/passIn"
                     style="@style/modifiedEditText"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:paddingVertical="10dp"
                     android:layout_marginHorizontal="15dp"
@@ -74,7 +74,7 @@
                     android:layout_weight="1"
                     android:textStyle="bold"
                     android:id="@+id/rememberBox"
-                    android:text="Rêmmber"
+                    android:text="@string/remember"
                     android:textColor="@color/primaryTextColor"/>
 
                 <TextView
@@ -91,7 +91,7 @@
             </LinearLayout>
 
             <Button
-                android:text="Đăng nhập"
+                android:text="@string/dangnhap"
                 style="@style/loginButton"
                 android:layout_gravity="center"
                 android:id="@+id/signIn"

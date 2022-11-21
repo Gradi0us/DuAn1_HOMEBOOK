@@ -48,11 +48,8 @@
                     android:layout_gravity="center"
                     android:text=""
                     android:layout_marginTop="40dp"/>
-                <include
-                    layout="@layout/activity_register"/>
 
-
-
+                <include layout="@layout/activity_register" />
 
 
             </LinearLayout>
