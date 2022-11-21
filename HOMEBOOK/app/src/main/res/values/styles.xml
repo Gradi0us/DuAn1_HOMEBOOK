@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <style name="Theme.AppCompat.NoActionBar">-->
-<!--        <item name="windowActionBar">false</item>-->
-<!--        <item name="windowNoTitle">true</item>-->
-<!--    </style>-->
+    <!--    <style name="Theme.AppCompat.NoActionBar">-->
+    <!--        <item name="windowActionBar">false</item>-->
+    <!--        <item name="windowNoTitle">true</item>-->
+    <!--    </style>-->
 
     <!--designs for login and register-->
     <style name="parent">
@@ -43,7 +43,7 @@
     </style>
     <style name="headersearchhh" parent="parent">
         <item name="android:textSize">22sp</item>
-<!--        <item name="android:textAlignment"></item>-->
+        <!--        <item name="android:textAlignment"></item>-->
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
 

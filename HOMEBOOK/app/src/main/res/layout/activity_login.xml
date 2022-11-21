@@ -75,6 +75,7 @@
                     android:textStyle="bold"
                     android:id="@+id/rememberBox"
                     android:text="@string/remember"
+                    android:text="Remember"
                     android:textColor="@color/primaryTextColor"/>
 
                 <TextView
