@@ -38,7 +38,7 @@ public class AppSQL extends SQLiteOpenHelper {
 //        db.execSQL(CategoryTable);
         db.execSQL(RoomTable);
 
-        db.execSQL("insert into user_tb(id, avatar, fullname, email, password, role, birthday, phonenumber, money) values ('0','0','admin','admin@admin.com','admin','0','01/01/0001','0','999999999')");
+        db.execSQL("insert into user_tb(avatar, fullname, email, password, role, birthday, phonenumber, money) values ('0','Admin','admin@admin.com','admin','0','01/01/0001','0','999999999')");
     }
 
     @Override
