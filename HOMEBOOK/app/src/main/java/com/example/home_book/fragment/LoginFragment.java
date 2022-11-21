@@ -28,14 +28,9 @@ public class LoginFragment extends Fragment {
 
     TextInputEditText emailIn,passIn;
     CheckBox remember;
-    TextView forget;
+    TextView forget,create;
     Button signIn;
     DAO dao;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +48,7 @@ public class LoginFragment extends Fragment {
         signIn = view.findViewById(R.id.signIn);
         remember = view.findViewById(R.id.rememberBox);
         forget = view.findViewById(R.id.quenMatKhau);
+        create = view.findViewById(R.id.dangky);
         dao = new DAO(getContext());
 
         SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
@@ -63,6 +59,17 @@ public class LoginFragment extends Fragment {
         emailIn.setText(email);
         passIn.setText(pass);
         remember.setChecked(rem);
+
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame,new RegisterFragment())
+                        .commit();
+            }
+        });
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
