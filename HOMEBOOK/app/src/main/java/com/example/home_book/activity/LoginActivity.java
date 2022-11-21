@@ -17,7 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextInputEditText emailIn,passIn;
+    TextInputEditText emailIn, passIn;
     CheckBox remember;
     TextView forget;
     Button signIn;
@@ -38,10 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         String eI = emailIn.getText().toString();
         String pI = passIn.getText().toString();
 
-        SharedPreferences sP = getSharedPreferences("User_File",MODE_PRIVATE);
-        String email = sP.getString("Email","");
-        String pass = sP.getString("Password","");
-        Boolean rem = sP.getBoolean("Remember",false);
+        SharedPreferences sP = getSharedPreferences("User_File", MODE_PRIVATE);
+        String email = sP.getString("Email", "");
+        String pass = sP.getString("Password", "");
+        Boolean rem = sP.getBoolean("Remember", false);
 
         emailIn.setText(email);
         passIn.setText(pass);
@@ -52,13 +52,40 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences.Editor editor = sP.edit();
                 Boolean check = true;
-                if(eI.trim().length() <= 0){
+                if (eI.trim().length() <= 0) {
                     check = false;
                 }
-                if(pI.trim().length() <=0){
+                if (pI.trim().length() <= 0) {
                     check = false;
                 }
-                if(check){
+                if (check) {
+                    if (dao.checkLogin(eI, pI)) {
+                        rememberUser(eI, pI, remember.isChecked());
+                        editor.putString("Email", eI);
+                        editor.commit();
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+//                    }
+                    }
+                }
+            }
+        });
+
+//        signIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SharedPreferences.Editor editor = sP.edit();
+//                Boolean check = true;
+//                if(eI.trim().length() <= 0){
+//                    check = false;
+//                }
+//                if(pI.trim().length() <=0){
+//                    check = false;
+//                }
+//                if(check){
 //                    if(dao.checkLogin(eI,pI)){
 //                        rememberUser(eI,pI,remember.isChecked());
 //                        editor.putString("Email",eI);
@@ -68,24 +95,27 @@ public class LoginActivity extends AppCompatActivity {
 //                        finish();
 //                    }else{
 //                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
-//                    }
-                }
-            }
-        });
+////                    }
+//                }
+//            }
+//        });
+//
+//    }
 
     }
 
-    public void rememberUser(String e,String p, boolean s){
-        SharedPreferences pref = getSharedPreferences("User_File",MODE_PRIVATE);
+    public void rememberUser(String e, String p, boolean s) {
+        SharedPreferences pref = getSharedPreferences("User_File", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        if(s){
-            editor.putString("Email",e);
-            editor.putString("Password",p);
-            editor.putBoolean("Remember",s);
-        }else{
+        if (s) {
+            editor.putString("Email", e);
+            editor.putString("Password", p);
+            editor.putBoolean("Remember", s);
+        } else {
             editor.clear();
         }
         editor.commit();
     }
-    //Chuyển qua dùng fragment nhá lai
 }
+//    Chuyển qua dùng fragment nhá lai
+
