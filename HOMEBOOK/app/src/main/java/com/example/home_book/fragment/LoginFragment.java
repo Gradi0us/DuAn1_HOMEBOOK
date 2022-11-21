@@ -78,15 +78,15 @@ public class LoginFragment extends Fragment {
                     check = false;
                 }
                 if(check){
-//                    if(dao.checkLogin(eI,pI)){
+                    if(dao.checkLogin(eI,pI)){
 //                        rememberUser(eI,pI,remember.isChecked());
 //                        editor.putString("Email",eI);
 //                        editor.commit();
-//                        Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
 //                        startActivity(new Intent(getActivity(), MainActivity.class));
-//                    }else{
-//                        Toast.makeText(getActivity(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
-//                    }
+                    }else{
+                        Toast.makeText(getActivity(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
