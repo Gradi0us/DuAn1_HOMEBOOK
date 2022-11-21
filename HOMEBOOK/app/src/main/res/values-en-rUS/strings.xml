@@ -15,4 +15,6 @@
     <string name="fullname">Fullname</string>
     <string name="birthday">Birthday</string>
     <string name="password_again">Password Again</string>
+    <string name="collaborate">Collaborate</string>
+    <string name="member">Member</string>
 </resources>

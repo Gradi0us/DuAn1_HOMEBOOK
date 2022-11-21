@@ -105,13 +105,13 @@
                 android:layout_weight="1"
                 android:textColor="@color/gray"
                 android:textStyle="bold"
-                android:text="Collaborate" />
+                android:text="@string/collaborate" />
 
             <RadioButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/memberUp"
-                android:text="Member"
+                android:text="@string/member"
                 android:textColor="@color/gray"
                 android:textStyle="bold"
                 android:layout_weight="1"/>

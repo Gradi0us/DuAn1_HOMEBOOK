@@ -13,6 +13,8 @@
     <string name="accept_license">Accept all license.</string>
     <string name="dangnhap">Đăng nhập</string>
     <string name="dangky">Đăng ký</string>
+    <string name="collaborate">Collaborate</string>
+    <string name="member">Member</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
