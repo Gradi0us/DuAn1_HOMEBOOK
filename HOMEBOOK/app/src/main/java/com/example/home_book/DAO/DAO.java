@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.home_book.database.AppSQL;
 import com.example.home_book.model.order;
+import com.example.home_book.model.roomImage;
 import com.example.home_book.model.rooms;
 
 import java.util.ArrayList;
@@ -101,10 +102,6 @@ public class DAO {
         value.put("money", x.getMoney());
         return db.update("user_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
-//
-//    public void DeletePhieuMuon(int ID){
-//        db.delete("phieuMuon_tb","idphieu=?",new String[]{String.valueOf(ID)});
-//    }
 
 //    public ArrayList<rooms> Search(String name, String trangthai) {
 //        ArrayList<rooms> list = new ArrayList<>();
@@ -254,6 +251,33 @@ public class DAO {
 
     public void DeleteOrder(int ID) {
         db.delete("order_tb", "id=?", new String[]{String.valueOf(ID)});
+    }
+
+    public List<roomImage> getRoomImg(String sql, String... args) {
+        List<roomImage> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, args);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int id = c.getInt(0);
+            int room_id = c.getInt(1);
+            int image = c.getInt(2);
+            roomImage x = new roomImage(id,room_id,image);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+    }
+
+    public long AddRoomImg(roomImage x) {
+        ContentValues value = new ContentValues();
+        value.put("room_id", x.getRoom_id());
+        value.put("image", x.getImage());
+        return db.insert("roomImage_tb", null, value);
+    }
+
+    public void DeleteRoomImg(int ID) {
+        db.delete("roomImage_tb", "id=?", new String[]{String.valueOf(ID)});
     }
 
 }
