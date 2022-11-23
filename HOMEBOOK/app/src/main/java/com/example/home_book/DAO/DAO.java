@@ -92,6 +92,7 @@ public class DAO {
 
     public long UpdateUser(user x) {
         ContentValues value = new ContentValues();
+
         value.put("avatar", x.getAvatar());
         value.put("fullname", x.getFullname());
         value.put("email", x.getEmail());
@@ -131,6 +132,7 @@ public class DAO {
 //        }
 //        return list;
 //    }
+
 
     public List<rooms> getRoom(String sql, String... args) {
         List<rooms> list = new ArrayList<>();

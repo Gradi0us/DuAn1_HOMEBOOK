@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="200dp"
+    android:layout_gravity="center"
+    android:layout_marginLeft="5dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_bed_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:text="X" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/favorite" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/ic_baseline_house_24" />
+
+        <TextView
+            style="@style/item_size"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/edt_btn"
+            android:layout_marginBottom="30dp"
+            android:text="Hotel_name" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/edt_btn"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/location" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="8dp"
+            android:text="hotel_location"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</LinearLayout>
+
