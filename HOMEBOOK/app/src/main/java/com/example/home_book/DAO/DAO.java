@@ -104,34 +104,34 @@ public class DAO {
         db.delete("phieuMuon_tb","idphieu=?",new String[]{String.valueOf(ID)});
     }
 
-public ArrayList<rooms> Search(String name, String trangthai) {
-    ArrayList<rooms> list = new ArrayList<>();
-    SQLiteDatabase sqLiteDatabase = appSQL.getReadableDatabase();
-    Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM UnLock where name like '%" + name + "%' AND trangthai ='" + trangthai + "' ORDER BY name ASC", null);
-    if (cursor.getCount() != 0) {
-        cursor.moveToFirst();
-        do {
-            int id = cursor.getInt(cursor.getColumnIndex("id"));
-            String link = cursor.getString(cursor.getColumnIndex("package"));
-            String name1 = cursor.getString(cursor.getColumnIndex("name"));
-            byte[] img = cursor.getBlob(cursor.getColumnIndex("img"));
-            String trangthai1 = cursor.getString(cursor.getColumnIndex("trangthai"));
-            String tinhtrang = cursor.getString(cursor.getColumnIndex("tinhtrang"));
-            //Thêm dữ liệu vừa lấy ra từ cột vào đối tượng Laptop
+//public ArrayList<rooms> Search(String name, String trangthai) {
+//    ArrayList<rooms> list = new ArrayList<>();
+//    SQLiteDatabase sqLiteDatabase = appSQL.getReadableDatabase();
+//    Cursor cursor = sqLiteDatabase.rawQuery(" SELECT * FROM UnLock where name like '%" + name + "%' AND trangthai ='" + trangthai + "' ORDER BY name ASC", null);
+//    if (cursor.getCount() != 0) {
+//        cursor.moveToFirst();
+//        do {
+//            int id = cursor.getInt(cursor.getColumnIndex("id"));
+//            String link = cursor.getString(cursor.getColumnIndex("package"));
+//            String name1 = cursor.getString(cursor.getColumnIndex("name"));
+//            byte[] img = cursor.getBlob(cursor.getColumnIndex("img"));
+//            String trangthai1 = cursor.getString(cursor.getColumnIndex("trangthai"));
+//            String tinhtrang = cursor.getString(cursor.getColumnIndex("tinhtrang"));
+//            //Thêm dữ liệu vừa lấy ra từ cột vào đối tượng Laptop
 //            App app = new App();
 //            app.setId(id);
 //            app.setLinkpackage(link);
 //            app.setLabel(name1);
 //            app.setImg(img);
-////                app.setImg();
+//                app.setImg();
 //            app.setTrangthai(trangthai1);
 //            app.setTinhtrang(tinhtrang);
 //            //Thêm đối tượng vào danh sách
 //            list.add(app);
-        } while (cursor.moveToNext());
-    }
-    return list;
-}
+//        } while (cursor.moveToNext());
+//    }
+//    return list;
+//}
 
     public List<rooms> getRoom(String sql, String... args) {
         List<rooms> list = new ArrayList<>();
