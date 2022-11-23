@@ -356,15 +356,14 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="100dp"
                     android:background="@drawable/type"
                     android:text="Cancel"
                     android:textAllCaps="false" />
