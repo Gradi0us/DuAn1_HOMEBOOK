@@ -1,21 +1,37 @@
 package com.example.home_book.model;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class order {
-    int id,user_id,category_id,number_people,brand_id;
-    String booking_date,return_date,time_checkin,time_checkout;
+    int id,user_id,number_people,room_id;
+    Date booking_date,return_date;
+    String time_checkin,time_checkout,note;
 
     public order() {
     }
 
-    public order(int user_id, int category_id, int number_people, int brand_id, String booking_date, String return_date, String time_checkin, String time_checkout) {
+    public order(int id, int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note) {
+        this.id = id;
         this.user_id = user_id;
-        this.category_id = category_id;
         this.number_people = number_people;
-        this.brand_id = brand_id;
-        this.booking_date = booking_date;
-        this.return_date = return_date;
+        this.room_id = room_id;
         this.time_checkin = time_checkin;
         this.time_checkout = time_checkout;
+        this.note = note;
+        this.booking_date = booking_date;
+        this.return_date = return_date;
+    }
+
+    public order( int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note) {
+        this.user_id = user_id;
+        this.number_people = number_people;
+        this.room_id = room_id;
+        this.time_checkin = time_checkin;
+        this.time_checkout = time_checkout;
+        this.note = note;
+        this.booking_date = booking_date;
+        this.return_date = return_date;
     }
 
     public int getId() {
@@ -34,14 +50,6 @@ public class order {
         this.user_id = user_id;
     }
 
-    public int getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
-    }
-
     public int getNumber_people() {
         return number_people;
     }
@@ -50,27 +58,19 @@ public class order {
         this.number_people = number_people;
     }
 
-    public int getBrand_id() {
-        return brand_id;
-    }
-
-    public void setBrand_id(int brand_id) {
-        this.brand_id = brand_id;
-    }
-
-    public String getBooking_date() {
+    public Date getBooking_date() {
         return booking_date;
     }
 
-    public void setBooking_date(String booking_date) {
+    public void setBooking_date(Date booking_date) {
         this.booking_date = booking_date;
     }
 
-    public String getReturn_date() {
+    public Date getReturn_date() {
         return return_date;
     }
 
-    public void setReturn_date(String return_date) {
+    public void setReturn_date(Date return_date) {
         this.return_date = return_date;
     }
 
@@ -88,5 +88,21 @@ public class order {
 
     public void setTime_checkout(String time_checkout) {
         this.time_checkout = time_checkout;
+    }
+
+    public int getRoom_id() {
+        return room_id;
+    }
+
+    public void setRoom_id(int room_id) {
+        this.room_id = room_id;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

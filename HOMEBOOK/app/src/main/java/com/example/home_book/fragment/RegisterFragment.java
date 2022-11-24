@@ -83,7 +83,11 @@ public class RegisterFragment extends Fragment {
         already.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // trở về đăng nhập
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame,new LoginFragment())
+                        .commit();
             }
         });
 
@@ -102,6 +106,7 @@ public class RegisterFragment extends Fragment {
                 String passAgain = passUpAgain.getText().toString();
                 String name = nameUp.getText().toString();
                 String phone = phoneUp.getText().toString();
+                String birth = birthUp.getText().toString();
                 Animation animShake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
 
                 Boolean check = true;
@@ -130,6 +135,10 @@ public class RegisterFragment extends Fragment {
                 if(passAgain.trim().length() <= 0){
                     check = false;
                     passUpAgain.setError("Enter the password again.");
+                }
+                if(birth.trim().length() <= 0){
+                    check = false;
+                    birthUp.setError("Enter the birthday.");
                 }
                 if(name.trim().length() <= 0){
                     check = false;

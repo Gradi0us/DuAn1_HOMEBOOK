@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HomeBook</string>
+    <string name="quenmatkhau">Quên Mật Khẩu?</string>
+    <string name="wanttoregister"><u>Tạo tài khoản mới với email</u></string>
+    <string name="wanttologin">Đã có tài khoản? | <u>Đăng Nhập</u></string>
+    <string name="remember">Ghi Nhớ</string>
+    <string name="clickhere"><u>Xem thêm</u></string>
+    <string name="hello_blank_fragment">Xin chào</string>
+    <string name="password">Mật khẩu</string>
+    <string name="dangnhap">Đăng nhập</string>
+    <string name="dangky">Đăng ký</string>
+    <string name="password_again">Mật khẩu lại</string>
+    <string name="birthday">Sinh nhật</string>
+    <string name="fullname">Họ tên</string>
+    <string name="mobile_phone">Số điện thoại</string>
+    <string name="accept_license">Đồng ý các điều khoản.</string>
+    <string name="collaborate">Người hợp tác</string>
+    <string name="member">Thành viên</string>
+</resources>

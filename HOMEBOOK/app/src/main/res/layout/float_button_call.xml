@@ -5,7 +5,7 @@
     android:orientation="vertical"
     style="@style/loginParent"
     android:layout_height="match_parent"
-    tools:context=".fragment.RegisterFragment">
+    tools:context=".fragment.LoginFragment">
     <ScrollView
         style="@style/parent">
         <RelativeLayout
@@ -48,13 +48,16 @@
                     android:layout_gravity="center"
                     android:text=""
                     android:layout_marginTop="40dp"/>
+                <include
+                    layout="@layout/add_room"/>
 
-                <include layout="@layout/activity_register" />
+
+
 
 
             </LinearLayout>
             <ImageView
-                android:id="@+id/thoat1"
+                android:id="@+id/thoat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -66,5 +69,6 @@
         </RelativeLayout>
 
     </ScrollView>
+
 
 </RelativeLayout>
