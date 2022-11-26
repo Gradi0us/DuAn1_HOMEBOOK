@@ -5,6 +5,7 @@
     android:layout_gravity="center"
     android:layout_marginLeft="5dp"
     android:gravity="center"
+    android:id="@+id/layout_click"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -23,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_bed_24"/>
             <TextView
+                android:id="@+id/tv_beds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -33,6 +35,7 @@
 
 
         <ImageView
+            android:id="@+id/img_favorite_homebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -41,12 +44,14 @@
             android:src="@drawable/favorite" />
 
         <ImageView
+            android:id="@+id/img_homebook"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
             android:src="@drawable/ic_baseline_house_24" />
 
         <TextView
+            android:id="@+id/tv_name_homebook"
             style="@style/item_size"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/edt_btn"
@@ -63,6 +68,7 @@
             android:src="@drawable/location" />
 
         <TextView
+            android:id="@+id/tv_location_homebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

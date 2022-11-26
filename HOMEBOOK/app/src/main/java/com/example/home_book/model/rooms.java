@@ -2,12 +2,27 @@ package com.example.home_book.model;
 
 public class rooms {
     int id, rate, max_people, rooms, beds, status, cost;
-    String service, note, size, name, brand, category;
+    String service;
+    String note;
+    String size;
+    String name;
+    String brand;
+    String category;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    String location;
 
     public rooms() {
     }
 
-    public rooms(String name, String brand, String category, int max_people, int beds, int rooms, int rate, String note, String size, String service, int cost, int status) {
+    public rooms(String name, String brand, String category,String location, int max_people, int beds, int rooms, int rate, String note, String size, String service, int cost, int status) {
         this.rate = rate;
         this.max_people = max_people;
         this.rooms = rooms;
@@ -20,9 +35,10 @@ public class rooms {
         this.name = name;
         this.brand = brand;
         this.category = category;
+        this.location=location;
     }
 
-    public rooms(int id, String name, String brand, String category, int max_people, int beds, int rooms, int rate, String note, String size, String service, int cost, int status) {
+    public rooms(int id, String name, String brand, String category,String location, int max_people, int beds, int rooms, int rate, String note, String size, String service, int cost, int status) {
         this.id = id;
         this.rate = rate;
         this.max_people = max_people;
@@ -36,6 +52,7 @@ public class rooms {
         this.name = name;
         this.brand = brand;
         this.category = category;
+        this.location=location;
     }
 
     public int getId() {
