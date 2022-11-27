@@ -1,41 +1,58 @@
 package com.example.home_book.model;
 
 public class rooms {
-    int id, rate, max_people, rooms, beds, status, cost;
-    String service, note, size, name, brand, category;
+    int id, rate, beds, status, cost;
+    boolean wifi,ac,buffet,parking,pool,minibar;
+    String note;
+    String name;
+    String category;
+    String location;
 
-    public rooms() {
+    public byte[] getIMG() {
+        return IMG;
     }
 
-    public rooms(String name, String brand, String category, int max_people, int beds, int rooms, int rate, String note, String size, String service, int cost, int status) {
+    public void setIMG(byte[] IMG) {
+        this.IMG = IMG;
+    }
+
+    byte[] IMG;
+    public rooms(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
         this.rate = rate;
-        this.max_people = max_people;
-        this.rooms = rooms;
         this.beds = beds;
         this.status = status;
         this.cost = cost;
-        this.service = service;
+        this.wifi = wifi;
+        this.ac = ac;
+        this.buffet = buffet;
+        this.parking = parking;
+        this.pool = pool;
+        this.minibar = minibar;
         this.note = note;
-        this.size = size;
         this.name = name;
-        this.brand = brand;
         this.category = category;
+        this.location = location;
+        this.IMG = IMG;
     }
 
-    public rooms(int id, String name, String brand, String category, int max_people, int beds, int rooms, int rate, String note, String size, String service, int cost, int status) {
+    public rooms(int id, int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
+
         this.id = id;
         this.rate = rate;
-        this.max_people = max_people;
-        this.rooms = rooms;
         this.beds = beds;
         this.status = status;
         this.cost = cost;
-        this.service = service;
+        this.wifi = wifi;
+        this.ac = ac;
+        this.buffet = buffet;
+        this.parking = parking;
+        this.pool = pool;
+        this.minibar = minibar;
         this.note = note;
-        this.size = size;
         this.name = name;
-        this.brand = brand;
         this.category = category;
+        this.location = location;
+        this.IMG = IMG;
     }
 
     public int getId() {
@@ -54,20 +71,20 @@ public class rooms {
         this.rate = rate;
     }
 
+    public int getBeds() {
+        return beds;
+    }
+
+    public void setBeds(int beds) {
+        this.beds = beds;
+    }
+
     public int getStatus() {
         return status;
     }
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public String getService() {
-        return service;
-    }
-
-    public void setService(String service) {
-        this.service = service;
     }
 
     public int getCost() {
@@ -78,44 +95,61 @@ public class rooms {
         this.cost = cost;
     }
 
+
+    public boolean isWifi() {
+        return wifi;
+    }
+
+    public void setWifi(boolean wifi) {
+        this.wifi = wifi;
+    }
+
+    public boolean isAc() {
+        return ac;
+    }
+
+    public void setAc(boolean ac) {
+        this.ac = ac;
+    }
+
+    public boolean isBuffet() {
+        return buffet;
+    }
+
+    public void setBuffet(boolean buffet) {
+        this.buffet = buffet;
+    }
+
+    public boolean isParking() {
+        return parking;
+    }
+
+    public void setParking(boolean parking) {
+        this.parking = parking;
+    }
+
+    public boolean isPool() {
+        return pool;
+    }
+
+    public void setPool(boolean pool) {
+        this.pool = pool;
+    }
+
+    public boolean isMinibar() {
+        return minibar;
+    }
+
+    public void setMinibar(boolean minibar) {
+        this.minibar = minibar;
+    }
+
     public String getNote() {
         return note;
     }
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public int getMax_people() {
-        return max_people;
-    }
-
-    public void setMax_people(int max_people) {
-        this.max_people = max_people;
-    }
-
-    public int getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(int rooms) {
-        this.rooms = rooms;
-    }
-
-    public int getBeds() {
-        return beds;
-    }
-
-    public void setBeds(int beds) {
-        this.beds = beds;
     }
 
     public String getName() {
@@ -126,19 +160,19 @@ public class rooms {
         this.name = name;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     public String getCategory() {
         return category;
     }
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
