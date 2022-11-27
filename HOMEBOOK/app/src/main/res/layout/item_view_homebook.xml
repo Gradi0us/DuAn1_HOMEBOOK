@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:id="@+id/img_HomeBook"
             android:layout_width="100dp"
             android:layout_height="111dp"/>
         <LinearLayout
@@ -15,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tv_Name"
                 android:textSize="30sp"
                 android:text="Name"
                 android:layout_width="wrap_content"
@@ -23,6 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/tv_Type"
                     android:textAlignment="center"
                     android:background="@drawable/boder_textview_typehomebook"
                     android:textColor="@color/blue1"
@@ -48,34 +51,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/tv_vitri"
                     android:layout_marginLeft="10dp"
                     android:text="Vị trí"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-<!--                <ImageView-->
-<!--                    android:src="@drawable/ic_baseline_location_on_24"-->
+<!--            <LinearLayout-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+<!--&lt;!&ndash;                <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:src="@drawable/ic_baseline_location_on_24"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"/>&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:textColor="@color/blue"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:text="8.6 "-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"/>-->
-                <TextView
-                    android:textColor="@color/blue"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="10dp"
-                    android:text="8.6 "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textSize="20sp"
-                    android:text="(100)"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+<!--                <TextView-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:text="(100)"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
         </LinearLayout>
     </LinearLayout>
 <!--    <LinearLayout-->

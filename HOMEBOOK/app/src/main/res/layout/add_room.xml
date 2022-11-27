@@ -29,6 +29,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/img_addimage"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_marginLeft="130dp"
@@ -36,12 +37,13 @@
                     android:src="@drawable/edit" />
 
                 <ImageView
+                    android:id="@+id/img_avthome"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="135dp"
                     android:layout_marginTop="50dp"
-
                     android:layout_marginBottom="20dp"
                     android:src="@drawable/ic_baseline_house_24" />
 
@@ -64,6 +66,7 @@
                 <com.google.android.material.textfield.TextInputLayout style="@style/parent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_namehomebook"
                         style="@style/modifiedEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -86,7 +89,9 @@
                     android:textStyle="bold" />
 
                 <RatingBar
-                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/star_homebook"
+                    android:numStars="5"
+                    android:stepSize="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp" />
@@ -103,6 +108,7 @@
                 <com.google.android.material.textfield.TextInputLayout style="@style/parent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_hoteldetail"
                         style="@style/modifiedEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -127,6 +133,7 @@
                 <com.google.android.material.textfield.TextInputLayout style="@style/parent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_cost"
                         style="@style/modifiedEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -138,6 +145,7 @@
                         android:paddingVertical="10dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -151,6 +159,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         style="@style/modifiedEditText"
+                        android:id="@+id/edt_status"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
@@ -161,7 +170,30 @@
                         android:paddingVertical="10dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Location"
+                    android:textColor="@color/gray"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
 
+                <com.google.android.material.textfield.TextInputLayout style="@style/parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/modifiedEditText"
+                        android:id="@+id/edt_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:hint="Can I oder"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="3"
+                        android:paddingVertical="10dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <RelativeLayout
@@ -178,27 +210,27 @@
                     android:textStyle="bold" />
 
                 <Spinner
+                    android:id="@+id/spn_beds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    />
+                    android:layout_marginLeft="40dp" />
+
                 <TextView
-                    android:layout_marginTop="50dp"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="50dp"
                     android:text="Category"
                     android:textColor="@color/gray"
                     android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <Spinner
-
-                    android:layout_marginTop="50dp"
+                    android:id="@+id/spn_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="80dp"
-                    />
+                    android:layout_marginTop="50dp" />
             </RelativeLayout>
 
             <TextView
@@ -229,6 +261,7 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw_wifi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -253,6 +286,7 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw_ac"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -277,6 +311,7 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw_buffet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -301,6 +336,7 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw_parking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -325,6 +361,7 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw_pool"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -349,6 +386,7 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw_minibar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -356,12 +394,13 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btn_cancel"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:background="@drawable/type"
@@ -369,6 +408,7 @@
                     android:textAllCaps="false" />
 
                 <Button
+                    android:id="@+id/btn_confirm"
                     style="@style/loginButton"
                     android:layout_width="100dp"
                     android:layout_height="50dp"

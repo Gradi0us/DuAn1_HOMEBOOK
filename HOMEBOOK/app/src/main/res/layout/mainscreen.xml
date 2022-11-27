@@ -110,6 +110,7 @@
                     android:layout_marginTop="@dimen/signup_text_margin_top">
 
                     <EditText
+                        android:id="@+id/edt_search"
                         style="@style/modifiedEditText"
                         android:layout_marginLeft="30dp"
                         android:hint="Search"
@@ -258,6 +259,7 @@
                         android:orientation="horizontal">
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/ds_homebook"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </LinearLayout>
