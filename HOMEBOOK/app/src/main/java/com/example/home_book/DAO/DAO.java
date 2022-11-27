@@ -6,9 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.home_book.database.AppSQL;
+import com.example.home_book.model.Room;
 import com.example.home_book.model.rooms;
+import com.example.home_book.model.roomImage;
 
 import java.util.ArrayList;
+
 import com.example.home_book.model.user;
 
 import java.text.ParseException;
@@ -30,11 +33,11 @@ public class DAO {
     }
     /////////////////////////////////////////////////////////////////////
 
-    public boolean checkLogin(String email,String pass) {
+    public boolean checkLogin(String email, String pass) {
         String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
         db = appSQL.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql,new String[]{email,pass});
-        if(cursor.getCount() != 0){
+        Cursor cursor = db.rawQuery(sql, new String[]{email, pass});
+        if (cursor.getCount() != 0) {
             return true;
         }
         return false;
@@ -67,27 +70,27 @@ public class DAO {
         return list;
     }
 
-    public user getUserId(String id){
+    public user getUserId(String id) {
         String sql = "select * from user_tb where id=?";
-        List<user> list = getUser(sql,id);
+        List<user> list = getUser(sql, id);
         return list.get(0);
     }
 
 
-    public long AddUser(user x){
+    public long AddUser(user x) {
         ContentValues value = new ContentValues();
-        value.put("avatar",x.getAvatar());
-        value.put("fullname",x.getFullname());
-        value.put("email",x.getEmail());
-        value.put("password",x.getPassword());
-        value.put("role",x.getRole());
-        value.put("birthday",format.format(x.getBirth_day()));
-        value.put("phonenumber",x.getPhone());
-        value.put("money",x.getMoney());
-        return db.insert("user_tb",null,value);
+        value.put("avatar", x.getAvatar());
+        value.put("fullname", x.getFullname());
+        value.put("email", x.getEmail());
+        value.put("password", x.getPassword());
+        value.put("role", x.getRole());
+        value.put("birthday", format.format(x.getBirth_day()));
+        value.put("phonenumber", x.getPhone());
+        value.put("money", x.getMoney());
+        return db.insert("user_tb", null, value);
     }
 
-    public long UpdateUser(user x){
+    public long UpdateUser(user x) {
         ContentValues value = new ContentValues();
         value.put("avatar", x.getAvatar());
         value.put("fullname", x.getFullname());
@@ -99,7 +102,6 @@ public class DAO {
         value.put("money", x.getMoney());
         return db.update("user_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
-
     public ArrayList<rooms> Search(String location1) {
         ArrayList<rooms> list = new ArrayList<>();
         Cursor c = db.rawQuery(" SELECT * FROM room_tb where location like '%" + location1 + "%'", null);
@@ -220,7 +222,69 @@ public class DAO {
         return list;
     }
 
-    public long AddRoom(rooms x){
+    public List<Room> getRoom2() {
+        List<Room> list = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = appSQL.getReadableDatabase();
+        String SELECT = "SELECT * FROM room_tb ";
+        Cursor c = sqLiteDatabase.rawQuery(SELECT, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int id = c.getInt(c.getColumnIndex("id"));
+            String name = c.getString(c.getColumnIndex("fullname"));
+            String category = c.getString(c.getColumnIndex("category_name"));
+            String location = c.getString(c.getColumnIndex("location"));
+            int rate = c.getInt(4);
+            int beds = c.getInt(6);
+            String note = c.getString(8);
+            int cost = c.getInt(11);
+            int status = c.getInt(12);
+            int wf = c.getInt(c.getColumnIndex("wifi"));
+            int aC = c.getInt(c.getColumnIndex("ac"));
+            int parKing = c.getInt(c.getColumnIndex("parking"));
+            int miniBar = c.getInt(c.getColumnIndex("minibar"));
+            int Pool = c.getInt(c.getColumnIndex("pool"));
+            int Buffet = c.getInt(c.getColumnIndex("buffet"));
+            boolean wifi, ac, buffet, pool, minibar, parking;
+            if (wf == 0) {
+                wifi = false;
+            } else {
+                wifi = true;
+            }
+            if (aC == 0) {
+                ac = false;
+            } else {
+                ac = true;
+            }
+            if (Buffet == 0) {
+                buffet = false;
+            } else {
+                buffet = true;
+            }
+            if (Pool == 0) {
+                pool = false;
+            } else {
+                pool = true;
+            }
+            if (miniBar == 0) {
+                minibar = false;
+            } else {
+                minibar = true;
+            }
+            if (parKing == 0) {
+                parking = false;
+            } else {
+                parking = true;
+            }
+            byte[] IMG = c.getBlob(c.getColumnIndex("image"));
+            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+    }
+
+    public long AddRoom(rooms x) {
         ContentValues value = new ContentValues();
         value.put("fullname", x.getName());
         value.put("category_name", x.getCategory());
@@ -344,5 +408,5 @@ public class DAO {
         value.put("status",x.getStatus());
         return db.insert("room_tb",null,value);
     }
-
+    
 }

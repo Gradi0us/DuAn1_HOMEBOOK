@@ -36,6 +36,9 @@ import com.example.home_book.fragment.fragmentNav.RateFragment;
 import com.example.home_book.fragment.fragmentNav.SettingFragment;
 import com.example.home_book.model.rooms;
 import com.google.android.material.navigation.NavigationView;
+import com.example.home_book.model.rooms;
+import com.example.home_book.model.roomImage;
+
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
@@ -188,6 +191,7 @@ public class FindFragment extends Fragment {
         });
 
     }
+    
     //    public void gethomebook(){
 //        ArrayList<rooms> list = (ArrayList<rooms>) dao.getRoom1();
 //        ArrayList<roomImage> list1 = (ArrayList<roomImage>) dao.getAllHinhAnh();

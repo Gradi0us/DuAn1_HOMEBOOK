@@ -1,6 +1,6 @@
 package com.example.home_book.model;
 
-public class rooms {
+public class Room {
     int id, rate, beds, status, cost;
     boolean wifi,ac,buffet,parking,pool,minibar;
     String note;
@@ -11,12 +11,13 @@ public class rooms {
     public byte[] getIMG() {
         return IMG;
     }
+
     public void setIMG(byte[] IMG) {
         this.IMG = IMG;
     }
 
     byte[] IMG;
-    public rooms(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
+    public Room(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
         this.rate = rate;
         this.beds = beds;
         this.status = status;
@@ -34,7 +35,8 @@ public class rooms {
         this.IMG = IMG;
     }
 
-    public rooms(int id, int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
+    public Room(int id, int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
+
         this.id = id;
         this.rate = rate;
         this.beds = beds;
