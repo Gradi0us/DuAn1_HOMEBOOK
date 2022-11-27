@@ -163,9 +163,9 @@ public class DAO {
         return list;
     }
 
-    public List<rooms> getRoom(String sql, String... args) {
+    public List<rooms> getRoom() {
         List<rooms> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sql, args);
+        Cursor c = db.rawQuery("SELECT * FROM room_tb", null);
         c.moveToFirst();
         c.moveToFirst();
         while (!c.isAfterLast()) {

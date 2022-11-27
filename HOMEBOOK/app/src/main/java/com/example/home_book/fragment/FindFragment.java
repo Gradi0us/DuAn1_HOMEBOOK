@@ -9,7 +9,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,33 +21,34 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.adapter.HomeBookApdater;
 import com.example.home_book.fragment.fragmentNav.AcountFragment;
 import com.example.home_book.fragment.fragmentNav.HomeFragment;
 import com.example.home_book.fragment.fragmentNav.RateFragment;
 import com.example.home_book.fragment.fragmentNav.SettingFragment;
+import com.example.home_book.model.rooms;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class FindFragment extends Fragment {
 
-//    TextInputEditText ngayNhan,ngayTra;
-//    int dD,mM,yY;
-//    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-static final float END_SCALE = 0.7f;
-
+    static final float END_SCALE = 0.7f;
     ImageView menuIcon;
     LinearLayout contentView;
-    RelativeLayout visual1,visual2,visual3,visual4;
+    RelativeLayout visual1, visual2, visual3, visual4;
     Boolean checkLogin;
     TextView txtUsername;
 
@@ -51,15 +56,49 @@ static final float END_SCALE = 0.7f;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
+    RecyclerView recyclerView;
+    DAO dao;
+    EditText edtSearch;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_find, container, false);
-
+        recyclerView = view.findViewById(R.id.ds_homebook);
         menuIcon = view.findViewById(R.id.menu_icon);
         contentView = view.findViewById(R.id.content);
         drawerLayout = view.findViewById(R.id.drawer_layout);
         navigationView = view.findViewById(R.id.navigation_view);
+        edtSearch = view.findViewById(R.id.edt_search);
+        dao = new DAO(getContext());
+        ArrayList<rooms> list2 = (ArrayList<rooms>) dao.getRoom();
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String timkiem = edtSearch.getText().toString().trim();
+                if (!timkiem.isEmpty()) {
+                    ArrayList<rooms> list1 = dao.Search(timkiem);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list1);
+                    recyclerView.setAdapter(homeBookApdater);
+                } else {
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list2);
+                    recyclerView.setAdapter(homeBookApdater);
+                }
+            }
+        });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -103,67 +142,10 @@ static final float END_SCALE = 0.7f;
             }
         });
         naviagtionDrawer();
-//        ngayNhan = view.findViewById(R.id.ngayNhanUp);
-//        ngayTra = view.findViewById(R.id.ngayTraUp);
-//
-//        ngayNhan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Calendar calendar = Calendar.getInstance();
-//                yY = calendar.get(Calendar.YEAR);
-//                mM = calendar.get(Calendar.MONTH);
-//                dD = calendar.get(Calendar.DATE);
-//
-//                DatePickerDialog d = new DatePickerDialog(getActivity(),
-//                        0,dateNhan,yY,mM,dD);
-//                d.show();
-//            }
-//        });
-//
-//        ngayTra.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Calendar calendar = Calendar.getInstance();
-//                yY = calendar.get(Calendar.YEAR);
-//                mM = calendar.get(Calendar.MONTH);
-//                dD = calendar.get(Calendar.DATE);
-//
-//                DatePickerDialog d = new DatePickerDialog(getActivity(),
-//                        0,dateTra,yY,mM,dD);
-//                d.show();
-//            }
-//        });
-//
-//        return view;
-//    }
-//
-//    private void MoveAnimation(){
-//        Animation anime = new TranslateAnimation(-1000,Animation.ABSOLUTE,Animation.ABSOLUTE,Animation.ABSOLUTE);
-//        anime.setDuration(1000);
-//        anime.setFillAfter(true);
-//    }
-//
-//    DatePickerDialog.OnDateSetListener dateNhan = new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//            yY = year; mM = month; dD = dayOfMonth;
-//            GregorianCalendar gC = new GregorianCalendar(yY,mM,dD);
-//            ngayNhan.setText(format.format(gC.getTime()));
-//        }
-//    };
-//
-//    DatePickerDialog.OnDateSetListener dateTra = new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//            yY = year; mM = month; dD = dayOfMonth;
-//            GregorianCalendar gC = new GregorianCalendar(yY,mM,dD);
-//            ngayTra.setText(format.format(gC.getTime()));
-//        }
-//    };
-
-//}
+        loadDaTa();
         return view;
     }
+
     //Navigation Drawer Functions
     private void naviagtionDrawer() {
 
@@ -206,8 +188,19 @@ static final float END_SCALE = 0.7f;
         });
 
     }
-
-
-
-
+    //    public void gethomebook(){
+//        ArrayList<rooms> list = (ArrayList<rooms>) dao.getRoom1();
+//        ArrayList<roomImage> list1 = (ArrayList<roomImage>) dao.getAllHinhAnh();
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,list1);
+//        recyclerView.setAdapter(homeBookApdater);
+//    }
+    public void loadDaTa(){
+        ArrayList<rooms> list = (ArrayList<rooms>) dao.getRoom();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list);
+        recyclerView.setAdapter(homeBookApdater);
+    }
         }
