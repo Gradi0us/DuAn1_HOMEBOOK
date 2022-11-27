@@ -96,12 +96,12 @@ public class FindFragment extends Fragment {
                     ArrayList<Room> list1 = dao.Search(timkiem);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
-                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list1);
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list1,getActivity());
                     recyclerView.setAdapter(homeBookApdater);
                 } else {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
-                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list2);
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list2,getActivity());
                     recyclerView.setAdapter(homeBookApdater);
                 }
             }
@@ -267,7 +267,7 @@ public class FindFragment extends Fragment {
         ArrayList<Room> list = (ArrayList<Room>) dao.getRoom2();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list);
+        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,getActivity());
         recyclerView.setAdapter(homeBookApdater);
     }
 

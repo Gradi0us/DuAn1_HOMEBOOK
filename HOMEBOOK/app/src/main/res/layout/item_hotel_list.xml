@@ -3,7 +3,6 @@
     android:layout_width="400dp"
     android:layout_height="200dp"
     android:layout_gravity="center"
-    android:layout_marginLeft="5dp"
     android:gravity="center"
     android:id="@+id/layout_click"
     android:orientation="vertical">
@@ -51,6 +50,7 @@
             android:src="@drawable/ic_baseline_house_24" />
 
         <TextView
+
             android:id="@+id/tv_name_homebook"
             style="@style/item_size"
             android:layout_alignParentBottom="true"
@@ -68,6 +68,7 @@
             android:src="@drawable/location" />
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/tv_location_homebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
