@@ -6,12 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.home_book.database.AppSQL;
-import com.example.home_book.model.order;
-import com.example.home_book.model.roomImage;
 import com.example.home_book.model.rooms;
 
 import java.util.ArrayList;
-
 import com.example.home_book.model.user;
 
 import java.text.ParseException;
@@ -33,11 +30,11 @@ public class DAO {
     }
     /////////////////////////////////////////////////////////////////////
 
-    public boolean checkLogin(String email, String pass) {
+    public boolean checkLogin(String email,String pass) {
         String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
         db = appSQL.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql, new String[]{email, pass});
-        if (cursor.getCount() != 0) {
+        Cursor cursor = db.rawQuery(sql,new String[]{email,pass});
+        if(cursor.getCount() != 0){
             return true;
         }
         return false;
@@ -70,27 +67,27 @@ public class DAO {
         return list;
     }
 
-    public user getUserId(String id) {
+    public user getUserId(String id){
         String sql = "select * from user_tb where id=?";
-        List<user> list = getUser(sql, id);
+        List<user> list = getUser(sql,id);
         return list.get(0);
     }
 
 
-    public long AddUser(user x) {
+    public long AddUser(user x){
         ContentValues value = new ContentValues();
-        value.put("avatar", x.getAvatar());
-        value.put("fullname", x.getFullname());
-        value.put("email", x.getEmail());
-        value.put("password", x.getPassword());
-        value.put("role", x.getRole());
-        value.put("birthday", format.format(x.getBirth_day()));
-        value.put("phonenumber", x.getPhone());
-        value.put("money", x.getMoney());
-        return db.insert("user_tb", null, value);
+        value.put("avatar",x.getAvatar());
+        value.put("fullname",x.getFullname());
+        value.put("email",x.getEmail());
+        value.put("password",x.getPassword());
+        value.put("role",x.getRole());
+        value.put("birthday",format.format(x.getBirth_day()));
+        value.put("phonenumber",x.getPhone());
+        value.put("money",x.getMoney());
+        return db.insert("user_tb",null,value);
     }
 
-    public long UpdateUser(user x) {
+    public long UpdateUser(user x){
         ContentValues value = new ContentValues();
         value.put("avatar", x.getAvatar());
         value.put("fullname", x.getFullname());
@@ -167,7 +164,6 @@ public class DAO {
         List<rooms> list = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM room_tb", null);
         c.moveToFirst();
-        c.moveToFirst();
         while (!c.isAfterLast()) {
             int id = c.getInt(c.getColumnIndex("id"));
             String name = c.getString(c.getColumnIndex("fullname"));
@@ -224,7 +220,7 @@ public class DAO {
         return list;
     }
 
-    public long AddRoom(rooms x) {
+    public long AddRoom(rooms x){
         ContentValues value = new ContentValues();
         value.put("fullname", x.getName());
         value.put("category_name", x.getCategory());
@@ -334,6 +330,19 @@ public class DAO {
 
     public void DeleteOrder(int ID) {
         db.delete("order_tb", "id=?", new String[]{String.valueOf(ID)});
+        value.put("fullname",x.getName());
+        value.put("brand_name",x.getBrand());
+        value.put("category_name",x.getCategory());
+        value.put("rate",x.getRate());
+        value.put("max_people",x.getMax_people());
+        value.put("beds",x.getBeds());
+        value.put("rooms",x.getRooms());
+        value.put("note",x.getNote());
+        value.put("size",x.getSize());
+        value.put("service",x.getService());
+        value.put("cost",x.getCost());
+        value.put("status",x.getStatus());
+        return db.insert("room_tb",null,value);
     }
 
 }

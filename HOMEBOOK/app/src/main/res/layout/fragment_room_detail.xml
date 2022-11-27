@@ -41,6 +41,16 @@
             android:textColor="@color/gray"
             android:textSize="30dp"
             android:textStyle="bold" />
+        <TextView
+            android:layout_marginTop="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="categories"
+            android:textColor="@color/gray"
+            android:layout_marginLeft="200dp"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+
 
         <RatingBar
             android:id="@+id/number_stars"
@@ -76,6 +86,26 @@
                 android:layout_marginLeft="10dp"
                 android:text="Vị trí"
                 android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="200dp"
+            android:layout_marginBottom="7dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_baseline_bed_24"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="16dp"
+                android:text="X"
+                android:textStyle="bold"/>
         </LinearLayout>
 
     </RelativeLayout>
@@ -126,7 +156,6 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:fillViewport="true"
-
                 android:measureAllChildren="false"
                 android:scrollbars="none">
 

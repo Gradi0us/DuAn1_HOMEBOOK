@@ -5,7 +5,7 @@
         android:title="Home"
         android:icon="@drawable/ic_baseline_house_24"/>
     <item android:id="@+id/mAcount"
-        android:title="Account"
+        android:title="Market"
         android:icon="@drawable/rate"/>
 
     <item android:id="@+id/mRate"
