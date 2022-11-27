@@ -30,12 +30,11 @@ import android.widget.TextView;
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
 import com.example.home_book.adapter.HomeBookApdater;
-import com.example.home_book.adapter.ListMarketAdapter;
 import com.example.home_book.fragment.fragmentNav.AcountFragment;
 import com.example.home_book.fragment.fragmentNav.HomeFragment;
 import com.example.home_book.fragment.fragmentNav.RateFragment;
 import com.example.home_book.fragment.fragmentNav.SettingFragment;
-import com.example.home_book.model.Room;
+import com.example.home_book.model.rooms;
 import com.google.android.material.navigation.NavigationView;
 import com.example.home_book.model.rooms;
 import com.example.home_book.model.roomImage;
@@ -49,9 +48,6 @@ import java.util.GregorianCalendar;
 
 public class FindFragment extends Fragment {
 
-    //    TextInputEditText ngayNhan,ngayTra;
-//    int dD,mM,yY;
-//    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     static final float END_SCALE = 0.7f;
     ImageView menuIcon;
     LinearLayout contentView;
@@ -77,7 +73,7 @@ public class FindFragment extends Fragment {
         navigationView = view.findViewById(R.id.navigation_view);
         edtSearch = view.findViewById(R.id.edt_search);
         dao = new DAO(getContext());
-        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom2();
+        ArrayList<rooms> list2 = (ArrayList<rooms>) dao.getRoom();
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -93,15 +89,15 @@ public class FindFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
                 String timkiem = edtSearch.getText().toString().trim();
                 if (!timkiem.isEmpty()) {
-                    ArrayList<Room> list1 = dao.Search(timkiem);
+                    ArrayList<rooms> list1 = dao.Search(timkiem);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
-                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list1,getActivity());
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list1);
                     recyclerView.setAdapter(homeBookApdater);
                 } else {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
-                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list2,getActivity());
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list2);
                     recyclerView.setAdapter(homeBookApdater);
                 }
             }
@@ -149,66 +145,6 @@ public class FindFragment extends Fragment {
             }
         });
         naviagtionDrawer();
-//        ngayNhan = view.findViewById(R.id.ngayNhanUp);
-//        ngayTra = view.findViewById(R.id.ngayTraUp);
-//
-//        ngayNhan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Calendar calendar = Calendar.getInstance();
-//                yY = calendar.get(Calendar.YEAR);
-//                mM = calendar.get(Calendar.MONTH);
-//                dD = calendar.get(Calendar.DATE);
-//
-//                DatePickerDialog d = new DatePickerDialog(getActivity(),
-//                        0,dateNhan,yY,mM,dD);
-//                d.show();
-//            }
-//        });
-//
-//        ngayTra.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Calendar calendar = Calendar.getInstance();
-//                yY = calendar.get(Calendar.YEAR);
-//                mM = calendar.get(Calendar.MONTH);
-//                dD = calendar.get(Calendar.DATE);
-//
-//                DatePickerDialog d = new DatePickerDialog(getActivity(),
-//                        0,dateTra,yY,mM,dD);
-//                d.show();
-//            }
-//        });
-//
-//        return view;
-//    }
-//
-//    private void MoveAnimation(){
-//        Animation anime = new TranslateAnimation(-1000,Animation.ABSOLUTE,Animation.ABSOLUTE,Animation.ABSOLUTE);
-//        anime.setDuration(1000);
-//        anime.setFillAfter(true);
-//    }
-//
-//    DatePickerDialog.OnDateSetListener dateNhan = new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//            yY = year; mM = month; dD = dayOfMonth;
-//            GregorianCalendar gC = new GregorianCalendar(yY,mM,dD);
-//            ngayNhan.setText(format.format(gC.getTime()));
-//        }
-//    };
-//
-//    DatePickerDialog.OnDateSetListener dateTra = new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//            yY = year; mM = month; dD = dayOfMonth;
-//            GregorianCalendar gC = new GregorianCalendar(yY,mM,dD);
-//            ngayTra.setText(format.format(gC.getTime()));
-//        }
-//    };
-
-//}
-//        gethomebook();
         loadDaTa();
         return view;
     }
@@ -255,7 +191,8 @@ public class FindFragment extends Fragment {
         });
 
     }
-//    public void gethomebook(){
+    
+    //    public void gethomebook(){
 //        ArrayList<rooms> list = (ArrayList<rooms>) dao.getRoom1();
 //        ArrayList<roomImage> list1 = (ArrayList<roomImage>) dao.getAllHinhAnh();
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -264,11 +201,10 @@ public class FindFragment extends Fragment {
 //        recyclerView.setAdapter(homeBookApdater);
 //    }
     public void loadDaTa(){
-        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom2();
+        ArrayList<rooms> list = (ArrayList<rooms>) dao.getRoom();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,getActivity());
+        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list);
         recyclerView.setAdapter(homeBookApdater);
     }
-
-}
+        }
