@@ -17,7 +17,6 @@ import com.example.home_book.model.user;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +41,37 @@ public class DAO {
             return true;
         }
         return false;
+    } public List<user> getUser_name (String email, String pass) {
+        List<user> list = new ArrayList<>();
+        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
+        db = appSQL.getReadableDatabase();
+        Cursor c = db.rawQuery(sql, new String[]{email, pass});
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int id = c.getInt(0);
+            int ava = c.getInt(1);
+            String name = c.getString(2);
+            String Email = c.getString(3);
+            String Pass = c.getString(4);
+            int role = c.getInt(5);
+            Date ngay = null;
+            try {
+                ngay = format.parse(c.getString(6));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String phone = c.getString(7);
+            int money = c.getInt(8);
+            user x = new user(id, ava, name, Email, Pass, ngay, phone, role, money);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+//        if (cursor.getCount() != 0) {
+//            return true;
+//        }
+//        return false;
     }
 
     public List<user> getUser(String sql, String... args) {
@@ -231,7 +261,7 @@ public class DAO {
 //        return list;
 //    }
 
-    public long AddRoom(rooms x) {
+    public long AddRoom(Room x) {
         ContentValues value = new ContentValues();
         value.put("fullname", x.getName());
         value.put("category_name", x.getCategory());
@@ -276,7 +306,7 @@ public class DAO {
         return a;
     }
 
-    public long UpdateRoom(rooms x) {
+    public long UpdateRoom(Room x) {
         ContentValues value = new ContentValues();
         // update sau
         return db.update("room_tb", value, "id=?", new String[]{String.valueOf(x.getId())});

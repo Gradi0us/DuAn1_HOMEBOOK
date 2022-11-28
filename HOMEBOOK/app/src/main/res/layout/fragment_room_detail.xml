@@ -43,6 +43,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_category_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dp"
@@ -86,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="Vị trí"
+                android:id="@+id/tv_location_order"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -104,6 +106,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_beds_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -129,6 +132,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_note_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -171,18 +175,21 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/img_wifi"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <androidx.cardview.widget.CardView
+
                             style="@style/backgroundcardview"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             app:cardCornerRadius="20dp">
 
                             <LinearLayout
+
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/backgroundxanh">
@@ -200,6 +207,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/img_ac"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginLeft="40dp"
@@ -207,6 +215,7 @@
                         android:orientation="vertical">
 
                         <androidx.cardview.widget.CardView
+
                             style="@style/backgroundcardview"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -230,6 +239,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/img_buffet"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginLeft="40dp"
@@ -260,6 +270,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/img_parking"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginLeft="40dp"
@@ -290,6 +301,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/img_pool"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginLeft="40dp"
@@ -320,6 +332,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/img_minibar"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginLeft="40dp"
@@ -407,6 +420,7 @@
         android:layout_marginTop="670dp">
 
         <TextView
+            android:id="@+id/tv_cost_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

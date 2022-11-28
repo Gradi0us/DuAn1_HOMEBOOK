@@ -1,6 +1,9 @@
 package com.example.home_book.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,8 +37,10 @@ import com.example.home_book.fragment.fragmentNav.AcountFragment;
 import com.example.home_book.fragment.fragmentNav.HomeFragment;
 import com.example.home_book.fragment.fragmentNav.RateFragment;
 import com.example.home_book.fragment.fragmentNav.SettingFragment;
+import com.example.home_book.model.ListModelMenu;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.rooms;
+import com.example.home_book.model.user;
 import com.google.android.material.navigation.NavigationView;
 import com.example.home_book.model.rooms;
 import com.example.home_book.model.roomImage;
@@ -65,6 +70,7 @@ public class FindFragment extends Fragment {
     RecyclerView recyclerView,recyclerView1;
     DAO dao;
     EditText edtSearch;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,6 +84,7 @@ public class FindFragment extends Fragment {
         edtSearch = view.findViewById(R.id.edt_search);
         linear = view.findViewById(R.id.linear);
         polay = view.findViewById(R.id.poLay);
+        txtUsername = view.findViewById(R.id.txtUsername1);
         dao = new DAO(getContext());
         ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom();
         edtSearch.addTextChangedListener(new TextWatcher() {
@@ -152,6 +159,7 @@ public class FindFragment extends Fragment {
         });
         naviagtionDrawer();
         loadDaTa();
+        sethorizontal();
         return view;
     }
 
@@ -176,12 +184,23 @@ public class FindFragment extends Fragment {
 
     }
     private void sethorizontal(){
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,getActivity());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(homeBookApdater);
 
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
+        String email = sP.getString("Email","");
+        String pass = sP.getString("Password","");
+        DAO dao = new DAO(getContext());
+        if (dao.checkLogin(email,pass)){
+            List<user> users = dao.getUser_name(email,pass);
+            for(user x : users ){
+                if(x.getEmail().equals( email) ){
+                    String name;
+                    name = x.getFullname();
+                    txtUsername.setText(name);
+
+                }
+            }
+
+        }
     }
 
     private void animateNavigationDrawer() {
@@ -219,7 +238,7 @@ public class FindFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView1.setLayoutManager(linearLayoutManager);
+        recyclerView1.setLayoutManager(linearLayoutManager1);
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,getActivity());
         recyclerView.setAdapter(homeBookApdater);
         recyclerView1.setAdapter(homeBookApdater);

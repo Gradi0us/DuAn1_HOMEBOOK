@@ -2,13 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/loginCard"
-    app:cardCornerRadius="20dp"
-    android:elevation="5dp"
     android:scrollbarStyle="outsideOverlay"
     android:layout_gravity="center"
-    android:layout_marginBottom="20dp"
     android:background="@color/white"
     tools:context=".fragment.FindFragment">
-    <include
-        layout="@layout/mainscreen"/>
+
+        <include
+            layout="@layout/mainscreen"/>
+
 </ScrollView>

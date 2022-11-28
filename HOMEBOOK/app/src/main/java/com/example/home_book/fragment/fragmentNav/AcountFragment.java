@@ -174,7 +174,7 @@ public class AcountFragment extends Fragment {
                 String status = edtstatus.getText().toString().trim();
                 String location = edtlocation.getText().toString().trim();
                 myRating = (int) ratingBara.getRating();
-                dao.AddRoom1(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG));
+                dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG));
                 alertDialog.cancel();
                 loadDaTa();
             }
@@ -220,7 +220,7 @@ public class AcountFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
     public void loadDaTa(){
-        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom2();
+        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         ListMarketAdapter homeBookApdater = new ListMarketAdapter(getContext(),list);
