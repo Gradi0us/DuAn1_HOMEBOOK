@@ -18,10 +18,12 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_bed_24"/>
+                android:src="@drawable/ic_baseline_bed_24" />
+
             <TextView
                 android:id="@+id/tv_beds"
                 android:layout_width="wrap_content"
@@ -33,14 +35,15 @@
         </LinearLayout>
 
 
-        <ImageView
-            android:id="@+id/img_favorite_homebook"
+        <ToggleButton
             android:layout_width="wrap_content"
+            android:textOn=""
+            android:textOff=""
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
-            android:src="@drawable/favorite" />
+            android:background="@drawable/custom_toggle_favorite" />
 
         <ImageView
             android:id="@+id/img_homebook"

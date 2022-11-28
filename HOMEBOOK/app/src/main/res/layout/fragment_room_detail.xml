@@ -41,14 +41,14 @@
             android:textColor="@color/gray"
             android:textSize="30dp"
             android:textStyle="bold" />
+
         <TextView
-            android:id="@+id/tv_category_order"
-            android:layout_marginTop="23dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="23dp"
             android:text="categories"
             android:textColor="@color/gray"
-            android:layout_marginLeft="200dp"
             android:textSize="10dp"
             android:textStyle="bold" />
 
@@ -82,33 +82,34 @@
                 android:src="@drawable/ic_baseline_location_on_24" />
 
             <TextView
-                android:id="@+id/tv_location_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="Vị trí"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_marginEnd="200dp"
-            android:layout_marginBottom="7dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content">
+            android:layout_marginEnd="200dp"
+            android:layout_marginBottom="7dp">
+
             <ImageView
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_bed_24"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
+
             <TextView
-                android:id="@+id/tv_beds_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="16dp"
                 android:text="X"
-                android:textStyle="bold"/>
+                android:textSize="16dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -120,15 +121,14 @@
         android:layout_marginTop="350dp">
 
         <TextView
-            android:id="@+id/tv_details_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details"
             android:textColor="@color/gray"
             android:textSize="25dp"
             android:textStyle="bold" />
+
         <TextView
-            android:id="@+id/tv_note_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -166,12 +166,11 @@
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
+                    android:layout_height="180dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/img_wifi"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:gravity="center"
@@ -184,13 +183,11 @@
                             app:cardCornerRadius="20dp">
 
                             <LinearLayout
-
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/backgroundxanh">
 
                                 <ImageView
-
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_gravity="center_vertical"
@@ -203,15 +200,13 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/img_ac"
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <androidx.cardview.widget.CardView
-
                             style="@style/backgroundcardview"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -223,7 +218,6 @@
                                 android:background="@drawable/backnuocbien">
 
                                 <ImageView
-
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_gravity="center_vertical"
@@ -236,10 +230,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/img_buffet"
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -255,7 +248,6 @@
                                 android:background="@drawable/backgroundmauvang">
 
                                 <ImageView
-
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_gravity="center_vertical"
@@ -268,10 +260,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/img_parking"
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -287,7 +278,6 @@
                                 android:background="@drawable/backgroundmautim">
 
                                 <ImageView
-
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_gravity="center_vertical"
@@ -300,10 +290,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/img_pool"
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -319,7 +308,6 @@
                                 android:background="@drawable/backgroundxanhdam">
 
                                 <ImageView
-
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_gravity="center_vertical"
@@ -332,10 +320,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/img_minibar"
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -351,7 +338,6 @@
                                 android:background="@drawable/backgroundmaudo">
 
                                 <ImageView
-
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_gravity="center_vertical"
@@ -365,26 +351,62 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
+
+
         </RelativeLayout>
+
     </RelativeLayout>
     <LinearLayout
         android:layout_marginTop="600dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
+        android:layout_height="60dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Begin"
+                    android:textColor="@color/gray"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="End"
+                    android:textColor="@color/gray"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
+        </LinearLayout>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="620dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginTop="670dp">
 
         <TextView
-            android:id="@+id/tv_cost_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
