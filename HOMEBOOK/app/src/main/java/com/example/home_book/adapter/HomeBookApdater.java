@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
@@ -78,7 +79,8 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_nameHomebook, tv_locationHomebook;
-        private ImageView img_homebook, img_favoriteHomebook;
+        private ImageView img_homebook;
+        private ToggleButton img_favoriteHomebook;
         LinearLayout layoutitem;
 
         public ViewHolder(@NonNull View itemView) {

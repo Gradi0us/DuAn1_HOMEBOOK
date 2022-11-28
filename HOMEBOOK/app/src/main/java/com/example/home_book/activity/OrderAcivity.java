@@ -31,7 +31,7 @@ public class OrderAcivity extends AppCompatActivity {
         tvLocation = findViewById(R.id.tv_location_order);
         tvName = findViewById(R.id.hotel_name_roomsdetail);
         tvCategory = findViewById(R.id.tv_category_order);
-        tvDetails = findViewById(R.id.tv_details_order);
+//        tvDetails = findViewById(R.id.tv_details_order);
         tvNote = findViewById(R.id.tv_note_order);
         tvCost = findViewById(R.id.tv_cost_order);
         ratingBar = findViewById(R.id.number_stars);
@@ -61,7 +61,7 @@ public class OrderAcivity extends AppCompatActivity {
             ratingBar.setRating(rate);
             tvCategory.setText(category);
             tvNote.setText(note);
-            tvDetails.setText(String.valueOf(status));
+//            tvDetails.setText(String.valueOf(status));
             tvCost.setText(String.valueOf(cost));
             if(wifi==true){
                 imgWifi.setVisibility(View.VISIBLE);
