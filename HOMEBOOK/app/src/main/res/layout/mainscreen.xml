@@ -166,14 +166,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
-                                <Button
-                                    style="@style/categories"
+                                <ToggleButton
                                     android:layout_width="120dp"
                                     android:layout_height="match_parent"
                                     android:layout_alignParentBottom="true"
-                                    android:text="Hotel"
-
-                                    android:textAlignment="center" />
+                                    android:background="@drawable/custom_toggle"
+                                    android:textAlignment="center"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textOff="Hotel"
+                                    android:textOn="Hotel" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -189,14 +191,16 @@
                                 android:layout_height="match_parent"
                                 android:onClick="sontung">
 
-                                <Button
-                                    style="@style/categories"
+                                <ToggleButton
                                     android:layout_width="120dp"
                                     android:layout_height="match_parent"
                                     android:layout_alignParentBottom="true"
-
-                                    android:text="Apartmanet"
-                                    android:textAlignment="center" />
+                                    android:background="@drawable/custom_toggle"
+                                    android:textAlignment="center"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textOff="Apartment"
+                                    android:textOn="Apartment" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -223,14 +227,16 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="match_parent">
 
-                                <Button
-                                    style="@style/categories"
+                                <ToggleButton
                                     android:layout_width="120dp"
                                     android:layout_height="match_parent"
                                     android:layout_alignParentBottom="true"
-
-                                    android:text="Motel"
-                                    android:textAlignment="center" />
+                                    android:background="@drawable/custom_toggle"
+                                    android:textAlignment="center"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textOff="Homestays"
+                                    android:textOn="Homestays" />
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -243,27 +249,21 @@
                 android:layout_height="250dp"
                 android:layout_marginTop="20dp">
 
-                <HorizontalScrollView
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:fillViewport="true"
-                    android:measureAllChildren="false"
-                    android:scrollbars="none">
-
                     <LinearLayout
-
-                        android:layout_width="wrap_content"
+                        android:id="@+id/linear"
+                        android:layout_width="match_parent"
                         android:layout_height="250dp"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        >
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/ds_homebook"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+
+                           />
                     </LinearLayout>
-                </HorizontalScrollView>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -301,13 +301,14 @@
                     android:scrollbars="none">
 
                     <LinearLayout
-                        android:id="@+id/innerLay"
+                        android:id="@+id/poLay"
                         android:layout_width="wrap_content"
                         android:layout_height="250dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/ds_favo_homebook"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
 

@@ -46,6 +46,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class FindFragment extends Fragment {
 
@@ -54,16 +55,17 @@ public class FindFragment extends Fragment {
 //    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     static final float END_SCALE = 0.7f;
     ImageView menuIcon;
-    LinearLayout contentView;
+    LinearLayout contentView,linear,polay;
     RelativeLayout visual1, visual2, visual3, visual4;
     Boolean checkLogin;
+    ArrayList<Room>list;
     TextView txtUsername;
 
     //Drawer Menu
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView,recyclerView1;
     DAO dao;
     EditText edtSearch;
     @Override
@@ -71,11 +73,14 @@ public class FindFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_find, container, false);
         recyclerView = view.findViewById(R.id.ds_homebook);
+        recyclerView1 = view.findViewById(R.id.ds_favo_homebook);
         menuIcon = view.findViewById(R.id.menu_icon);
         contentView = view.findViewById(R.id.content);
         drawerLayout = view.findViewById(R.id.drawer_layout);
         navigationView = view.findViewById(R.id.navigation_view);
         edtSearch = view.findViewById(R.id.edt_search);
+        linear = view.findViewById(R.id.linear);
+        polay = view.findViewById(R.id.poLay);
         dao = new DAO(getContext());
         ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom2();
         edtSearch.addTextChangedListener(new TextWatcher() {
@@ -209,6 +214,7 @@ public class FindFragment extends Fragment {
 
 //}
 //        gethomebook();
+//        sethorizontal();
         loadDaTa();
         return view;
     }
@@ -232,6 +238,14 @@ public class FindFragment extends Fragment {
 
         animateNavigationDrawer();
 
+    }
+    private void sethorizontal(){
+        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(homeBookApdater);
+
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
     }
 
     private void animateNavigationDrawer() {
@@ -265,10 +279,13 @@ public class FindFragment extends Fragment {
 //    }
     public void loadDaTa(){
         ArrayList<Room> list = (ArrayList<Room>) dao.getRoom2();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView1.setLayoutManager(linearLayoutManager);
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list);
         recyclerView.setAdapter(homeBookApdater);
+        recyclerView1.setAdapter(homeBookApdater);
     }
 
 }
