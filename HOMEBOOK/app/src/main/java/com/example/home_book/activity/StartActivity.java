@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -44,7 +45,11 @@ public class StartActivity extends AppCompatActivity {
 
 //        doStartProgressBar();
         aniprogress();
-
+        SharedPreferences sharedPreferences = this.getSharedPreferences("User_File", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString("Email","");
+        edit.putString("Password","");
+        edit.commit();
     }
 
     private void doStartProgressBar()  {
