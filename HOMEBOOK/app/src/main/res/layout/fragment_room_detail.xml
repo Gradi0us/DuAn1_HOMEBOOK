@@ -41,13 +41,14 @@
             android:textColor="@color/gray"
             android:textSize="30dp"
             android:textStyle="bold" />
+
         <TextView
-            android:layout_marginTop="23dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="23dp"
             android:text="categories"
             android:textColor="@color/gray"
-            android:layout_marginLeft="200dp"
             android:textSize="10dp"
             android:textStyle="bold" />
 
@@ -87,25 +88,28 @@
                 android:text="Vị trí"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_marginEnd="200dp"
-            android:layout_marginBottom="7dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content">
+            android:layout_marginEnd="200dp"
+            android:layout_marginBottom="7dp">
+
             <ImageView
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_bed_24"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="16dp"
                 android:text="X"
-                android:textStyle="bold"/>
+                android:textSize="16dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -162,7 +166,7 @@
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
+                    android:layout_height="180dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -196,9 +200,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -226,9 +230,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -256,9 +260,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -286,9 +290,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -316,9 +320,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -347,52 +351,103 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
+
+
         </RelativeLayout>
+
     </RelativeLayout>
     <LinearLayout
-        android:layout_marginTop="620dp"
+        android:layout_marginTop="600dp"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
-        <TextView
+        android:layout_height="60dp">
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_height="wrap_content"
-            android:text="Cost"
-            android:textStyle="bold"
-            android:textSize="30dp"/>
-        <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_height="wrap_content"
-            android:text=" /"
-            android:textStyle="bold"
-            android:textSize="50dp"/><TextView
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_height="wrap_content"
-            android:text="Night"
-        android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
-        <Button
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/login_button_bk"
-            android:layout_width="125dp"
-            android:textColor="@color/white"
-            android:layout_marginLeft="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Begin"
+                    android:textColor="@color/gray"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="End"
+                    android:textColor="@color/gray"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-            android:textAllCaps="false"
-            android:layout_height="wrap_content"
-            android:text="Order"
-            android:textStyle="bold"
-            android:textSize="15dp"/>
+        </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="670dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="40dp"
+            android:text="Cost"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text=" /"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="10dp"
+            android:text="Night"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="70dp"
+            android:background="@drawable/login_button_bk"
+
+            android:text="Order"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
