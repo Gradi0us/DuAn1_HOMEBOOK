@@ -390,6 +390,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <EditText
+                    android:editable="false"
+                    android:id="@+id/edt_bookingdate"
                     android:layout_marginLeft="10dp"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content" />
@@ -406,6 +408,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <EditText
+                    android:editable="false"
+                    android:id="@+id/edt_returndate"
                     android:layout_marginLeft="10dp"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content" />
@@ -449,6 +453,7 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/btn_order"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

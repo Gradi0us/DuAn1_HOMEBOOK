@@ -17,7 +17,11 @@ public class Room {
     }
 
     byte[] IMG;
-    public Room(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
+
+    public Room() {
+    }
+
+    public Room(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location, byte[] IMG) {
         this.rate = rate;
         this.beds = beds;
         this.status = status;

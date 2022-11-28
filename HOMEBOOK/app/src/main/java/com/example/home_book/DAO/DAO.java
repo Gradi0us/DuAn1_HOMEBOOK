@@ -209,11 +209,11 @@ public class DAO {
 //            String name = c.getString(c.getColumnIndex("fullname"));
 //            String category = c.getString(c.getColumnIndex("category_name"));
 //            String location = c.getString(c.getColumnIndex("location"));
-//            int rate = c.getInt(4);
-//            int beds = c.getInt(6);
-//            String note = c.getString(8);
-//            int cost = c.getInt(11);
-//            int status = c.getInt(12);
+//            int rate = c.getInt(c.getColumnIndex("rate"));
+//            int beds = c.getInt(c.getColumnIndex("beds"));
+//            String note = c.getString(c.getColumnIndex("note"));
+//            int cost = c.getInt(c.getColumnIndex("cost"));
+//            int status = c.getInt(c.getColumnIndex("status"));
 //            int wf = c.getInt(c.getColumnIndex("wifi"));
 //            int aC = c.getInt(c.getColumnIndex("ac"));
 //            int parKing = c.getInt(c.getColumnIndex("parking"));
@@ -352,7 +352,8 @@ public class DAO {
         value.put("time_checkout", x.getTime_checkout());
         value.put("room_id", x.getRoom_id());
         value.put("note", x.getNote());
-        return db.insert("order_tb", null, value);
+         long a= db.insert("order_tb", null, value);
+        return a;
     }
 
     public long UpdateOrder(order x) {

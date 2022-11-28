@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.model.Room;
 import com.example.home_book.model.roomImage;
 import com.example.home_book.model.rooms;
 
@@ -44,12 +45,23 @@ public class MainActivity extends AppCompatActivity {
 //        x.setStatus(1);
 //        x.setRooms(1);
 //        dao.AddRoom(x);
-//        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.homebook);
-//        Bitmap bitmap1 = bitmapDrawable.getBitmap();
-//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//        bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//        byte[] IMG = stream.toByteArray();
-//        dao.InsertHinhAnh(new roomImage(0,IMG));
-
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.khachsan1);
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] IMG = stream.toByteArray();
+        BitmapDrawable bitmapDrawable1 = (BitmapDrawable) getDrawable(R.drawable.khachsan2);
+        Bitmap bitmap1 = bitmapDrawable1.getBitmap();
+        ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+        bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] IMG1 = stream1.toByteArray();
+        Room room = new Room();
+        room.setRate(4);
+        room.setBeds(2);
+        room.setStatus(3);
+        room.setCost(5000000);
+//        dao.AddRoom(new Room(5,2,Integer.parseInt("1"),Integer.parseInt("500000"),false,true,false,true,false,true,"tung","true","Hotel","location",IMG));
+//
+//        dao.AddRoom(new Room(3,4,5,700000,false,true,true,true,true,true,"tung1","HIHI1","hoho1","HaNoi1",IMG1));
     }
 }
