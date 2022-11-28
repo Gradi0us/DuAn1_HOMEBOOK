@@ -134,86 +134,31 @@ public class DAO {
         return db.update("user_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
 
-    public ArrayList<Room> Search(String location1) {
-        ArrayList<Room> list = new ArrayList<>();
-        Cursor c = db.rawQuery(" SELECT * FROM room_tb where location like '%" + location1 + "%'", null);
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            int id = c.getInt(c.getColumnIndex("id"));
-            String name = c.getString(c.getColumnIndex("fullname"));
-            String category = c.getString(c.getColumnIndex("category_name"));
-            String location = c.getString(c.getColumnIndex("location"));
-            int rate = c.getInt(4);
-            int beds = c.getInt(6);
-            String note = c.getString(8);
-            int cost = c.getInt(11);
-            int status = c.getInt(12);
-            int wf = c.getInt(c.getColumnIndex("wifi"));
-            int aC = c.getInt(c.getColumnIndex("ac"));
-            int parKing = c.getInt(c.getColumnIndex("parking"));
-            int miniBar = c.getInt(c.getColumnIndex("minibar"));
-            int Pool = c.getInt(c.getColumnIndex("pool"));
-            int Buffet = c.getInt(c.getColumnIndex("buffet"));
-            boolean wifi, ac, buffet, pool, minibar, parking;
-            if (wf == 0) {
-                wifi = false;
-            } else {
-                wifi = true;
-            }
-            if (aC == 0) {
-                ac = false;
-            } else {
-                ac = true;
-            }
-            if (Buffet == 0) {
-                buffet = false;
-            } else {
-                buffet = true;
-            }
-            if (Pool == 0) {
-                pool = false;
-            } else {
-                pool = true;
-            }
-            if (miniBar == 0) {
-                minibar = false;
-            } else {
-                minibar = true;
-            }
-            if (parKing == 0) {
-                parking = false;
-            } else {
-                parking = true;
-            }
-            byte[] IMG = c.getBlob(c.getColumnIndex("image"));
-            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
-            list.add(x);
-            c.moveToNext();
-        }
-        c.close();
-        return list;
+    public void Search(String location1) {
+        String sql = " SELECT * FROM room_tb where location like '%" + location1 + "%'";
+        getRoom(sql);
     }
 
-    public List<Room> getRoom() {
+    public List<Room> getRoom(String sql) {
         List<Room> list = new ArrayList<>();
-        Cursor c = db.rawQuery("SELECT * FROM room_tb", null);
+        Cursor c = db.rawQuery(sql, null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            int id = c.getInt(c.getColumnIndex("id"));
-            String name = c.getString(c.getColumnIndex("fullname"));
-            String category = c.getString(c.getColumnIndex("category_name"));
-            String location = c.getString(c.getColumnIndex("location"));
+            int id = c.getInt(0);
+            String name = c.getString(1);
+            String category = c.getString(2);
+            String location = c.getString(3);
             int rate = c.getInt(4);
-            int beds = c.getInt(6);
-            String note = c.getString(8);
-            int cost = c.getInt(11);
-            int status = c.getInt(12);
-            int wf = c.getInt(c.getColumnIndex("wifi"));
-            int aC = c.getInt(c.getColumnIndex("ac"));
-            int parKing = c.getInt(c.getColumnIndex("parking"));
-            int miniBar = c.getInt(c.getColumnIndex("minibar"));
-            int Pool = c.getInt(c.getColumnIndex("pool"));
-            int Buffet = c.getInt(c.getColumnIndex("buffet"));
+            int beds = c.getInt(5);
+            String note = c.getString(15);
+            int cost = c.getInt(12);
+            int status = c.getInt(13);
+            int wf = c.getInt(6);
+            int aC = c.getInt(7);
+            int parKing = c.getInt(8);
+            int miniBar = c.getInt(9);
+            int Pool = c.getInt(10);
+            int Buffet = c.getInt(11);
             boolean wifi, ac, buffet, pool, minibar, parking;
             if (wf == 0) {
                 wifi = false;
@@ -245,7 +190,7 @@ public class DAO {
             } else {
                 parking = true;
             }
-            byte[] IMG = c.getBlob(c.getColumnIndex("image"));
+            byte[] IMG = c.getBlob(14);
             Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
             list.add(x);
             c.moveToNext();
