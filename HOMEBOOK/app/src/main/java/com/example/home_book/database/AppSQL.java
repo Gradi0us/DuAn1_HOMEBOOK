@@ -32,9 +32,9 @@ public class AppSQL extends SQLiteOpenHelper {
         db.execSQL(OrderTable);
         db.execSQL(RoomTable);
         
-        db.execSQL(adminstrator_Values);
+//        db.execSQL(adminstrator_Values);
         db.execSQL(user_Values);
-//        db.execSQL(room_Values); chưa update mới
+        db.execSQL(room_Values);
     }
 
     @Override
@@ -44,7 +44,6 @@ public class AppSQL extends SQLiteOpenHelper {
             db.execSQL("drop table if exists user_tb");
             db.execSQL("drop table if exists order_tb");
             db.execSQL("drop table if exists room_tb");
-            db.execSQL("drop table if exists roomImage_tb");
 
             onCreate(db);
         }

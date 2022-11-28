@@ -286,7 +286,7 @@ public class DAO {
 //        return list;
 //    }
 
-    public long AddRoom(rooms x) {
+    public long AddRoom(Room x) {
         ContentValues value = new ContentValues();
         value.put("fullname", x.getName());
         value.put("category_name", x.getCategory());

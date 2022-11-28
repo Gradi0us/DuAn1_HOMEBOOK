@@ -219,7 +219,7 @@ public class FindFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView1.setLayoutManager(linearLayoutManager);
+        recyclerView1.setLayoutManager(linearLayoutManager1);
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,getActivity());
         recyclerView.setAdapter(homeBookApdater);
         recyclerView1.setAdapter(homeBookApdater);
