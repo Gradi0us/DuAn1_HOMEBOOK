@@ -331,7 +331,7 @@ public class DAO {
         return a;
     }
 
-    public long UpdateRoom(rooms x) {
+    public long UpdateRoom(Room x) {
         ContentValues value = new ContentValues();
         // update sau
         return db.update("room_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
