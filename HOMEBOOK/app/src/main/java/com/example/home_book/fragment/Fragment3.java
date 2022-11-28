@@ -1,6 +1,9 @@
 package com.example.home_book.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,23 +14,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.home_book.DAO.DAO;
 import com.example.home_book.Language;
 import com.example.home_book.menu.ChangeLanguage;
 import com.example.home_book.menu.ChangePassActivity;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
+import com.example.home_book.model.user;
 import com.example.home_book.menu.TaiKhoan;
 import com.example.home_book.menu.ThongTin;
 import com.example.home_book.adapter.ListMenuAdapter;
 import com.example.home_book.model.ListModelMenu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Fragment3 extends Fragment {
 
     ListView lv;
-
+    String name;
+TextView textView;
 
     public Fragment3() {
     }
@@ -40,6 +48,7 @@ public class Fragment3 extends Fragment {
         View v = inflater.inflate(R.layout.fragment_3, container, false);
 
         ListView listView = v.findViewById(R.id.lvmenu);
+        textView = v.findViewById(R.id.txtUsername1);
         v.findViewById(R.id.regis).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +72,29 @@ public class Fragment3 extends Fragment {
         });
 
         ArrayList<ListModelMenu> list = new ArrayList<>();
+        SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
+        String email = sP.getString("Email","");
+        String pass = sP.getString("Password","");
+//        String username = sP.getString("Fullname", "");
+        DAO dao = new DAO(getContext());
+        if (dao.checkLogin(email,pass)){
+            listView.setVisibility(View.VISIBLE);
+            v.findViewById(R.id.regis).setVisibility(View.GONE);
+            v.findViewById(R.id.login).setVisibility(View.GONE);
+            List<user> users = dao.getUser_name(email,pass);
+            for(user x : users ){
+                if(x.getEmail().equals( email) ){
+                    name = x.getFullname();
+                    textView.setText(name);
 
+                }
+            }
+
+
+//            textView.setText(username);
+        }else{
+            listView.setVisibility(View.GONE);
+        }
         //add vao listview
         list.add(new ListModelMenu(R.drawable.setting_item, "Quản lý tài khoản"));
         list.add(new ListModelMenu(R.drawable.changepass_item, "Đổi mật khẩu"));

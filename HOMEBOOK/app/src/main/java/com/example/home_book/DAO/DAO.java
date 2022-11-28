@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.home_book.database.AppSQL;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
-import com.example.home_book.model.rooms;
-import com.example.home_book.model.roomImage;
 
 import java.util.ArrayList;
 
@@ -17,7 +15,6 @@ import com.example.home_book.model.user;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +39,37 @@ public class DAO {
             return true;
         }
         return false;
+    } public List<user> getUser_name (String email, String pass) {
+        List<user> list = new ArrayList<>();
+        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
+        db = appSQL.getReadableDatabase();
+        Cursor c = db.rawQuery(sql, new String[]{email, pass});
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int id = c.getInt(0);
+            int ava = c.getInt(1);
+            String name = c.getString(2);
+            String Email = c.getString(3);
+            String Pass = c.getString(4);
+            int role = c.getInt(5);
+            Date ngay = null;
+            try {
+                ngay = format.parse(c.getString(6));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String phone = c.getString(7);
+            int money = c.getInt(8);
+            user x = new user(id, ava, name, Email, Pass, ngay, phone, role, money);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+//        if (cursor.getCount() != 0) {
+//            return true;
+//        }
+//        return false;
     }
 
     public List<user> getUser(String sql, String... args) {
@@ -104,86 +132,32 @@ public class DAO {
         return db.update("user_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
 
-    public ArrayList<Room> Search(String location1) {
-        ArrayList<Room> list = new ArrayList<>();
-        Cursor c = db.rawQuery(" SELECT * FROM room_tb where location like '%" + location1 + "%'", null);
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            int id = c.getInt(c.getColumnIndex("id"));
-            String name = c.getString(c.getColumnIndex("fullname"));
-            String category = c.getString(c.getColumnIndex("category_name"));
-            String location = c.getString(c.getColumnIndex("location"));
-            int rate = c.getInt(4);
-            int beds = c.getInt(6);
-            String note = c.getString(8);
-            int cost = c.getInt(11);
-            int status = c.getInt(12);
-            int wf = c.getInt(c.getColumnIndex("wifi"));
-            int aC = c.getInt(c.getColumnIndex("ac"));
-            int parKing = c.getInt(c.getColumnIndex("parking"));
-            int miniBar = c.getInt(c.getColumnIndex("minibar"));
-            int Pool = c.getInt(c.getColumnIndex("pool"));
-            int Buffet = c.getInt(c.getColumnIndex("buffet"));
-            boolean wifi, ac, buffet, pool, minibar, parking;
-            if (wf == 0) {
-                wifi = false;
-            } else {
-                wifi = true;
-            }
-            if (aC == 0) {
-                ac = false;
-            } else {
-                ac = true;
-            }
-            if (Buffet == 0) {
-                buffet = false;
-            } else {
-                buffet = true;
-            }
-            if (Pool == 0) {
-                pool = false;
-            } else {
-                pool = true;
-            }
-            if (miniBar == 0) {
-                minibar = false;
-            } else {
-                minibar = true;
-            }
-            if (parKing == 0) {
-                parking = false;
-            } else {
-                parking = true;
-            }
-            byte[] IMG = c.getBlob(c.getColumnIndex("image"));
-            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
-            list.add(x);
-            c.moveToNext();
-        }
-        c.close();
-        return list;
-    }
+//    public ArrayList<Room> Search(String location1) {
+//        String sql = " SELECT * FROM room_tb where location like '%" + location1 + "%'";
+//        getRoom(sql);
+//        return null;
+//    }
 
-    public List<Room> getRoom() {
+    public List<Room> getRoom(String sql) {
         List<Room> list = new ArrayList<>();
-        Cursor c = db.rawQuery("SELECT * FROM room_tb", null);
+        Cursor c = db.rawQuery(sql, null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            int id = c.getInt(c.getColumnIndex("id"));
-            String name = c.getString(c.getColumnIndex("fullname"));
-            String category = c.getString(c.getColumnIndex("category_name"));
-            String location = c.getString(c.getColumnIndex("location"));
+            int id = c.getInt(0);
+            String name = c.getString(1);
+            String category = c.getString(2);
+            String location = c.getString(3);
             int rate = c.getInt(4);
-            int beds = c.getInt(6);
-            String note = c.getString(8);
-            int cost = c.getInt(11);
-            int status = c.getInt(12);
-            int wf = c.getInt(c.getColumnIndex("wifi"));
-            int aC = c.getInt(c.getColumnIndex("ac"));
-            int parKing = c.getInt(c.getColumnIndex("parking"));
-            int miniBar = c.getInt(c.getColumnIndex("minibar"));
-            int Pool = c.getInt(c.getColumnIndex("pool"));
-            int Buffet = c.getInt(c.getColumnIndex("buffet"));
+            int beds = c.getInt(5);
+            String note = c.getString(15);
+            int cost = c.getInt(12);
+            int status = c.getInt(13);
+            int wf = c.getInt(6);
+            int aC = c.getInt(7);
+            int parKing = c.getInt(8);
+            int miniBar = c.getInt(9);
+            int Pool = c.getInt(10);
+            int Buffet = c.getInt(11);
             boolean wifi, ac, buffet, pool, minibar, parking;
             if (wf == 0) {
                 wifi = false;
@@ -215,7 +189,7 @@ public class DAO {
             } else {
                 parking = true;
             }
-            byte[] IMG = c.getBlob(c.getColumnIndex("image"));
+            byte[] IMG = c.getBlob(14);
             Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
             list.add(x);
             c.moveToNext();
@@ -286,7 +260,7 @@ public class DAO {
 //        return list;
 //    }
 
-    public long AddRoom(rooms x) {
+    public long AddRoom(Room x) {
         ContentValues value = new ContentValues();
         value.put("fullname", x.getName());
         value.put("category_name", x.getCategory());
@@ -331,7 +305,7 @@ public class DAO {
         return a;
     }
 
-    public long UpdateRoom(rooms x) {
+    public long UpdateRoom(Room x) {
         ContentValues value = new ContentValues();
         // update sau
         return db.update("room_tb", value, "id=?", new String[]{String.valueOf(x.getId())});

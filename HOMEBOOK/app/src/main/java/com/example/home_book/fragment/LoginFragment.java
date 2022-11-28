@@ -55,7 +55,7 @@ public class LoginFragment extends Fragment {
         String email = sP.getString("Email","");
         String pass = sP.getString("Password","");
         Boolean rem = sP.getBoolean("Remember",false);
-
+        
         emailIn.setText(email);
         passIn.setText(pass);
         remember.setChecked(rem);
@@ -93,6 +93,17 @@ public class LoginFragment extends Fragment {
 //                        editor.commit();
                         Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         Log.d("ok","OK");
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
+                        SharedPreferences.Editor edit = sharedPreferences.edit();
+                        edit.putString("Email",eI);
+                        edit.putString("Password",pI);
+                        edit.commit();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager
+                                .beginTransaction()
+                                .replace(R.id.frame,new Fragment3())
+                                .commit();
+
 //                        startActivity(new Intent(getActivity(), MainActivity.class));
                     }else{
                         Toast.makeText(getActivity(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
