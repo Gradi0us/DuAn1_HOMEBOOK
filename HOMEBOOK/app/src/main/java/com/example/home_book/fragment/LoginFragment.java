@@ -55,7 +55,7 @@ public class LoginFragment extends Fragment {
         String email = sP.getString("Email","");
         String pass = sP.getString("Password","");
         Boolean rem = sP.getBoolean("Remember",false);
-
+        
         emailIn.setText(email);
         passIn.setText(pass);
         remember.setChecked(rem);
