@@ -24,17 +24,17 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_2, container, false);
-v.findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentManager
-                .beginTransaction()
-                .replace(R.id.frame,new RoomDetail())
-                .commit();
-    }
-});
-
+        v.findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame,new RoomDetail())
+                        .commit();
+            }
+        });
+        
         return v;
     }
 }
