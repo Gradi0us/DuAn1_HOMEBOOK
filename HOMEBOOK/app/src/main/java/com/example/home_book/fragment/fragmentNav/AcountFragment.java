@@ -220,7 +220,7 @@ public class AcountFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
     public void loadDaTa(){
-        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom();
+        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom("select * from room_tb");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         ListMarketAdapter homeBookApdater = new ListMarketAdapter(getContext(),list);

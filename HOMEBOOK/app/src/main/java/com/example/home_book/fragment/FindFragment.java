@@ -70,6 +70,7 @@ public class FindFragment extends Fragment {
     RecyclerView recyclerView,recyclerView1;
     DAO dao;
     EditText edtSearch;
+    String sqlRoom = "select * from room_tb";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,7 +87,7 @@ public class FindFragment extends Fragment {
         polay = view.findViewById(R.id.poLay);
         txtUsername = view.findViewById(R.id.txtUsername1);
         dao = new DAO(getContext());
-        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom();
+        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom(sqlRoom);
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -101,8 +102,9 @@ public class FindFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 String timkiem = edtSearch.getText().toString().trim();
+                String sql = " SELECT * FROM room_tb where location like '%" + timkiem + "%'";
                 if (!timkiem.isEmpty()) {
-                    ArrayList<Room> list1 = dao.Search(timkiem);
+                    ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list1,getActivity());
@@ -234,7 +236,7 @@ public class FindFragment extends Fragment {
 //        recyclerView.setAdapter(homeBookApdater);
 //    }
     public void loadDaTa(){
-        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom();
+        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
