@@ -17,7 +17,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".OrderAcivity"
+            android:name=".activity.OrderAcivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

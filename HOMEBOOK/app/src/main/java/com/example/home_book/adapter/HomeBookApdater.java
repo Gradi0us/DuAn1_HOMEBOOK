@@ -33,13 +33,15 @@ import com.example.home_book.model.rooms;
 import com.example.home_book.model.roomImage;
 import com.google.android.material.textfield.TextInputEditText;
 
+
 import java.util.ArrayList;
 
 public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHolder> {
     Context context;
     ArrayList<Room> listRoom;
     Activity activity;
-    public HomeBookApdater(Context context, ArrayList<Room> listRoom,Activity activity) {
+
+    public HomeBookApdater(Context context, ArrayList<Room> listRoom, Activity activity) {
         this.context = context;
         this.listRoom = listRoom;
         this.activity = activity;
@@ -64,7 +66,7 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
         holder.layoutitem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickGoToDeTail(listRoom.get(holder.getAdapterPosition()),activity);
+                onClickGoToDeTail(listRoom.get(holder.getAdapterPosition()), activity);
             }
         });
     }
@@ -89,32 +91,33 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
         }
     }
 
-    private void onClickGoToDeTail(Room room,Activity activity) {
+    private void onClickGoToDeTail(Room room, Activity activity) {
 //        AlertDialog.Builder builder = new AlertDialog.Builder(context);
 //        LayoutInflater inflater = activity.getLayoutInflater();
 //        View view = inflater.inflate(R.layout.fragment_room_detail, null);
 //        builder.setView(view);
 //        AlertDialog alertDialog = builder.create();
 //        alertDialog.show();
-            Intent intent = new Intent(activity, OrderAcivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putString("name",room.getName());
-            bundle.putString("location",room.getLocation());
-            bundle.putString("category",room.getCategory());
-            bundle.putInt("status",room.getStatus());
-            bundle.putString("note",room.getNote());
-            bundle.putInt("beds",room.getBeds());
-            bundle.putInt("cost",room.getCost());
-            bundle.putInt("id",room.getId());
-            bundle.putByteArray("img",room.getIMG());
-            bundle.putBoolean("wifi",room.isWifi());
-            bundle.putBoolean("parking",room.isParking());
-            bundle.putBoolean("pool",room.isPool());
-            bundle.putBoolean("minibar",room.isMinibar());
-            bundle.putBoolean("ac",room.isAc());
-            bundle.putBoolean("buffet",room.isBuffet());
-            intent.putExtra("bundle",bundle);
-            activity.startActivity(intent);
+        Intent intent = new Intent(activity, OrderAcivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("name", room.getName());
+        bundle.putString("location", room.getLocation());
+        bundle.putString("category", room.getCategory());
+        bundle.putInt("status", room.getStatus());
+        bundle.putString("note", room.getNote());
+        bundle.putInt("beds", room.getBeds());
+        bundle.putInt("cost", room.getCost());
+        bundle.putInt("id", room.getId());
+        bundle.putInt("rate", room.getRate());
+        bundle.putByteArray("img", room.getIMG());
+        bundle.putBoolean("wifi", room.isWifi());
+        bundle.putBoolean("parking", room.isParking());
+        bundle.putBoolean("pool", room.isPool());
+        bundle.putBoolean("minibar", room.isMinibar());
+        bundle.putBoolean("ac", room.isAc());
+        bundle.putBoolean("buffet", room.isBuffet());
+        intent.putExtra("bundle", bundle);
+        activity.startActivity(intent);
     }
 }
 
