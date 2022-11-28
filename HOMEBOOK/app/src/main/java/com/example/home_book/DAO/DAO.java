@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.home_book.database.AppSQL;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
-import com.example.home_book.model.rooms;
-import com.example.home_book.model.roomImage;
 
 import java.util.ArrayList;
 
@@ -134,10 +132,11 @@ public class DAO {
         return db.update("user_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
 
-    public void Search(String location1) {
-        String sql = " SELECT * FROM room_tb where location like '%" + location1 + "%'";
-        getRoom(sql);
-    }
+//    public ArrayList<Room> Search(String location1) {
+//        String sql = " SELECT * FROM room_tb where location like '%" + location1 + "%'";
+//        getRoom(sql);
+//        return null;
+//    }
 
     public List<Room> getRoom(String sql) {
         List<Room> list = new ArrayList<>();
