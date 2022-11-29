@@ -23,6 +23,7 @@ import com.example.home_book.menu.ChangeLanguage;
 import com.example.home_book.menu.ChangePassActivity;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
+import com.example.home_book.menu.Money;
 import com.example.home_book.model.user;
 import com.example.home_book.menu.TaiKhoan;
 import com.example.home_book.menu.ThongTin;
@@ -104,6 +105,7 @@ Toolbar toolbar;
         list.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
         list.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
         list.add(new ListModelMenu(R.drawable.language, "Ngôn ngữ"));
+        list.add(new ListModelMenu(R.drawable.add_money, "Thêm Tiền"));
         list.add(new ListModelMenu(R.drawable.exit, "Thoát ứng dụng"));
 
         ListMenuAdapter adapter = new ListMenuAdapter(getContext(), R.layout.item_menu, list);
@@ -128,6 +130,9 @@ Toolbar toolbar;
                     startActivity(new Intent(getContext(), ChangeLanguage.class));
                 }
                 if(i==5){
+                    startActivity(new Intent(getContext(), Money.class));
+                }
+                if(i==6){
                     System.exit(0);
                 }
 
