@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] IMG = stream.toByteArray();
 
-        BitmapDrawable bitmapDrawable1 = (BitmapDrawable) getDrawable(R.drawable.homebook);
+        BitmapDrawable bitmapDrawable1 = (BitmapDrawable) getDrawable(R.drawable.fb_icon);
         Bitmap bitmap1 = bitmapDrawable1.getBitmap();
         ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
         bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);
