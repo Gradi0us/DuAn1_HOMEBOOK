@@ -55,16 +55,18 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_hotel_list, parent, false);
         return new ViewHolder(v);
     }
-
+//tung dau r
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tv_nameHomebook.setText(listRoom.get(position).getName());
         String name = listRoom.get(position).getName();
         holder.tv_locationHomebook.setText(listRoom.get(position).getLocation());
-        byte[] hinhanh = listRoom.get(0).getIMG();
+        byte[] hinhanh = listRoom.get(position).getIMG();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
 //        imageAVT.setImageBitmap(bitmap);
         holder.img_homebook.setImageBitmap(bitmap);
+        holder.tvBeds.setText(listRoom.get(position).getBeds()+"");
+        holder.tvPeople.setText(listRoom.get(position).getNumber()+"");
         holder.layoutitem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +81,7 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv_nameHomebook, tv_locationHomebook;
+        private TextView tv_nameHomebook, tv_locationHomebook,tvBeds,tvPeople;
         private ImageView img_homebook;
         private ToggleButton img_favoriteHomebook;
         FrameLayout layoutitem;
@@ -91,6 +93,8 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
             img_homebook = itemView.findViewById(R.id.img_homebook);
             img_favoriteHomebook = itemView.findViewById(R.id.img_favorite_homebook);
             layoutitem = itemView.findViewById(R.id.layout_click);
+            tvBeds=itemView.findViewById(R.id.tv_beds);
+            tvPeople=itemView.findViewById(R.id.tv_people);
         }
     }
 

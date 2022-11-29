@@ -32,13 +32,13 @@
 
             <TextView
                 android:id="@+id/tv_beds"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
+                android:text="X"
+                android:textColor="@color/white"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:text="X" />
+                android:textStyle="bold" />
             <ImageView
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
