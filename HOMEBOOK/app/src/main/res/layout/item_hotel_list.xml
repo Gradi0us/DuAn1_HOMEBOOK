@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_gravity="center"
     android:gravity="center"
@@ -9,8 +9,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_homebook"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/khachsan2" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_marginLeft="220dp"
@@ -22,10 +28,11 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_bed_24" />
+                android:src="@drawable/white_bed" />
 
             <TextView
                 android:id="@+id/tv_beds"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -34,24 +41,16 @@
                 android:text="X" />
         </LinearLayout>
 
-
         <ToggleButton
             android:id="@+id/img_favorite_homebook"
-            android:layout_width="wrap_content"
+            android:layout_width="24dp"
             android:textOn=""
             android:textOff=""
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
             android:background="@drawable/custom_toggle_favorite" />
-
-        <ImageView
-            android:id="@+id/img_homebook"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:src="@drawable/ic_baseline_house_24" />
 
         <TextView
 
@@ -83,5 +82,5 @@
             android:textSize="16dp"
             android:textStyle="bold" />
     </RelativeLayout>
-</LinearLayout>
+</FrameLayout>
 

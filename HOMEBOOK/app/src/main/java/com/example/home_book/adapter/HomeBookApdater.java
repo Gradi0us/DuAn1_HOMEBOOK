@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -81,7 +82,7 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
         private TextView tv_nameHomebook, tv_locationHomebook;
         private ImageView img_homebook;
         private ToggleButton img_favoriteHomebook;
-        LinearLayout layoutitem;
+        FrameLayout layoutitem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
