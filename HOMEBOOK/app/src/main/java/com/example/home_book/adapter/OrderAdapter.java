@@ -47,7 +47,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
 //        imageAVT.setImageBitmap(bitmap);
             holder.imageView.setImageBitmap(bitmap);
-            holder.tvCategory.setText(roomList.getLocation());
+//            holder.tvCategory.setText(roomList.getLocation());
             holder.tvName.setText(roomList.getName());
             holder.tvCost.setText(roomList.getCost()+"");
             holder.tvBeds.setText(roomList.getBeds()+"");
@@ -58,7 +58,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
