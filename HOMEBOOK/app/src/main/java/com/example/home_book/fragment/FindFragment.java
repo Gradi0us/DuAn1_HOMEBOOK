@@ -58,15 +58,15 @@ public class FindFragment extends Fragment {
 
     static final float END_SCALE = 0.7f;
     ImageView menuIcon;
-    LinearLayout contentView,linear,polay;
+    LinearLayout contentView, linear, polay;
     RelativeLayout visual1, visual2, visual3, visual4;
     Boolean checkLogin;
-    ArrayList<Room>list;
+    ArrayList<Room> list;
     TextView txtUsername;
 
     //Drawer Menu
 
-    RecyclerView recyclerView,recyclerView1;
+    RecyclerView recyclerView, recyclerView1;
     DAO dao;
     EditText edtSearch;
     Toolbar toolbar;
@@ -105,12 +105,12 @@ public class FindFragment extends Fragment {
                     ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
-                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list1,getActivity());
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list1, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
                 } else {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
-                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list2,getActivity());
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list2, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
                 }
             }
@@ -209,7 +209,7 @@ public class FindFragment extends Fragment {
 //        });
 
 
-        //    public void gethomebook(){
+    //    public void gethomebook(){
 //        ArrayList<rooms> list = (ArrayList<rooms>) dao.getRoom1();
 //        ArrayList<roomImage> list1 = (ArrayList<roomImage>) dao.getAllHinhAnh();
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -217,14 +217,14 @@ public class FindFragment extends Fragment {
 //        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,list1);
 //        recyclerView.setAdapter(homeBookApdater);
 //    }
-    public void loadDaTa(){
+    public void loadDaTa() {
         ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView1.setLayoutManager(linearLayoutManager1);
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,getActivity());
+        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
         recyclerView.setAdapter(homeBookApdater);
         recyclerView1.setAdapter(homeBookApdater);
     }
-        }
+}
