@@ -174,7 +174,7 @@ public class AcountFragment extends Fragment {
                 String status = edtstatus.getText().toString().trim();
                 String location = edtlocation.getText().toString().trim();
                 myRating = (int) ratingBara.getRating();
-                dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG));
+                dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG,2));
                 alertDialog.cancel();
                 loadDaTa();
             }
