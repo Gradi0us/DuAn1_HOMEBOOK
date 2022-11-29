@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.fragment.Fragment3;
@@ -268,6 +269,7 @@ public class OrderAcivity extends AppCompatActivity {
                 }
             }
             dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note));
+            Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
         }
     }
 }

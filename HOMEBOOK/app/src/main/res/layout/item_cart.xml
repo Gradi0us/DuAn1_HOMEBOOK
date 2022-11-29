@@ -73,6 +73,7 @@
                     android:textSize="16dp"
                     android:layout_marginLeft="10dp"
                     android:text="X" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -97,8 +98,28 @@
 
 
             </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="35dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_location_on_24" />
+
+                <TextView
+                    android:id="@+id/tv_location_homebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Vị trí" />
 
 
+            </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout
