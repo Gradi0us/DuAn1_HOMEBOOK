@@ -60,6 +60,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="X" />
+                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/black_people" />
+
+                <TextView
+                    android:id="@+id/tv_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="X" />
             </LinearLayout>
 
             <LinearLayout
@@ -169,19 +182,12 @@
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_height="wrap_content">
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/type_blue"
-                        android:text="Confirm"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white" />
 
                     <Button
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/type"
                         android:text="Cancel"

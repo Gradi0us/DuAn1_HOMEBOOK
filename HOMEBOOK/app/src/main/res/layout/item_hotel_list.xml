@@ -39,6 +39,21 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:text="X" />
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white_people" />
+
+            <TextView
+                android:id="@+id/tv_people"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:text="X" />
         </LinearLayout>
 
         <ToggleButton

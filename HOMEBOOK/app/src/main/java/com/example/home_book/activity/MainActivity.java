@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 //        dao.AddRoom(x);
 
 //        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.twitter_icon);
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.khachsan1);
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.twitter_icon);
         Bitmap bitmap = bitmapDrawable.getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
