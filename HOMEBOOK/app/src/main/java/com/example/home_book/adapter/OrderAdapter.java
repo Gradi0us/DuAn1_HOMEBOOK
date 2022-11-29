@@ -41,7 +41,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DAO dao = new DAO(context);
         int id =  list.get(position).getId();
-        Room roomList =  dao.getRoom2("select * from room_tb where "+id+"",null);
+        Room roomList =  dao.getRoom2("select * from room_tb where id = "+id+"",null);
         if(roomList!=null){
             byte[] hinhanh = roomList.getIMG();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
