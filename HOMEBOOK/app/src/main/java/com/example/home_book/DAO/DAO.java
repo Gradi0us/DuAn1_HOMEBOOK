@@ -315,9 +315,9 @@ public class DAO {
         db.delete("room_tb", "id=?", new String[]{String.valueOf(ID)});
     }
 
-    public List<order> getOrder(String sql, String... args) {
+    public List<order> getOrder(String sql) {
         List<order> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sql, args);
+        Cursor c = db.rawQuery(sql, null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
             Date ngayNhan = null , ngayTra = null;
