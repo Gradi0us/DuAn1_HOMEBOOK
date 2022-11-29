@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.home_book.R;
+
 public class Money extends AppCompatActivity {
 
     @Override

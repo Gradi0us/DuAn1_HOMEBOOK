@@ -31,6 +31,7 @@ import com.example.home_book.slideshow.adapter.The_Slide_Items_Pager_Adapter;
 import com.example.home_book.R;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,7 +49,8 @@ public class OrderAcivity extends AppCompatActivity {
     private ViewPager page;
     private TabLayout tabLayout;
     EditText edtBookingDate, edtReturnDate;
-    Date dateBooking, dateReturn;
+    Date dateBooking;
+    Date dateReturn;
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     Button btnOrder;
     DAO dao;
@@ -78,6 +80,10 @@ public class OrderAcivity extends AppCompatActivity {
         edtReturnDate = findViewById(R.id.edt_returndate);
         btnOrder = findViewById(R.id.btn_order);
         dao = new DAO(this);
+        Calendar calendar = Calendar.getInstance();
+        yY = calendar.get(Calendar.YEAR);
+        mM = calendar.get(Calendar.MONTH);
+        dD = calendar.get(Calendar.DATE);
         Intent i = getIntent();
         Bundle bundle = i.getBundleExtra("bundle");
         if (bundle != null) {
@@ -166,14 +172,13 @@ public class OrderAcivity extends AppCompatActivity {
                         dD = dayOfMonth;
                         GregorianCalendar gC = new GregorianCalendar(yY, mM, dD);
                         edtBookingDate.setText(format.format(gC.getTime()));
-                        dateBooking = gC.getTime();
-
+                        try {
+                            dateBooking =  format.parse(format.format(gC.getTime()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                     }
                 };
-                Calendar calendar = Calendar.getInstance();
-                yY = calendar.get(Calendar.YEAR);
-                mM = calendar.get(Calendar.MONTH);
-                dD = calendar.get(Calendar.DATE);
 
                 DatePickerDialog d = new DatePickerDialog(OrderAcivity.this,0,chonDate,yY,mM,dD);
                 d.show();
@@ -193,13 +198,13 @@ public class OrderAcivity extends AppCompatActivity {
                         dD = dayOfMonth;
                         GregorianCalendar gC = new GregorianCalendar(yY, mM, dD);
                         edtReturnDate.setText(format.format(gC.getTime()));
-                        dateReturn = gC.getTime();
+                        try {
+                            dateReturn = format.parse(format.format(gC.getTime()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                     }
                 };
-                Calendar calendar = Calendar.getInstance();
-                yY = calendar.get(Calendar.YEAR);
-                mM = calendar.get(Calendar.MONTH);
-                dD = calendar.get(Calendar.DATE);
 
                 DatePickerDialog d = new DatePickerDialog(OrderAcivity.this,0,chonDate,yY,mM,dD);
                 d.show();
