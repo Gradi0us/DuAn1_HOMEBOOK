@@ -376,5 +376,37 @@ public class DAO {
     public void DeleteOrder(int ID) {
         db.delete("order_tb", "id=?", new String[]{String.valueOf(ID)});
     }
-    
+    public user getUser_name1 (String email, String pass) {
+        List<user> list = new ArrayList<>();
+        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
+        db = appSQL.getReadableDatabase();
+        user x = null;
+        Cursor c = db.rawQuery(sql, new String[]{email, pass});
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int id = c.getInt(0);
+            int ava = c.getInt(1);
+            String name = c.getString(2);
+            String Email = c.getString(3);
+            String Pass = c.getString(4);
+            int role = c.getInt(5);
+            Date ngay = null;
+            try {
+                ngay = format.parse(c.getString(6));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String phone = c.getString(7);
+            int money = c.getInt(8);
+             x = new user(id, ava, name, Email, Pass, ngay, phone, role, money);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return x;
+//        if (cursor.getCount() != 0) {
+//            return true;
+//        }
+//        return false;
+    }
 }
