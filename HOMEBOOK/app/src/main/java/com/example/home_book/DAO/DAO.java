@@ -149,15 +149,16 @@ public class DAO {
             String location = c.getString(3);
             int rate = c.getInt(4);
             int beds = c.getInt(5);
-            String note = c.getString(15);
-            int cost = c.getInt(12);
-            int status = c.getInt(13);
-            int wf = c.getInt(6);
-            int aC = c.getInt(7);
-            int parKing = c.getInt(8);
-            int miniBar = c.getInt(9);
-            int Pool = c.getInt(10);
-            int Buffet = c.getInt(11);
+            int number = c.getInt(6);
+            String note = c.getString(16);
+            int cost = c.getInt(13);
+            int status = c.getInt(14);
+            int wf = c.getInt(7);
+            int aC = c.getInt(8);
+            int parKing = c.getInt(9);
+            int miniBar = c.getInt(10);
+            int Pool = c.getInt(11);
+            int Buffet = c.getInt(12);
             boolean wifi, ac, buffet, pool, minibar, parking;
             if (wf == 0) {
                 wifi = false;
@@ -189,8 +190,8 @@ public class DAO {
             } else {
                 parking = true;
             }
-            byte[] IMG = c.getBlob(14);
-            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
+            byte[] IMG = c.getBlob(15);
+            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG,number);
             list.add(x);
             c.moveToNext();
         }
@@ -267,6 +268,7 @@ public class DAO {
         value.put("location", x.getLocation());
         value.put("rate", x.getRate());
         value.put("beds", x.getBeds());
+        value.put("number_people", x.getNumber());
         value.put("note", x.getNote());
         value.put("cost", x.getCost());
         value.put("status", x.getStatus());
