@@ -118,12 +118,16 @@ Toolbar toolbar;
 //                        trông nó hơi ngu ngu xíu nma ra đcc kết quả =))
                         break;
                     case R.id.Cart:
+                        navigationView.setVisibility(View.GONE);
+                        menuIcon.setVisibility(View.GONE);
                         layout.setVisibility(View.VISIBLE);
                         replaceFragment(fragment4);
 
                         break;
 
                     case R.id.Music:
+                        navigationView.setVisibility(View.GONE);
+                        menuIcon.setVisibility(View.GONE);
                         layout.setVisibility(View.VISIBLE);
                         replaceFragment(fragment2);
                         break;
