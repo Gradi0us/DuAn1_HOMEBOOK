@@ -267,7 +267,7 @@ Toolbar toolbar;
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mHome:
-                Fragment fragment = new HomeFragment();
+                Fragment fragment = new FindFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame, fragment).commit();
