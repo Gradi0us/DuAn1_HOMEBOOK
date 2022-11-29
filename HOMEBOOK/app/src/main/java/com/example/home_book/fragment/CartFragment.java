@@ -32,7 +32,7 @@ public class CartFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_cart, container, false);
         recyclerView = v.findViewById(R.id.ds_orders);
         dao = new DAO(getActivity());
-        List<order> list = dao.getOrder("SELECT * FROM order_tb",null);
+        List<order> list = dao.getOrder("SELECT * FROM order_tb");
 
         return v;
     }

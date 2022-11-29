@@ -159,6 +159,7 @@ public class DAO {
             int miniBar = c.getInt(10);
             int Pool = c.getInt(11);
             int Buffet = c.getInt(12);
+            int people = c.getInt(c.getColumnIndex("number_people"));
             boolean wifi, ac, buffet, pool, minibar, parking;
             if (wf == 0) {
                 wifi = false;
@@ -214,6 +215,7 @@ public class DAO {
             int beds = c.getInt(c.getColumnIndex("beds"));
             String note = c.getString(c.getColumnIndex("note"));
             int cost = c.getInt(c.getColumnIndex("cost"));
+            int people = c.getInt(c.getColumnIndex("number_people"));
             int status = c.getInt(c.getColumnIndex("status"));
             int wf = c.getInt(c.getColumnIndex("wifi"));
             int aC = c.getInt(c.getColumnIndex("ac"));
@@ -253,7 +255,7 @@ public class DAO {
                 parking = true;
             }
             byte[] IMG = c.getBlob(c.getColumnIndex("image"));
-             x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
+             x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG,people);
             list.add(x);
             c.moveToNext();
         }
