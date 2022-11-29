@@ -46,8 +46,8 @@
 
             <ImageView
                 android:id="@+id/img_HomeBook"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="400dp"
+                android:layout_height="200dp"
 
                 android:src="@drawable/ic_baseline_house_24" />
             <LinearLayout
