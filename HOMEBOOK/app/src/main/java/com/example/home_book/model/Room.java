@@ -1,7 +1,7 @@
 package com.example.home_book.model;
 
 public class Room {
-    int id, rate, beds, status, cost;
+    int id, rate, beds, status, cost, number;
     boolean wifi,ac,buffet,parking,pool,minibar;
     String note;
     String name;
@@ -17,7 +17,13 @@ public class Room {
     }
 
     byte[] IMG;
-    public Room(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
+
+
+
+    public Room() {
+    }
+
+ public Room(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG, int number) {
         this.rate = rate;
         this.beds = beds;
         this.status = status;
@@ -33,10 +39,11 @@ public class Room {
         this.category = category;
         this.location = location;
         this.IMG = IMG;
+        this.number = number;
     }
 
-    public Room(int id, int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
-
+    public Room(int id, int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG,int number) {
+        this.number = number;
         this.id = id;
         this.rate = rate;
         this.beds = beds;
@@ -174,5 +181,13 @@ public class Room {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }
