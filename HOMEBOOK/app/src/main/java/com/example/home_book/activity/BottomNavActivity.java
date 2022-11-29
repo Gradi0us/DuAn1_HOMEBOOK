@@ -85,7 +85,17 @@ Toolbar toolbar;
                 if(x.getEmail().equals( email) ){
                     name = x.getFullname();
                     txtUsername.setText(name);
+                }
+                if(x.getEmail().equals(email)){
+                    int role = 0;
+                    if(x.getRole() == role){
+                        navigationView.setVisibility(View.GONE);
+                        menuIcon.setVisibility(View.GONE);
 
+                    }else{
+                        navigationView.setVisibility(View.VISIBLE);
+                        menuIcon.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 
