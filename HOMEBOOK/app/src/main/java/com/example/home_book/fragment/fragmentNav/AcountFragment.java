@@ -87,6 +87,7 @@ public class AcountFragment extends Fragment {
         TextInputEditText edtcost = view.findViewById(R.id.edt_cost);
         TextInputEditText edtstatus = view.findViewById(R.id.edt_status);
         TextInputEditText edtlocation = view.findViewById(R.id.edt_location);
+        TextInputEditText edtpeople = view.findViewById(R.id.edt_people);
         ImageView imgAddimage = view.findViewById(R.id.img_addimage);
         imgAvtHome = view.findViewById(R.id.img_avthome);
         RatingBar ratingBara = view.findViewById(R.id.star_homebook);
@@ -171,10 +172,11 @@ public class AcountFragment extends Fragment {
                 String name = edtname.getText().toString().trim();
                 String hoteldetail = edthoteldetail.getText().toString().trim();
                 String cost = edtcost.getText().toString().trim();
+                String people = edtpeople.getText().toString().trim();
                 String status = edtstatus.getText().toString().trim();
                 String location = edtlocation.getText().toString().trim();
                 myRating = (int) ratingBara.getRating();
-                dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG));
+                dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG,Integer.parseInt(people)));
                 alertDialog.cancel();
                 loadDaTa();
             }

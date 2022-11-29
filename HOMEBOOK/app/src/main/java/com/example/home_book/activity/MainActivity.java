@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 //        dao.AddRoom(x);
 
 //        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.twitter_icon);
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.khachsan1);
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.twitter_icon);
         Bitmap bitmap = bitmapDrawable.getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         byte[] IMG1 = stream1.toByteArray();
 //        dao.InsertHinhAnh(new roomImage(0,IMG));
         List<Room> list = dao.getRoom("select * from room_tb");
-        dao.AddRoom(new Room(5,2,Integer.parseInt("1"),Integer.parseInt("500000"),false,true,false,true,false,true,"tung","true","Hotel","location",IMG));
+        dao.AddRoom(new Room(5,2,Integer.parseInt("1"),Integer.parseInt("500000"),false,true,false,true,false,true,"tung","true","Hotel","location",IMG,2));
 
-        dao.AddRoom(new Room(3,4,5,700000,false,true,true,true,true,true,"tung1","HIHI1","hoho1","HaNoi1",IMG1));
+        dao.AddRoom(new Room(3,4,5,700000,false,true,true,true,true,true,"tung1","HIHI1","hoho1","HaNoi1",IMG1,4));
     }
 }

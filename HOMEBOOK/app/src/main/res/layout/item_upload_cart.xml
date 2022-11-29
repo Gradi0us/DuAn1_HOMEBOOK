@@ -39,6 +39,20 @@
                     android:text="X"
                     android:textSize="16dp"
                     android:textStyle="bold" />
+                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/black_people" />
+
+                <TextView
+                    android:id="@+id/tv_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="X"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
 
