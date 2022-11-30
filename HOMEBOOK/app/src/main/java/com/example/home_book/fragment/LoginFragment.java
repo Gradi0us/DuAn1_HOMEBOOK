@@ -51,7 +51,7 @@ public class LoginFragment extends Fragment {
         create = view.findViewById(R.id.dangky);
         dao = new DAO(getContext());
 
-        SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
+        SharedPreferences sP = getActivity().getSharedPreferences("User_Remember",MODE_PRIVATE);
         String email = sP.getString("Email","");
         String pass = sP.getString("Password","");
         Boolean rem = sP.getBoolean("Remember",false);
@@ -88,9 +88,9 @@ public class LoginFragment extends Fragment {
                 }
                 if(check){
                     if(dao.checkLogin(eI,pI)){
-//                        rememberUser(eI,pI,remember.isChecked());
-//                        editor.putString("Email",eI);
-//                        editor.commit();
+                        rememberUser(eI,pI,remember.isChecked());
+                        editor.putString("Email",eI);
+                        editor.commit();
                         Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         Log.d("ok","OK");
                         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
@@ -116,7 +116,7 @@ public class LoginFragment extends Fragment {
     }
 
     public void rememberUser(String e,String p, boolean s){
-        SharedPreferences pref = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences("User_Remember",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         if(s){
             editor.putString("Email",e);
