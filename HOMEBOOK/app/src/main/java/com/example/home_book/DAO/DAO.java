@@ -101,8 +101,8 @@ public class DAO {
         return list;
     }
 
-    public user get1User(String sql) {
-        List<user> list = getUser(sql, null);
+    public user get1User(String sql, String x) {
+        List<user> list = getUser(sql, x);
         return list.get(0);
     }
 
@@ -160,7 +160,7 @@ public class DAO {
             int miniBar = c.getInt(10);
             int Pool = c.getInt(11);
             int Buffet = c.getInt(12);
-            int people = c.getInt(c.getColumnIndex("number_people"));
+//            int people = c.getInt(c.getColumnIndex("number_people"));
             boolean wifi, ac, buffet, pool, minibar, parking;
             if (wf == 0) {
                 wifi = false;
