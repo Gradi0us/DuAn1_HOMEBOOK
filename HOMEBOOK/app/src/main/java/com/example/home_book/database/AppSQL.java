@@ -32,7 +32,7 @@ public class AppSQL extends SQLiteOpenHelper {
         db.execSQL(OrderTable);
         db.execSQL(RoomTable);
         
-//        db.execSQL(adminstrator_Values);
+        db.execSQL(adminstrator_Values);
         db.execSQL(user_Values);
         db.execSQL(room_Values);
     }
