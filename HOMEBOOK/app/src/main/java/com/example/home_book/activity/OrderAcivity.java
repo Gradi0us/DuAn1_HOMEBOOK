@@ -58,6 +58,7 @@ public class OrderAcivity extends AppCompatActivity {
     String name, category, note, location;
     String name_user;
     int dD, mM, yY, role;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,14 +174,14 @@ public class OrderAcivity extends AppCompatActivity {
                         GregorianCalendar gC = new GregorianCalendar(yY, mM, dD);
                         edtBookingDate.setText(format.format(gC.getTime()));
                         try {
-                            dateBooking =  format.parse(format.format(gC.getTime()));
+                            dateBooking = format.parse(format.format(gC.getTime()));
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
                     }
                 };
 
-                DatePickerDialog d = new DatePickerDialog(OrderAcivity.this,0,chonDate,yY,mM,dD);
+                DatePickerDialog d = new DatePickerDialog(OrderAcivity.this, 0, chonDate, yY, mM, dD);
                 d.show();
             }
         });
@@ -206,7 +207,7 @@ public class OrderAcivity extends AppCompatActivity {
                     }
                 };
 
-                DatePickerDialog d = new DatePickerDialog(OrderAcivity.this,0,chonDate,yY,mM,dD);
+                DatePickerDialog d = new DatePickerDialog(OrderAcivity.this, 0, chonDate, yY, mM, dD);
                 d.show();
             }
         });
@@ -265,16 +266,12 @@ public class OrderAcivity extends AppCompatActivity {
         } else {
             DAO dao = new DAO(this);
             if (dao.checkLogin(email, pass)) {
-                List<user> users = dao.getUser_name(email, pass);
-                for (user x : users) {
-                    if (x.getEmail().equals(email)) {
-                        name_user = x.getFullname();
-                        id_user = x.getId();
-                    }
-                }
+                user x = dao.get1User("select * from user_tb where email = ?", email);
+                name_user = x.getFullname();
+                id_user = x.getId();
             }
-            dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note));
-            Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
         }
+        dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note));
+        Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
     }
 }

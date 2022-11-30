@@ -88,7 +88,7 @@ public class Fragment3 extends Fragment {
             listView.setVisibility(View.VISIBLE);
             v.findViewById(R.id.regis).setVisibility(View.GONE);
             v.findViewById(R.id.login).setVisibility(View.GONE);
-            user x = dao.get1User("select * from user_tb where email = " + email);
+            user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             textView.setText(name);
             avatar.setImageResource(x.getAvatar());

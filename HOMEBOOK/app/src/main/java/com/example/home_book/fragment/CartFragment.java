@@ -47,8 +47,10 @@ public class CartFragment extends Fragment {
         String email = sP.getString("Email","");
         String pass = sP.getString("Password","");
         if(!email.equals("")&&!pass.equals("")){
-            user us = dao.getUser_name1(email,pass);
-            loadData(us.getId());
+            if (dao.checkLogin(email, pass)) {
+                user x = dao.get1User("select * from user_tb where email = ?", email);
+                loadData(x.getId());
+            }
         }else {
             Dialog();
         }
