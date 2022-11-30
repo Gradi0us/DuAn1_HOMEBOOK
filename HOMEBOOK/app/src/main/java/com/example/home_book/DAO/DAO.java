@@ -160,6 +160,7 @@ public class DAO {
             int miniBar = c.getInt(10);
             int Pool = c.getInt(11);
             int Buffet = c.getInt(12);
+            int people = c.getInt(c.getColumnIndex("number_people"));
             boolean wifi, ac, buffet, pool, minibar, parking;
             if (wf == 0) {
                 wifi = false;
@@ -200,39 +201,23 @@ public class DAO {
         return list;
     }
 
-<<<<<<< Updated upstream
-//    public List<Room> getRoom2() {
-//        List<Room> list = new ArrayList<>();
-//        SQLiteDatabase sqLiteDatabase = appSQL.getReadableDatabase();
-//        String SELECT = "SELECT * FROM room_tb ";
-//        Cursor c = sqLiteDatabase.rawQuery(SELECT, null);
-=======
 //    public Room getRoom2(String sql, String... args) {
 //        List<Room> list = new ArrayList<>();
 //        Room x = null;
 //        SQLiteDatabase sqLiteDatabase = appSQL.getReadableDatabase();
 //        Cursor c = sqLiteDatabase.rawQuery(sql, args);
->>>>>>> Stashed changes
 //        c.moveToFirst();
 //        while (!c.isAfterLast()) {
 //            int id = c.getInt(c.getColumnIndex("id"));
 //            String name = c.getString(c.getColumnIndex("fullname"));
 //            String category = c.getString(c.getColumnIndex("category_name"));
 //            String location = c.getString(c.getColumnIndex("location"));
-<<<<<<< Updated upstream
-//            int rate = c.getInt(4);
-//            int beds = c.getInt(6);
-//            String note = c.getString(8);
-//            int cost = c.getInt(11);
-//            int status = c.getInt(12);
-=======
 //            int rate = c.getInt(c.getColumnIndex("rate"));
 //            int beds = c.getInt(c.getColumnIndex("beds"));
 //            String note = c.getString(c.getColumnIndex("note"));
 //            int cost = c.getInt(c.getColumnIndex("cost"));
 //            int people = c.getInt(c.getColumnIndex("number_people"));
 //            int status = c.getInt(c.getColumnIndex("status"));
->>>>>>> Stashed changes
 //            int wf = c.getInt(c.getColumnIndex("wifi"));
 //            int aC = c.getInt(c.getColumnIndex("ac"));
 //            int parKing = c.getInt(c.getColumnIndex("parking"));
@@ -271,20 +256,12 @@ public class DAO {
 //                parking = true;
 //            }
 //            byte[] IMG = c.getBlob(c.getColumnIndex("image"));
-<<<<<<< Updated upstream
 //            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
-=======
-//             x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG,people);
->>>>>>> Stashed changes
 //            list.add(x);
 //            c.moveToNext();
 //        }
 //        c.close();
-<<<<<<< Updated upstream
 //        return list;
-=======
-//        return x;
->>>>>>> Stashed changes
 //    }
 
     public long AddRoom(Room x) {
@@ -380,7 +357,8 @@ public class DAO {
         value.put("time_checkout", x.getTime_checkout());
         value.put("room_id", x.getRoom_id());
         value.put("note", x.getNote());
-        return db.insert("order_tb", null, value);
+         long a= db.insert("order_tb", null, value);
+        return a;
     }
 
     public long UpdateOrder(order x) {
@@ -400,4 +378,37 @@ public class DAO {
         db.delete("order_tb", "id=?", new String[]{String.valueOf(ID)});
     }
     
+//    public user getUser_name1 (String email, String pass) {
+//        List<user> list = new ArrayList<>();
+//        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
+//        db = appSQL.getReadableDatabase();
+//        user x = null;
+//        Cursor c = db.rawQuery(sql, new String[]{email, pass});
+//        c.moveToFirst();
+//        while (!c.isAfterLast()) {
+//            int id = c.getInt(0);
+//            int ava = c.getInt(1);
+ //           String name = c.getString(2);
+//            String Email = c.getString(3);
+//            String Pass = c.getString(4);
+//            int role = c.getInt(5);
+//            Date ngay = null;
+ //           try {
+//                ngay = format.parse(c.getString(6));
+//           } catch (ParseException e) {
+//               e.printStackTrace();
+//            }
+//            String phone = c.getString(7);
+//           int money = c.getInt(8);
+//             x = new user(id, ava, name, Email, Pass, ngay, phone, role, money);
+//            list.add(x);
+//            c.moveToNext();
+//        }
+//        c.close();
+//        return x;
+//        if (cursor.getCount() != 0) {
+//            return true;
+//        }
+//        return false;
+//    }
 }

@@ -30,7 +30,7 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_homebook, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_upload_cart, parent, false);
         return new ViewHolder(v);
     }
 
@@ -44,6 +44,9 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
         holder.type.setText(lisRoom.get(position).getCategory());
         holder.location.setText(lisRoom.get(position).getLocation());
         holder.ratingBar.setRating(lisRoom.get(position).getRate());
+        holder.beds.setText(lisRoom.get(position).getBeds()+"");
+        holder.status.setText(lisRoom.get(position).getStatus()+"");
+        holder.people.setText(lisRoom.get(position).getNumber()+"");
     }
 
     @Override
@@ -53,7 +56,7 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgHomeBook;
-        TextView name,location,type;
+        TextView name,location,type,beds,status,people;
         RatingBar ratingBar;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +65,9 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
             location = itemView.findViewById(R.id.tv_vitri);
             type = itemView.findViewById(R.id.tv_Type);
             ratingBar = itemView.findViewById(R.id.number_stars);
+            beds = itemView.findViewById(R.id.tv_beds);
+            status = itemView.findViewById(R.id.tv_status);
+            people = itemView.findViewById(R.id.tv_people);
         }
     }
 }

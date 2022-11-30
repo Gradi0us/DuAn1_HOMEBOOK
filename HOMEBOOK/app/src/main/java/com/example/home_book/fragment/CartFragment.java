@@ -1,66 +1,87 @@
 package com.example.home_book.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.adapter.ListMarketAdapter;
+import com.example.home_book.adapter.OrderAdapter;
+import com.example.home_book.model.order;
+import com.example.home_book.model.user;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CartFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class CartFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public CartFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CartFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CartFragment newInstance(String param1, String param2) {
-        CartFragment fragment = new CartFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    RecyclerView recyclerView;
+    DAO dao;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        View v= inflater.inflate(R.layout.fragment_cart, container, false);
+        recyclerView = v.findViewById(R.id.ds_orders);
+        dao = new DAO(getActivity());
+        SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
+        String email = sP.getString("Email","");
+        String pass = sP.getString("Password","");
+        if(!email.equals("")&&!pass.equals("")){
+            user us = dao.getUser_name1(email,pass);
+            loadData(us.getId());
+        }else {
+            Dialog();
+        }
+        return v;
+    }
+    private void loadData(int id){
+        List<order> list = dao.getOrder("SELECT * FROM order_tb where user_id = "+id+"");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        OrderAdapter homeBookApdater = new OrderAdapter(getContext(), (ArrayList<order>) list);
+        recyclerView.setAdapter(homeBookApdater);
+    }
+    private void Dialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Please login!");
+        builder.setCancelable(true);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame,new Fragment3())
+                            .commit();
+            }
+        });
+            builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

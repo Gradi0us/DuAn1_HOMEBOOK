@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -23,6 +24,7 @@ import com.example.home_book.menu.ChangeLanguage;
 import com.example.home_book.menu.ChangePassActivity;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
+import com.example.home_book.menu.Money;
 import com.example.home_book.model.user;
 import com.example.home_book.menu.TaiKhoan;
 import com.example.home_book.menu.ThongTin;
@@ -36,13 +38,9 @@ public class Fragment3 extends Fragment {
 
     ListView lv;
     String name;
-<<<<<<< Updated upstream
-TextView textView;
-=======
     TextView textView;
     Toolbar toolbar;
     ImageView avatar;
->>>>>>> Stashed changes
 
     public Fragment3() {
     }
@@ -55,12 +53,10 @@ TextView textView;
         View v = inflater.inflate(R.layout.fragment_3, container, false);
 
         ListView listView = v.findViewById(R.id.lvmenu);
+
         textView = v.findViewById(R.id.txtUsername1);
-<<<<<<< Updated upstream
-=======
         avatar = v.findViewById(R.id.imgAva);
 
->>>>>>> Stashed changes
         v.findViewById(R.id.regis).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +102,7 @@ TextView textView;
         list.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
         list.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
         list.add(new ListModelMenu(R.drawable.language, "Ngôn ngữ"));
+        list.add(new ListModelMenu(R.drawable.add_money, "Thêm Tiền"));
         list.add(new ListModelMenu(R.drawable.exit, "Thoát ứng dụng"));
 
         ListMenuAdapter adapter = new ListMenuAdapter(getContext(), R.layout.item_menu, list);
@@ -129,14 +126,10 @@ TextView textView;
                 if (i == 4) {
                     startActivity(new Intent(getContext(), ChangeLanguage.class));
                 }
-<<<<<<< Updated upstream
-                if(i==5){
-=======
                 if (i == 5) {
                     startActivity(new Intent(getContext(), Money.class));
                 }
                 if (i == 6) {
->>>>>>> Stashed changes
                     System.exit(0);
                 }
 

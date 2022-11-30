@@ -4,22 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="1000dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_view"
-            android:layout_width="220dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@drawable/color_gradient"
-            app:menu="@menu/menu_drawer" />
+
+
 
         <LinearLayout
             android:id="@+id/content"
@@ -33,50 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp">
 
-                    <ImageView
-                        android:id="@+id/menu_icon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="30px"
-                        android:src="@drawable/menu" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_marginLeft="90dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:padding="5px"
-                        android:text="Hi!"
-                        android:textColor="#797B7C"
-                        android:textSize="40dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtUsername1"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="145dp"
-                        android:layout_marginTop="20dp"
-                        android:padding="5px"
-                        android:text="GUEST"
-
-                        android:textColor="#797B7C"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="350dp"
-                        android:src="@drawable/usermanage" />
-                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -167,6 +112,7 @@
                                     android:layout_height="match_parent">
 
                                     <ToggleButton
+                                        android:id="@+id/toggle_hotel"
                                         android:layout_width="120dp"
                                         android:layout_height="match_parent"
                                         android:layout_alignParentBottom="true"
@@ -193,6 +139,7 @@
 
                                     <ToggleButton
                                         android:layout_width="120dp"
+                                        android:id="@+id/toggle_apartment"
                                         android:layout_height="match_parent"
                                         android:layout_alignParentBottom="true"
                                         android:background="@drawable/custom_toggle"
@@ -229,6 +176,7 @@
 
                                     <ToggleButton
                                         android:layout_width="120dp"
+                                        android:id="@+id/toggle_homestays"
                                         android:layout_height="match_parent"
                                         android:layout_alignParentBottom="true"
                                         android:background="@drawable/custom_toggle"
@@ -319,5 +267,5 @@
 
 
         </LinearLayout>
-    </androidx.drawerlayout.widget.DrawerLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
