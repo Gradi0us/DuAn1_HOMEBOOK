@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import com.example.home_book.DAO.DAO;
 import com.example.home_book.Language;
 import com.example.home_book.menu.ChangeLanguage;
 import com.example.home_book.menu.ChangePassActivity;
+import com.example.home_book.menu.FragmentTaiKhoan;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
 import com.example.home_book.menu.Money;
@@ -37,8 +39,10 @@ public class Fragment3 extends Fragment {
 
     ListView lv;
     String name;
-TextView textView;
-Toolbar toolbar;
+    TextView textView;
+    ImageView userImage;
+    Toolbar toolbar;
+
     public Fragment3() {
     }
 
@@ -52,6 +56,7 @@ Toolbar toolbar;
         ListView listView = v.findViewById(R.id.lvmenu);
 
         textView = v.findViewById(R.id.txtUsername1);
+        userImage = v.findViewById(R.id.userImage);
 
         v.findViewById(R.id.regis).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +64,7 @@ Toolbar toolbar;
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager
                         .beginTransaction()
-                        .replace(R.id.frame,new RegisterFragment())
+                        .replace(R.id.frame, new RegisterFragment())
                         .commit();
             }
 
@@ -70,28 +75,30 @@ Toolbar toolbar;
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager
                         .beginTransaction()
-                        .replace(R.id.frame,new LoginFragment())
+                        .replace(R.id.frame, new LoginFragment())
                         .commit();
             }
         });
 
         ArrayList<ListModelMenu> list = new ArrayList<>();
-        SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
-        String email = sP.getString("Email","");
-        String pass = sP.getString("Password","");
+        SharedPreferences sP = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
+        String email = sP.getString("Email", "");
+        String pass = sP.getString("Password", "");
 //        String username = sP.getString("Fullname", "");
         DAO dao = new DAO(getContext());
-        if (dao.checkLogin(email,pass)){
+        if (dao.checkLogin(email, pass)) {
             listView.setVisibility(View.VISIBLE);
             v.findViewById(R.id.regis).setVisibility(View.GONE);
             v.findViewById(R.id.login).setVisibility(View.GONE);
+
             user x = dao.getUserId(email);
             name = x.getFullname();
             textView.setText(name);
+            userImage.setImageResource(x.getAvatar());
 
 
 //            textView.setText(username);
-        }else{
+        } else {
             listView.setVisibility(View.GONE);
         }
         //add vao listview
@@ -109,25 +116,29 @@ Toolbar toolbar;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i==0){
-                    startActivity(new Intent(getContext(), TaiKhoan.class));
+                if (i == 0) {
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame, new FragmentTaiKhoan())
+                            .commit();
                 }
-                if(i==1){
+                if (i == 1) {
                     startActivity(new Intent(getContext(), ChangePassActivity.class));
                 }
-                if(i==2){
+                if (i == 2) {
                     startActivity(new Intent(getContext(), LienHeActivity.class));
                 }
-                if(i==3){
+                if (i == 3) {
                     startActivity(new Intent(getContext(), ThongTin.class));
                 }
-                if(i==4){
+                if (i == 4) {
                     startActivity(new Intent(getContext(), ChangeLanguage.class));
                 }
-                if(i==5){
+                if (i == 5) {
                     startActivity(new Intent(getContext(), Money.class));
                 }
-                if(i==6){
+                if (i == 6) {
                     System.exit(0);
                 }
 
