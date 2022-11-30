@@ -42,6 +42,7 @@ public class Fragment3 extends Fragment {
     TextView textView;
     ImageView userImage;
     Toolbar toolbar;
+    ImageView avatar;
 
     public Fragment3() {
     }
@@ -56,7 +57,7 @@ public class Fragment3 extends Fragment {
         ListView listView = v.findViewById(R.id.lvmenu);
 
         textView = v.findViewById(R.id.txtUsername1);
-        userImage = v.findViewById(R.id.userImage);
+        avatar = v.findViewById(R.id.avatar);
 
         v.findViewById(R.id.regis).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,20 +85,19 @@ public class Fragment3 extends Fragment {
         SharedPreferences sP = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
         String email = sP.getString("Email", "");
         String pass = sP.getString("Password", "");
-//        String username = sP.getString("Fullname", "");
         DAO dao = new DAO(getContext());
         if (dao.checkLogin(email, pass)) {
             listView.setVisibility(View.VISIBLE);
             v.findViewById(R.id.regis).setVisibility(View.GONE);
             v.findViewById(R.id.login).setVisibility(View.GONE);
 
-            user x = dao.getUserId(email);
+
+
+            user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             textView.setText(name);
-            userImage.setImageResource(x.getAvatar());
+            avatar.setImageResource(x.getAvatar());
 
-
-//            textView.setText(username);
         } else {
             listView.setVisibility(View.GONE);
         }
@@ -122,6 +122,7 @@ public class Fragment3 extends Fragment {
                             .beginTransaction()
                             .replace(R.id.frame, new FragmentTaiKhoan())
                             .commit();
+                    startActivity(new Intent(getContext(), TaiKhoan.class));
                 }
                 if (i == 1) {
                     startActivity(new Intent(getContext(), ChangePassActivity.class));
