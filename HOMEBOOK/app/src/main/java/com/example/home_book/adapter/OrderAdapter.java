@@ -40,25 +40,27 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DAO dao = new DAO(context);
-        int id =  list.get(position).getId();
-        Room roomList =  dao.getRoom2("select * from room_tb where "+id+"",null);
+        int id =  list.get(position).getRoom_id();
+//        Room roomList =  dao.getRoom2("select * from room_tb where id = "+id+"",null);
+        Room roomList =  dao.getRoom2("select * from room_tb where id = "+id+"",null);
         if(roomList!=null){
             byte[] hinhanh = roomList.getIMG();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
 //        imageAVT.setImageBitmap(bitmap);
             holder.imageView.setImageBitmap(bitmap);
-            holder.tvCategory.setText(roomList.getLocation());
+//            holder.tvCategory.setText(roomList.getLocation());
             holder.tvName.setText(roomList.getName());
             holder.tvCost.setText(roomList.getCost()+"");
             holder.tvBeds.setText(roomList.getBeds()+"");
             holder.tvDateCheckIn.setText(list.get(position).getBooking_date()+"");
             holder.tvDateCheckIn.setText(list.get(position).getReturn_date()+"");
+            holder.ratingBar.setRating(roomList.getRate());
         }
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
