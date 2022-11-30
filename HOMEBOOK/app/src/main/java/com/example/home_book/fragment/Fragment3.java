@@ -85,14 +85,9 @@ Toolbar toolbar;
             listView.setVisibility(View.VISIBLE);
             v.findViewById(R.id.regis).setVisibility(View.GONE);
             v.findViewById(R.id.login).setVisibility(View.GONE);
-            List<user> users = dao.getUser_name(email,pass);
-            for(user x : users ){
-                if(x.getEmail().equals( email) ){
-                    name = x.getFullname();
-                    textView.setText(name);
-
-                }
-            }
+            user x = dao.getUserId(email);
+            name = x.getFullname();
+            textView.setText(name);
 
 
 //            textView.setText(username);
