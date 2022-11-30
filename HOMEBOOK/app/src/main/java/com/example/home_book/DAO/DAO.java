@@ -99,9 +99,9 @@ public class DAO {
         return list;
     }
 
-    public user getUserId(String id) {
-        String sql = "select * from user_tb where id=?";
-        List<user> list = getUser(sql, id);
+    public user getUserId(String email) {
+        String sql = "select * from user_tb where email=?";
+        List<user> list = getUser(sql, email);
         return list.get(0);
     }
 
