@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="Location"
+            style="@style/modifiedEditText"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"/>
+
+    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="wrap_content"-->
+
+<!--            android:hint="Ngày nhận"-->
+<!--            style="@style/modifiedEditText"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:maxLines="1"-->
+<!--            android:paddingVertical="10dp"-->
+<!--            android:layout_marginHorizontal="15dp"-->
+<!--            android:layout_marginVertical="5dp"/>-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="wrap_content"-->
+
+<!--            android:hint="Ngày trả "-->
+<!--            style="@style/modifiedEditText"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:maxLines="1"-->
+<!--            android:paddingVertical="10dp"-->
+<!--            android:layout_marginHorizontal="15dp"-->
+<!--            android:layout_marginVertical="5dp"/>-->
+
+<!--    </LinearLayout>-->
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+
+            android:hint="Số Người"
+            style="@style/modifiedEditText"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+
+            android:hint="Số giường "
+            style="@style/modifiedEditText"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="100dp"
+
+            android:layout_height="wrap_content"
+            android:hint="phòng dư"
+            style="@style/modifiedEditText"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="Đánh gía tối thiểu"
+            android:textColor="@color/blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RatingBar
+            android:id="@+id/star_homebook"
+            android:numStars="5"
+            android:stepSize="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:text="Search"
+            android:layout_width="wrap_content"
+            android:background="@drawable/login_button_bk"
+            android:textColor="@color/white"
+            android:layout_height="45dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:background="@drawable/type"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
