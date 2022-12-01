@@ -42,7 +42,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
         DAO dao = new DAO(context);
         int id =  list.get(position).getRoom_id();
 //        Room roomList =  dao.getRoom2("select * from room_tb where id = "+id+"",null);
-        Room roomList = (Room) dao.getRoom("select * from room_tb where id = "+id);
+        Room roomList = dao.get1Room("select * from room_tb where id = ?", String.valueOf(id));
         if(roomList!=null){
             byte[] hinhanh = roomList.getIMG();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
