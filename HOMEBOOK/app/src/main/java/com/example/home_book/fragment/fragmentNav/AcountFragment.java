@@ -222,7 +222,7 @@ public class AcountFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
     public void loadDaTa(){
-        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom("select * from room_tb");
+        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom("select * from room_tb",null);
 //        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom2();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);

@@ -74,6 +74,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/edt_btn"
             android:layout_marginBottom="30dp"
+            android:textColor="@color/black"
             android:text="Hotel_name" />
 
 
@@ -86,7 +87,7 @@
             android:src="@drawable/location" />
 
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:id="@+id/tv_location_homebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

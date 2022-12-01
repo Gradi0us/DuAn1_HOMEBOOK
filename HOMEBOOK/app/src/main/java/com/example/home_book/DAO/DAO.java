@@ -39,38 +39,40 @@ public class DAO {
             return true;
         }
         return false;
-    } public List<user> getUser_name (String email, String pass) {
-        List<user> list = new ArrayList<>();
-        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
-        db = appSQL.getReadableDatabase();
-        Cursor c = db.rawQuery(sql, new String[]{email, pass});
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            int id = c.getInt(0);
-            int ava = c.getInt(1);
-            String name = c.getString(2);
-            String Email = c.getString(3);
-            String Pass = c.getString(4);
-            int role = c.getInt(5);
-            Date ngay = null;
-            try {
-                ngay = format.parse(c.getString(6));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            String phone = c.getString(7);
-            int money = c.getInt(8);
-            user x = new user(id, ava, name, Email, Pass, ngay, phone, role, money);
-            list.add(x);
-            c.moveToNext();
-        }
-        c.close();
-        return list;
-//        if (cursor.getCount() != 0) {
-//            return true;
-//        }
-//        return false;
     }
+
+//    public List<user> getUser_name (String email, String pass) {
+//        List<user> list = new ArrayList<>();
+//        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
+//        db = appSQL.getReadableDatabase();
+//        Cursor c = db.rawQuery(sql, new String[]{email, pass});
+//        c.moveToFirst();
+//        while (!c.isAfterLast()) {
+//            int id = c.getInt(0);
+//            int ava = c.getInt(1);
+//            String name = c.getString(2);
+//            String Email = c.getString(3);
+//            String Pass = c.getString(4);
+//            int role = c.getInt(5);
+//            Date ngay = null;
+//            try {
+//                ngay = format.parse(c.getString(6));
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            String phone = c.getString(7);
+//            int money = c.getInt(8);
+//            user x = new user(id, ava, name, Email, Pass, ngay, phone, role, money);
+//            list.add(x);
+//            c.moveToNext();
+//        }
+//        c.close();
+//        return list;
+////        if (cursor.getCount() != 0) {
+////            return true;
+////        }
+////        return false;
+//    }
 
     public List<user> getUser(String sql, String... args) {
         List<user> list = new ArrayList<>();
@@ -99,9 +101,8 @@ public class DAO {
         return list;
     }
 
-    public user getUserId(String id) {
-        String sql = "select * from user_tb where id=?";
-        List<user> list = getUser(sql, id);
+    public user get1User(String sql, String x) {
+        List<user> list = getUser(sql, x);
         return list.get(0);
     }
 
@@ -138,9 +139,9 @@ public class DAO {
 //        return null;
 //    }
 
-    public List<Room> getRoom(String sql) {
+    public List<Room> getRoom(String sql,String... args) {
         List<Room> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sql, null);
+        Cursor c = db.rawQuery(sql, args);
         c.moveToFirst();
         while (!c.isAfterLast()) {
             int id = c.getInt(0);
@@ -159,7 +160,7 @@ public class DAO {
             int miniBar = c.getInt(10);
             int Pool = c.getInt(11);
             int Buffet = c.getInt(12);
-            int people = c.getInt(c.getColumnIndex("number_people"));
+//            int people = c.getInt(c.getColumnIndex("number_people"));
             boolean wifi, ac, buffet, pool, minibar, parking;
             if (wf == 0) {
                 wifi = false;
@@ -200,68 +201,73 @@ public class DAO {
         return list;
     }
 
-    public Room getRoom2(String sql, String... args) {
-        List<Room> list = new ArrayList<>();
-        Room x = null;
-        SQLiteDatabase sqLiteDatabase = appSQL.getReadableDatabase();
-        Cursor c = sqLiteDatabase.rawQuery(sql, args);
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            int id = c.getInt(c.getColumnIndex("id"));
-            String name = c.getString(c.getColumnIndex("fullname"));
-            String category = c.getString(c.getColumnIndex("category_name"));
-            String location = c.getString(c.getColumnIndex("location"));
-            int rate = c.getInt(c.getColumnIndex("rate"));
-            int beds = c.getInt(c.getColumnIndex("beds"));
-            String note = c.getString(c.getColumnIndex("note"));
-            int cost = c.getInt(c.getColumnIndex("cost"));
-            int people = c.getInt(c.getColumnIndex("number_people"));
-            int status = c.getInt(c.getColumnIndex("status"));
-            int wf = c.getInt(c.getColumnIndex("wifi"));
-            int aC = c.getInt(c.getColumnIndex("ac"));
-            int parKing = c.getInt(c.getColumnIndex("parking"));
-            int miniBar = c.getInt(c.getColumnIndex("minibar"));
-            int Pool = c.getInt(c.getColumnIndex("pool"));
-            int Buffet = c.getInt(c.getColumnIndex("buffet"));
-            boolean wifi, ac, buffet, pool, minibar, parking;
-            if (wf == 0) {
-                wifi = false;
-            } else {
-                wifi = true;
-            }
-            if (aC == 0) {
-                ac = false;
-            } else {
-                ac = true;
-            }
-            if (Buffet == 0) {
-                buffet = false;
-            } else {
-                buffet = true;
-            }
-            if (Pool == 0) {
-                pool = false;
-            } else {
-                pool = true;
-            }
-            if (miniBar == 0) {
-                minibar = false;
-            } else {
-                minibar = true;
-            }
-            if (parKing == 0) {
-                parking = false;
-            } else {
-                parking = true;
-            }
-            byte[] IMG = c.getBlob(c.getColumnIndex("image"));
-             x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG,people);
-            list.add(x);
-            c.moveToNext();
-        }
-        c.close();
-        return x;
+    public Room get1Room(String sql,String x){
+        List<Room> list = getRoom(sql, x);
+        return list.get(0);
     }
+
+//    public Room getRoom2(String sql, String... args) {
+//        List<Room> list = new ArrayList<>();
+//        Room x = null;
+//        SQLiteDatabase sqLiteDatabase = appSQL.getReadableDatabase();
+//        Cursor c = sqLiteDatabase.rawQuery(sql, args);
+//        c.moveToFirst();
+//        while (!c.isAfterLast()) {
+//            int id = c.getInt(c.getColumnIndex("id"));
+//            String name = c.getString(c.getColumnIndex("fullname"));
+//            String category = c.getString(c.getColumnIndex("category_name"));
+//            String location = c.getString(c.getColumnIndex("location"));
+//            int rate = c.getInt(c.getColumnIndex("rate"));
+//            int beds = c.getInt(c.getColumnIndex("beds"));
+//            String note = c.getString(c.getColumnIndex("note"));
+//            int cost = c.getInt(c.getColumnIndex("cost"));
+//            int people = c.getInt(c.getColumnIndex("number_people"));
+//            int status = c.getInt(c.getColumnIndex("status"));
+//            int wf = c.getInt(c.getColumnIndex("wifi"));
+//            int aC = c.getInt(c.getColumnIndex("ac"));
+//            int parKing = c.getInt(c.getColumnIndex("parking"));
+//            int miniBar = c.getInt(c.getColumnIndex("minibar"));
+//            int Pool = c.getInt(c.getColumnIndex("pool"));
+//            int Buffet = c.getInt(c.getColumnIndex("buffet"));
+//            boolean wifi, ac, buffet, pool, minibar, parking;
+//            if (wf == 0) {
+//                wifi = false;
+//            } else {
+//                wifi = true;
+//            }
+//            if (aC == 0) {
+//                ac = false;
+//            } else {
+//                ac = true;
+//            }
+//            if (Buffet == 0) {
+//                buffet = false;
+//            } else {
+//                buffet = true;
+//            }
+//            if (Pool == 0) {
+//                pool = false;
+//            } else {
+//                pool = true;
+//            }
+//            if (miniBar == 0) {
+//                minibar = false;
+//            } else {
+//                minibar = true;
+//            }
+//            if (parKing == 0) {
+//                parking = false;
+//            } else {
+//                parking = true;
+//            }
+//            byte[] IMG = c.getBlob(c.getColumnIndex("image"));
+//            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
+//            list.add(x);
+//            c.moveToNext();
+//        }
+//        c.close();
+//        return list;
+//    }
 
     public long AddRoom(Room x) {
         ContentValues value = new ContentValues();
@@ -376,37 +382,38 @@ public class DAO {
     public void DeleteOrder(int ID) {
         db.delete("order_tb", "id=?", new String[]{String.valueOf(ID)});
     }
-    public user getUser_name1 (String email, String pass) {
-        List<user> list = new ArrayList<>();
-        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
-        db = appSQL.getReadableDatabase();
-        user x = null;
-        Cursor c = db.rawQuery(sql, new String[]{email, pass});
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            int id = c.getInt(0);
-            int ava = c.getInt(1);
-            String name = c.getString(2);
-            String Email = c.getString(3);
-            String Pass = c.getString(4);
-            int role = c.getInt(5);
-            Date ngay = null;
-            try {
-                ngay = format.parse(c.getString(6));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            String phone = c.getString(7);
-            int money = c.getInt(8);
-             x = new user(id, ava, name, Email, Pass, ngay, phone, role, money);
-            list.add(x);
-            c.moveToNext();
-        }
-        c.close();
-        return x;
+    
+//    public user getUser_name1 (String email, String pass) {
+//        List<user> list = new ArrayList<>();
+//        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
+//        db = appSQL.getReadableDatabase();
+//        user x = null;
+//        Cursor c = db.rawQuery(sql, new String[]{email, pass});
+//        c.moveToFirst();
+//        while (!c.isAfterLast()) {
+//            int id = c.getInt(0);
+//            int ava = c.getInt(1);
+ //           String name = c.getString(2);
+//            String Email = c.getString(3);
+//            String Pass = c.getString(4);
+//            int role = c.getInt(5);
+//            Date ngay = null;
+ //           try {
+//                ngay = format.parse(c.getString(6));
+//           } catch (ParseException e) {
+//               e.printStackTrace();
+//            }
+//            String phone = c.getString(7);
+//           int money = c.getInt(8);
+//             x = new user(id, ava, name, Email, Pass, ngay, phone, role, money);
+//            list.add(x);
+//            c.moveToNext();
+//        }
+//        c.close();
+//        return x;
 //        if (cursor.getCount() != 0) {
 //            return true;
 //        }
 //        return false;
-    }
+//    }
 }

@@ -18,18 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
@@ -40,6 +44,7 @@ import com.example.home_book.fragment.fragmentNav.RateFragment;
 import com.example.home_book.fragment.fragmentNav.SettingFragment;
 import com.example.home_book.model.ListModelMenu;
 import com.example.home_book.model.Room;
+import com.example.home_book.model.categories;
 import com.example.home_book.model.rooms;
 import com.example.home_book.model.user;
 import com.google.android.material.navigation.NavigationView;
@@ -55,7 +60,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class FindFragment extends Fragment {
-
+    categories category;
+    ToggleButton toggle_hotel, toggle_homestays,toggle_apartment ;
     static final float END_SCALE = 0.7f;
     ImageView menuIcon;
     LinearLayout contentView, linear, polay;
@@ -63,6 +69,7 @@ public class FindFragment extends Fragment {
     Boolean checkLogin;
     ArrayList<Room> list;
     TextView txtUsername;
+    Boolean toggle_hotelischeck = true;
 
     //Drawer Menu
 
@@ -78,6 +85,10 @@ public class FindFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_find, container, false);
         recyclerView = view.findViewById(R.id.ds_homebook);
         recyclerView1 = view.findViewById(R.id.ds_favo_homebook);
+        toggle_hotel = view.findViewById(R.id.toggle_hotel);
+        toggle_apartment = view.findViewById(R.id.toggle_apartment);
+        toggle_homestays = view.findViewById(R.id.toggle_homestays);
+
 
         edtSearch = view.findViewById(R.id.edt_search);
         linear = view.findViewById(R.id.linear);
@@ -85,7 +96,7 @@ public class FindFragment extends Fragment {
 //        toolbar = view.findViewById(R.id.toolbar);
 
         dao = new DAO(getContext());
-        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom(sqlRoom);
+        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
 //        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom2();
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -103,7 +114,7 @@ public class FindFragment extends Fragment {
                 String timkiem = edtSearch.getText().toString().trim();
                 String sql = " SELECT * FROM room_tb where location like '%" + timkiem + "%'";
                 if (!timkiem.isEmpty()) {
-                    ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql);
+                    ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql,null);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list1, getActivity());
@@ -118,7 +129,7 @@ public class FindFragment extends Fragment {
         });
 
         loadDaTa();
-
+        FilterHome();
 
         return view;
     }
@@ -219,7 +230,7 @@ public class FindFragment extends Fragment {
 //        recyclerView.setAdapter(homeBookApdater);
 //    }
     public void loadDaTa() {
-        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom);
+        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -227,5 +238,98 @@ public class FindFragment extends Fragment {
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
         recyclerView.setAdapter(homeBookApdater);
         recyclerView1.setAdapter(homeBookApdater);
+
+
+
+    }
+    private void FilterHome(){
+        toggle_hotel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d("TAG", "onCreateView: " + toggle_hotel);
+                boolean to = true;
+                if (toggle_hotel.isChecked() == true) {
+                    Toast.makeText(getContext(), "hotel", Toast.LENGTH_SHORT).show();
+                    toggle_apartment.setChecked(false);
+                    toggle_homestays.setChecked(false);
+                }
+        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView1.setLayoutManager(linearLayoutManager1);
+        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
+        recyclerView.setAdapter(homeBookApdater);
+        recyclerView1.setAdapter(homeBookApdater);
+
+//                }
+
+
+
+//                if(toggle_apartment.isChecked() == true){
+//                    Toast.makeText(getContext(), "apartment", Toast.LENGTH_SHORT).show();
+//                    toggle_hotel.setChecked(false);
+//                    toggle_homestays.setChecked(false);
+//                }
+//                if(toggle_homestays.isChecked() == true){
+//                    Toast.makeText(getContext(), "homestays", Toast.LENGTH_SHORT).show();
+//                    toggle_hotel.setChecked(false);
+//                    toggle_apartment.setChecked(false);
+//                }
+
+
+            }
+        });
+
+        toggle_apartment.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d("TAG", "onCreateView: " + toggle_hotel);
+                boolean to = true;
+                if(toggle_apartment.isChecked() == true){
+                    Toast.makeText(getContext(), "apartment", Toast.LENGTH_SHORT).show();
+                    toggle_hotel.setChecked(false);
+                    toggle_homestays.setChecked(false);
+                }
+
+                    ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                    recyclerView1.setLayoutManager(linearLayoutManager1);
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
+                    recyclerView.setAdapter(homeBookApdater);
+                    recyclerView1.setAdapter(homeBookApdater);
+//                if(toggle_homestays.isChecked() == true){
+//                    Toast.makeText(getContext(), "homestays", Toast.LENGTH_SHORT).show();
+//                    toggle_hotel.setChecked(false);
+//                    toggle_apartment.setChecked(false);
+//                }
+
+
+            }
+        });
+        toggle_homestays.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d("TAG", "onCreateView: " + toggle_hotel);
+                boolean to = true;
+                if(toggle_homestays.isChecked() == true){
+                    Toast.makeText(getContext(), "homestays", Toast.LENGTH_SHORT).show();
+                    toggle_hotel.setChecked(false);
+                    toggle_apartment.setChecked(false);
+                }
+                    ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                    recyclerView1.setLayoutManager(linearLayoutManager1);
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
+                    recyclerView.setAdapter(homeBookApdater);
+                    recyclerView1.setAdapter(homeBookApdater);
+
+
+            }
+        });
     }
 }
