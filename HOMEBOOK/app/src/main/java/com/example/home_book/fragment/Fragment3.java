@@ -96,7 +96,11 @@ public class Fragment3 extends Fragment {
             user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             textView.setText(name);
-            avatar.setImageResource(x.getAvatar());
+            if(x.getAvatar() == 0){
+                avatar.setImageResource(R.drawable.usermanage);
+            }else{
+                avatar.setImageResource(x.getAvatar());
+            }
 
         } else {
             listView.setVisibility(View.GONE);
@@ -122,7 +126,6 @@ public class Fragment3 extends Fragment {
                             .beginTransaction()
                             .replace(R.id.frame, new FragmentTaiKhoan())
                             .commit();
-                    startActivity(new Intent(getContext(), TaiKhoan.class));
                 }
                 if (i == 1) {
                     startActivity(new Intent(getContext(), ChangePassActivity.class));

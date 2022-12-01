@@ -62,9 +62,10 @@ public class FragmentTaiKhoan extends Fragment {
         SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
         String email = sP.getString("Email","");
         DAO dao = new DAO(getContext());
-        user x = dao.getUserId(email);
+        user x = dao.get1User("select * from user_tb where email = ?",email);
         String ten =  x.getFullname();
         name.setText(ten);
+        changeImage.setImageResource(x.getAvatar());
 
         changeName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,9 +86,9 @@ public class FragmentTaiKhoan extends Fragment {
                         changeName.setVisibility(View.VISIBLE);
                         Toast.makeText(getActivity(), "Đổi thành công", Toast.LENGTH_SHORT).show();
 
-                        user x = dao.getUserId(email);
+                        name.setText(nameAC);
                         x.setFullname(nameAC);
-
+                        dao.UpdateUser(x);
 
                     }
                 });
@@ -97,72 +98,71 @@ public class FragmentTaiKhoan extends Fragment {
         changeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setAva();
+                GridView androidGridView;
+
+                ArrayList<Integer> listImg = new ArrayList<>();
+                listImg.addAll(Arrays.asList(
+                        R.drawable.bliz_cat,
+                        R.drawable.vayne_cat,
+                        R.drawable.m4_cat,
+                        R.drawable.ys_cat,
+                        R.drawable.doraemon,
+                        R.drawable.neon_tired,
+                        R.drawable.fade_tired,
+                        R.drawable.phoenix_tired,
+                        R.drawable.sova_tired
+                ));
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                LayoutInflater inflater = getLayoutInflater();
+                View view5 = inflater.inflate(R.layout.avatar_selection, null);
+                builder.setView(view5);
+
+                androidGridView = view5.findViewById(R.id.gridview_android_example);
+
+                BaseAdapter ImageAdapterGridView = new BaseAdapter() {
+                    @Override
+                    public int getCount() {
+                        return listImg.size();
+                    }
+
+                    @Override
+                    public Object getItem(int position) {
+                        return null;
+                    }
+
+                    @Override
+                    public long getItemId(int position) {
+                        return listImg.get(position);
+                    }
+
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ava_item, parent, false);
+                        ImageView anhAva = convertView.findViewById(R.id.imgAnh);
+                        anhAva.setBackgroundResource(listImg.get(position));
+                        return convertView;
+                    }
+                };
+
+                androidGridView.setAdapter(ImageAdapterGridView);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                androidGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Log.d("==po==", ""+position);
+                        changeImage.setImageResource(listImg.get(position));
+                        x.setAvatar(listImg.get(position));
+                        dao.UpdateUser(x);
+                        alertDialog.dismiss();
+                    }
+                });
             }
         });
 
         return view;
-    }
-    private void setAva() {
-        GridView androidGridView;
-
-        ArrayList<Integer> listImg = new ArrayList<>();
-        listImg.addAll(Arrays.asList(
-                R.drawable.fb_icon,
-                R.drawable.fb_icon,
-                R.drawable.google_icon,
-                R.drawable.fb_icon,
-                R.drawable.fb_icon,
-                R.drawable.fb_icon,
-                R.drawable.fb_icon,
-                R.drawable.twitter_icon,
-                R.drawable.fb_icon
-        ));
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.avatar_selection, null);
-        builder.setView(view);
-
-        androidGridView = view.findViewById(R.id.gridview_android_example);
-
-        BaseAdapter ImageAdapterGridView = new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return listImg.size();
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return null;
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return listImg.get(position);
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ava_item, parent, false);
-                ImageView anhAva = convertView.findViewById(R.id.imgAnh);
-                anhAva.setBackgroundResource(listImg.get(position));
-                return convertView;
-            }
-        };
-
-        androidGridView.setAdapter(ImageAdapterGridView);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
-        androidGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("==po==", ""+position);
-                changeImage.setImageResource(listImg.get(position));
-                alertDialog.dismiss();
-            }
-        });
     }
 }
