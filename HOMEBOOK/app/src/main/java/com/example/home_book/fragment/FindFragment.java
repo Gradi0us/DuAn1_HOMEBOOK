@@ -115,12 +115,12 @@ public class FindFragment extends Fragment {
                 String sql = " SELECT * FROM room_tb where location like '%" + timkiem + "%'";
                 if (!timkiem.isEmpty()) {
                     ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql,null);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list1, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
                 } else {
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list2, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
