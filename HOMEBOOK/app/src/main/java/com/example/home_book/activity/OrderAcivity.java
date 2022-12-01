@@ -31,6 +31,7 @@ import com.example.home_book.slideshow.adapter.The_Slide_Items_Pager_Adapter;
 import com.example.home_book.R;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,7 +59,11 @@ public class OrderAcivity extends AppCompatActivity {
     String name, category, note, location;
     String name_user;
     int dD, mM, yY, role;
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    Date date = new Date();
+    String currentDate;
 
+    //System.out.println(dateFormat.format(date));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +85,9 @@ public class OrderAcivity extends AppCompatActivity {
         edtBookingDate = findViewById(R.id.edt_bookingdate);
         edtReturnDate = findViewById(R.id.edt_returndate);
         btnOrder = findViewById(R.id.btn_order);
+        //
+        currentDate = dateFormat.format(date);
+        //
         dao = new DAO(this);
         Calendar calendar = Calendar.getInstance();
         yY = calendar.get(Calendar.YEAR);
@@ -255,23 +263,35 @@ public class OrderAcivity extends AppCompatActivity {
 //                            .commit();
                 }
             });
-//            builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                }
-//            });
+            builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         } else {
-            DAO dao = new DAO(this);
-            if (dao.checkLogin(email, pass)) {
-                user x = dao.get1User("select * from user_tb where email = ?", email);
-                name_user = x.getFullname();
-                id_user = x.getId();
+            if(!edtReturnDate.getText().toString().equals("") && !edtBookingDate.getText().toString().equals("")){
+                if (date.compareTo(dateBooking) > 0) {
+                    Toast.makeText(this, "Ngày đặt phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
+                } else if (date.compareTo(dateReturn) > 0) {
+                    Toast.makeText(this, "Ngày trả phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
+                } else if (dateBooking.compareTo(dateReturn) >=0) {
+                    Toast.makeText(this, "Ngày đặt phải trước ngày trả", Toast.LENGTH_SHORT).show();
+                }else {
+                    DAO dao = new DAO(this);
+                    if (dao.checkLogin(email, pass)) {
+                        user x = dao.get1User("select * from user_tb where email = ?", email);
+                        name_user = x.getFullname();
+                        id_user = x.getId();
+                        dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note));
+                        Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }else {
+                Toast.makeText(this, "Không được bỏ trống ngày đặt và ngày trả", Toast.LENGTH_SHORT).show();
             }
         }
-        dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note));
-        Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
     }
 }
