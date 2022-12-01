@@ -317,7 +317,46 @@ public class DAO {
 
     public long UpdateRoom(Room x) {
         ContentValues value = new ContentValues();
-        // update sau
+        value.put("fullname", x.getName());
+        value.put("category_name", x.getCategory());
+        value.put("location", x.getLocation());
+        value.put("rate", x.getRate());
+        value.put("beds", x.getBeds());
+        value.put("number_people", x.getNumber());
+        value.put("note", x.getNote());
+        value.put("cost", x.getCost());
+        value.put("status", x.getStatus());
+        value.put("image", x.getIMG());
+        if (x.isWifi() == false) {
+            value.put("wifi", 0);
+        } else {
+            value.put("wifi", 1);
+        }
+        if (x.isAc() == false) {
+            value.put("ac", 0);
+        } else {
+            value.put("ac", 1);
+        }
+        if (x.isBuffet() == false) {
+            value.put("buffet", 0);
+        } else {
+            value.put("buffet", 1);
+        }
+        if (x.isMinibar() == false) {
+            value.put("minibar", 0);
+        } else {
+            value.put("minibar", 1);
+        }
+        if (x.isPool() == false) {
+            value.put("pool", 0);
+        } else {
+            value.put("pool", 1);
+        }
+        if (x.isParking() == false) {
+            value.put("parking", 0);
+        } else {
+            value.put("parking", 1);
+        }
         return db.update("room_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
 
