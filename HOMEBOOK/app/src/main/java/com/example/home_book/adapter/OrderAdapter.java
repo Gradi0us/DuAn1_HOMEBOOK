@@ -18,12 +18,14 @@ import com.example.home_book.R;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
     Context context;
     ArrayList<order> list;
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     public OrderAdapter(Context context, ArrayList<order> list) {
         this.context = context;
@@ -52,8 +54,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             holder.tvName.setText(roomList.getName());
             holder.tvCost.setText(roomList.getCost()+"");
             holder.tvBeds.setText(roomList.getBeds()+"");
-            holder.tvDateCheckIn.setText(list.get(position).getBooking_date()+"");
-            holder.tvDateCheckIn.setText(list.get(position).getReturn_date()+"");
+            holder.tvDateCheckIn.setText(format.format(list.get(position).getBooking_date()));
+            holder.tvDateCheckIn.setText(format.format(list.get(position).getReturn_date()));
             holder.ratingBar.setRating(roomList.getRate());
         }
     }
