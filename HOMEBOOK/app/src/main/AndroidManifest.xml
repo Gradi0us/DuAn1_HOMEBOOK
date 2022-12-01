@@ -43,9 +43,6 @@
             android:name=".menu.LienHeActivity"
             android:exported="false" />
         <activity
-            android:name=".menu.ChangePassActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.BottomNavActivity"
             android:exported="true" />
         <activity
