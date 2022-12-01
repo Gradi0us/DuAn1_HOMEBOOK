@@ -139,9 +139,9 @@ public class DAO {
 //        return null;
 //    }
 
-    public List<Room> getRoom(String sql) {
+    public List<Room> getRoom(String sql,String... args) {
         List<Room> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sql, null);
+        Cursor c = db.rawQuery(sql, args);
         c.moveToFirst();
         while (!c.isAfterLast()) {
             int id = c.getInt(0);
@@ -199,6 +199,11 @@ public class DAO {
         }
         c.close();
         return list;
+    }
+
+    public Room get1Room(String sql,String x){
+        List<Room> list = getRoom(sql, x);
+        return list.get(0);
     }
 
 //    public Room getRoom2(String sql, String... args) {

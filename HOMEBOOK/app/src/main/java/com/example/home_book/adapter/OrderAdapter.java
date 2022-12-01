@@ -18,12 +18,14 @@ import com.example.home_book.R;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
     Context context;
     ArrayList<order> list;
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     public OrderAdapter(Context context, ArrayList<order> list) {
         this.context = context;
@@ -42,7 +44,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
         DAO dao = new DAO(context);
         int id =  list.get(position).getRoom_id();
 //        Room roomList =  dao.getRoom2("select * from room_tb where id = "+id+"",null);
-        Room roomList = (Room) dao.getRoom("select * from room_tb where id = "+id);
+        Room roomList = dao.get1Room("select * from room_tb where id = ?", String.valueOf(id));
         if(roomList!=null){
             byte[] hinhanh = roomList.getIMG();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
@@ -52,8 +54,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             holder.tvName.setText(roomList.getName());
             holder.tvCost.setText(roomList.getCost()+"");
             holder.tvBeds.setText(roomList.getBeds()+"");
-            holder.tvDateCheckIn.setText(list.get(position).getBooking_date()+"");
-            holder.tvDateCheckIn.setText(list.get(position).getReturn_date()+"");
+            holder.tvDateCheckIn.setText(format.format(list.get(position).getBooking_date()));
+            holder.tvDateCheckIn.setText(format.format(list.get(position).getReturn_date()));
             holder.ratingBar.setRating(roomList.getRate());
         }
     }

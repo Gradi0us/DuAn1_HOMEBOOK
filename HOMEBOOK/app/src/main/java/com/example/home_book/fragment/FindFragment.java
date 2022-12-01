@@ -96,7 +96,7 @@ public class FindFragment extends Fragment {
 //        toolbar = view.findViewById(R.id.toolbar);
 
         dao = new DAO(getContext());
-        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom(sqlRoom);
+        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
 //        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom2();
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -114,13 +114,13 @@ public class FindFragment extends Fragment {
                 String timkiem = edtSearch.getText().toString().trim();
                 String sql = " SELECT * FROM room_tb where location like '%" + timkiem + "%'";
                 if (!timkiem.isEmpty()) {
-                    ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                    ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql,null);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list1, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
                 } else {
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list2, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
@@ -230,7 +230,7 @@ public class FindFragment extends Fragment {
 //        recyclerView.setAdapter(homeBookApdater);
 //    }
     public void loadDaTa() {
-        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom);
+        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -253,7 +253,7 @@ public class FindFragment extends Fragment {
                     toggle_apartment.setChecked(false);
                     toggle_homestays.setChecked(false);
                 }
-        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom);
+        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -292,7 +292,7 @@ public class FindFragment extends Fragment {
                     toggle_homestays.setChecked(false);
                 }
 
-                    ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom);
+                    ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
@@ -319,7 +319,7 @@ public class FindFragment extends Fragment {
                     toggle_hotel.setChecked(false);
                     toggle_apartment.setChecked(false);
                 }
-                    ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom);
+                    ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);

@@ -22,6 +22,7 @@ import com.example.home_book.DAO.DAO;
 import com.example.home_book.Language;
 import com.example.home_book.menu.ChangeLanguage;
 import com.example.home_book.menu.ChangePassActivity;
+import com.example.home_book.menu.FragmentTaiKhoan;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
 import com.example.home_book.menu.Money;
@@ -39,6 +40,7 @@ public class Fragment3 extends Fragment {
     ListView lv;
     String name;
     TextView textView;
+    ImageView userImage;
     Toolbar toolbar;
     ImageView avatar;
 
@@ -55,7 +57,7 @@ public class Fragment3 extends Fragment {
         ListView listView = v.findViewById(R.id.lvmenu);
 
         textView = v.findViewById(R.id.txtUsername1);
-        avatar = v.findViewById(R.id.imgAva);
+        avatar = v.findViewById(R.id.avatar);
 
         v.findViewById(R.id.regis).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,10 +90,17 @@ public class Fragment3 extends Fragment {
             listView.setVisibility(View.VISIBLE);
             v.findViewById(R.id.regis).setVisibility(View.GONE);
             v.findViewById(R.id.login).setVisibility(View.GONE);
+
+
+
             user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             textView.setText(name);
-            avatar.setImageResource(x.getAvatar());
+            if(x.getAvatar() == 0){
+                avatar.setImageResource(R.drawable.usermanage);
+            }else{
+                avatar.setImageResource(x.getAvatar());
+            }
 
         } else {
             listView.setVisibility(View.GONE);
@@ -112,7 +121,11 @@ public class Fragment3 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
-                    startActivity(new Intent(getContext(), TaiKhoan.class));
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame, new FragmentTaiKhoan())
+                            .commit();
                 }
                 if (i == 1) {
                     startActivity(new Intent(getContext(), ChangePassActivity.class));
