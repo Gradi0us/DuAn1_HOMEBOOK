@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class SearchDetailActivity extends AppCompatActivity {
 
-    TextInputEditText editLocation,editSoNguoi,editPhongDu,editSoGiuong;
+    TextInputEditText editLocation, editSoNguoi, editPhongDu, editSoGiuong;
     RatingBar star;
     Button search;
     RecyclerView recyclerView;
@@ -67,151 +67,179 @@ public class SearchDetailActivity extends AppCompatActivity {
             }
         });
 
-        editSoNguoi.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                timNguoi(editSoNguoi.getText().toString().trim());
-            }
-        });
-
-        editPhongDu.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                timPhong(editPhongDu.getText().toString().trim());
-            }
-        });
-
-        editSoGiuong.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                timGiuong(editSoGiuong.getText().toString().trim());
-            }
-        });
+//        editSoNguoi.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                timNguoi(editSoNguoi.getText().toString().trim());
+//            }
+//        });
+//
+//        editPhongDu.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                timPhong(editPhongDu.getText().toString().trim());
+//            }
+//        });
+//
+//        editSoGiuong.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                timGiuong(editSoGiuong.getText().toString().trim());
+//            }
+//        });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                timNguoi(editSoNguoi.getText().toString().trim());
-                timPhong(editPhongDu.getText().toString().trim());
-                timGiuong(editSoGiuong.getText().toString().trim());
-                timSao(Math.round(star.getRating()) + "");
+//                timNguoi(editSoNguoi.getText().toString().trim());
+//                timPhong(editPhongDu.getText().toString().trim());
+//                timGiuong(editSoGiuong.getText().toString().trim());
+//                timSao(Math.round(star.getRating()) + "");
+
+                tim(editSoNguoi.getText().toString().trim(),
+                        editPhongDu.getText().toString().trim(),
+                        editSoGiuong.getText().toString().trim(),
+                        Math.round(star.getRating()) + "");
             }
         });
 
     }
 
-    private void timCho(String timkiem){
+    private void timCho(String timkiem) {
         String sql = " SELECT * FROM room_tb where location like '%" + timkiem + "%'";
         if (!timkiem.isEmpty()) {
-            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql,null);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql, null);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list1, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         } else {
-            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb",null);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb", null);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list2, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         }
     }
 
-    private void timNguoi(String timkiem){
+    private void timNguoi(String timkiem) {
         String sql = " SELECT * FROM room_tb where number_people >= ?";
         if (!timkiem.isEmpty()) {
-            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql,timkiem);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql, timkiem);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list1, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         } else {
-            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb",null);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb", null);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list2, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         }
     }
 
-    private void timGiuong(String timkiem){
+    private void timGiuong(String timkiem) {
         String sql = " SELECT * FROM room_tb where beds >= ?";
         if (!timkiem.isEmpty()) {
-            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql,timkiem);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql, timkiem);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list1, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         } else {
-            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb",null);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb", null);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list2, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         }
     }
 
-    private void timPhong(String timkiem){
+    private void timPhong(String timkiem) {
         String sql = " SELECT * FROM room_tb where status >= ?";
         if (!timkiem.isEmpty()) {
-            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql,timkiem);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql, timkiem);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list1, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         } else {
-            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb",null);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb", null);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list2, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         }
     }
 
-    private void timSao(String timkiem){
+    private void timSao(String timkiem) {
         String sql = " SELECT * FROM room_tb where rate >= ?";
         if (!timkiem.isEmpty()) {
-            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql,timkiem);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql, timkiem);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list1, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         } else {
-            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb",null);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this,LinearLayoutManager.VERTICAL, false);
+            ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom("select * from room_tb", null);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list2, SearchDetailActivity.this);
             recyclerView.setAdapter(homeBookApdater);
         }
+    }
+
+    private void tim(String x, String y, String z, String s) {
+
+        if(x.isEmpty()){
+            x = "0";
+        }
+        if(y.isEmpty()){
+            y = "0";
+        }
+        if(z.isEmpty()){
+            z = "0";
+        }
+
+        Log.d("tag", x + " + " + y + " + " + z + " + " + s);
+        String sql = " SELECT * FROM room_tb where number_people >= ? and beds >= ? and status >= ? and rate >= ?";
+
+        ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql, x, y, z, s);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchDetailActivity.this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        HomeBookApdater homeBookApdater = new HomeBookApdater(SearchDetailActivity.this, list1, SearchDetailActivity.this);
+        recyclerView.setAdapter(homeBookApdater);
+
     }
 }
