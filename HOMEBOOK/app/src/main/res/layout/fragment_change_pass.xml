@@ -3,8 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".menu.ChangePassActivity">
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/thoat4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
     <ImageView
         android:src="@drawable/pass_item"
         android:layout_marginBottom="20dp"
@@ -61,14 +70,16 @@
             android:id="@+id/btnSavepass"
             android:text="Lưu"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_button_bk"/>
         <Button
             android:textSize="20dp"
             android:layout_marginLeft="110dp"
             android:id="@+id/cancelsave"
             android:text="Hủy"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_button_bk"/>
 
     </LinearLayout>
 

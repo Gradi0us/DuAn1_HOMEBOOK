@@ -112,6 +112,7 @@ public class AcountFragment extends Fragment {
         ArrayList<String> category = new ArrayList<>();
         category.add("hotel");
         category.add("homestay");
+        category.add("apartment");
         ArrayAdapter adapterCategory = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, category);
         spncategory.setAdapter(adapterCategory);
         imgAddimage.setOnClickListener(new View.OnClickListener() {

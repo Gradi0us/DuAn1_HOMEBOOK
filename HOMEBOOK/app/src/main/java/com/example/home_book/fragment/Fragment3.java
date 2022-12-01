@@ -19,21 +19,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.home_book.DAO.DAO;
-import com.example.home_book.Language;
 import com.example.home_book.menu.ChangeLanguage;
-import com.example.home_book.menu.ChangePassActivity;
+import com.example.home_book.menu.ChangePassFragment;
 import com.example.home_book.menu.FragmentTaiKhoan;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
 import com.example.home_book.menu.Money;
 import com.example.home_book.model.user;
-import com.example.home_book.menu.TaiKhoan;
 import com.example.home_book.menu.ThongTin;
 import com.example.home_book.adapter.ListMenuAdapter;
 import com.example.home_book.model.ListModelMenu;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Fragment3 extends Fragment {
 
@@ -128,7 +125,11 @@ public class Fragment3 extends Fragment {
                             .commit();
                 }
                 if (i == 1) {
-                    startActivity(new Intent(getContext(), ChangePassActivity.class));
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame, new ChangePassFragment())
+                            .commit();
                 }
                 if (i == 2) {
                     startActivity(new Intent(getContext(), LienHeActivity.class));
