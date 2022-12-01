@@ -24,7 +24,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     DAO dao;
     EditText editTextEmail;
-    Button cirLoginButton;
+    Button cirLoginButton,adminButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         dao = new DAO(this);
         editTextEmail = findViewById(R.id.editTextEmail);
         cirLoginButton = findViewById(R.id.cirLoginButton);
+        adminButton = findViewById(R.id.adminButton);
 
         findViewById(R.id.tomainsrc).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
                     i.putExtra("key", value);
                     startActivity(i);
                 }
+            }
+        });
+
+        adminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,LoginAdminActivity.class));
             }
         });
 

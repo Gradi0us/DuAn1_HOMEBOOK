@@ -2,7 +2,7 @@ package com.example.home_book.database;
 
 public class SQLInsert {
 
-    public static final String adminstrator_Values = "insert into adminstrator_tb(avatar,money_reciever) values ('0','0')"; //1
+    public static final String adminstrator_Values = "insert into adminstrator_tb(username,password,money_reciever) values ('admin','admin','10000')"; //1
 
     public static final String user_Values = "insert into user_tb(avatar,fullname,email,password,role,birthday,phonenumber,money) " +
             "values ('0','Lai','lai@gmail.com','lai','0','01/04/2003','0987654321','100000000'), " + //1
