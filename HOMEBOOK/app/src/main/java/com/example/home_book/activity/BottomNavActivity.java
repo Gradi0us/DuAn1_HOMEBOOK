@@ -52,6 +52,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     String name;
+    ImageView avatar;
 
     static final float END_SCALE = 0.7f;
 
@@ -67,10 +68,11 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         txtUsername = findViewById(R.id.txtUsername);
+        avatar = findViewById(R.id.avaImg);
 
         SharedPreferences sP = getSharedPreferences("User_File", MODE_PRIVATE);
         String email = sP.getString("Email", "");
-        String id = sP.getString("Id","");
+        String id = sP.getString("Id", "");
         String pass = sP.getString("Password", "");
 
         SharedPreferences.Editor edit = sP.edit();
@@ -83,10 +85,15 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
 //        nma cứ thử vậy
         DAO dao = new DAO(BottomNavActivity.this);
         if (dao.checkLogin(email, pass)) {
-            user x = dao.get1User("select * from user_tb where email = ?",email);
+            user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             txtUsername.setText(name);
-            edit.putString("Id",x.getId() + "");
+            if (x.getAvatar() == 0) {
+                avatar.setImageResource(R.drawable.usermanage);
+            } else {
+                avatar.setImageResource(x.getAvatar());
+            }
+            edit.putString("Id", x.getId() + "");
 
             int role = 0;
             if (x.getRole() == role) {
@@ -99,67 +106,63 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
             }
         }
 
-    final Fragment fragment1 = new FindFragment();
-    final Fragment fragment2 = new Fragment2();
-    final Fragment fragment3 = new Fragment3();
-    final Fragment fragment4 = new CartFragment();
+        final Fragment fragment1 = new FindFragment();
+        final Fragment fragment2 = new Fragment2();
+        final Fragment fragment3 = new Fragment3();
+        final Fragment fragment4 = new CartFragment();
 
-    naviagtionDrawer();
+        naviagtionDrawer();
 
-    sethorizontal();
+        sethorizontal();
 
-    replaceFragment(new FindFragment());
+        replaceFragment(new FindFragment());
 
-    bottomNavigationView =
+        bottomNavigationView = findViewById(R.id.navigation);
 
-    findViewById(R.id.navigation);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener()
-
-    {
-        @Override
-        public boolean onNavigationItemSelected (@NonNull MenuItem item){
-
-        switch (item.getItemId()) {
-            case R.id.Find:
-                layout.setVisibility(View.VISIBLE);
-                replaceFragment(fragment1);
-                Intent refresh = new Intent(BottomNavActivity.this, BottomNavActivity.class);
-                startActivity(refresh);
-                overridePendingTransition(0, 0);
+                switch (item.getItemId()) {
+                    case R.id.Find:
+                        layout.setVisibility(View.VISIBLE);
+                        replaceFragment(fragment1);
+                        Intent refresh = new Intent(BottomNavActivity.this, BottomNavActivity.class);
+                        startActivity(refresh);
+                        overridePendingTransition(0, 0);
 //                        cái này là cái gì đây ???
-                finish(); //
+                        finish(); //
 //                        vậy thì hay
 //                        trông nó hơi ngu ngu xíu nma ra đcc kết quả =))
-                break;
-            case R.id.Cart:
-                navigationView.setVisibility(View.GONE);
-                menuIcon.setVisibility(View.GONE);
-                layout.setVisibility(View.VISIBLE);
-                replaceFragment(fragment4);
+                        break;
+                    case R.id.Cart:
+                        navigationView.setVisibility(View.GONE);
+                        menuIcon.setVisibility(View.GONE);
+                        layout.setVisibility(View.VISIBLE);
+                        replaceFragment(fragment4);
 
-                break;
+                        break;
 
-            case R.id.Music:
-                navigationView.setVisibility(View.GONE);
-                menuIcon.setVisibility(View.GONE);
-                layout.setVisibility(View.VISIBLE);
-                replaceFragment(fragment2);
-                break;
+                    case R.id.Music:
+                        navigationView.setVisibility(View.GONE);
+                        menuIcon.setVisibility(View.GONE);
+                        layout.setVisibility(View.VISIBLE);
+                        replaceFragment(fragment2);
+                        break;
 
-            case R.id.Account:
-                layout.setVisibility(View.GONE);
-                replaceFragment(fragment3);
-                break;
+                    case R.id.Account:
+                        layout.setVisibility(View.GONE);
+                        replaceFragment(fragment3);
+                        break;
 
-            default:
-                layout.setVisibility(View.VISIBLE);
-                replaceFragment(fragment1);
-                break;
-        }
-        return true;
-    }
-    });
+                    default:
+                        layout.setVisibility(View.VISIBLE);
+                        replaceFragment(fragment1);
+                        break;
+                }
+                return true;
+            }
+        });
 //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 //            @Override
 //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -203,7 +206,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
 //            }
 //        });
 
-}
+    }
 
     private void sethorizontal() {
         SharedPreferences sP = getSharedPreferences("User_File", MODE_PRIVATE);
@@ -211,7 +214,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
         String pass = sP.getString("Password", "");
         DAO dao = new DAO(BottomNavActivity.this);
         if (dao.checkLogin(email, pass)) {
-            user x = dao.get1User("select * from user_tb where email = ?",email);
+            user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             txtUsername.setText(name);
         }

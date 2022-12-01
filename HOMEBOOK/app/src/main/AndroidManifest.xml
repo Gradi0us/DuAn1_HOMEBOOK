@@ -17,7 +17,14 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".Money"
+            android:name=".activity.SearchDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".menu.Money"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
