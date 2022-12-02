@@ -80,18 +80,44 @@
             android:paddingVertical="10dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="5dp"/>
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="100dp"
+        <Spinner
+            android:id="@+id/spn_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-            android:layout_height="wrap_content"
-            android:hint="phòng dư"
-            style="@style/modifiedEditText"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:paddingVertical="10dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Begin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:layout_marginLeft="10dp"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="End"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:layout_marginLeft="10dp"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:gravity="center"
