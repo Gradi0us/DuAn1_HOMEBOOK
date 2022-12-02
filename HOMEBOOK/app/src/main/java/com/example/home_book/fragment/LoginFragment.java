@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.activity.LoginActivity;
 import com.example.home_book.activity.MainActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -28,14 +28,9 @@ public class LoginFragment extends Fragment {
 
     TextInputEditText emailIn,passIn;
     CheckBox remember;
-    TextView forget;
+    TextView forget,create;
     Button signIn;
     DAO dao;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,41 +48,67 @@ public class LoginFragment extends Fragment {
         signIn = view.findViewById(R.id.signIn);
         remember = view.findViewById(R.id.rememberBox);
         forget = view.findViewById(R.id.quenMatKhau);
+        create = view.findViewById(R.id.dangky);
         dao = new DAO(getContext());
 
-        String eI = emailIn.getText().toString();
-        String pI = passIn.getText().toString();
-
-        SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
+        SharedPreferences sP = getActivity().getSharedPreferences("User_Remember",MODE_PRIVATE);
         String email = sP.getString("Email","");
         String pass = sP.getString("Password","");
         Boolean rem = sP.getBoolean("Remember",false);
-
+        
         emailIn.setText(email);
         passIn.setText(pass);
         remember.setChecked(rem);
 
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame,new RegisterFragment())
+                        .commit();
+            }
+        });
+
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String eI = emailIn.getText().toString();
+                String pI = passIn.getText().toString();
                 SharedPreferences.Editor editor = sP.edit();
                 Boolean check = true;
                 if(eI.trim().length() <= 0){
                     check = false;
+                    emailIn.setError("Enter your email.");
                 }
                 if(pI.trim().length() <=0){
                     check = false;
+                    passIn.setError("Enter your password.");
                 }
                 if(check){
-//                    if(dao.checkLogin(eI,pI)){
-//                        rememberUser(eI,pI,remember.isChecked());
-//                        editor.putString("Email",eI);
-//                        editor.commit();
-//                        Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    if(dao.checkLogin(eI,pI)){
+                        rememberUser(eI,pI,remember.isChecked());
+                        editor.putString("Email",eI);
+                        editor.commit();
+                        Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        Log.d("ok","OK");
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
+                        SharedPreferences.Editor edit = sharedPreferences.edit();
+                        edit.putString("Email",eI);
+                        edit.putString("Password",pI);
+                        edit.commit();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager
+                                .beginTransaction()
+                                .replace(R.id.frame,new Fragment3())
+                                .commit();
+
 //                        startActivity(new Intent(getActivity(), MainActivity.class));
-//                    }else{
-//                        Toast.makeText(getActivity(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
-//                    }
+                    }else{
+                        Toast.makeText(getActivity(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                        Log.d("ok","KO OK");
+                    }
                 }
             }
         });
@@ -95,7 +116,7 @@ public class LoginFragment extends Fragment {
     }
 
     public void rememberUser(String e,String p, boolean s){
-        SharedPreferences pref = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences("User_Remember",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         if(s){
             editor.putString("Email",e);

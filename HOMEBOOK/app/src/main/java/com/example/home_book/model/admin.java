@@ -1,15 +1,15 @@
 package com.example.home_book.model;
 
 public class admin {
-    int id,money_reciever,user_id;
+    int id,money_reciever,avatar;
 
     public admin() {
     }
 
-    public admin(int id, int money_reciever, int user_id) {
+    public admin(int id, int avatar, int money_reciever) {
         this.id = id;
         this.money_reciever = money_reciever;
-        this.user_id = user_id;
+        this.avatar = avatar;
     }
 
     public int getId() {
@@ -28,11 +28,11 @@ public class admin {
         this.money_reciever = money_reciever;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getAvatar() {
+        return avatar;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setAvatar(int avatar) {
+        this.avatar = avatar;
     }
 }

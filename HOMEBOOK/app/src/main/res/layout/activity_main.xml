@@ -64,6 +64,11 @@
 
             </LinearLayout>
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="admin"
+                    android:id="@+id/adminButton"/>
 
         </RelativeLayout>
 

@@ -42,6 +42,18 @@
             android:textSize="30dp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tv_category_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="23dp"
+            android:text="categories"
+            android:textColor="@color/gray"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+
+
         <RatingBar
             android:id="@+id/number_stars"
             style="?android:attr/ratingBarStyleSmall"
@@ -75,6 +87,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="Vị trí"
+                android:id="@+id/tv_location_order"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="200dp"
+            android:layout_marginBottom="7dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_bed_24"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_beds_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="X"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -95,6 +132,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_note_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -126,30 +164,32 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:fillViewport="true"
-
                 android:measureAllChildren="false"
                 android:scrollbars="none">
 
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
+                    android:layout_height="180dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/img_wifi"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <androidx.cardview.widget.CardView
+
                             style="@style/backgroundcardview"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             app:cardCornerRadius="20dp">
 
                             <LinearLayout
+
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/backgroundxanh">
@@ -167,13 +207,15 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
+                        android:id="@+id/img_ac"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <androidx.cardview.widget.CardView
+
                             style="@style/backgroundcardview"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -197,9 +239,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
+                        android:id="@+id/img_buffet"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -227,9 +270,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
+                        android:id="@+id/img_parking"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -257,9 +301,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
+                        android:id="@+id/img_pool"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -287,9 +332,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
+                        android:id="@+id/img_minibar"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="40dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -318,52 +364,109 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
+
+
         </RelativeLayout>
+
     </RelativeLayout>
     <LinearLayout
-        android:layout_marginTop="620dp"
+        android:layout_marginTop="600dp"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
-        <TextView
+        android:layout_height="60dp">
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_height="wrap_content"
-            android:text="Cost"
-            android:textStyle="bold"
-            android:textSize="30dp"/>
-        <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_height="wrap_content"
-            android:text=" /"
-            android:textStyle="bold"
-            android:textSize="50dp"/><TextView
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_height="wrap_content"
-            android:text="Night"
-        android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
-        <Button
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/login_button_bk"
-            android:layout_width="125dp"
-            android:textColor="@color/white"
-            android:layout_marginLeft="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Begin"
+                    android:textColor="@color/gray"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:editable="false"
+                    android:id="@+id/edt_bookingdate"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="End"
+                    android:textColor="@color/gray"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:editable="false"
+                    android:id="@+id/edt_returndate"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-            android:textAllCaps="false"
-            android:layout_height="wrap_content"
-            android:text="Order"
-            android:textStyle="bold"
-            android:textSize="15dp"/>
+        </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="670dp">
 
+        <TextView
+            android:id="@+id/tv_cost_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="40dp"
+            android:text="Cost"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text=" /"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="10dp"
+            android:text="Night"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_order"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="70dp"
+            android:background="@drawable/login_button_bk"
+
+            android:text="Order"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

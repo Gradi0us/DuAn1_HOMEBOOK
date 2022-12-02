@@ -3,8 +3,29 @@
     <string name="quenmatkhau">Quên Mật Khẩu?</string>
     <string name="wanttoregister"><u>Create a new account with email</u></string>
     <string name="wanttologin">Already have a account? | <u>Sign In Now</u></string>
-    <string name="remember"><u>REMEMBER</u></string>
+    <string name="remember">Remember</string>
+    <string name="clickhere"><u>Click here for details</u></string>
+    <string name="password">Password</string>
+    <string name="password_again">Password Again</string>
+    <string name="birthday">Birthday</string>
+    <string name="fullname">Fullname</string>
+    <string name="mobile_phone">Mobile Phone</string>
+    <string name="accept_license">Accept all license.</string>
+    <string name="dangnhap">Đăng nhập</string>
+    <string name="dangky">Đăng ký</string>
+    <string name="collaborate">Collaborate</string>
+    <string name="member">Member</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dieuKhoan" translatable="false">Thỏa thuận Google Apps (miễn phí) này ("Thỏa thuận") này được lập bởi và giữa Google Inc.,
+        một công ty Delaware, có văn phòng tại 1600 Amphitheatre Parkway, Mountain View, California 94043 ("Google")
+        và tổ chức đồng ý với những điều khoản này ("Khách hàng"). Thỏa thuận này điều chỉnh quyền truy cập và sử dụng
+        Dịch vụ của Khách hàng và sẽ có hiệu lực kể từ Ngày bắt đầu có hiệu lực. Thỏa thuận này có hiệu lực kể từ ngày
+        Khách hàng nhấp vào nút "Tôi chấp nhận" dưới đây ("Ngày bắt đầu có hiệu lực"). Nếu bạn chấp nhận thay mặt cho
+        Khách hàng, bạn đại diện và đảm bảo rằng: (i) bạn có đầy đủ quyền hạn pháp lý để ràng buộc chủ lao động của mình
+        hoặc tổ chức hiện hành với những điều khoản và điều kiện này (ii) bạn đã đọc và hiểu rõ Thỏa thuận này; và (iii)
+        bạn đồng ý, thay mặt cho bên mà bạn đại diện, với Thỏa thuận này. Nếu bạn không có quyền hạn pháp lý để ràng buộc
+        Khách hàng, xin vui lòng không nhấp vào nút "Tôi chấp nhận" bên dưới. Thỏa thuận này điều chỉnh quyền truy cập và
+        sử dụng Dịch vụ của Khách hàng.</string>
 </resources>

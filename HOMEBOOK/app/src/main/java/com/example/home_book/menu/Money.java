@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.home_book.R;
 
-public class ChangePassActivity extends AppCompatActivity {
+public class Money extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_pass);
+        setContentView(R.layout.activity_money);
     }
 }

@@ -1,5 +1,9 @@
 package com.example.home_book.database;
 
+import static com.example.home_book.database.SQLInsert.adminstrator_Values;
+import static com.example.home_book.database.SQLInsert.room_Values;
+import static com.example.home_book.database.SQLInsert.user_Values;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -7,17 +11,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class AppSQL extends SQLiteOpenHelper {
-    final String AdminstratorTable = "CREATE TABLE adminstrator_tb(id int primary key autoincrement, avatar int NOT NULL, money_reciever money NOT NULL, user_id int references user_tb(id) NOT NULL)";
-    final String UserTable = "CREATE TABLE user_tb(id int primary key autoincrement, avatar int NOT NULL, fullname text NOT NULL, email text NOT NULL,password text NOT NULL, role int NOT NULL, birthday date NOT NULL, phonenumber nvarchar(11) NOT NULL, money money NOT NULL)";
-    final String BrandTable = "create table brand_tb(id int primary key autoincrement, fullname text NOT NULL, vote int NOT NULL, location text NOT NULL)";
-    final String OrderTable = "create table order_tb(id int primary key autoincrement, user_id int references user_tb(id) NOT NULL, number_people int NOT NULL, booking_date date NOT NULL, return_date date, time_checkin time NOT NULL, time_checkout time NOT NULL, category_id int references category_tb(id) NOT NULL, note text, brand_id references brand_tb(id) NOT NULL)";
-    final String OrderDetailTable = "create table detail_tb(id int primary key autoincrement, fullname text NOT NULL, order_id int references order_tb(id) NOT NULL, room_id int references room_tb(id) NOT NULL)";
-    final String CategoryTable = "create table category_tb(id int primary key autoincrement, fullname text NOT NULL, max_people int NOT NULL, beds int NOT NULL, bedrooms int NOT NULL, service_fee money NOT NULL)";
-    final String RoomTable = "create table room_tb(id int primary key autoincrement, brand_id references brand_tb(id) NOT NULL, status int NOT NULL, cost money NOT NULL, note text, size text NOT NULL, category_id int references category_tb(id) NOT NULL)";
+    final String AdminstratorTable = "CREATE TABLE adminstrator_tb(username text primary key NOT NULL, password text NOT NULL, money_reciever integer NOT NULL)";
+    final String UserTable = "CREATE TABLE user_tb(id integer primary key autoincrement, avatar integer NOT NULL, fullname text NOT NULL, email text NOT NULL,password text NOT NULL, role integer NOT NULL, birthday date NOT NULL, phonenumber nvarchar(11) NOT NULL, money integer NOT NULL)";
+    final String OrderTable = "create table order_tb(id integer primary key autoincrement, user_id integer references user_tb(id) NOT NULL, number_people integer NOT NULL, booking_date date NOT NULL, return_date date, time_checkin text NOT NULL, time_checkout text NOT NULL, room_id integer references room_tb(id) NOT NULL, note text)";
+    final String RoomTable = "create table room_tb(id integer primary key autoincrement,fullname text NOT NULL, category_name text NOT NULL, location text NOT NULL, rate integer NOT NULL, beds integer NOT NULL, number_people integer NOT NULL,wifi integer NOT NULL,ac integer NOT NULL,parking integer NOT NULL, minibar integer NOT NULL,pool integer NOT NULL,buffet integer NOT NULL, cost integer NOT NULL, status integer NOT NULL,image BlOB, note text)";
 
-    // cái category tôi chưa hiểu gồm những gì đâu, có gì check nhé
-    // thiếu gì thêm sao
-        
     Context context;
     SQLiteDatabase database;
 
@@ -31,22 +29,20 @@ public class AppSQL extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(AdminstratorTable);
         db.execSQL(UserTable);
-        db.execSQL(BrandTable);
         db.execSQL(OrderTable);
-        db.execSQL(OrderDetailTable);
-        db.execSQL(CategoryTable);
         db.execSQL(RoomTable);
+        
+        db.execSQL(adminstrator_Values);
+        db.execSQL(user_Values);
+        db.execSQL(room_Values);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if(oldVersion != newVersion){
+        if (oldVersion != newVersion) {
             db.execSQL("drop table if exists adminstrator_tb");
             db.execSQL("drop table if exists user_tb");
-            db.execSQL("drop table if exists brand_tb");
             db.execSQL("drop table if exists order_tb");
-            db.execSQL("drop table if exists detail_tb");
-            db.execSQL("drop table if exists category_tb");
             db.execSQL("drop table if exists room_tb");
 
             onCreate(db);
