@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         cirLoginButton = findViewById(R.id.cirLoginButton);
         adminButton = findViewById(R.id.adminButton);
 
+        editTextEmail.setText("h");
+
         findViewById(R.id.tomainsrc).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

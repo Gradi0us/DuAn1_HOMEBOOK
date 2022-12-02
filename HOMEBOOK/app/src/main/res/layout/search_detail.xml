@@ -9,8 +9,8 @@
         android:layout_height="50dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            style="@style/modifiedEditText"
             android:id="@+id/editLocation"
+            style="@style/modifiedEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
@@ -21,37 +21,42 @@
             android:paddingVertical="10dp" />
 
     </LinearLayout>
-    <!--    <LinearLayout-->
-    <!--        android:layout_marginTop="5dp"-->
-    <!--        android:gravity="center"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="50dp">-->
 
-    <!--        <com.google.android.material.textfield.TextInputEditText-->
-    <!--            android:layout_width="170dp"-->
-    <!--            android:layout_height="wrap_content"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="6">
 
-    <!--            android:hint="Ngày nhận"-->
-    <!--            style="@style/modifiedEditText"-->
-    <!--            android:inputType="textEmailAddress"-->
-    <!--            android:maxLines="1"-->
-    <!--            android:paddingVertical="10dp"-->
-    <!--            android:layout_marginHorizontal="15dp"-->
-    <!--            android:layout_marginVertical="5dp"/>-->
-    <!--        <com.google.android.material.textfield.TextInputEditText-->
-    <!--            android:layout_width="170dp"-->
-    <!--            android:layout_height="wrap_content"-->
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/modifiedEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"
+            android:hint="Số Người"
+            android:id="@+id/editSoNguoi"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:paddingVertical="10dp" />
 
-    <!--            android:hint="Ngày trả "-->
-    <!--            style="@style/modifiedEditText"-->
-    <!--            android:inputType="textEmailAddress"-->
-    <!--            android:maxLines="1"-->
-    <!--            android:paddingVertical="10dp"-->
-    <!--            android:layout_marginHorizontal="15dp"-->
-    <!--            android:layout_marginVertical="5dp"/>-->
+        <Spinner
+            android:id="@+id/loai_giuong"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
 
-    <!--    </LinearLayout>-->
+        <Spinner
+            android:id="@+id/spn_category"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -59,41 +64,38 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputEditText
-            style="@style/modifiedEditText"
-            android:id="@+id/editSoNguoi"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp"
-            android:hint="Số Người"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:paddingVertical="10dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputEditText
-            style="@style/modifiedEditText"
-            android:id="@+id/editSoGiuong"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp"
-            android:hint="Số giường "
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:paddingVertical="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Begin" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            style="@style/modifiedEditText"
-            android:id="@+id/editPhongDu"
-            android:layout_width="100dp"
+            <EditText
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/beginNgay"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp"
-            android:hint="phòng dư"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:paddingVertical="10dp" />
+            android:layout_marginLeft="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End" />
+
+            <EditText
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/returnNgay"/>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -159,9 +161,9 @@
         android:layout_margin="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recyclerViewList"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 
