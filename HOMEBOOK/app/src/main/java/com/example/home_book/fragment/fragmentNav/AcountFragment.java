@@ -101,12 +101,12 @@ public class AcountFragment extends Fragment {
         Button btnCancel = view.findViewById(R.id.btn_cancel);
         Spinner spnbeds = view.findViewById(R.id.spn_beds);
         Spinner spncategory = view.findViewById(R.id.spn_category);
-        ArrayList<Integer> bed = new ArrayList<>();
-        bed.add(1);
-        bed.add(2);
-        bed.add(3);
-        bed.add(4);
-        bed.add(5);
+        ArrayList<String> bed = new ArrayList<>();
+        bed.add("Single Room");
+        bed.add("Twin Room");
+        bed.add("Double Room");
+        bed.add("Triple Room");
+        bed.add("Quad Room");
         ArrayAdapter adapterBed = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, bed);
         spnbeds.setAdapter(adapterBed);
         ArrayList<String> category = new ArrayList<>();
