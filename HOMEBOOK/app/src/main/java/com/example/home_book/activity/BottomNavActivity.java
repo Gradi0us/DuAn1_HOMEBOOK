@@ -95,7 +95,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
             }
             edit.putString("Id", x.getId() + "");
 
-            int role = 0;
+            int role = 1;
             if (x.getRole() == role) {
                 navigationView.setVisibility(View.GONE);
                 menuIcon.setVisibility(View.GONE);
