@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 
 import java.text.DateFormat;
@@ -61,15 +62,22 @@ public class StartActivity extends AppCompatActivity {
         edit.putString("Password", "");
         edit.commit();
         //
-        currentDate = dateFormat.format(date);
-        DAO dao = new DAO(this);
-        List<order> orderList = dao.getOrder("select * from order_tb");
-        //
-        for (order x : orderList) {
-            if (date.compareTo(x.getBooking_date()) >= 0 && date.compareTo(x.getReturn_date()) <= 0) {
-
-            }
-        }
+//        currentDate = dateFormat.format(date);
+//        DAO dao = new DAO(this);
+//        List<order> orderList = dao.getOrder("select * from order_tb");
+//        //
+//        for (order x : orderList) {
+//            if (date.compareTo(x.getBooking_date()) >= 0 && date.compareTo(x.getReturn_date()) <= 0) {
+//                Room room =  dao.get1Room("select * from room_tb where id = ?", String.valueOf(x.getRoom_id()));
+//                //tại sao ??
+//                if(room.getStatus() >0){
+//                    int a = room.getStatus()-1;
+//                    room.setStatus(a);
+//                    Toast.makeText(this, ""+a, Toast.LENGTH_SHORT).show();
+//                    dao.UpdateRoom(room);
+//                }
+//            }
+//        }
     }
 
     private void doStartProgressBar() {

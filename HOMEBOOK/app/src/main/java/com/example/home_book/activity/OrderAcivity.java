@@ -272,14 +272,14 @@ public class OrderAcivity extends AppCompatActivity {
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         } else {
-            if(!edtReturnDate.getText().toString().equals("") && !edtBookingDate.getText().toString().equals("")){
+            if (!edtReturnDate.getText().toString().equals("") && !edtBookingDate.getText().toString().equals("")) {
                 if (date.compareTo(dateBooking) > 0) {
                     Toast.makeText(this, "Ngày đặt phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
                 } else if (date.compareTo(dateReturn) > 0) {
                     Toast.makeText(this, "Ngày trả phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
-                } else if (dateBooking.compareTo(dateReturn) >=0) {
+                } else if (dateBooking.compareTo(dateReturn) >= 0) {
                     Toast.makeText(this, "Ngày đặt phải trước ngày trả", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     DAO dao = new DAO(this);
                     if (dao.checkLogin(email, pass)) {
                         user x = dao.get1User("select * from user_tb where email = ?", email);
@@ -289,9 +289,10 @@ public class OrderAcivity extends AppCompatActivity {
                         Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
                     }
                 }
-            }else {
+            } else {
                 Toast.makeText(this, "Không được bỏ trống ngày đặt và ngày trả", Toast.LENGTH_SHORT).show();
             }
         }
     }
 }
+
