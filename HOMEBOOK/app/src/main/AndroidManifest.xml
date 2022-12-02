@@ -37,9 +37,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".activity.LoginAdminActivity"
-            android:exported="false"/>
+
         <activity
             android:name=".activity.OrderAcivity"
             android:exported="false">
