@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
 import com.example.home_book.fragment.CartFragment;
+import com.example.home_book.fragment.FavouriteFragment;
 import com.example.home_book.fragment.FindFragment;
 import com.example.home_book.fragment.Fragment2;
 import com.example.home_book.fragment.Fragment3;
@@ -72,10 +73,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
 
         SharedPreferences sP = getSharedPreferences("User_File", MODE_PRIVATE);
         String email = sP.getString("Email", "");
-        String id = sP.getString("Id", "");
         String pass = sP.getString("Password", "");
-
-        SharedPreferences.Editor edit = sP.edit();
 
 //        hiểu r =))
 //        cái dữ liệu ở trên ý là nó set lúc vào onCreate và onCreate nó chạy 1 lần khởi tạo xong hết r nó k chạy lại nữa trừ khi cái activity này bị destroy
@@ -93,7 +91,6 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
             } else {
                 avatar.setImageResource(x.getAvatar());
             }
-            edit.putString("Id", x.getId() + "");
 
             int role = 1;
             if (x.getRole() == role) {
@@ -107,7 +104,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
         }
 
         final Fragment fragment1 = new FindFragment();
-        final Fragment fragment2 = new Fragment2();
+        final Fragment fragment2 = new FavouriteFragment();
         final Fragment fragment3 = new Fragment3();
         final Fragment fragment4 = new CartFragment();
 

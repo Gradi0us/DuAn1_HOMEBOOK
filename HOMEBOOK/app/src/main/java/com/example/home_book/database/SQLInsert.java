@@ -15,5 +15,6 @@ public class SQLInsert {
             "('Nhà số 4,ngách 41/3 Trần Duy Hưng','Apartment','Cầu Giấy, Hà Nội','2','2','2','1','0','1','1','1','1','550000','5','0','Free PC, điện đôi khi chập chờn'), " + //3
             "('Nhà số 11,ngõ 521 Trương Định gần bờ sông Sét','Homestay','Hoàng Mai, Hà Nội','3','2','2','1','1','1','1','1','1','550000','5','0',null)"; //4
 
-
+    public static final String favourite_Values = "insert into room_favourite_tb(room_id,user_id) " +
+            "values ('2','1'),('3','1'),('2','2')";
 }

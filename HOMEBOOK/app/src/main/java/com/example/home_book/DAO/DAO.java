@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.home_book.database.AppSQL;
+import com.example.home_book.model.Favourite;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 
@@ -83,6 +84,33 @@ public class DAO {
 ////        }
 ////        return false;
 //    }
+
+    public List<Favourite> getFavourite(String user) {
+        List<Favourite> list = new ArrayList<>();
+        Cursor c = db.rawQuery("select * from room_favourite_tb where user_id = ?", new String[]{user});
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int id = c.getInt(0);
+            int room_id = c.getInt(1);
+            int user_id = c.getInt(2);
+            Favourite x = new Favourite(id, room_id, user_id);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+    }
+
+    public long AddFavourite(Favourite x) {
+        ContentValues value = new ContentValues();
+        value.put("room_id", x.getRoom_id());
+        value.put("user_id", x.getUser_id());
+        return db.insert("room_favourite_tb", null, value);
+    }
+
+    public void DeleteFavourite(int ID) {
+        db.delete("room_favourite_tb", "id=?", new String[]{String.valueOf(ID)});
+    }
 
     public List<user> getUser(String sql, String... args) {
         List<user> list = new ArrayList<>();
