@@ -16,7 +16,6 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="5dp"
             android:hint="Location"
-            android:inputType="textEmailAddress"
             android:maxLines="1"
             android:paddingVertical="10dp" />
 
@@ -39,7 +38,7 @@
             android:layout_marginVertical="5dp"
             android:hint="Số Người"
             android:id="@+id/editSoNguoi"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             android:maxLines="1"
             android:paddingVertical="10dp" />
 
@@ -77,7 +76,8 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/beginNgay"/>
+                android:id="@+id/beginNgay"
+                android:editable="false"/>
         </LinearLayout>
 
         <LinearLayout
@@ -94,7 +94,8 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/returnNgay"/>
+                android:id="@+id/returnNgay"
+                android:editable="false"/>
         </LinearLayout>
 
     </LinearLayout>
