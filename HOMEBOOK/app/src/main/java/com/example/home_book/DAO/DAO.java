@@ -101,6 +101,31 @@ public class DAO {
         return list;
     }
 
+    public Favourite get1Favourite(String room , String user) {
+        List<Favourite> list = new ArrayList<>();
+        Cursor c = db.rawQuery("select * from room_favourite_tb where room_id = ? and user_id = ?", new String[]{room,user});
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int id = c.getInt(0);
+            int room_id = c.getInt(1);
+            int user_id = c.getInt(2);
+            Favourite x = new Favourite(id, room_id, user_id);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list.get(0);
+    }
+
+    public boolean checkFavourite(String room , String user) {
+        db = appSQL.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from room_favourite_tb where room_id = ? and user_id = ?", new String[]{room,user});
+        if (cursor.getCount() != 0) {
+            return true;
+        }
+        return false;
+    }
+
     public long AddFavourite(Favourite x) {
         ContentValues value = new ContentValues();
         value.put("room_id", x.getRoom_id());

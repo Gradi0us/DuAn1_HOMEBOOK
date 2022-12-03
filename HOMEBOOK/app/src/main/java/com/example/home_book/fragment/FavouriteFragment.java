@@ -80,29 +80,40 @@ public class FavouriteFragment extends Fragment {
         return view;
     }
 
-    public void showDialogXoa(int ID){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Bạn có muốn xóa không?");
-        builder.setCancelable(true);
-        builder.setPositiveButton("CÓ", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dao.DeleteFavourite(ID);
-                Toast.makeText(getActivity(), "Xóa Thành Công",Toast.LENGTH_SHORT).show();
-                LoadData();
-            }
-        });
-        builder.setNegativeButton("KO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+    
 
-            }
-        });
-        android.app.AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
+//    public void showDialogXoa(String room_id,String member_id){
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//        builder.setMessage("Bạn có muốn xóa không?");
+//        builder.setCancelable(true);
+//        builder.setPositiveButton("CÓ", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+////                list1 = (ArrayList<Favourite>) dao.getFavourite(member_id);
+////                for(Favourite fa : list1){
+////                    if(Integer.parseInt(room_id) == fa.getRoom_id() && Integer.parseInt(member_id) == fa.getUser_id()){
+////                        dao.DeleteFavourite(fa.getId());
+////                    }
+////                }
+//
+//                Favourite fa = dao.get1Favourite(room_id,member_id);
+//                dao.DeleteFavourite(fa.getId());
+//
+//                Toast.makeText(getActivity(), "Xóa Thành Công",Toast.LENGTH_SHORT).show();
+//                LoadData();
+//            }
+//        });
+//        builder.setNegativeButton("KO", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        });
+//        android.app.AlertDialog alertDialog = builder.create();
+//        alertDialog.show();
+//    }
 
-    private void LoadData(){
+    public void LoadData(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list2, getActivity());
