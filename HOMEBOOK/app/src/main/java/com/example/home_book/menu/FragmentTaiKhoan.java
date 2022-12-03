@@ -14,11 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +34,12 @@ import java.util.Arrays;
 
 
 public class FragmentTaiKhoan extends Fragment {
-    TextView name, changeName;
+    TextView name, changeName, role, changeRole;
     EditText edtchangedName;
-    Button btnsaveName;
+    Button btnsaveName, btnsaveRole;
     ImageView changeImage;
+    Spinner spnrole;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,9 +47,21 @@ public class FragmentTaiKhoan extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tai_khoan, container, false);
         name = view.findViewById(R.id.txtName);
         edtchangedName = view.findViewById(R.id.edtName);
+        role = view.findViewById(R.id.txtRole);
+        changeRole = view.findViewById(R.id.changeRole);
         changeName = view.findViewById(R.id.changeName);
         btnsaveName = view.findViewById(R.id.saveChanged);
+        btnsaveRole = view.findViewById(R.id.saveChangedRole);
         changeImage = view.findViewById(R.id.changeImage);
+        spnrole = view.findViewById(R.id.edtRole);
+
+
+        ArrayList<String> category = new ArrayList<>();
+        category.add("Collaborate");
+        category.add("User");
+        ArrayAdapter adapterCategory = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, category);
+        spnrole.setAdapter(adapterCategory);
+
 
         view.findViewById(R.id.thoat3).setOnClickListener(v -> {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -58,12 +74,21 @@ public class FragmentTaiKhoan extends Fragment {
         edtchangedName.setVisibility(View.GONE);
         btnsaveName.setVisibility(View.GONE);
 
+        spnrole.setVisibility(View.GONE);
+        btnsaveRole.setVisibility(View.GONE);
+
 
         SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
         String email = sP.getString("Email","");
         DAO dao = new DAO(getContext());
         user x = dao.get1User("select * from user_tb where email = ?",email);
         String ten =  x.getFullname();
+        int role1 = x.getRole();
+        if (role1 == 0){
+            role.setText("Collaborate");
+        }else if(role1 == 1) {
+            role.setText("Member");
+        }
         name.setText(ten);
         changeImage.setImageResource(x.getAvatar());
 
@@ -84,11 +109,47 @@ public class FragmentTaiKhoan extends Fragment {
                         btnsaveName.setVisibility(View.GONE);
                         name.setVisibility(View.VISIBLE);
                         changeName.setVisibility(View.VISIBLE);
+                        x.setFullname(nameAC);
+                        name.setText(nameAC);
+                        dao.UpdateUser(x);
                         Toast.makeText(getActivity(), "Đổi thành công", Toast.LENGTH_SHORT).show();
 
-                        name.setText(nameAC);
-                        x.setFullname(nameAC);
-                        dao.UpdateUser(x);
+                    }
+                });
+            }
+        });
+
+        changeRole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                spnrole.setVisibility(View.VISIBLE);
+                btnsaveRole.setVisibility(View.VISIBLE);
+                role.setVisibility(View.GONE);
+                changeRole.setVisibility(View.GONE);
+
+                btnsaveRole.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        spnrole.setVisibility(View.GONE);
+                        btnsaveRole.setVisibility(View.GONE);
+                        role.setVisibility(View.VISIBLE);
+                        changeRole.setVisibility(View.VISIBLE);
+                        Toast.makeText(getActivity(), "Đổi thành công", Toast.LENGTH_SHORT).show();
+
+                        String index = (String) spnrole.getSelectedItem();
+                        if (index.equals("Collaborate")){
+                            x.setRole(0);
+                            role.setText("Collaborate");
+                            dao.UpdateUser(x);
+                            Toast.makeText(getActivity(), "hehe", Toast.LENGTH_SHORT).show();
+                        }else if (index.equals("User")){
+                            x.setRole(1);
+                            role.setText("User");
+                            dao.UpdateUser(x);
+                            Toast.makeText(getActivity(), "hihi", Toast.LENGTH_SHORT).show();
+                        }
+                        Toast.makeText(getActivity(), ""+index, Toast.LENGTH_SHORT).show();
 
                     }
                 });
