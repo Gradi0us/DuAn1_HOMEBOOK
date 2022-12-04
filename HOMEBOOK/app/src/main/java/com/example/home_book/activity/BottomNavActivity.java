@@ -75,7 +75,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
         String email = sP.getString("Email", "");
         String pass = sP.getString("Password", "");
 
-
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         navigationView.setVisibility(View.GONE);
         menuIcon.setVisibility(View.GONE);
@@ -122,7 +122,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
                         replaceFragment(fragment1);
                         Intent refresh = new Intent(BottomNavActivity.this, BottomNavActivity.class);
                         startActivity(refresh);
-//                        overridePendingTransition(0, 0);
+                        overridePendingTransition(0, 0);
                         finish();
                         break;
                     case R.id.Cart:
