@@ -397,28 +397,28 @@ public class OrderAcivity extends AppCompatActivity {
 
 // duoi cua main
 
-            if (!edtReturnDate.getText().toString().equals("") && !edtBookingDate.getText().toString().equals("")) {
-                if (date.compareTo(dateBooking) > 0) {
-                    Toast.makeText(this, "Ngày đặt phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
-                } else if (date.compareTo(dateReturn) > 0) {
-                    Toast.makeText(this, "Ngày trả phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
-                } else if (dateBooking.compareTo(dateReturn) >= 0) {
-                    Toast.makeText(this, "Ngày đặt phải trước ngày trả", Toast.LENGTH_SHORT).show();
-                } else {
-                    DAO dao = new DAO(this);
-                    if (dao.checkLogin(email, pass)) {
-                        user x = dao.get1User("select * from user_tb where email = ?", email);
-                        name_user = x.getFullname();
-                        id_user = x.getId();
-                        dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note,0));
-                        Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
+                if (!edtReturnDate.getText().toString().equals("") && !edtBookingDate.getText().toString().equals("")) {
+                    if (date.compareTo(dateBooking) > 0) {
+                        Toast.makeText(this, "Ngày đặt phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
+                    } else if (date.compareTo(dateReturn) > 0) {
+                        Toast.makeText(this, "Ngày trả phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
+                    } else if (dateBooking.compareTo(dateReturn) >= 0) {
+                        Toast.makeText(this, "Ngày đặt phải trước ngày trả", Toast.LENGTH_SHORT).show();
+                    } else {
+                        DAO dao = new DAO(this);
+                        if (dao.checkLogin(email, pass)) {
+                            user x1 = dao.get1User("select * from user_tb where email = ?", email);
+                            name_user = x1.getFullname();
+                            id_user = x1.getId();
+                            dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0));
+                            Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            } else {
-                Toast.makeText(this, "Không được bỏ trống ngày đặt và ngày trả", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Không được bỏ trống ngày đặt và ngày trả", Toast.LENGTH_SHORT).show();
 
+                }
             }
         }
-    }
-}
+    }}
 

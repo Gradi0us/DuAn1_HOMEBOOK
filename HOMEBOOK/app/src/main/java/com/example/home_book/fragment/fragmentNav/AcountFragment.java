@@ -168,7 +168,7 @@ public class AcountFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int beds = (int) spnbeds.getSelectedItem();
+                int beds = (int) spnbeds.getSelectedItemPosition();
                 String category = (String) spncategory.getSelectedItem();
                 String name = edtname.getText().toString().trim();
                 String hoteldetail = edthoteldetail.getText().toString().trim();
@@ -177,7 +177,7 @@ public class AcountFragment extends Fragment {
                 String status = edtstatus.getText().toString().trim();
                 String location = edtlocation.getText().toString().trim();
                 myRating = (int) ratingBara.getRating();
-                dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG,Integer.parseInt(people)));
+                dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG));
                 alertDialog.cancel();
                 loadDaTa();
             }

@@ -40,10 +40,10 @@ public class FragmentTaiKhoan extends Fragment {
     Button btnsaveName, btnsaveRole;
     
  /// của dương trên,main dưới
- 
-    TextView name, changeName, role, changeRole, sdt, changeSdt;
-    EditText edtchangedName, edtChangeSdt;
-    Button btnsaveName, btnsaveRole, btnsaveSdt;
+
+    TextView  sdt, changeSdt;
+    EditText  edtChangeSdt;
+    Button  btnsaveSdt;
 
     ImageView changeImage;
     Spinner spnrole;
@@ -203,9 +203,7 @@ public class FragmentTaiKhoan extends Fragment {
                             role.setText("User");
                             dao.UpdateUser(x);
                             Toast.makeText(getActivity(), "hihi", Toast.LENGTH_SHORT).show();
-                        }
-                        Toast.makeText(getActivity(), ""+index, Toast.LENGTH_SHORT).show();
-// của dương trên, main dưới
+
                         }else if (index.equals("Member")){
                             x.setRole(1);
                             role.setText("Member");

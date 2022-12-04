@@ -102,12 +102,12 @@ public class MainActivity extends AppCompatActivity {
 //        dao.InsertHinhAnh(new roomImage(0,IMG));
 
         List<Room> list = dao.getRoom("select * from room_tb",null);
-        if(list.size()==0){
-            dao.AddRoom(new Room(5,2,Integer.parseInt("1"),Integer.parseInt("500000"),false,true,false,true,false,true,"tung","true","Hotel","location",IMG,2));
-
-            dao.AddRoom(new Room(3,4,5,700000,false,true,true,true,true,true,"tung1","HIHI1","hoho1","HaNoi1",IMG1,4));
-
-        }
+//        if(list.size()==0){
+//            dao.AddRoom(new Room(5,2,Integer.parseInt("1"),Integer.parseInt("500000"),false,true,false,true,false,true,"tung","true","Hotel","location",IMG,2));
+//
+//            dao.AddRoom(new Room(3,4,5,700000,false,true,true,true,true,true,"tung1","HIHI1","hoho1","HaNoi1",IMG1));
+//
+//        }
 
         DAO dao = new DAO(this);
         currentDate = dateFormat.format(date);
@@ -191,10 +191,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         
-        List<Room> list = dao.getRoom("select * from room_tb", null);
-        dao.AddRoom(new Room(5, 2, Integer.parseInt("1"), Integer.parseInt("500000"), false, true, false, true, false, true, "tung", "true", "Hotel", "location", IMG, 2));
-
-        dao.AddRoom(new Room(3, 4, 5, 700000, false, true, true, true, true, true, "tung1", "HIHI1", "hoho1", "HaNoi1", IMG1, 4));
+//        List<Room> list = dao.getRoom("select * from room_tb", null);
+//        dao.AddRoom(new Room(5, 2, Integer.parseInt("1"), Integer.parseInt("500000"), false, true, false, true, false, true, "tung", "true", "Hotel", "location", IMG, 2));
+//
+//        dao.AddRoom(new Room(3, 4, 5, 700000, false, true, true, true, true, true, "tung1", "HIHI1", "hoho1", "HaNoi1", IMG1, 4));
     }
 }
 //đúng r
