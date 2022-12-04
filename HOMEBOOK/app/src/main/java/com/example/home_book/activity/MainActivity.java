@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     String date1 = "04/12/2022";
     Date date2 = null;
     EditText editTextEmail;
-    Button cirLoginButton,adminButton;
+    Button cirLoginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         dao = new DAO(this);
         editTextEmail = findViewById(R.id.editTextEmail);
         cirLoginButton = findViewById(R.id.cirLoginButton);
-        adminButton = findViewById(R.id.adminButton);
 
         editTextEmail.setText("h");
 
@@ -69,13 +68,6 @@ public class MainActivity extends AppCompatActivity {
                     i.putExtra("key", value);
                     startActivity(i);
                 }
-            }
-        });
-
-        adminButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,LoginAdminActivity.class));
             }
         });
 

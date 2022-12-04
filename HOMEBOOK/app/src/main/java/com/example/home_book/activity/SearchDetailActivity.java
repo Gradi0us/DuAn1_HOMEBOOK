@@ -30,14 +30,14 @@ import java.util.GregorianCalendar;
 
 public class SearchDetailActivity extends AppCompatActivity {
 
-    TextInputEditText editLocation,editSoNguoi;
+    TextInputEditText editLocation, editSoNguoi;
     RatingBar star;
     Button search;
     RecyclerView recyclerView;
     DAO dao;
     Spinner spinnerBed, spinnerCategory;
-    EditText beginD,returnD;
-    int yy,MM,dd;
+    EditText beginD, returnD;
+    int yy, MM, dd, chia;
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
@@ -86,8 +86,10 @@ public class SearchDetailActivity extends AppCompatActivity {
                 DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        yy = year; MM = month; dd = dayOfMonth;
-                        GregorianCalendar gC = new GregorianCalendar(yy,MM,dd);
+                        yy = year;
+                        MM = month;
+                        dd = dayOfMonth;
+                        GregorianCalendar gC = new GregorianCalendar(yy, MM, dd);
                         beginD.setText(format.format(gC.getTime()));
                     }
                 };
@@ -97,7 +99,7 @@ public class SearchDetailActivity extends AppCompatActivity {
                 MM = calendar.get(Calendar.MONTH);
                 dd = calendar.get(Calendar.DATE);
 
-                DatePickerDialog d = new DatePickerDialog(SearchDetailActivity.this,0,chonDate,yy,MM,dd);
+                DatePickerDialog d = new DatePickerDialog(SearchDetailActivity.this, 0, chonDate, yy, MM, dd);
                 d.show();
             }
         });
@@ -108,8 +110,10 @@ public class SearchDetailActivity extends AppCompatActivity {
                 DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        yy = year; MM = month; dd = dayOfMonth;
-                        GregorianCalendar gC = new GregorianCalendar(yy,MM,dd);
+                        yy = year;
+                        MM = month;
+                        dd = dayOfMonth;
+                        GregorianCalendar gC = new GregorianCalendar(yy, MM, dd);
                         returnD.setText(format.format(gC.getTime()));
                     }
                 };
@@ -119,7 +123,7 @@ public class SearchDetailActivity extends AppCompatActivity {
                 MM = calendar.get(Calendar.MONTH);
                 dd = calendar.get(Calendar.DATE);
 
-                DatePickerDialog d = new DatePickerDialog(SearchDetailActivity.this,0,chonDate,yy,MM,dd);
+                DatePickerDialog d = new DatePickerDialog(SearchDetailActivity.this, 0, chonDate, yy, MM, dd);
                 d.show();
             }
         });
@@ -142,33 +146,59 @@ public class SearchDetailActivity extends AppCompatActivity {
             }
         });
 
-        editSoNguoi.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                timNguoi(editSoNguoi.getText().toString().trim());
-            }
-        });
+//        editSoNguoi.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                timNguoi(editSoNguoi.getText().toString().trim());
+//            }
+//        });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int bedP = (int) spinnerBed.getSelectedItemPosition() -1;
+                int bedP = spinnerBed.getSelectedItemPosition() - 1;
                 String categoryP = (String) spinnerCategory.getSelectedItem();
-                Log.d("bed", bedP + "");
-                Log.d("phong", categoryP + "");
+                String ng = editSoNguoi.getText().toString().trim();
+                int starRating = (int) star.getRating();
+
+                if (ng.equals("")){
+                    chia = 0;
+                }else{
+                    if (Integer.parseInt(ng) >= 0) {
+                        if(bedP == -1){
+                            chia = 0;
+                        }
+                        if (bedP == 0) {
+                            chia = Integer.parseInt(ng) / 1;
+                        }
+                        if (bedP == 1) {
+                            chia = lamTron(Integer.parseInt(ng),2);
+                        }
+                        if (bedP == 2) {
+                            chia = lamTron(Integer.parseInt(ng),2);
+                        }
+                        if (bedP == 3) {
+                            chia = lamTron(Integer.parseInt(ng),3);
+                        }
+                        if (bedP == 4) {
+                            chia = lamTron(Integer.parseInt(ng),4);
+                        }
+                    }
+                }
 
 //                timPhong(categoryP);
-                timGiuong(bedP + "");
+//                timGiuong(bedP + "");
+                tim(chia+"", bedP + "", categoryP, starRating + "");
             }
         });
 
@@ -206,9 +236,9 @@ public class SearchDetailActivity extends AppCompatActivity {
         String sql = " SELECT * FROM room_tb where beds = ?";
         ArrayList<Room> list1;
 
-        if(timkiem.equals("-1")){
+        if (timkiem.equals("-1")) {
             list1 = (ArrayList<Room>) dao.getRoom(" SELECT * FROM room_tb", null);
-        }else{
+        } else {
             list1 = (ArrayList<Room>) dao.getRoom(sql, timkiem);
         }
 
@@ -249,21 +279,21 @@ public class SearchDetailActivity extends AppCompatActivity {
     }
 
     private void tim(String x, String y, String z, String s) {
-        String sql = " SELECT * FROM room_tb where number_people >= ? and beds = ? and category_name like ? and rate >= ?";
+        String sql = " SELECT * FROM room_tb where status >= ? and beds = ? and category_name like ? and rate >= ?";
         ArrayList<Room> list;
 
 
-        if (x.isEmpty()) {
-            x = "0";
-        }
+//        if (x.isEmpty()) {
+//            x = "0";
+//        }
         if (z.equals("Tất cả")) {
             z = "%";
         }
 
         if (y.equals("-1")) {
-            sql = " SELECT * FROM room_tb where number_people >= ? and category_name like ? and rate >= ?";
+            sql = " SELECT * FROM room_tb where status >= ? and category_name like ? and rate >= ?";
             list = (ArrayList<Room>) dao.getRoom(sql, x, z, s);
-        }else{
+        } else {
             list = (ArrayList<Room>) dao.getRoom(sql, x, y, z, s);
         }
 
@@ -275,4 +305,16 @@ public class SearchDetailActivity extends AppCompatActivity {
         recyclerView.setAdapter(homeBookApdater);
 
     }
+
+    private int lamTron(int ng, int i){
+        int kq = 0;
+        if(ng%i != 0){
+            kq = Math.round(ng/i) + 1;
+        }else{
+            kq = Math.round(ng/i);
+        }
+        return kq;
+    }
+
+
 }
