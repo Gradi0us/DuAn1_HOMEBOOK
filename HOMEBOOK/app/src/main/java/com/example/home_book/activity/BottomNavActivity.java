@@ -81,6 +81,10 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
 //        load lại thì nó mới chạy vô cái thg lấy dữ liệu kia đc
 //        mấy cái này k thấy khả quan cho lắm
 //        nma cứ thử vậy
+
+        navigationView.setVisibility(View.GONE);
+        menuIcon.setVisibility(View.GONE);
+
         DAO dao = new DAO(BottomNavActivity.this);
         if (dao.checkLogin(email, pass)) {
             user x = dao.get1User("select * from user_tb where email = ?", email);
@@ -92,12 +96,8 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
                 avatar.setImageResource(x.getAvatar());
             }
 
-            int role = 1;
+            int role = 0;
             if (x.getRole() == role) {
-                navigationView.setVisibility(View.GONE);
-                menuIcon.setVisibility(View.GONE);
-
-            } else {
                 navigationView.setVisibility(View.VISIBLE);
                 menuIcon.setVisibility(View.VISIBLE);
             }

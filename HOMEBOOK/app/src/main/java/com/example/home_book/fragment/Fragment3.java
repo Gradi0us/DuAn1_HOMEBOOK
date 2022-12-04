@@ -25,6 +25,7 @@ import com.example.home_book.menu.FragmentTaiKhoan;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
 import com.example.home_book.menu.Money;
+import com.example.home_book.model.admin;
 import com.example.home_book.model.user;
 import com.example.home_book.menu.ThongTin;
 import com.example.home_book.adapter.ListMenuAdapter;
@@ -82,20 +83,37 @@ public class Fragment3 extends Fragment {
         SharedPreferences sP = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
         String email = sP.getString("Email", "");
         String pass = sP.getString("Password", "");
+        String userAd = sP.getString("UserAdmin", "");
+        String passAd = sP.getString("PassAdmin", "");
+
         DAO dao = new DAO(getContext());
+        if (dao.checkAdmin(userAd, passAd)) {
+            listView.setVisibility(View.VISIBLE);
+            v.findViewById(R.id.regis).setVisibility(View.GONE);
+            v.findViewById(R.id.login).setVisibility(View.GONE);
+
+
+            admin x = dao.get1Admin(userAd, passAd);
+            name = x.getUsername();
+            textView.setText(name);
+            avatar.setImageResource(R.drawable.usermanage);
+
+
+
+        }
+
         if (dao.checkLogin(email, pass)) {
             listView.setVisibility(View.VISIBLE);
             v.findViewById(R.id.regis).setVisibility(View.GONE);
             v.findViewById(R.id.login).setVisibility(View.GONE);
 
 
-
             user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             textView.setText(name);
-            if(x.getAvatar() == 0){
+            if (x.getAvatar() == 0) {
                 avatar.setImageResource(R.drawable.usermanage);
-            }else{
+            } else {
                 avatar.setImageResource(x.getAvatar());
             }
 

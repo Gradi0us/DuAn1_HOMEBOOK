@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.home_book.database.AppSQL;
 import com.example.home_book.model.Favourite;
 import com.example.home_book.model.Room;
+import com.example.home_book.model.admin;
 import com.example.home_book.model.order;
 
 import java.util.ArrayList;
@@ -50,6 +51,22 @@ public class DAO {
             return true;
         }
         return false;
+    }
+
+    public admin get1Admin(String x, String y) {
+        List<admin> list = new ArrayList<>();
+        Cursor c = db.rawQuery("select * from adminstrator_tb WHERE username = ? and password = ?", new String[]{x,y});
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            String user = c.getString(0);
+            String pass = c.getString(1);
+            int money = c.getInt(2);
+            admin ad = new admin(user,pass,money);
+            list.add(ad);
+            c.moveToNext();
+        }
+        c.close();
+        return list.get(0);
     }
 
 //    public List<user> getUser_name (String email, String pass) {
@@ -213,16 +230,15 @@ public class DAO {
             String location = c.getString(3);
             int rate = c.getInt(4);
             int beds = c.getInt(5);
-            int number = c.getInt(6);
-            String note = c.getString(16);
-            int cost = c.getInt(13);
-            int status = c.getInt(14);
-            int wf = c.getInt(7);
-            int aC = c.getInt(8);
-            int parKing = c.getInt(9);
-            int miniBar = c.getInt(10);
-            int Pool = c.getInt(11);
-            int Buffet = c.getInt(12);
+            String note = c.getString(15);
+            int cost = c.getInt(12);
+            int status = c.getInt(13);
+            int wf = c.getInt(6);
+            int aC = c.getInt(7);
+            int parKing = c.getInt(8);
+            int miniBar = c.getInt(9);
+            int Pool = c.getInt(10);
+            int Buffet = c.getInt(11);
 //            int people = c.getInt(c.getColumnIndex("number_people"));
             boolean wifi, ac, buffet, pool, minibar, parking;
             if (wf == 0) {
@@ -255,8 +271,8 @@ public class DAO {
             } else {
                 parking = true;
             }
-            byte[] IMG = c.getBlob(15);
-            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG,number);
+            byte[] IMG = c.getBlob(14);
+            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
             list.add(x);
             c.moveToNext();
         }
@@ -339,7 +355,6 @@ public class DAO {
         value.put("location", x.getLocation());
         value.put("rate", x.getRate());
         value.put("beds", x.getBeds());
-        value.put("number_people", x.getNumber());
         value.put("note", x.getNote());
         value.put("cost", x.getCost());
         value.put("status", x.getStatus());
@@ -385,7 +400,6 @@ public class DAO {
         value.put("location", x.getLocation());
         value.put("rate", x.getRate());
         value.put("beds", x.getBeds());
-        value.put("number_people", x.getNumber());
         value.put("note", x.getNote());
         value.put("cost", x.getCost());
         value.put("status", x.getStatus());
