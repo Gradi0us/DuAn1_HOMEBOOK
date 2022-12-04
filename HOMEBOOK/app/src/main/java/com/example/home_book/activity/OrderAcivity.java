@@ -239,12 +239,13 @@ public class OrderAcivity extends AppCompatActivity {
                                 Favourite fa = dao.get1Favourite(r.getId()+"",u.getId()+"");
                                 dao.DeleteFavourite(fa.getId());
                                 Toast.makeText(OrderAcivity.this, "Xóa Thành Công", Toast.LENGTH_SHORT).show();
+                                timF.setChecked(false);
                             }
                         });
                         builder.setNegativeButton("KO", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                timF.setChecked(true);
                             }
                         });
                         android.app.AlertDialog alertDialog = builder.create();
