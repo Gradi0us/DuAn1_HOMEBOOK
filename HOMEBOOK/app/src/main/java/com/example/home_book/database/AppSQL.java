@@ -13,9 +13,10 @@ import androidx.annotation.Nullable;
 public class AppSQL extends SQLiteOpenHelper {
     final String AdminstratorTable = "CREATE TABLE adminstrator_tb(id integer primary key autoincrement, avatar integer NOT NULL, money_reciever integer NOT NULL)";
     final String UserTable = "CREATE TABLE user_tb(id integer primary key autoincrement, avatar integer NOT NULL, fullname text NOT NULL, email text NOT NULL,password text NOT NULL, role integer NOT NULL, birthday date NOT NULL, phonenumber nvarchar(11) NOT NULL, money integer NOT NULL)";
-    final String OrderTable = "create table order_tb(id integer primary key autoincrement, user_id integer references user_tb(id) NOT NULL, number_people integer NOT NULL, booking_date date NOT NULL, return_date date, time_checkin text NOT NULL, time_checkout text NOT NULL, room_id integer references room_tb(id) NOT NULL, note text)";
+    final String OrderTable = "create table order_tb(id integer primary key autoincrement, user_id integer references user_tb(id) NOT NULL, number_people integer NOT NULL, booking_date date NOT NULL, return_date date, time_checkin text NOT NULL, time_checkout text NOT NULL, room_id integer references room_tb(id) NOT NULL, note text,status text)";
     final String RoomTable = "create table room_tb(id integer primary key autoincrement,fullname text NOT NULL, category_name text NOT NULL, location text NOT NULL, rate integer NOT NULL, beds integer NOT NULL, number_people integer NOT NULL,wifi integer NOT NULL,ac integer NOT NULL,parking integer NOT NULL, minibar integer NOT NULL,pool integer NOT NULL,buffet integer NOT NULL, cost integer NOT NULL, status integer NOT NULL,image BlOB, note text)";
-    final String DateTable = "create table date_tb(id integer primary key autoincrement, current date not null)";
+    final String DateTable = "create table date_tb(id integer primary key autoincrement, current date not null, checkD integer not null)";
+
     Context context;
     SQLiteDatabase database;
 

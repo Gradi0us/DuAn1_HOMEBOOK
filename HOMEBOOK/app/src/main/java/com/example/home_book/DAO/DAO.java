@@ -384,7 +384,8 @@ public class DAO {
             String gioTra = c.getString(6);
             int room_id = c.getInt(7);
             String note = c.getString(8);
-            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note);
+            int status = c.getInt(9);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note,status);
             list.add(x);
             c.moveToNext();
         }
@@ -402,6 +403,7 @@ public class DAO {
         value.put("time_checkout", x.getTime_checkout());
         value.put("room_id", x.getRoom_id());
         value.put("note", x.getNote());
+        value.put("status",x.getStatus());
         long a = db.insert("order_tb", null, value);
         return a;
     }
@@ -416,6 +418,7 @@ public class DAO {
         value.put("time_checkout", x.getTime_checkout());
         value.put("room_id", x.getRoom_id());
         value.put("note", x.getNote());
+        value.put("status", x.getStatus());
         return db.update("order_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
 
@@ -459,6 +462,7 @@ public class DAO {
     public long AddDateCurrent(DateCurrent current) {
         ContentValues values = new ContentValues();
         values.put("current", format.format(current.getDate()));
+        values.put("checkD", current.getCheck());
         long a = db.insert("date_tb", null, values);
         return a;
     }
@@ -466,6 +470,7 @@ public class DAO {
     public long UpdateCurrent(DateCurrent current) {
         ContentValues values = new ContentValues();
         values.put("current", format.format(current.getDate()));
+        values.put("checkD", current.getCheck());
         long a = db.update("date_tb", values, "id=?",new String[]{String.valueOf(current.getId())});
         return a;
     }
@@ -483,9 +488,11 @@ public class DAO {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            int check = c.getInt(2);
             DateCurrent current = new DateCurrent();
             current.setId(id);
             current.setDate(dateCurrent);
+            current.setCheck(check);
             list.add(current);
             c.moveToNext();
         }

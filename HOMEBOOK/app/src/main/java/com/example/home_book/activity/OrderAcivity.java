@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.fragment.Fragment3;
 import com.example.home_book.fragment.fragmentNav.AcountFragment;
+import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 import com.example.home_book.model.user;
 import com.example.home_book.slideshow.The_Slide_Items_Model_Class;
@@ -62,7 +63,8 @@ public class OrderAcivity extends AppCompatActivity {
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     Date date = new Date();
     String currentDate;
-
+    byte[] img;
+    boolean wifi,parking,buffet,ac,pool,minibar;
     //System.out.println(dateFormat.format(date));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,22 +98,38 @@ public class OrderAcivity extends AppCompatActivity {
         Intent i = getIntent();
         Bundle bundle = i.getBundleExtra("bundle");
         if (bundle != null) {
-            name = bundle.getString("name");
-            category = bundle.getString("category");
-            note = bundle.getString("note");
+//            name = bundle.getString("name");
+//            category = bundle.getString("category");
+//            note = bundle.getString("note");
             id_room = bundle.getInt("id");
-            location = bundle.getString("location");
-            status = bundle.getInt("status");
-            beds = bundle.getInt("beds");
-            cost = bundle.getInt("cost");
-            rate = bundle.getInt("rate");
-            byte[] img = bundle.getByteArray("img");
-            boolean wifi = false;
-            boolean parking = bundle.getBoolean("parking");
-            boolean pool = bundle.getBoolean("pool");
-            boolean minibar = bundle.getBoolean("minibar");
-            boolean ac = bundle.getBoolean("ac");
-            boolean buffet = true;
+            Room room = dao.get1Room("select * from room_tb where id = ?",String.valueOf(id_room));
+//            location = bundle.getString("location");
+//            status = bundle.getInt("status");
+//            beds = bundle.getInt("beds");
+//            cost = bundle.getInt("cost");
+//            rate = bundle.getInt("rate");
+//            byte[] img = bundle.getByteArray("img");
+//            boolean wifi = false;
+//            boolean parking = bundle.getBoolean("parking");
+//            boolean pool = bundle.getBoolean("pool");
+//            boolean minibar = bundle.getBoolean("minibar");
+//            boolean ac = bundle.getBoolean("ac");
+//            boolean buffet = true;
+            name = room.getName();
+            category = room.getCategory();
+            note = room.getNote();
+            location = room.getLocation();
+            status = room.getStatus();
+            beds = room.getBeds();
+            cost = room.getCost();
+            rate = room.getRate();
+            img = room.getIMG();
+            wifi = room.isWifi();
+            ac = room.isAc();
+            pool = room.isPool();
+            parking = room.isParking();
+            buffet = room.isBuffet();
+            minibar = room.isMinibar();
             tvLocation.setText(location);
             tvBeds.setText(String.valueOf(beds));
             tvName.setText(name);
@@ -285,7 +303,7 @@ public class OrderAcivity extends AppCompatActivity {
                         user x = dao.get1User("select * from user_tb where email = ?", email);
                         name_user = x.getFullname();
                         id_user = x.getId();
-                        dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note));
+                        dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note,0));
                         Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
                     }
                 }
