@@ -87,7 +87,7 @@ public class AcountFragment extends Fragment {
         TextInputEditText edtcost = view.findViewById(R.id.edt_cost);
         TextInputEditText edtstatus = view.findViewById(R.id.edt_status);
         TextInputEditText edtlocation = view.findViewById(R.id.edt_location);
-        TextInputEditText edtpeople = view.findViewById(R.id.edt_people);
+//        TextInputEditText edtpeople = view.findViewById(R.id.edt_people);
         ImageView imgAddimage = view.findViewById(R.id.img_addimage);
         imgAvtHome = view.findViewById(R.id.img_avthome);
         RatingBar ratingBara = view.findViewById(R.id.star_homebook);
@@ -110,9 +110,9 @@ public class AcountFragment extends Fragment {
         ArrayAdapter adapterBed = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, bed);
         spnbeds.setAdapter(adapterBed);
         ArrayList<String> category = new ArrayList<>();
-        category.add("hotel");
-        category.add("homestay");
-        category.add("apartment");
+        category.add("Hotel");
+        category.add("Homestay");
+        category.add("Apartment");
         ArrayAdapter adapterCategory = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, category);
         spncategory.setAdapter(adapterCategory);
         imgAddimage.setOnClickListener(new View.OnClickListener() {
@@ -168,12 +168,12 @@ public class AcountFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int beds = (int) spnbeds.getSelectedItemPosition();
+                int beds = spnbeds.getSelectedItemPosition();
                 String category = (String) spncategory.getSelectedItem();
                 String name = edtname.getText().toString().trim();
                 String hoteldetail = edthoteldetail.getText().toString().trim();
                 String cost = edtcost.getText().toString().trim();
-                String people = edtpeople.getText().toString().trim();
+//                String people = edtpeople.getText().toString().trim();
                 String status = edtstatus.getText().toString().trim();
                 String location = edtlocation.getText().toString().trim();
                 myRating = (int) ratingBara.getRating();
