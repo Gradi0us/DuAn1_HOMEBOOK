@@ -252,7 +252,7 @@ public class FindFragment extends Fragment {
                 list1.add(x);
             }
         }
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list1, getActivity());
+        HomeBookApdater homeBookApdater2 = new HomeBookApdater(getContext(), list1, getActivity());
 
         recyclerView.setAdapter(homeBookApdater);
         recyclerView1.setAdapter(homeBookApdater1);
