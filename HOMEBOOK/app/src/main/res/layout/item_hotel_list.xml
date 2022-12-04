@@ -1,102 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="400dp"
     android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     android:gravity="center"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:id="@+id/layout_click"
     android:orientation="vertical">
-
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/img_homebook"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="match_parent">
 
-            android:src="@drawable/khachsan2" />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="220dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/img_homebook"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:src="@drawable/khachsan2" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="220dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/white_bed" />
+
+                <TextView
+                    android:id="@+id/tv_beds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:text="X"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+
+            <TextView
+
+                android:id="@+id/tv_name_homebook"
+                style="@style/item_size"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/edt_btn"
+                android:layout_marginBottom="30dp"
+                android:textColor="@color/white"
+                android:text="Hotel_name" />
+
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/white_bed" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/edt_btn"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/location" />
 
             <TextView
-                android:id="@+id/tv_beds"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:text="X"
                 android:textColor="@color/white"
+                android:id="@+id/tv_location_homebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="8dp"
+                android:text="hotel_location"
                 android:textSize="16dp"
                 android:textStyle="bold" />
-            <ImageView
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/white_people" />
-
-            <TextView
-                android:id="@+id/tv_people"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:text="X" />
-        </LinearLayout>
-
-        <ToggleButton
-            android:id="@+id/img_favorite_homebook"
-            android:layout_width="24dp"
-            android:textOn=""
-            android:textOff=""
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/custom_toggle_favorite" />
-
-        <TextView
-
-            android:id="@+id/tv_name_homebook"
-            style="@style/item_size"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/edt_btn"
-            android:layout_marginBottom="30dp"
-            android:textColor="@color/black"
-            android:text="Hotel_name" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/edt_btn"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/location" />
-
-        <TextView
-            android:textColor="@color/black"
-            android:id="@+id/tv_location_homebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="8dp"
-            android:text="hotel_location"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
 </FrameLayout>
 
