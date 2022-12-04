@@ -296,6 +296,7 @@ public class DAO {
         return list.get(0);
     }
 
+
 //    public Room getRoom2(String sql, String... args) {
 //        List<Room> list = new ArrayList<>();
 //        Room x = null;
@@ -478,8 +479,60 @@ public class DAO {
         }
         c.close();
         return list;
+    }  public order getOrder1(String sql,String ... args) {
+        List<order> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, args);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            Date ngayNhan = null, ngayTra = null;
+            int id = c.getInt(0);
+            int user_id = c.getInt(1);
+            int number = c.getInt(2);
+            try {
+                ngayNhan = format.parse(c.getString(3));
+                ngayTra = format.parse(c.getString(4));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String gioNhan = c.getString(5);
+            String gioTra = c.getString(6);
+            int room_id = c.getInt(7);
+            String note = c.getString(8);
+            int status = c.getInt(9);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note,status);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list.get(0);
     }
-
+    public List<order> getNhieuOrder(String sql, String... args) {
+        List<order> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, args);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            Date ngayNhan = null, ngayTra = null;
+            int id = c.getInt(0);
+            int user_id = c.getInt(1);
+            int number = c.getInt(2);
+            try {
+                ngayNhan = format.parse(c.getString(3));
+                ngayTra = format.parse(c.getString(4));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String gioNhan = c.getString(5);
+            String gioTra = c.getString(6);
+            int room_id = c.getInt(7);
+            String note = c.getString(8);
+            int status = c.getInt(9);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note,status);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+    }
     public long AddOrder(order x) {
         ContentValues value = new ContentValues();
         value.put("user_id", x.getUser_id());

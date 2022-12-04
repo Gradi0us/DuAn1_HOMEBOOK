@@ -45,6 +45,7 @@ import com.example.home_book.fragment.fragmentNav.SettingFragment;
 import com.example.home_book.model.ListModelMenu;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.categories;
+import com.example.home_book.model.order;
 import com.example.home_book.model.rooms;
 import com.example.home_book.model.user;
 import com.google.android.material.navigation.NavigationView;
@@ -229,8 +230,12 @@ public class FindFragment extends Fragment {
 //        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,list1);
 //        recyclerView.setAdapter(homeBookApdater);
 //    }
+
     public void loadDaTa() {
+        List<order> listoder= new ArrayList<>();
+              //  getOrder("select * from order_tb where status = 1 ");
         ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
+
         ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -239,7 +244,25 @@ public class FindFragment extends Fragment {
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
         HomeBookApdater homeBookApdater1 = new HomeBookApdater(getContext(), listPopular, getActivity());
         recyclerView.setAdapter(homeBookApdater);
+        recyclerView.getRecycledViewPool();
+
+//        homeBookApdater.setHasStableIds(true);
         recyclerView1.setAdapter(homeBookApdater1);
+//        ArrayList<Room> list1 = new ArrayList<>();
+//
+//
+//        for (Room x:list){
+//            listoder= dao.getOrder("select * from order_tb where status = 1 and room_id = "+x.getId()+"");
+//            if(listoder.size()!=0){
+//                if((x.getStatus()-listoder.size())!=0){
+//                    list1.add(x);
+//                }
+//            }
+//        }
+
+        HomeBookApdater homeBookApdater2 = new HomeBookApdater(getContext(), list, getActivity());
+        recyclerView.setAdapter(homeBookApdater2);
+        recyclerView1.setAdapter(homeBookApdater2);
 
 
 
@@ -254,7 +277,6 @@ public class FindFragment extends Fragment {
 //                    Toast.makeText(getContext(), "hotel", Toast.LENGTH_SHORT).show();
                     toggle_apartment.setChecked(false);
                     toggle_homestays.setChecked(false);
-
                     String sqlRoom = "select * from room_tb where category_name = 'Hotel'";
                     ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
                     ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
