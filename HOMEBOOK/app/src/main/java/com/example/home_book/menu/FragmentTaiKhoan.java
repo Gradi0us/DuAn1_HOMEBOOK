@@ -34,9 +34,17 @@ import java.util.Arrays;
 
 
 public class FragmentTaiKhoan extends Fragment {
+
+    TextView name, changeName, role, changeRole;
+    EditText edtchangedName;
+    Button btnsaveName, btnsaveRole;
+    
+ /// của dương trên,main dưới
+ 
     TextView name, changeName, role, changeRole, sdt, changeSdt;
     EditText edtchangedName, edtChangeSdt;
     Button btnsaveName, btnsaveRole, btnsaveSdt;
+
     ImageView changeImage;
     Spinner spnrole;
 
@@ -47,13 +55,16 @@ public class FragmentTaiKhoan extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tai_khoan, container, false);
         name = view.findViewById(R.id.txtName);
         edtchangedName = view.findViewById(R.id.edtName);
+
         sdt = view.findViewById(R.id.txtSdt);
         edtChangeSdt= view.findViewById(R.id.edtSdt);
+
         role = view.findViewById(R.id.txtRole);
         changeRole = view.findViewById(R.id.changeRole);
         changeName = view.findViewById(R.id.changeName);
         changeSdt= view.findViewById(R.id.changeSdt);
         btnsaveName = view.findViewById(R.id.saveChanged);
+
         btnsaveSdt = view.findViewById(R.id.saveChangedSdt);
         btnsaveRole = view.findViewById(R.id.saveChangedRole);
         changeImage = view.findViewById(R.id.changeImage);
@@ -62,7 +73,11 @@ public class FragmentTaiKhoan extends Fragment {
 
         ArrayList<String> category = new ArrayList<>();
         category.add("Collaborate");
+
+        category.add("User"); // dòng này là sao
+
         category.add("Member");
+
         ArrayAdapter adapterCategory = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, category);
         spnrole.setAdapter(adapterCategory);
 
@@ -78,6 +93,7 @@ public class FragmentTaiKhoan extends Fragment {
         edtchangedName.setVisibility(View.GONE);
         btnsaveName.setVisibility(View.GONE);
 
+
         edtChangeSdt.setVisibility(View.GONE);
         btnsaveSdt.setVisibility(View.GONE);
 
@@ -90,6 +106,7 @@ public class FragmentTaiKhoan extends Fragment {
         DAO dao = new DAO(getContext());
         user x = dao.get1User("select * from user_tb where email = ?",email);
         String ten =  x.getFullname();
+
         String sdtt = x.getPhone();
         int role1 = x.getRole();
         if (role1 == 0){
@@ -97,6 +114,7 @@ public class FragmentTaiKhoan extends Fragment {
         }else if(role1 == 1) {
             role.setText("Member");
         }
+
         sdt.setText(sdtt);
         name.setText(ten);
         changeImage.setImageResource(x.getAvatar());
@@ -120,6 +138,7 @@ public class FragmentTaiKhoan extends Fragment {
                         changeName.setVisibility(View.VISIBLE);
                         x.setFullname(nameAC);
                         name.setText(nameAC);
+
                         dao.UpdateUser(x);
                         Toast.makeText(getActivity(), "Đổi thành công", Toast.LENGTH_SHORT).show();
 
@@ -177,11 +196,22 @@ public class FragmentTaiKhoan extends Fragment {
                             x.setRole(0);
                             role.setText("Collaborate");
                             dao.UpdateUser(x);
+//
+                            Toast.makeText(getActivity(), "hehe", Toast.LENGTH_SHORT).show();
+                        }else if (index.equals("User")){
+                            x.setRole(1);
+                            role.setText("User");
+                            dao.UpdateUser(x);
+                            Toast.makeText(getActivity(), "hihi", Toast.LENGTH_SHORT).show();
+                        }
+                        Toast.makeText(getActivity(), ""+index, Toast.LENGTH_SHORT).show();
+// của dương trên, main dưới
                         }else if (index.equals("Member")){
                             x.setRole(1);
                             role.setText("Member");
                             dao.UpdateUser(x);
                         }
+//
 
                     }
                 });
