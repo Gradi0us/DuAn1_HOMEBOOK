@@ -112,6 +112,7 @@ public class RegisterFragment extends Fragment {
                 Boolean check = true;
                 role = 1;
                 int ava = 0,money = 0;
+                birthUp.setError(null);
 
                 if(!radioCollaborate.isChecked() && !radioMember.isChecked()){
                     check = false;
@@ -152,7 +153,14 @@ public class RegisterFragment extends Fragment {
                     check = false;
                     passUpAgain.setError("The password again is not same as the password.");
                 }
-
+                else if(!email.matches("\\w+@\\w+\\.\\w{1,5}")){
+                    check = false;
+                    emailUp.setError("Email không đúng định dạng.");
+                }
+                else if(dao.checkEmail(email)){
+                    check = false;
+                    emailUp.setError("Email exists.");
+                }
                 if(check == true){
                     if(radioCollaborate.isChecked()){
                         role = 0;
@@ -162,9 +170,14 @@ public class RegisterFragment extends Fragment {
                     Log.d("User","ADD OK");
                     user x = new user(ava,name,email,pass,date,phone,role,money);
                     dao.AddUser(x);
-                    list.add(x);
+//                    list.add(x);
                     Toast.makeText(getActivity(),"Add completed",Toast.LENGTH_SHORT).show();
-                    list = (ArrayList<user>) dao.getUser("select * from user_tb",null);
+//                    list = (ArrayList<user>) dao.getUser("select * from user_tb",null);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame,new LoginFragment())
+                            .commit();
                 }
             }
         });

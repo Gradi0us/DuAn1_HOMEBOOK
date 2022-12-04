@@ -51,7 +51,7 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
         holder.ratingBar.setRating(lisRoom.get(position).getRate());
         holder.beds.setText(lisRoom.get(position).getBeds()+"");
         holder.status.setText((lisRoom.get(position).getStatus()-list.size())+"");
-        holder.people.setText(lisRoom.get(position).getNumber()+"");
+
     }
 
     @Override
@@ -72,7 +72,7 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
             ratingBar = itemView.findViewById(R.id.number_stars);
             beds = itemView.findViewById(R.id.tv_beds);
             status = itemView.findViewById(R.id.tv_status);
-            people = itemView.findViewById(R.id.tv_people);
+
         }
     }
 }
