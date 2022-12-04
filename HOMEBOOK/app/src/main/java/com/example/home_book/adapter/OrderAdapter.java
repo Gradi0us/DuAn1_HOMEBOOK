@@ -56,6 +56,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.imageView.setImageBitmap(bitmap);
 //            holder.tvCategory.setText(roomList.getLocation());
             holder.tvName.setText(roomList.getName());
+
             holder.tvCost.setText(roomList.getCost() + "");
             holder.tvBeds.setText(roomList.getBeds() + "");
             holder.button.setOnClickListener(new View.OnClickListener() {
@@ -65,22 +66,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 }
             });
 
-            switch (roomList.getBeds()) {
-                case 0:
-                    holder.tvBeds.setText("Phòng đơn");
-                    break;
-                case 1:
-                    holder.tvBeds.setText("Phòng sinh đôi");
-                    break;
-                case 2:
-                    holder.tvBeds.setText("Phòng đôi");
-                    break;
-                case 3:
-                    holder.tvBeds.setText("Phòng ba");
-                    break;
-                case 4:
-                    holder.tvBeds.setText("Phòng bốn");
-                    break;
+         
+
+            switch (roomList.getBeds()){
+                case 0:holder.tvBeds.setText("Phòng đơn");break;
+                case 1:holder.tvBeds.setText("Phòng sinh đôi");break;
+                case 2:holder.tvBeds.setText("Phòng đôi");break;
+                case 3:holder.tvBeds.setText("Phòng ba");break;
+                case 4:holder.tvBeds.setText("Phòng bốn");break;
             }
             holder.tvDateCheckIn.setText(format.format(list.get(position).getBooking_date()));
             holder.tvDateCheckOut.setText(format.format(list.get(position).getReturn_date()));
@@ -89,6 +82,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.tvCategory.setText(roomList.getCategory());
             holder.tvLocation.setText(roomList.getLocation());
 
+
+            long diff = list.get(position).getReturn_date().getTime() - list.get(position).getBooking_date().getTime();
+            int dayCount = (int) diff/(24 * 60 * 60 * 1000);
+
+            holder.tvCost.setText((roomList.getCost() * dayCount)+"");
         }
     }
 

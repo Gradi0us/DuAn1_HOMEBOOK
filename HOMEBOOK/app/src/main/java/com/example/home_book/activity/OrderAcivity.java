@@ -416,8 +416,18 @@ public class OrderAcivity extends AppCompatActivity {
                             user x1 = dao.get1User("select * from user_tb where email = ?", email);
                             name_user = x1.getFullname();
                             id_user = x1.getId();
-                            dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0));
-                            Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
+
+                            long diff = dateReturn.getTime() - dateBooking.getTime();
+                            int dayCount = (int) diff/(24 * 60 * 60 * 1000);
+
+                            if(x1.getMoney() >= (cost*dayCount)){
+                                dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0));
+                                Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
+                                x1.setMoney(x1.getMoney()-(cost*dayCount));
+                                dao.UpdateUser(x1);
+                            }else{
+                                Toast.makeText(this, "Không đủ tiền", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 } else {

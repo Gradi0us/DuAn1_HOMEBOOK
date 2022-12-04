@@ -247,14 +247,27 @@ public class FindFragment extends Fragment {
         List<order> listoder= new ArrayList<>();
               //  getOrder("select * from order_tb where status = 1 ");
         ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
+   
+        DAO dao = new DAO(getActivity());
+        List<order> listoder= dao.getOrder("select * from order_tb where status = 1");
 
         ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView1.setLayoutManager(linearLayoutManager1);
+
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
         HomeBookApdater homeBookApdater1 = new HomeBookApdater(getContext(), listPopular, getActivity());
+
+        ArrayList<Room> list1 = new ArrayList<>();
+        for (Room x:list){
+            if((x.getStatus()-listoder.size())!=0){
+                list1.add(x);
+            }
+        }
+        HomeBookApdater homeBookApdater2 = new HomeBookApdater(getContext(), list1, getActivity());
+
         recyclerView.setAdapter(homeBookApdater);
         recyclerView.getRecycledViewPool();
 

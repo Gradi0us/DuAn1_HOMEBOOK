@@ -47,6 +47,17 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/txtMoney1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="135dp"
+            android:layout_marginTop="80dp"
+            android:text="Money"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_marginTop="100dp"
             android:layout_marginLeft="170dp"
@@ -82,13 +93,18 @@
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="80dp"/>-->
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lvmenu"/>
-    </LinearLayout>
+            android:id="@+id/lvmenuUser"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lvmenuAdmin"/>
+    </FrameLayout>
 
 </LinearLayout>
