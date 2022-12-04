@@ -70,19 +70,19 @@ public class CartFragment extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    fragmentManager
-                            .beginTransaction()
-                            .replace(R.id.frame,new Fragment3())
-                            .commit();
+//                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                    fragmentManager
+//                            .beginTransaction()
+//                            .replace(R.id.frame,new Fragment3())
+//                            .commit();
             }
         });
-            builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            });
+//            builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                }
+//            });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

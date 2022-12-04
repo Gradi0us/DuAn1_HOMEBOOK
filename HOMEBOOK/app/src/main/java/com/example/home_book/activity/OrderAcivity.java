@@ -37,6 +37,7 @@ import com.example.home_book.slideshow.adapter.The_Slide_Items_Pager_Adapter;
 import com.example.home_book.R;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,7 +65,14 @@ public class OrderAcivity extends AppCompatActivity {
     String name, category, note, location;
     String name_user, member_id;
     int dD, mM, yY, role;
+
     ToggleButton timF;
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    Date date = new Date();
+    String currentDate;
+    byte[] img;
+    boolean wifi,parking,buffet,ac,pool,minibar;
+    //System.out.println(dateFormat.format(date));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +95,13 @@ public class OrderAcivity extends AppCompatActivity {
         edtBookingDate = findViewById(R.id.edt_bookingdate);
         edtReturnDate = findViewById(R.id.edt_returndate);
         btnOrder = findViewById(R.id.btn_order);
+
         timF = findViewById(R.id.timFavourite);
 
+        //
+        currentDate = dateFormat.format(date);
+        //
+        
         dao = new DAO(this);
         Calendar calendar = Calendar.getInstance();
         yY = calendar.get(Calendar.YEAR);
@@ -97,22 +110,38 @@ public class OrderAcivity extends AppCompatActivity {
         Intent i = getIntent();
         Bundle bundle = i.getBundleExtra("bundle");
         if (bundle != null) {
-            name = bundle.getString("name");
-            category = bundle.getString("category");
-            note = bundle.getString("note");
+//            name = bundle.getString("name");
+//            category = bundle.getString("category");
+//            note = bundle.getString("note");
             id_room = bundle.getInt("id");
-            location = bundle.getString("location");
-            status = bundle.getInt("status");
-            beds = bundle.getInt("beds");
-            cost = bundle.getInt("cost");
-            rate = bundle.getInt("rate");
-            byte[] img = bundle.getByteArray("img");
-            boolean wifi = false;
-            boolean parking = bundle.getBoolean("parking");
-            boolean pool = bundle.getBoolean("pool");
-            boolean minibar = bundle.getBoolean("minibar");
-            boolean ac = bundle.getBoolean("ac");
-            boolean buffet = true;
+            Room room = dao.get1Room("select * from room_tb where id = ?",String.valueOf(id_room));
+//            location = bundle.getString("location");
+//            status = bundle.getInt("status");
+//            beds = bundle.getInt("beds");
+//            cost = bundle.getInt("cost");
+//            rate = bundle.getInt("rate");
+//            byte[] img = bundle.getByteArray("img");
+//            boolean wifi = false;
+//            boolean parking = bundle.getBoolean("parking");
+//            boolean pool = bundle.getBoolean("pool");
+//            boolean minibar = bundle.getBoolean("minibar");
+//            boolean ac = bundle.getBoolean("ac");
+//            boolean buffet = true;
+            name = room.getName();
+            category = room.getCategory();
+            note = room.getNote();
+            location = room.getLocation();
+            status = room.getStatus();
+            beds = room.getBeds();
+            cost = room.getCost();
+            rate = room.getRate();
+            img = room.getIMG();
+            wifi = room.isWifi();
+            ac = room.isAc();
+            pool = room.isPool();
+            parking = room.isParking();
+            buffet = room.isBuffet();
+            minibar = room.isMinibar();
             tvLocation.setText(location);
             tvBeds.setText(String.valueOf(beds));
             tvName.setText(name);
@@ -350,23 +379,46 @@ public class OrderAcivity extends AppCompatActivity {
 //                            .commit();
                 }
             });
-//            builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                }
-//            });
+            builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         } else {
+
             dao = new DAO(this);
             if (dao.checkLogin(email, pass)) {
                 user x = dao.get1User("select * from user_tb where email = ?", email);
                 name_user = x.getFullname();
                 id_user = x.getId();
+
+// duoi cua main
+
+            if (!edtReturnDate.getText().toString().equals("") && !edtBookingDate.getText().toString().equals("")) {
+                if (date.compareTo(dateBooking) > 0) {
+                    Toast.makeText(this, "Ngày đặt phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
+                } else if (date.compareTo(dateReturn) > 0) {
+                    Toast.makeText(this, "Ngày trả phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
+                } else if (dateBooking.compareTo(dateReturn) >= 0) {
+                    Toast.makeText(this, "Ngày đặt phải trước ngày trả", Toast.LENGTH_SHORT).show();
+                } else {
+                    DAO dao = new DAO(this);
+                    if (dao.checkLogin(email, pass)) {
+                        user x = dao.get1User("select * from user_tb where email = ?", email);
+                        name_user = x.getFullname();
+                        id_user = x.getId();
+                        dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note,0));
+                        Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Không được bỏ trống ngày đặt và ngày trả", Toast.LENGTH_SHORT).show();
+
             }
         }
-        dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note));
-        Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
     }
 }
+

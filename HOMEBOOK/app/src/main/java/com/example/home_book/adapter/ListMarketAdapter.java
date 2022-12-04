@@ -13,10 +13,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
 import com.example.home_book.model.Room;
+import com.example.home_book.model.order;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.ViewHolder>{
     Context context;
@@ -36,6 +39,8 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        DAO dao = new DAO(context);
+        List<order> list= dao.getOrder("select * from order_tb where status = 1");
         byte[] hinhanh = lisRoom.get(position).getIMG();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
 //        imageAVT.setImageBitmap(bitmap);
@@ -45,7 +50,7 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
         holder.location.setText(lisRoom.get(position).getLocation());
         holder.ratingBar.setRating(lisRoom.get(position).getRate());
         holder.beds.setText(lisRoom.get(position).getBeds()+"");
-        holder.status.setText(lisRoom.get(position).getStatus()+"");
+        holder.status.setText((lisRoom.get(position).getStatus()-list.size())+"");
         holder.people.setText(lisRoom.get(position).getNumber()+"");
     }
 

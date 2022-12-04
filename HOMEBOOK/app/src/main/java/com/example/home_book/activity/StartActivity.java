@@ -16,13 +16,24 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.model.Room;
+import com.example.home_book.model.order;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class StartActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
     ImageView logo;
     private Handler handler = new Handler();
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    Date date = new Date();
+    String currentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +43,9 @@ public class StartActivity extends AppCompatActivity {
         logo = findViewById(R.id.logo);
         progressBar = findViewById(R.id.progess);
 
-        ObjectAnimator ani1 = ObjectAnimator.ofFloat(logo,"alpha",0f,1f);
-        ObjectAnimator aniX = ObjectAnimator.ofFloat(logo,"scaleX",0f,2.5f);
-        ObjectAnimator aniY = ObjectAnimator.ofFloat(logo,"scaleY",0f,2.5f);
+        ObjectAnimator ani1 = ObjectAnimator.ofFloat(logo, "alpha", 0f, 1f);
+        ObjectAnimator aniX = ObjectAnimator.ofFloat(logo, "scaleX", 0f, 2.5f);
+        ObjectAnimator aniY = ObjectAnimator.ofFloat(logo, "scaleY", 0f, 2.5f);
         ani1.setDuration(1500);
         aniX.setDuration(1500);
         aniY.setDuration(1500);
@@ -47,16 +58,33 @@ public class StartActivity extends AppCompatActivity {
         aniprogress();
         SharedPreferences sharedPreferences = this.getSharedPreferences("User_File", MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("Email","");
-        edit.putString("Password","");
+        edit.putString("Email", "");
+        edit.putString("Password", "");
         edit.commit();
+        //
+//        currentDate = dateFormat.format(date);
+//        DAO dao = new DAO(this);
+//        List<order> orderList = dao.getOrder("select * from order_tb");
+//        //
+//        for (order x : orderList) {
+//            if (date.compareTo(x.getBooking_date()) >= 0 && date.compareTo(x.getReturn_date()) <= 0) {
+//                Room room =  dao.get1Room("select * from room_tb where id = ?", String.valueOf(x.getRoom_id()));
+//                //tại sao ??
+//                if(room.getStatus() >0){
+//                    int a = room.getStatus()-1;
+//                    room.setStatus(a);
+//                    Toast.makeText(this, ""+a, Toast.LENGTH_SHORT).show();
+//                    dao.UpdateRoom(room);
+//                }
+//            }
+//        }
     }
 
-    private void doStartProgressBar()  {
+    private void doStartProgressBar() {
         final int MAX = 100;
         this.progressBar.setMax(MAX);
 
-        Thread thread = new Thread(new Runnable()  {
+        Thread thread = new Thread(new Runnable() {
 
             @Override
             public void run() {
@@ -65,7 +93,7 @@ public class StartActivity extends AppCompatActivity {
 
                     }
                 });
-                for( int i =0; i < MAX; i++) {
+                for (int i = 0; i < MAX; i++) {
                     final int progress = i + 1;
 
                     // Do something (Download, Upload, Update database,..)
@@ -75,15 +103,15 @@ public class StartActivity extends AppCompatActivity {
                     handler.post(new Runnable() {
                         public void run() {
                             progressBar.setProgress(progress);
-                            if(progress == MAX)  {
-                                Toast.makeText(StartActivity.this,"Chào Mừng",Toast.LENGTH_SHORT).show();
+                            if (progress == MAX) {
+                                Toast.makeText(StartActivity.this, "Chào Mừng", Toast.LENGTH_SHORT).show();
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        startActivity(new Intent(StartActivity.this,MainActivity.class));
+                                        startActivity(new Intent(StartActivity.this, MainActivity.class));
                                         finish();
                                     }
-                                },2000);
+                                }, 2000);
                             }
                         }
                     });
@@ -92,21 +120,23 @@ public class StartActivity extends AppCompatActivity {
         });
         thread.start();
     }
-    public void aniprogress(){
+
+    public void aniprogress() {
 //        if(android.os.Build.VERSION.SDK_INT >= 11){
         // will update the "progress" propriety of seekbar until it reaches progress
-        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0,30000);
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 30000);
         animation.setDuration(3000); // 0.5 second
         animation.setInterpolator(new LinearInterpolator());
         animation.start();
-        CountDownTimer countDownTimer = new CountDownTimer(3000,1000) {
+        CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
             @Override
             public void onTick(long l) {
 
             }
+
             @Override
             public void onFinish() {
-                startActivity(new Intent(StartActivity.this,MainActivity.class));
+                startActivity(new Intent(StartActivity.this, MainActivity.class));
                 finish();
             }
         }.start();

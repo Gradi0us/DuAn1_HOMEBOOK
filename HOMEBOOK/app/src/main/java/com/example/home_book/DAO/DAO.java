@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.home_book.database.AppSQL;
 import com.example.home_book.model.Favourite;
+import com.example.home_book.model.DateCurrent;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.admin;
 import com.example.home_book.model.order;
@@ -219,7 +220,7 @@ public class DAO {
 //        return null;
 //    }
 
-    public List<Room> getRoom(String sql,String... args) {
+    public List<Room> getRoom(String sql, String... args) {
         List<Room> list = new ArrayList<>();
         Cursor c = db.rawQuery(sql, args);
         c.moveToFirst();
@@ -280,7 +281,7 @@ public class DAO {
         return list;
     }
 
-    public Room get1Room(String sql,String x){
+    public Room get1Room(String sql, String x) {
         List<Room> list = getRoom(sql, x);
         return list.get(0);
     }
@@ -446,7 +447,7 @@ public class DAO {
         Cursor c = db.rawQuery(sql, null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            Date ngayNhan = null , ngayTra = null;
+            Date ngayNhan = null, ngayTra = null;
             int id = c.getInt(0);
             int user_id = c.getInt(1);
             int number = c.getInt(2);
@@ -460,7 +461,8 @@ public class DAO {
             String gioTra = c.getString(6);
             int room_id = c.getInt(7);
             String note = c.getString(8);
-            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note);
+            int status = c.getInt(9);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note,status);
             list.add(x);
             c.moveToNext();
         }
@@ -478,7 +480,8 @@ public class DAO {
         value.put("time_checkout", x.getTime_checkout());
         value.put("room_id", x.getRoom_id());
         value.put("note", x.getNote());
-         long a= db.insert("order_tb", null, value);
+        value.put("status",x.getStatus());
+        long a = db.insert("order_tb", null, value);
         return a;
     }
 
@@ -492,14 +495,15 @@ public class DAO {
         value.put("time_checkout", x.getTime_checkout());
         value.put("room_id", x.getRoom_id());
         value.put("note", x.getNote());
+        value.put("status", x.getStatus());
         return db.update("order_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
 
     public void DeleteOrder(int ID) {
         db.delete("order_tb", "id=?", new String[]{String.valueOf(ID)});
     }
-    
-//    public user getUser_name1 (String email, String pass) {
+
+    //    public user getUser_name1 (String email, String pass) {
 //        List<user> list = new ArrayList<>();
 //        String sql = "SELECT * FROM user_tb WHERE email=? and password=?";
 //        db = appSQL.getReadableDatabase();
@@ -509,12 +513,12 @@ public class DAO {
 //        while (!c.isAfterLast()) {
 //            int id = c.getInt(0);
 //            int ava = c.getInt(1);
- //           String name = c.getString(2);
+    //           String name = c.getString(2);
 //            String Email = c.getString(3);
 //            String Pass = c.getString(4);
 //            int role = c.getInt(5);
 //            Date ngay = null;
- //           try {
+    //           try {
 //                ngay = format.parse(c.getString(6));
 //           } catch (ParseException e) {
 //               e.printStackTrace();
@@ -532,4 +536,48 @@ public class DAO {
 //        }
 //        return false;
 //    }
+    public long AddDateCurrent(DateCurrent current) {
+        ContentValues values = new ContentValues();
+        values.put("current", format.format(current.getDate()));
+        values.put("checkD", current.getCheck());
+        long a = db.insert("date_tb", null, values);
+        return a;
+    }
+
+    public long UpdateCurrent(DateCurrent current) {
+        ContentValues values = new ContentValues();
+        values.put("current", format.format(current.getDate()));
+        values.put("checkD", current.getCheck());
+        long a = db.update("date_tb", values, "id=?",new String[]{String.valueOf(current.getId())});
+        return a;
+    }
+
+    public List<DateCurrent> getAllCurrent(String sql) {
+        List<DateCurrent> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            Date dateCurrent = null;
+            int id = c.getInt(0);
+
+            try {
+                dateCurrent = format.parse(c.getString(1));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            int check = c.getInt(2);
+            DateCurrent current = new DateCurrent();
+            current.setId(id);
+            current.setDate(dateCurrent);
+            current.setCheck(check);
+            list.add(current);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+    }
+    public DateCurrent getCurrent(String sql){
+        List<DateCurrent> currents = getAllCurrent(sql);
+        return currents.get(0);
+    }
 }
