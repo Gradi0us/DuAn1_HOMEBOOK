@@ -73,6 +73,17 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame, new ForgetFragment())
+                        .commit();
+            }
+        });
+
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

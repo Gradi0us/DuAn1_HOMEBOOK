@@ -54,6 +54,16 @@ public class DAO {
         return false;
     }
 
+    public boolean checkEmail(String email) {
+        String sql = "SELECT * FROM user_tb WHERE email=?";
+        db = appSQL.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, new String[]{email});
+        if (cursor.getCount() != 0) {
+            return true;
+        }
+        return false;
+    }
+
     public admin get1Admin(String x, String y) {
         List<admin> list = new ArrayList<>();
         Cursor c = db.rawQuery("select * from adminstrator_tb WHERE username = ? and password = ?", new String[]{x,y});
