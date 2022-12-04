@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class Fragment3 extends Fragment {
 
     String name;
-    TextView textView;
+    TextView textView,moneyTxt;
     ImageView avatar;
 
     public Fragment3() {
@@ -55,6 +55,7 @@ public class Fragment3 extends Fragment {
 
         textView = v.findViewById(R.id.txtUsername1);
         avatar = v.findViewById(R.id.avatar);
+        moneyTxt = v.findViewById(R.id.txtMoney1);
 
         v.findViewById(R.id.regis).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +81,7 @@ public class Fragment3 extends Fragment {
 
         listViewUser.setVisibility(View.GONE);
         listViewAdmin.setVisibility(View.GONE);
+        moneyTxt.setVisibility(View.GONE);
 
         ArrayList<ListModelMenu> list1 = new ArrayList<>();
         ArrayList<ListModelMenu> list2 = new ArrayList<>();
@@ -101,12 +103,11 @@ public class Fragment3 extends Fragment {
             textView.setText(name);
             avatar.setImageResource(R.drawable.usermanage);
 
-
-
         }
 
         if (dao.checkLogin(email, pass)) {
             listViewUser.setVisibility(View.VISIBLE);
+            moneyTxt.setVisibility(View.VISIBLE);
             v.findViewById(R.id.regis).setVisibility(View.GONE);
             v.findViewById(R.id.login).setVisibility(View.GONE);
 
@@ -114,6 +115,7 @@ public class Fragment3 extends Fragment {
             user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             textView.setText(name);
+            moneyTxt.setText("Bạn đang có: " + x.getMoney()+"đ");
             if (x.getAvatar() == 0) {
                 avatar.setImageResource(R.drawable.usermanage);
             } else {
