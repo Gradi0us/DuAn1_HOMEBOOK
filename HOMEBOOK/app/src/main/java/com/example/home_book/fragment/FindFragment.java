@@ -231,21 +231,13 @@ public class FindFragment extends Fragment {
 //        recyclerView.setAdapter(homeBookApdater);
 //    }
     public void loadDaTa() {
-
-        ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
-
         DAO dao = new DAO(getActivity());
         List<order> listoder= dao.getOrder("select * from order_tb where status = 1");
-
         ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView1.setLayoutManager(linearLayoutManager1);
-
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
-        HomeBookApdater homeBookApdater1 = new HomeBookApdater(getContext(), listPopular, getActivity());
-
         ArrayList<Room> list1 = new ArrayList<>();
         for (Room x:list){
             if((x.getStatus()-listoder.size())!=0){
@@ -253,9 +245,8 @@ public class FindFragment extends Fragment {
             }
         }
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list1, getActivity());
-
         recyclerView.setAdapter(homeBookApdater);
-        recyclerView1.setAdapter(homeBookApdater1);
+        recyclerView1.setAdapter(homeBookApdater);
 
 
 
@@ -271,17 +262,16 @@ public class FindFragment extends Fragment {
                     toggle_apartment.setChecked(false);
                     toggle_homestays.setChecked(false);
 
-                    String sqlRoom = "select * from room_tb where category_name = 'Hotel'";
-                    ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
+                    String sqlRoom = "select * from room_tb where category_name = 'hotel'";
+
                     ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     recyclerView1.setLayoutManager(linearLayoutManager1);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
-                    HomeBookApdater homeBookApdater1 = new HomeBookApdater(getContext(), listPopular, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
-                    recyclerView1.setAdapter(homeBookApdater1);
+                    recyclerView1.setAdapter(homeBookApdater);
                 }else {
                     loadDaTa();
                 }
@@ -316,17 +306,16 @@ public class FindFragment extends Fragment {
                     toggle_hotel.setChecked(false);
                     toggle_homestays.setChecked(false);
 
-                    String sqlRoom = "select * from room_tb where category_name = 'Apartment'";
-                    ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
+                    String sqlRoom = "select * from room_tb where category_name = 'apartment'";
+
                     ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     recyclerView1.setLayoutManager(linearLayoutManager1);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
-                    HomeBookApdater homeBookApdater1 = new HomeBookApdater(getContext(), listPopular, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
-                    recyclerView1.setAdapter(homeBookApdater1);
+                    recyclerView1.setAdapter(homeBookApdater);
                 }else {
                     loadDaTa();
                 }
@@ -344,17 +333,16 @@ public class FindFragment extends Fragment {
                     toggle_hotel.setChecked(false);
                     toggle_apartment.setChecked(false);
 
-                    String sqlRoom = "select * from room_tb where category_name = 'Homestay'";
-                    ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
+                    String sqlRoom = "select * from room_tb where category_name = 'homestay'";
+
                     ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     recyclerView1.setLayoutManager(linearLayoutManager1);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
-                    HomeBookApdater homeBookApdater1 = new HomeBookApdater(getContext(), listPopular, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
-                    recyclerView1.setAdapter(homeBookApdater1);
+                    recyclerView1.setAdapter(homeBookApdater);
                 }else {
                     loadDaTa();
                 }

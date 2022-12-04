@@ -40,7 +40,7 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DAO dao = new DAO(context);
-        List<order> list= dao.getOrder("select * from order_tb where status = 1");
+        List<order> list= dao.getOrder("select * from order_tb where status = 1 and room_id ="+lisRoom.get(position).getId()+"");
         byte[] hinhanh = lisRoom.get(position).getIMG();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
 //        imageAVT.setImageBitmap(bitmap);

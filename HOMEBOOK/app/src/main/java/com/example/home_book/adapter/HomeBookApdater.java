@@ -99,9 +99,10 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
             tv_nameHomebook = itemView.findViewById(R.id.tv_name_homebook);
             tv_locationHomebook = itemView.findViewById(R.id.tv_location_homebook);
             img_homebook = itemView.findViewById(R.id.img_homebook);
+//            img_favoriteHomebook = itemView.findViewById(R.id.img_favorite_homebook);
             layoutitem = itemView.findViewById(R.id.layout_click);
             tvBeds=itemView.findViewById(R.id.tv_beds);
-
+//            tvPeople=itemView.findViewById(R.id.tv_people);
         }
     }
 
