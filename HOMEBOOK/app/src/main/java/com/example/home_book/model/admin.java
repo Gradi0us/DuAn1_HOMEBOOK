@@ -1,23 +1,16 @@
 package com.example.home_book.model;
 
 public class admin {
-    int id,money_reciever,avatar;
+    int money_reciever;
+    String username,password;
 
     public admin() {
     }
 
-    public admin(int id, int avatar, int money_reciever) {
-        this.id = id;
+    public admin(String username, String password,int money_reciever) {
         this.money_reciever = money_reciever;
-        this.avatar = avatar;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.username = username;
+        this.password = password;
     }
 
     public int getMoney_reciever() {
@@ -28,11 +21,19 @@ public class admin {
         this.money_reciever = money_reciever;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

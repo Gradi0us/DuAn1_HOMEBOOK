@@ -7,10 +7,42 @@ public class order {
     int id,user_id,number_people,room_id;
     Date booking_date,return_date;
     String time_checkin,time_checkout,note;
+    int status;
 
     public order() {
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public order(int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note, int status) {
+        this.user_id = user_id;
+        this.number_people = number_people;
+        this.room_id = room_id;
+        this.time_checkin = time_checkin;
+        this.time_checkout = time_checkout;
+        this.note = note;
+        this.booking_date = booking_date;
+        this.return_date = return_date;
+        this.status = status;
+    }
+    public order(int id, int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note,int status) {
+        this.id = id;
+        this.user_id = user_id;
+        this.number_people = number_people;
+        this.room_id = room_id;
+        this.time_checkin = time_checkin;
+        this.time_checkout = time_checkout;
+        this.note = note;
+        this.booking_date = booking_date;
+        this.return_date = return_date;
+        this.status = status;
+    }
     public order(int id, int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note) {
         this.id = id;
         this.user_id = user_id;

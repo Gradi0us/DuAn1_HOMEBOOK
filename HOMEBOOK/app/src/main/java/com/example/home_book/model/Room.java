@@ -12,7 +12,7 @@ public class Room {
     public Room() {
     }
 
- public Room(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG, int number) {
+ public Room(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
         this.rate = rate;
         this.beds = beds;
         this.status = status;
@@ -31,7 +31,7 @@ public class Room {
         this.number = number;
     }
 
-    public Room(int id, int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG,int number) {
+    public Room(int id, int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
         this.number = number;
         this.id = id;
         this.rate = rate;
