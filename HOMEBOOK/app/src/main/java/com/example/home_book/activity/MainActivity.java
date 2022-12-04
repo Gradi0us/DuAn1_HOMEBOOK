@@ -88,13 +88,18 @@ public class MainActivity extends AppCompatActivity {
 //        dao.AddRoom(x);
 
 //        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.twitter_icon);
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.twitter_icon);
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.drawable.khachsan2);
         Bitmap bitmap = bitmapDrawable.getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] IMG = stream.toByteArray();
+        BitmapDrawable bitmapDrawable2 = (BitmapDrawable) getDrawable(R.drawable.khachsan1);
+        Bitmap bitmap2 = bitmapDrawable.getBitmap();
+        ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
+        bitmap2.compress(Bitmap.CompressFormat.PNG, 100, stream2);
+        byte[] IMG2 = stream2.toByteArray();
 
-        BitmapDrawable bitmapDrawable1 = (BitmapDrawable) getDrawable(R.drawable.fb_icon);
+        BitmapDrawable bitmapDrawable1 = (BitmapDrawable) getDrawable(R.drawable.khachsan3);
         Bitmap bitmap1 = bitmapDrawable1.getBitmap();
         ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
         bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);
@@ -102,12 +107,14 @@ public class MainActivity extends AppCompatActivity {
 //        dao.InsertHinhAnh(new roomImage(0,IMG));
 
         List<Room> list = dao.getRoom("select * from room_tb",null);
-//        if(list.size()==0){
-//            dao.AddRoom(new Room(5,2,Integer.parseInt("1"),Integer.parseInt("500000"),false,true,false,true,false,true,"tung","true","Hotel","location",IMG,2));
-//
-//            dao.AddRoom(new Room(3,4,5,700000,false,true,true,true,true,true,"tung1","HIHI1","hoho1","HaNoi1",IMG1));
-//
-//        }
+        if(list.size()==0){
+            dao.AddRoom(new Room(3,3,5,700000,true,true,true,true,true,true,"tung1","Sheraton","Apartment","HaNoi",IMG1));
+
+            dao.AddRoom(new Room(4,4,5,800000,true,true,true,true,true,true,"tung1","Mường Thanh","Hotel","NhaTrang",IMG2));
+
+            dao.AddRoom(new Room(5,2,5,900000,true,true,true,true,true,true,"tung1","HomeBook","Homestay","TP.HCM",IMG));
+
+        }
 
         DAO dao = new DAO(this);
         currentDate = dateFormat.format(date);

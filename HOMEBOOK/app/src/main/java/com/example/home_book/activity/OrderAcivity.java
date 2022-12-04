@@ -143,7 +143,13 @@ public class OrderAcivity extends AppCompatActivity {
             buffet = room.isBuffet();
             minibar = room.isMinibar();
             tvLocation.setText(location);
-            tvBeds.setText(String.valueOf(beds));
+            switch (room.getBeds()){
+                case 0:tvBeds.setText("Phòng đơn");break;
+                case 1:tvBeds.setText("Phòng sinh đôi");break;
+                case 2:tvBeds.setText("Phòng đôi");break;
+                case 3:tvBeds.setText("Phòng ba");break;
+                case 4:tvBeds.setText("Phòng bốn");break;
+            }
             tvName.setText(name);
             ratingBar.setRating(rate);
             tvCategory.setText(category);

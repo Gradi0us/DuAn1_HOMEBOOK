@@ -54,10 +54,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             holder.tvName.setText(roomList.getName());
             holder.tvCost.setText(roomList.getCost()+"");
             holder.tvBeds.setText(roomList.getBeds()+"");
+            switch (roomList.getBeds()){
+                case 0:holder.tvBeds.setText("Phòng đơn");break;
+                case 1:holder.tvBeds.setText("Phòng sinh đôi");break;
+                case 2:holder.tvBeds.setText("Phòng đôi");break;
+                case 3:holder.tvBeds.setText("Phòng ba");break;
+                case 4:holder.tvBeds.setText("Phòng bốn");break;
+            }
             holder.tvDateCheckIn.setText(format.format(list.get(position).getBooking_date()));
             holder.tvDateCheckOut.setText(format.format(list.get(position).getReturn_date()));
             holder.ratingBar.setRating(roomList.getRate());
-            holder.tvPeople.setText(roomList.getNumber()+"");
+
             holder.tvCategory.setText(roomList.getCategory());
             holder.tvLocation.setText(roomList.getLocation());
         }
@@ -82,7 +89,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             tvLocation = itemView.findViewById(R.id.tv_location_homebook);
             ratingBar = itemView.findViewById(R.id.number_stars);
             imageView = itemView.findViewById(R.id.img_homebook);
-            tvPeople = itemView.findViewById(R.id.tv_people);
+
             tvCategory = itemView.findViewById(R.id.tv_category);
         }
     }

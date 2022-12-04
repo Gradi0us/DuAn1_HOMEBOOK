@@ -1,5 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
     android:layout_height="250dp">
 
     <LinearLayout
@@ -12,12 +14,15 @@
             android:layout_height="170dp">
 
             <ImageView
+                android:background="@drawable/khachsan1"
+                android:scaleType="fitXY"
                 android:id="@+id/img_homebook"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <LinearLayout
+                android:layout_marginLeft="10dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="273dp"
+
                 android:layout_marginBottom="61dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -28,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:text="name_hotel"
                     android:textSize="25dp"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <RatingBar
@@ -49,44 +55,33 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_bed_24" />
+                    android:src="@drawable/white_bed" />
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_beds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="X" />
-                <ImageView
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/black_people" />
-
                 <TextView
-                    android:id="@+id/tv_people"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="X" />
-
-                <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="X" />
+                    android:layout_marginLeft="20dp"
+                    android:text="Category" />
+
 
             </LinearLayout>
 
 
 
             <LinearLayout
-
+android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -96,9 +91,10 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_location_on_24" />
+                    android:src="@drawable/location" />
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_location_homebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -115,7 +111,7 @@
             android:layout_height="80dp"
           >
             <LinearLayout
-
+android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -130,8 +126,17 @@
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
                     android:text="Date" />
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:text=" /" />
+                <TextView
+                    android:textStyle="bold"
                     android:id="@+id/tv_datecheckout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
