@@ -112,15 +112,15 @@ public class FindFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 String timkiem = edtSearch.getText().toString().trim();
-                String sql = " SELECT * FROM room_tb where location like '%" + timkiem + "%'";
+                String sql = " SELECT * FROM room_tb where location like '%" + timkiem + "%' or fullname like '%" + timkiem + "%'";
                 if (!timkiem.isEmpty()) {
                     ArrayList<Room> list1 = (ArrayList<Room>) dao.getRoom(sql,null);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list1, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
                 } else {
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list2, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
@@ -249,18 +249,24 @@ public class FindFragment extends Fragment {
                 Log.d("TAG", "onCreateView: " + toggle_hotel);
                 boolean to = true;
                 if (toggle_hotel.isChecked() == true) {
-                    Toast.makeText(getContext(), "hotel", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "hotel", Toast.LENGTH_SHORT).show();
                     toggle_apartment.setChecked(false);
                     toggle_homestays.setChecked(false);
+
+                    String sqlRoom = "select * from room_tb where category_name = 'hotel'";
+
+                    ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                    recyclerView1.setLayoutManager(linearLayoutManager1);
+                    HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
+                    recyclerView.setAdapter(homeBookApdater);
+                    recyclerView1.setAdapter(homeBookApdater);
+                }else {
+                    loadDaTa();
                 }
-        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView1.setLayoutManager(linearLayoutManager1);
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
-        recyclerView.setAdapter(homeBookApdater);
-        recyclerView1.setAdapter(homeBookApdater);
+
 
 //                }
 
@@ -287,10 +293,11 @@ public class FindFragment extends Fragment {
                 Log.d("TAG", "onCreateView: " + toggle_hotel);
                 boolean to = true;
                 if(toggle_apartment.isChecked() == true){
-                    Toast.makeText(getContext(), "apartment", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "apartment", Toast.LENGTH_SHORT).show();
                     toggle_hotel.setChecked(false);
                     toggle_homestays.setChecked(false);
-                }
+
+                    String sqlRoom = "select * from room_tb where category_name = 'apartment'";
 
                     ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -300,11 +307,9 @@ public class FindFragment extends Fragment {
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
                     recyclerView1.setAdapter(homeBookApdater);
-//                if(toggle_homestays.isChecked() == true){
-//                    Toast.makeText(getContext(), "homestays", Toast.LENGTH_SHORT).show();
-//                    toggle_hotel.setChecked(false);
-//                    toggle_apartment.setChecked(false);
-//                }
+                }else {
+                    loadDaTa();
+                }
 
 
             }
@@ -315,10 +320,12 @@ public class FindFragment extends Fragment {
                 Log.d("TAG", "onCreateView: " + toggle_hotel);
                 boolean to = true;
                 if(toggle_homestays.isChecked() == true){
-                    Toast.makeText(getContext(), "homestays", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "homestays", Toast.LENGTH_SHORT).show();
                     toggle_hotel.setChecked(false);
                     toggle_apartment.setChecked(false);
-                }
+
+                    String sqlRoom = "select * from room_tb where category_name = 'homestay'";
+
                     ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -327,6 +334,10 @@ public class FindFragment extends Fragment {
                     HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
                     recyclerView.setAdapter(homeBookApdater);
                     recyclerView1.setAdapter(homeBookApdater);
+                }else {
+                    loadDaTa();
+                }
+
 
 
             }

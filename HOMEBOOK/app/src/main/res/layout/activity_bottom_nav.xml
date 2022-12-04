@@ -71,6 +71,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="350dp"
+            android:id="@+id/avaImg"
             android:src="@drawable/usermanage" />
     </RelativeLayout>
 

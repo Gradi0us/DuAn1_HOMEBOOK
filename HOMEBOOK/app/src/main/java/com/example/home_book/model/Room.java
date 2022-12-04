@@ -7,18 +7,7 @@ public class Room {
     String name;
     String category;
     String location;
-
-    public byte[] getIMG() {
-        return IMG;
-    }
-
-    public void setIMG(byte[] IMG) {
-        this.IMG = IMG;
-    }
-
     byte[] IMG;
-
-
 
     public Room() {
     }
@@ -189,5 +178,13 @@ public class Room {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public byte[] getIMG() {
+        return IMG;
+    }
+
+    public void setIMG(byte[] IMG) {
+        this.IMG = IMG;
     }
 }
