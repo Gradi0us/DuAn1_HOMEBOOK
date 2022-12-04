@@ -10,10 +10,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:hint="Location"
+            android:id="@+id/editLocation"
             style="@style/modifiedEditText"
-            android:inputType="textEmailAddress"
             android:maxLines="1"
             android:paddingVertical="10dp"
             android:layout_marginHorizontal="15dp"
@@ -56,34 +55,33 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:weightSum="6">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:id="@+id/editSoNguoi"
             android:hint="Số Người"
             style="@style/modifiedEditText"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             android:maxLines="1"
             android:paddingVertical="10dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="5dp"/>
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
 
-            android:hint="Số giường "
-            style="@style/modifiedEditText"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:paddingVertical="10dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="5dp"/>
+        <Spinner
+            android:id="@+id/loai_giuong"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+
         <Spinner
             android:id="@+id/spn_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
 
     </LinearLayout>
     <LinearLayout
@@ -103,7 +101,9 @@
             <EditText
                 android:layout_marginLeft="10dp"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/beginNgay"
+                android:editable="false"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginLeft="20dp"
@@ -116,7 +116,9 @@
             <EditText
                 android:layout_marginLeft="10dp"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/returnNgay"
+                android:editable="false"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -150,6 +152,7 @@
             android:textSize="18dp"
             android:textStyle="bold"
             android:text="Search"
+            android:id="@+id/searchDetailButton"
             android:layout_width="wrap_content"
             android:background="@drawable/login_button_bk"
             android:textColor="@color/white"
@@ -173,7 +176,8 @@
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerViewList"/>
     </LinearLayout>
 
 

@@ -59,6 +59,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             holder.ratingBar.setRating(roomList.getRate());
             holder.tvPeople.setText(roomList.getNumber()+"");
             holder.tvCategory.setText(roomList.getCategory());
+            holder.tvLocation.setText(roomList.getLocation());
         }
     }
 

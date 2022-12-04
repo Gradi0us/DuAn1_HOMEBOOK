@@ -163,34 +163,34 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Whereeeeeee"
+                        android:hint="Number of rooms"
                         android:inputType="textEmailAddress"
                         android:maxLines="3"
                         android:paddingVertical="10dp" />
-  <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Max people Allow"
-                    android:textColor="@color/gray"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
+<!--  <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:text="Max people Allow"-->
+<!--                    android:textColor="@color/gray"-->
+<!--                    android:textSize="25dp"-->
+<!--                    android:textStyle="bold" />-->
 
-                <com.google.android.material.textfield.TextInputLayout style="@style/parent">
+<!--                <com.google.android.material.textfield.TextInputLayout style="@style/parent">-->
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/modifiedEditText"
-                        android:id="@+id/edt_people"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="15dp"
-                        android:layout_marginVertical="5dp"
-                        android:hint="how MANY ?"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="3"
-                        android:paddingVertical="10dp" />
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        style="@style/modifiedEditText"-->
+<!--                        android:id="@+id/edt_people"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginHorizontal="15dp"-->
+<!--                        android:layout_marginVertical="5dp"-->
+<!--                        android:hint="how MANY ?"-->
+<!--                        android:inputType="textEmailAddress"-->
+<!--                        android:maxLines="3"-->
+<!--                        android:paddingVertical="10dp" />-->
 
-                </com.google.android.material.textfield.TextInputLayout>
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Can I oder"
+                        android:hint="Where"
                         android:inputType="textEmailAddress"
                         android:maxLines="3"
                         android:paddingVertical="10dp" />
