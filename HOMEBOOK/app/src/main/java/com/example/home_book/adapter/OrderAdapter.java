@@ -52,8 +52,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             holder.imageView.setImageBitmap(bitmap);
 //            holder.tvCategory.setText(roomList.getLocation());
             holder.tvName.setText(roomList.getName());
-            holder.tvCost.setText(roomList.getCost()+"");
-            holder.tvBeds.setText(roomList.getBeds()+"");
+
             switch (roomList.getBeds()){
                 case 0:holder.tvBeds.setText("Phòng đơn");break;
                 case 1:holder.tvBeds.setText("Phòng sinh đôi");break;
@@ -67,6 +66,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
             holder.tvCategory.setText(roomList.getCategory());
             holder.tvLocation.setText(roomList.getLocation());
+
+            long diff = list.get(position).getReturn_date().getTime() - list.get(position).getBooking_date().getTime();
+            int dayCount = (int) diff/(24 * 60 * 60 * 1000);
+
+            holder.tvCost.setText((roomList.getCost() * dayCount)+"");
         }
     }
 
