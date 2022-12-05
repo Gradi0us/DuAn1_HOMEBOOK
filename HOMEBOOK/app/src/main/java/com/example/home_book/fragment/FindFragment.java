@@ -63,7 +63,7 @@ import java.util.List;
 
 public class FindFragment extends Fragment {
     categories category;
-    ToggleButton toggle_hotel, toggle_homestays,toggle_apartment ;
+    ToggleButton toggle_hotel, toggle_homestays,toggle_apartment;
     static final float END_SCALE = 0.7f;
     ImageView menuIcon;
     LinearLayout contentView, linear, polay;
@@ -249,7 +249,7 @@ public class FindFragment extends Fragment {
         ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
    
         DAO dao = new DAO(getActivity());
-        List<order> listoder= dao.getOrder("select * from order_tb where status = 1");
+//        List<order> listoder= dao.getOrder("select * from order_tb where status = 1");
 
         ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -260,34 +260,20 @@ public class FindFragment extends Fragment {
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
         HomeBookApdater homeBookApdater1 = new HomeBookApdater(getContext(), listPopular, getActivity());
 
-        ArrayList<Room> list1 = new ArrayList<>();
-        for (Room x:list){
-            if((x.getStatus()-listoder.size())!=0){
-                list1.add(x);
-            }
-        }
-        HomeBookApdater homeBookApdater2 = new HomeBookApdater(getContext(), list1, getActivity());
-
-        recyclerView.setAdapter(homeBookApdater);
-        recyclerView.getRecycledViewPool();
-
-//        homeBookApdater.setHasStableIds(true);
-        recyclerView1.setAdapter(homeBookApdater1);
 //        ArrayList<Room> list1 = new ArrayList<>();
-//
-//
 //        for (Room x:list){
-//            listoder= dao.getOrder("select * from order_tb where status = 1 and room_id = "+x.getId()+"");
-//            if(listoder.size()!=0){
-//                if((x.getStatus()-listoder.size())!=0){
-//                    list1.add(x);
-//                }
+//            if((x.getStatus()-listoder.size())!=0){
+//                list1.add(x);
 //            }
 //        }
+//        HomeBookApdater homeBookApdater2 = new HomeBookApdater(getContext(), list1, getActivity());
 
-        HomeBookApdater homeBookApdater2 = new HomeBookApdater(getContext(), list, getActivity());
-        recyclerView.setAdapter(homeBookApdater2);
-        recyclerView1.setAdapter(homeBookApdater2);
+        recyclerView.setAdapter(homeBookApdater);
+        recyclerView1.setAdapter(homeBookApdater1);
+
+//        HomeBookApdater homeBookApdater2 = new HomeBookApdater(getContext(), list, getActivity());
+//        recyclerView.setAdapter(homeBookApdater2);
+//        recyclerView1.setAdapter(homeBookApdater2);
 
 
 

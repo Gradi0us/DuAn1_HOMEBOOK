@@ -130,7 +130,10 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
                         menuIcon.setVisibility(View.GONE);
                         layout.setVisibility(View.VISIBLE);
                         replaceFragment(fragment4);
-
+//                        Intent refresh = new Intent(BottomNavActivity.this, BottomNavActivity.class);
+//                        startActivity(refresh);
+//                        overridePendingTransition(0, 0);
+//                        finish();
                         break;
 
                     case R.id.Music:
