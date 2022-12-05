@@ -64,7 +64,7 @@ public class CartFragment extends Fragment {
         List<order> list = dao.getOrder("SELECT * FROM order_tb where user_id = "+id+"");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        OrderAdapter homeBookApdater = new OrderAdapter(getContext(), (ArrayList<order>) list);
+        OrderAdapter homeBookApdater = new OrderAdapter(getContext(), (ArrayList<order>) list,CartFragment.this);
         recyclerView.setAdapter(homeBookApdater);
     }
     private void Dialog(){
@@ -89,5 +89,14 @@ public class CartFragment extends Fragment {
 //            });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public void xoaDon(order x, int tien){
+        DAO dao = new DAO(getActivity());
+        dao.DeleteOrder(x.getId());
+        user user = dao.get1User("select * from user_tb where id = ?",x.getUser_id()+"");
+        int tienThemLai = tien - (tien*5/100);
+        user.setMoney(user.getMoney() + tienThemLai);
+        dao.UpdateUser(user);
     }
 }

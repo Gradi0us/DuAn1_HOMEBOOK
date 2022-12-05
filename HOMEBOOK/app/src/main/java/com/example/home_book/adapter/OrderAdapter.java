@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.fragment.CartFragment;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
+import com.example.home_book.model.user;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,12 +31,15 @@ import java.util.List;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     Context context;
     ArrayList<order> list;
+    CartFragment fragment;
+
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    int tienHoaDon;
 
-
-    public OrderAdapter(Context context, ArrayList<order> list) {
+    public OrderAdapter(Context context, ArrayList<order> list, CartFragment fragment) {
         this.context = context;
         this.list = list;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -59,14 +65,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
             holder.tvCost.setText(roomList.getCost() + "");
             holder.tvBeds.setText(roomList.getBeds() + "");
-            holder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Dialog();
-                }
-            });
-
-         
 
             switch (roomList.getBeds()){
                 case 0:holder.tvBeds.setText("Phòng đơn");break;
@@ -85,23 +83,29 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
             long diff = list.get(position).getReturn_date().getTime() - list.get(position).getBooking_date().getTime();
             int dayCount = (int) diff/(24 * 60 * 60 * 1000);
+            tienHoaDon = roomList.getCost() * dayCount;
 
-            holder.tvCost.setText((roomList.getCost() * dayCount)+"");
+            holder.tvCost.setText(tienHoaDon+"");
+
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Dialog(list.get(position),tienHoaDon);
+                }
+            });
         }
     }
 
-    private void Dialog() {
+    private void Dialog(order x,int tien) {
+        Log.d("tien",tien+"");
+
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Are you sure about that ?");
         builder.setCancelable(true);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                DAO dao = new DAO(context);
-                List<order> orderList = dao.getOrder("select * from order_tb");
-                for (order x : orderList) {
-                    dao.DeleteOrder(x.getId());
-                }
+                fragment.xoaDon(x,tien);
             }
         });
         builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
