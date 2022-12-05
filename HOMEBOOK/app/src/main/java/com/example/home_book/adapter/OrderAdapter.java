@@ -99,7 +99,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             });
 
             Date date = new Date();
-            if(date.after(list.get(i).getBooking_date()) || date.equals(list.get(i).getBooking_date()) && date.before(list.get(i).getReturn_date())){
+            if(date.after(list.get(i).getBooking_date()) && date.before(list.get(i).getReturn_date()) || date.equals(list.get(i).getBooking_date())){
                 holder.button.setText("Đang nhận phòng");
                 holder.button.setBackgroundResource(R.drawable.type_red);
                 holder.button.setEnabled(false);
