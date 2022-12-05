@@ -67,13 +67,13 @@ public class DAO {
 
     public admin get1Admin(String x, String y) {
         List<admin> list = new ArrayList<>();
-        Cursor c = db.rawQuery("select * from adminstrator_tb WHERE username = ? and password = ?", new String[]{x,y});
+        Cursor c = db.rawQuery("select * from adminstrator_tb WHERE username = ? and password = ?", new String[]{x, y});
         c.moveToFirst();
         while (!c.isAfterLast()) {
             String user = c.getString(0);
             String pass = c.getString(1);
             int money = c.getInt(2);
-            admin ad = new admin(user,pass,money);
+            admin ad = new admin(user, pass, money);
             list.add(ad);
             c.moveToNext();
         }
@@ -130,9 +130,9 @@ public class DAO {
         return list;
     }
 
-    public Favourite get1Favourite(String room , String user) {
+    public Favourite get1Favourite(String room, String user) {
         List<Favourite> list = new ArrayList<>();
-        Cursor c = db.rawQuery("select * from room_favourite_tb where room_id = ? and user_id = ?", new String[]{room,user});
+        Cursor c = db.rawQuery("select * from room_favourite_tb where room_id = ? and user_id = ?", new String[]{room, user});
         c.moveToFirst();
         while (!c.isAfterLast()) {
             int id = c.getInt(0);
@@ -146,9 +146,9 @@ public class DAO {
         return list.get(0);
     }
 
-    public boolean checkFavourite(String room , String user) {
+    public boolean checkFavourite(String room, String user) {
         db = appSQL.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from room_favourite_tb where room_id = ? and user_id = ?", new String[]{room,user});
+        Cursor cursor = db.rawQuery("select * from room_favourite_tb where room_id = ? and user_id = ?", new String[]{room, user});
         if (cursor.getCount() != 0) {
             return true;
         }
@@ -251,6 +251,7 @@ public class DAO {
             int miniBar = c.getInt(9);
             int Pool = c.getInt(10);
             int Buffet = c.getInt(11);
+            int collaborate_id = c.getInt(16);
 //            int people = c.getInt(c.getColumnIndex("number_people"));
             boolean wifi, ac, buffet, pool, minibar, parking;
             if (wf == 0) {
@@ -284,7 +285,7 @@ public class DAO {
                 parking = true;
             }
             byte[] IMG = c.getBlob(14);
-            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG);
+            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG,collaborate_id);
             list.add(x);
             c.moveToNext();
         }
@@ -296,6 +297,7 @@ public class DAO {
         List<Room> list = getRoom(sql, x);
         return list.get(0);
     }
+
 
 //    public Room getRoom2(String sql, String... args) {
 //        List<Room> list = new ArrayList<>();
@@ -371,6 +373,7 @@ public class DAO {
         value.put("cost", x.getCost());
         value.put("status", x.getStatus());
         value.put("image", x.getIMG());
+        value.put("collaborate_id",x.getCollaborate_id());
         if (x.isWifi() == false) {
             value.put("wifi", 0);
         } else {
@@ -416,6 +419,7 @@ public class DAO {
         value.put("cost", x.getCost());
         value.put("status", x.getStatus());
         value.put("image", x.getIMG());
+        value.put("collaborate_id",x.getCollaborate_id());
         if (x.isWifi() == false) {
             value.put("wifi", 0);
         } else {
@@ -473,7 +477,63 @@ public class DAO {
             int room_id = c.getInt(7);
             String note = c.getString(8);
             int status = c.getInt(9);
-            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note,status);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+    }
+
+    public order getOrder1(String sql, String... args) {
+        List<order> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, args);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            Date ngayNhan = null, ngayTra = null;
+            int id = c.getInt(0);
+            int user_id = c.getInt(1);
+            int number = c.getInt(2);
+            try {
+                ngayNhan = format.parse(c.getString(3));
+                ngayTra = format.parse(c.getString(4));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String gioNhan = c.getString(5);
+            String gioTra = c.getString(6);
+            int room_id = c.getInt(7);
+            String note = c.getString(8);
+            int status = c.getInt(9);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list.get(0);
+    }
+
+    public List<order> getNhieuOrder(String sql, String... args) {
+        List<order> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, args);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            Date ngayNhan = null, ngayTra = null;
+            int id = c.getInt(0);
+            int user_id = c.getInt(1);
+            int number = c.getInt(2);
+            try {
+                ngayNhan = format.parse(c.getString(3));
+                ngayTra = format.parse(c.getString(4));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String gioNhan = c.getString(5);
+            String gioTra = c.getString(6);
+            int room_id = c.getInt(7);
+            String note = c.getString(8);
+            int status = c.getInt(9);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status);
             list.add(x);
             c.moveToNext();
         }
@@ -491,7 +551,7 @@ public class DAO {
         value.put("time_checkout", x.getTime_checkout());
         value.put("room_id", x.getRoom_id());
         value.put("note", x.getNote());
-        value.put("status",x.getStatus());
+        value.put("status", x.getStatus());
         long a = db.insert("order_tb", null, value);
         return a;
     }
@@ -559,7 +619,7 @@ public class DAO {
         ContentValues values = new ContentValues();
         values.put("current", format.format(current.getDate()));
         values.put("checkD", current.getCheck());
-        long a = db.update("date_tb", values, "id=?",new String[]{String.valueOf(current.getId())});
+        long a = db.update("date_tb", values, "id=?", new String[]{String.valueOf(current.getId())});
         return a;
     }
 
@@ -587,20 +647,21 @@ public class DAO {
         c.close();
         return list;
     }
-    public DateCurrent getCurrent(String sql){
+
+    public DateCurrent getCurrent(String sql) {
         List<DateCurrent> currents = getAllCurrent(sql);
         return currents.get(0);
     }
 
     @SuppressLint("Range")
-    public int getDoanhThu(String tuNgay, String denNgay){
-        String sqlDoanhThu="SELECT SUM(cost) as doanhThu FROM room_tb INNER JOIN order_tb WHERE order_tb.booking_date BETWEEN ? AND ?";
-        List<Integer> list=new ArrayList<>();
-        Cursor c=db.rawQuery(sqlDoanhThu,new String[]{tuNgay,denNgay});
-        while (c.moveToNext()){
+    public int getDoanhThu(String tuNgay, String denNgay) {
+        String sqlDoanhThu = "SELECT SUM(cost) as doanhThu FROM room_tb INNER JOIN order_tb WHERE order_tb.booking_date BETWEEN ? AND ?";
+        List<Integer> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{tuNgay, denNgay});
+        while (c.moveToNext()) {
             try {
                 list.add(Integer.parseInt(c.getString(c.getColumnIndex("doanhThu"))));
-            }catch (Exception e){
+            } catch (Exception e) {
                 list.add(0);
             }
         }

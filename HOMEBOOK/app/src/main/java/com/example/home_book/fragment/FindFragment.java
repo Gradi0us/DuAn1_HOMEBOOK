@@ -28,6 +28,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -62,11 +63,12 @@ import java.util.List;
 
 public class FindFragment extends Fragment {
     categories category;
-    ToggleButton toggle_hotel, toggle_homestays,toggle_apartment ;
+    ToggleButton toggle_hotel, toggle_homestays,toggle_apartment;
     static final float END_SCALE = 0.7f;
     ImageView menuIcon;
     LinearLayout contentView, linear, polay;
     RelativeLayout visual1, visual2, visual3, visual4;
+    FrameLayout layout;
     Boolean checkLogin;
     ArrayList<Room> list;
     TextView txtUsername;
@@ -93,12 +95,12 @@ public class FindFragment extends Fragment {
 
         edtSearch = view.findViewById(R.id.edt_search);
         linear = view.findViewById(R.id.linear);
+        layout = view.findViewById(R.id.layout_click);
         polay = view.findViewById(R.id.poLay);
 //        toolbar = view.findViewById(R.id.toolbar);
 
         dao = new DAO(getContext());
         ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
-//        ArrayList<Room> list2 = (ArrayList<Room>) dao.getRoom2();
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -131,10 +133,19 @@ public class FindFragment extends Fragment {
 
         loadDaTa();
         FilterHome();
-
+//        list = (ArrayList<Room>) dao.getRoom("select*from room_tb",null);
+//        for(int i=0;i<list.size();i++){
+//            check(i);
+//        }
         return view;
     }
-
+//public void check( int position){
+//
+//    List<order> listoder= dao.getOrder("select * from order_tb where status = 1 and room_id = "+list.get(position).getId()+"");
+//    if(list.get(position).getStatus()-listoder.size()==0){
+//        layout.setVisibility(View.GONE);
+//    }
+//}
     //Navigation Drawer Functions
 //    private void naviagtionDrawer() {
 //
@@ -230,32 +241,28 @@ public class FindFragment extends Fragment {
 //        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(),list,list1);
 //        recyclerView.setAdapter(homeBookApdater);
 //    }
+
     public void loadDaTa() {
+        DAO dao = new DAO(getActivity());
 
         ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
 
-        DAO dao = new DAO(getActivity());
-        List<order> listoder= dao.getOrder("select * from order_tb where status = 1");
-
         ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView1.setLayoutManager(linearLayoutManager1);
 
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list, getActivity());
         HomeBookApdater homeBookApdater1 = new HomeBookApdater(getContext(), listPopular, getActivity());
 
-        ArrayList<Room> list1 = new ArrayList<>();
-        for (Room x:list){
-            if((x.getStatus()-listoder.size())!=0){
-                list1.add(x);
-            }
-        }
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list1, getActivity());
 
         recyclerView.setAdapter(homeBookApdater);
         recyclerView1.setAdapter(homeBookApdater1);
+
 
 
 
@@ -270,7 +277,6 @@ public class FindFragment extends Fragment {
 //                    Toast.makeText(getContext(), "hotel", Toast.LENGTH_SHORT).show();
                     toggle_apartment.setChecked(false);
                     toggle_homestays.setChecked(false);
-
                     String sqlRoom = "select * from room_tb where category_name = 'Hotel'";
                     ArrayList<Room> listPopular = (ArrayList<Room>) dao.getRoom("select * from room_tb where rate = '5'",null);
                     ArrayList<Room> list = (ArrayList<Room>) dao.getRoom(sqlRoom,null);

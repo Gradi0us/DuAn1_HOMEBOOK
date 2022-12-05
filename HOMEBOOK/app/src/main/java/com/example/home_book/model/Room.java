@@ -1,7 +1,7 @@
 package com.example.home_book.model;
 
 public class Room {
-    int id, rate, beds, status, cost, number;
+    int id, rate, beds, status, cost, number,collaborate_id;
     boolean wifi,ac,buffet,parking,pool,minibar;
     String note;
     String name;
@@ -12,7 +12,7 @@ public class Room {
     public Room() {
     }
 
- public Room(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
+ public Room(int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG, int collaborate_id) {
         this.rate = rate;
         this.beds = beds;
         this.status = status;
@@ -28,10 +28,10 @@ public class Room {
         this.category = category;
         this.location = location;
         this.IMG = IMG;
-        this.number = number;
+        this.collaborate_id = collaborate_id;
     }
 
-    public Room(int id, int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG) {
+    public Room(int id, int rate, int beds, int status, int cost, boolean wifi, boolean ac, boolean buffet, boolean parking, boolean pool, boolean minibar, String note, String name, String category, String location,byte[] IMG,int collaborate_id) {
         this.number = number;
         this.id = id;
         this.rate = rate;
@@ -49,6 +49,7 @@ public class Room {
         this.category = category;
         this.location = location;
         this.IMG = IMG;
+        this.collaborate_id = collaborate_id;
     }
 
     public int getId() {
@@ -91,6 +92,13 @@ public class Room {
         this.cost = cost;
     }
 
+    public int getCollaborate_id() {
+        return collaborate_id;
+    }
+
+    public void setCollaborate_id(int collaborate_id) {
+        this.collaborate_id = collaborate_id;
+    }
 
     public boolean isWifi() {
         return wifi;
