@@ -132,13 +132,13 @@ public class MainActivity extends AppCompatActivity {
         BitmapDrawable bitmapDrawable7 = (BitmapDrawable) getDrawable(R.drawable.khachsan8);
         Bitmap bitmap7 = bitmapDrawable7.getBitmap();
         ByteArrayOutputStream stream7 = new ByteArrayOutputStream();
-        bitmap7.compress(Bitmap.CompressFormat.PNG, 100, stream6);
+        bitmap7.compress(Bitmap.CompressFormat.PNG, 100, stream7);
         byte[] IMG7 = stream7.toByteArray();
 
         BitmapDrawable bitmapDrawable8 = (BitmapDrawable) getDrawable(R.drawable.khachsan9);
         Bitmap bitmap8 = bitmapDrawable8.getBitmap();
         ByteArrayOutputStream stream8 = new ByteArrayOutputStream();
-        bitmap8.compress(Bitmap.CompressFormat.PNG, 100, stream6);
+        bitmap8.compress(Bitmap.CompressFormat.PNG, 100, stream8);
         byte[] IMG8 = stream8.toByteArray();
 
 

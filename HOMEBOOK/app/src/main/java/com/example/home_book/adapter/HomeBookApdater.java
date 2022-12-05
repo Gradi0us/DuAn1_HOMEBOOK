@@ -48,70 +48,71 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
     //tung dau r
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        DAO dao = new DAO(context);
-//        List<order> listoder= dao.getOrder("select * from order_tb where status = 1 and room_id = "+listRoom.get(position).getId()+"");
-//        //
-//        if(listRoom.get(position).getStatus()-listoder.size()!=0){
-//            holder.tv_nameHomebook.setText(listRoom.get(position).getName());
-//            String name = listRoom.get(position).getName();
-//            holder.tv_locationHomebook.setText(listRoom.get(position).getLocation());
-//            byte[] hinhanh = listRoom.get(position).getIMG();
-//            Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
-////        imageAVT.setImageBitmap(bitmap);
-//            holder.img_homebook.setImageBitmap(bitmap);
-//            switch (listRoom.get(position).getBeds()){
-//                case 0:holder.tvBeds.setText("Phòng đơn");break;
-//                case 1:holder.tvBeds.setText("Phòng sinh đôi");break;
-//                case 2:holder.tvBeds.setText("Phòng đôi");break;
-//                case 3:holder.tvBeds.setText("Phòng ba");break;
-//                case 4:holder.tvBeds.setText("Phòng bốn");break;
-//            }
-//            holder.layoutitem.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    onClickGoToDeTail(listRoom.get(holder.getAdapterPosition()), activity);
-//                }
-//            });
-//        }
-//        else {
-//            listRoom.add(new Room());
-//            listRoom.remove(listRoom.get(position));
-//        }
-
-        holder.tv_nameHomebook.setText(listRoom.get(position).getName());
-        String name = listRoom.get(position).getName();
-        holder.tv_locationHomebook.setText(listRoom.get(position).getLocation());
-        byte[] hinhanh = listRoom.get(position).getIMG();
-        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
-
-
-        holder.img_homebook.setImageBitmap(bitmap);
-
-        switch (listRoom.get(position).getBeds()) {
-            case 0:
-                holder.tvBeds.setText("Phòng đơn");
-                break;
-            case 1:
-                holder.tvBeds.setText("Phòng sinh đôi");
-                break;
-            case 2:
-                holder.tvBeds.setText("Phòng đôi");
-                break;
-            case 3:
-                holder.tvBeds.setText("Phòng ba");
-                break;
-            case 4:
-                holder.tvBeds.setText("Phòng bốn");
-                break;
-        }
-
-        holder.layoutitem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickGoToDeTail(listRoom.get(holder.getAdapterPosition()), activity);
+        DAO dao = new DAO(context);
+        List<order> listoder= dao.getOrder("select * from order_tb where status  > 0 and room_id = "+listRoom.get(position).getId()+"");
+        //
+        if(listRoom.get(position).getStatus()-listoder.size()>0){
+            holder.tv_nameHomebook.setText(listRoom.get(position).getName());
+            String name = listRoom.get(position).getName();
+            holder.tv_locationHomebook.setText(listRoom.get(position).getLocation());
+            byte[] hinhanh = listRoom.get(position).getIMG();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
+//        imageAVT.setImageBitmap(bitmap);
+            holder.img_homebook.setImageBitmap(bitmap);
+            switch (listRoom.get(position).getBeds()){
+                case 0:holder.tvBeds.setText("Phòng đơn");break;
+                case 1:holder.tvBeds.setText("Phòng sinh đôi");break;
+                case 2:holder.tvBeds.setText("Phòng đôi");break;
+                case 3:holder.tvBeds.setText("Phòng ba");break;
+                case 4:holder.tvBeds.setText("Phòng bốn");break;
             }
-        });
-        check(holder, position);
+            holder.layoutitem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickGoToDeTail(listRoom.get(holder.getAdapterPosition()), activity);
+                }
+            });
+        }
+//        else {
+//
+//
+//            listRoom.remove(holder.getAdapterPosition());
+//        }
+//
+//        holder.tv_nameHomebook.setText(listRoom.get(position).getName());
+//        String name = listRoom.get(position).getName();
+//        holder.tv_locationHomebook.setText(listRoom.get(position).getLocation());
+//        byte[] hinhanh = listRoom.get(position).getIMG();
+//        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
+//
+//
+//        holder.img_homebook.setImageBitmap(bitmap);
+//
+//        switch (listRoom.get(position).getBeds()) {
+//            case 0:
+//                holder.tvBeds.setText("Phòng đơn");
+//                break;
+//            case 1:
+//                holder.tvBeds.setText("Phòng sinh đôi");
+//                break;
+//            case 2:
+//                holder.tvBeds.setText("Phòng đôi");
+//                break;
+//            case 3:
+//                holder.tvBeds.setText("Phòng ba");
+//                break;
+//            case 4:
+//                holder.tvBeds.setText("Phòng bốn");
+//                break;
+//        }
+//
+//        holder.layoutitem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onClickGoToDeTail(listRoom.get(holder.getAdapterPosition()), activity);
+//            }
+//        });
+//        check(holder, position);
     }
 
     @Override
