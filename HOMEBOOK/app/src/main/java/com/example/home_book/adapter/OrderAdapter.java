@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ import com.example.home_book.model.user;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
@@ -51,6 +54,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        int i = position;
         DAO dao = new DAO(context);
         int id = list.get(position).getRoom_id();
 //        Room roomList =  dao.getRoom2("select * from room_tb where id = "+id+"",null);
@@ -90,9 +94,25 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Dialog(list.get(position),tienHoaDon);
+                    Dialog(list.get(i),tienHoaDon);
                 }
             });
+
+            Date date = new Date();
+            if(date.after(list.get(i).getBooking_date()) || date.equals(list.get(i).getBooking_date()) && date.before(list.get(i).getReturn_date())){
+                holder.button.setText("Đang nhận phòng");
+                holder.button.setBackgroundResource(R.drawable.type_red);
+                holder.button.setEnabled(false);
+                list.get(i).setStatus(1);
+                dao.UpdateOrder(list.get(i));
+                fragment.congThemTien(list.get(i),tienHoaDon);
+            }
+            if(date.after(list.get(i).getReturn_date()) || date.equals(list.get(i).getReturn_date()) && date.after(list.get(i).getBooking_date())){
+                holder.button.setText("Đã trả phòng");
+                holder.button.setBackgroundResource(R.drawable.type_green);
+                holder.button.setEnabled(false);
+                list.get(i).setStatus(2);
+            }
         }
     }
 
@@ -105,7 +125,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                fragment.xoaDon(x,tien);
+//                fragment.xoaDon(x,tien);
+                DAO dao = new DAO(context);
+                dao.DeleteOrder(x.getId());
+                fragment.loadData();
             }
         });
         builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {

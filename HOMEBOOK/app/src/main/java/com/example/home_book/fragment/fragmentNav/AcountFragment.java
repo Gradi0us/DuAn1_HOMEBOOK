@@ -1,7 +1,10 @@
 package com.example.home_book.fragment.fragmentNav;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -27,10 +30,12 @@ import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.activity.BottomNavActivity;
 import com.example.home_book.adapter.HomeBookApdater;
 import com.example.home_book.adapter.ListMarketAdapter;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.roomImage;
+import com.example.home_book.model.user;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -48,7 +53,7 @@ public class AcountFragment extends Fragment {
     int REQUESTS_CODE_FOLDER = 123;
     int RESULT_OK = 123;
     ImageView imgAvtHome;
-    int myRating;
+    int myRating,ctv_id;
     DAO dao;
     byte[] IMG;
     boolean wifi,ac,minibar,parking,pool,buffet;
@@ -66,6 +71,16 @@ public class AcountFragment extends Fragment {
         View v = inflater.inflate(R.layout.layout_upload_fragment, container, false);
         recyclerView = v.findViewById(R.id.recycles_market);
         dao = new DAO(getContext());
+
+        SharedPreferences sP = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
+        String email = sP.getString("Email", "");
+        String pass = sP.getString("Password", "");
+
+        if (dao.checkLogin(email, pass)) {
+            user x = dao.get1User("select * from user_tb where email = ?", email);
+            ctv_id = x.getId();
+        }
+
         FloatingActionButton floatingActionButton = v.findViewById(R.id.btn_add);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,7 +200,7 @@ public class AcountFragment extends Fragment {
                         location.length()<=0){
                     Toast.makeText(getActivity(), "Không để trống", Toast.LENGTH_SHORT).show();
                 }else{
-                    dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG));
+                    dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG,ctv_id));
                     alertDialog.cancel();
                     loadDaTa();
                 }
