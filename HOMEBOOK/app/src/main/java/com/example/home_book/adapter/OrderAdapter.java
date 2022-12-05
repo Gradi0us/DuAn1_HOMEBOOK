@@ -94,20 +94,24 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Dialog(list.get(position),tienHoaDon);
+                    Dialog(list.get(i),tienHoaDon);
                 }
             });
 
             Date date = new Date();
-            if(date.after(list.get(position).getBooking_date()) || date.equals(list.get(position).getBooking_date()) && date.before(list.get(position).getReturn_date())){
+            if(date.after(list.get(i).getBooking_date()) || date.equals(list.get(i).getBooking_date()) && date.before(list.get(i).getReturn_date())){
                 holder.button.setText("Đang nhận phòng");
                 holder.button.setBackgroundResource(R.drawable.type_red);
                 holder.button.setEnabled(false);
+                list.get(i).setStatus(1);
+                dao.UpdateOrder(list.get(i));
+                fragment.congThemTien(list.get(i),tienHoaDon);
             }
-            if(date.after(list.get(position).getReturn_date()) || date.equals(list.get(position).getReturn_date()) && date.after(list.get(position).getBooking_date())){
+            if(date.after(list.get(i).getReturn_date()) || date.equals(list.get(i).getReturn_date()) && date.after(list.get(i).getBooking_date())){
                 holder.button.setText("Đã trả phòng");
                 holder.button.setBackgroundResource(R.drawable.type_green);
                 holder.button.setEnabled(false);
+                list.get(i).setStatus(2);
             }
         }
     }
@@ -124,6 +128,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 //                fragment.xoaDon(x,tien);
                 DAO dao = new DAO(context);
                 dao.DeleteOrder(x.getId());
+                fragment.loadData();
             }
         });
         builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
