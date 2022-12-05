@@ -173,6 +173,11 @@ public class RegisterFragment extends Fragment {
 //                    list.add(x);
                     Toast.makeText(getActivity(),"Add completed",Toast.LENGTH_SHORT).show();
 //                    list = (ArrayList<user>) dao.getUser("select * from user_tb",null);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame,new LoginFragment())
+                            .commit();
                 }
             }
         });

@@ -1,5 +1,6 @@
 package com.example.home_book.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -296,6 +297,7 @@ public class DAO {
         return list.get(0);
     }
 
+
 //    public Room getRoom2(String sql, String... args) {
 //        List<Room> list = new ArrayList<>();
 //        Room x = null;
@@ -455,6 +457,59 @@ public class DAO {
     public List<order> getOrder(String sql) {
         List<order> list = new ArrayList<>();
         Cursor c = db.rawQuery(sql, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            Date ngayNhan = null, ngayTra = null;
+            int id = c.getInt(0);
+            int user_id = c.getInt(1);
+            int number = c.getInt(2);
+            try {
+                ngayNhan = format.parse(c.getString(3));
+                ngayTra = format.parse(c.getString(4));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String gioNhan = c.getString(5);
+            String gioTra = c.getString(6);
+            int room_id = c.getInt(7);
+            String note = c.getString(8);
+            int status = c.getInt(9);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note,status);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+    }  public order getOrder1(String sql,String ... args) {
+        List<order> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, args);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            Date ngayNhan = null, ngayTra = null;
+            int id = c.getInt(0);
+            int user_id = c.getInt(1);
+            int number = c.getInt(2);
+            try {
+                ngayNhan = format.parse(c.getString(3));
+                ngayTra = format.parse(c.getString(4));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String gioNhan = c.getString(5);
+            String gioTra = c.getString(6);
+            int room_id = c.getInt(7);
+            String note = c.getString(8);
+            int status = c.getInt(9);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note,status);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list.get(0);
+    }
+    public List<order> getNhieuOrder(String sql, String... args) {
+        List<order> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, args);
         c.moveToFirst();
         while (!c.isAfterLast()) {
             Date ngayNhan = null, ngayTra = null;
@@ -644,5 +699,20 @@ public class DAO {
     public DateCurrent getCurrent(String sql){
         List<DateCurrent> currents = getAllCurrent(sql);
         return currents.get(0);
+    }
+
+    @SuppressLint("Range")
+    public int getDoanhThu(String tuNgay, String denNgay){
+        String sqlDoanhThu="SELECT SUM(cost) as doanhThu FROM room_tb INNER JOIN order_tb WHERE order_tb.booking_date BETWEEN ? AND ?";
+        List<Integer> list=new ArrayList<>();
+        Cursor c=db.rawQuery(sqlDoanhThu,new String[]{tuNgay,denNgay});
+        while (c.moveToNext()){
+            try {
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("doanhThu"))));
+            }catch (Exception e){
+                list.add(0);
+            }
+        }
+        return list.get(0);
     }
 }

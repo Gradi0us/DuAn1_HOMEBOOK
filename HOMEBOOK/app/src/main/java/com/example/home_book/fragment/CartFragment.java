@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
@@ -30,6 +31,7 @@ import java.util.List;
 public class CartFragment extends Fragment {
     RecyclerView recyclerView;
     DAO dao;
+    Button button;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,8 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_cart, container, false);
+
+
         recyclerView = v.findViewById(R.id.ds_orders);
         dao = new DAO(getActivity());
         SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
