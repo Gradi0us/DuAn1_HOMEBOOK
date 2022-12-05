@@ -9,11 +9,11 @@
         android:icon="@drawable/rate"/>
 
     <item android:id="@+id/mRate"
-        android:title="Rate"
+        android:title="Revenue"
         android:icon="@drawable/graph"/>
 
     <item android:id="@+id/mSetting"
-        android:title="Seting"
+        android:title="Booking list"
         android:icon="@drawable/setting"/>
 
     <item
