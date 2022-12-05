@@ -144,16 +144,16 @@
             android:layout_height="wrap_content"
             android:text="Details"
             android:textColor="@color/gray"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_note_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:text="Aloalo"
-            android:textSize="17dp" />
+            android:textSize="12dp" />
     </RelativeLayout>
 
     <RelativeLayout
