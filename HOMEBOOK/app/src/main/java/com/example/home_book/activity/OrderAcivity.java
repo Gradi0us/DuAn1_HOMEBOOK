@@ -422,7 +422,7 @@ public class OrderAcivity extends AppCompatActivity {
                             int dayCount = (int) diff/(24 * 60 * 60 * 1000);
 
                             if(x1.getMoney() >= (cost*dayCount)){
-                                dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0));
+                                dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0,(cost*dayCount)));
                                 Toast.makeText(this, "Order thành công. Cọc 5% tiền.", Toast.LENGTH_SHORT).show();
                                 x1.setMoney(x1.getMoney()-((cost*dayCount)*5/100));
                                 dao.UpdateUser(x1);

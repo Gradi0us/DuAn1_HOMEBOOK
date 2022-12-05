@@ -477,7 +477,8 @@ public class DAO {
             int room_id = c.getInt(7);
             String note = c.getString(8);
             int status = c.getInt(9);
-            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status);
+            int money = c.getInt(10);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status,money);
             list.add(x);
             c.moveToNext();
         }
@@ -505,7 +506,8 @@ public class DAO {
             int room_id = c.getInt(7);
             String note = c.getString(8);
             int status = c.getInt(9);
-            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status);
+            int money = c.getInt(10);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status,money);
             list.add(x);
             c.moveToNext();
         }
@@ -533,7 +535,8 @@ public class DAO {
             int room_id = c.getInt(7);
             String note = c.getString(8);
             int status = c.getInt(9);
-            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status);
+            int money = c.getInt(10);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status,money);
             list.add(x);
             c.moveToNext();
         }
@@ -552,6 +555,7 @@ public class DAO {
         value.put("room_id", x.getRoom_id());
         value.put("note", x.getNote());
         value.put("status", x.getStatus());
+        value.put("money", x.getMoney());
         long a = db.insert("order_tb", null, value);
         return a;
     }
@@ -567,6 +571,7 @@ public class DAO {
         value.put("room_id", x.getRoom_id());
         value.put("note", x.getNote());
         value.put("status", x.getStatus());
+        value.put("money", x.getMoney());
         return db.update("order_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
 
