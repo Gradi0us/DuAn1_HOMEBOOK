@@ -40,7 +40,7 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DAO dao = new DAO(context);
-        List<order> list= dao.getOrder("select * from order_tb where status = 1");
+        List<order> list= dao.getOrder("select * from order_tb where status = 1 and room_id ="+lisRoom.get(position).getId()+"");
         byte[] hinhanh = lisRoom.get(position).getIMG();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
 //        imageAVT.setImageBitmap(bitmap);
@@ -50,6 +50,13 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
         holder.location.setText(lisRoom.get(position).getLocation());
         holder.ratingBar.setRating(lisRoom.get(position).getRate());
         holder.beds.setText(lisRoom.get(position).getBeds()+"");
+        switch (lisRoom.get(position).getBeds()){
+            case 0:holder.beds.setText("Phòng đơn");break;
+            case 1:holder.beds.setText("Phòng sinh đôi");break;
+            case 2:holder.beds.setText("Phòng đôi");break;
+            case 3:holder.beds.setText("Phòng ba");break;
+            case 4:holder.beds.setText("Phòng bốn");break;
+        }
         holder.status.setText((lisRoom.get(position).getStatus()-list.size())+"");
 
     }

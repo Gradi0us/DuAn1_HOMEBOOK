@@ -23,6 +23,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
@@ -177,9 +178,17 @@ public class AcountFragment extends Fragment {
                 String status = edtstatus.getText().toString().trim();
                 String location = edtlocation.getText().toString().trim();
                 myRating = (int) ratingBara.getRating();
-                dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG));
-                alertDialog.cancel();
-                loadDaTa();
+                if (name.length() <= 0 ||
+                        hoteldetail.length()<=0 ||
+                        cost.length()<=0 ||
+                        status.length()<=0 ||
+                        location.length()<=0){
+                    Toast.makeText(getActivity(), "Không để trống", Toast.LENGTH_SHORT).show();
+                }else{
+                    dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG));
+                    alertDialog.cancel();
+                    loadDaTa();
+                }
             }
         });
 

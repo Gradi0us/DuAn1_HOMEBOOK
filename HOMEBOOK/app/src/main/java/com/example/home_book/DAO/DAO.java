@@ -1,5 +1,6 @@
 package com.example.home_book.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -296,6 +297,7 @@ public class DAO {
         return list.get(0);
     }
 
+
 //    public Room getRoom2(String sql, String... args) {
 //        List<Room> list = new ArrayList<>();
 //        Room x = null;
@@ -478,9 +480,7 @@ public class DAO {
         }
         c.close();
         return list;
-    }
-
-    public order getOrder1(String sql,String ... args) {
+    }  public order getOrder1(String sql,String ... args) {
         List<order> list = new ArrayList<>();
         Cursor c = db.rawQuery(sql, args);
         c.moveToFirst();
@@ -534,7 +534,6 @@ public class DAO {
         c.close();
         return list;
     }
-
     public long AddOrder(order x) {
         ContentValues value = new ContentValues();
         value.put("user_id", x.getUser_id());
@@ -644,5 +643,20 @@ public class DAO {
     public DateCurrent getCurrent(String sql){
         List<DateCurrent> currents = getAllCurrent(sql);
         return currents.get(0);
+    }
+
+    @SuppressLint("Range")
+    public int getDoanhThu(String tuNgay, String denNgay){
+        String sqlDoanhThu="SELECT SUM(cost) as doanhThu FROM room_tb INNER JOIN order_tb WHERE order_tb.booking_date BETWEEN ? AND ?";
+        List<Integer> list=new ArrayList<>();
+        Cursor c=db.rawQuery(sqlDoanhThu,new String[]{tuNgay,denNgay});
+        while (c.moveToNext()){
+            try {
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("doanhThu"))));
+            }catch (Exception e){
+                list.add(0);
+            }
+        }
+        return list.get(0);
     }
 }

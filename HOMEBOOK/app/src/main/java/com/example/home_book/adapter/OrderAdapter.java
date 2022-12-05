@@ -1,9 +1,10 @@
 package com.example.home_book.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,27 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.fragment.CartFragment;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
-import com.example.home_book.model.user;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     Context context;
     ArrayList<order> list;
-    CartFragment fragment;
-
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-    int tienHoaDon;
 
-    public OrderAdapter(Context context, ArrayList<order> list, CartFragment fragment) {
+
+    public OrderAdapter(Context context, ArrayList<order> list) {
         this.context = context;
         this.list = list;
-        this.fragment = fragment;
     }
 
     @NonNull
@@ -50,10 +46,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DAO dao = new DAO(context);
-        int id =  list.get(position).getRoom_id();
+        int id = list.get(position).getRoom_id();
 //        Room roomList =  dao.getRoom2("select * from room_tb where id = "+id+"",null);
         Room roomList = dao.get1Room("select * from room_tb where id = ?", String.valueOf(id));
-        if(roomList!=null){
+        if (roomList != null) {
             byte[] hinhanh = roomList.getIMG();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
 //        imageAVT.setImageBitmap(bitmap);
@@ -63,6 +59,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
             holder.tvCost.setText(roomList.getCost() + "");
             holder.tvBeds.setText(roomList.getBeds() + "");
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Dialog();
+                }
+            });
+
+         
 
             switch (roomList.getBeds()){
                 case 0:holder.tvBeds.setText("Phòng đơn");break;
@@ -78,30 +82,26 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             holder.tvCategory.setText(roomList.getCategory());
             holder.tvLocation.setText(roomList.getLocation());
 
+
             long diff = list.get(position).getReturn_date().getTime() - list.get(position).getBooking_date().getTime();
             int dayCount = (int) diff/(24 * 60 * 60 * 1000);
-            tienHoaDon = roomList.getCost() * dayCount;
 
-            holder.tvCost.setText(tienHoaDon+"");
-
-            holder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Dialog(list.get(position),tienHoaDon);
-                }
-            });
+            holder.tvCost.setText((roomList.getCost() * dayCount)+"");
         }
     }
 
-    private void Dialog(order x,int tien) {
-        Log.d("tien",tien+"");
+    private void Dialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Are you sure about that ?");
         builder.setCancelable(true);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                fragment.xoaDon(x,tien);
+                DAO dao = new DAO(context);
+                List<order> orderList = dao.getOrder("select * from order_tb");
+                for (order x : orderList) {
+                    dao.DeleteOrder(x.getId());
+                }
             }
         });
         builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
