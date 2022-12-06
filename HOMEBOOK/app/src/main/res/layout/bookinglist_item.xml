@@ -1,13 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
     android:layout_marginTop="10dp"
-    android:layout_height="220dp">
+    android:layout_marginBottom="10dp">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,10 +26,12 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/khachsan1"
                     android:scaleType="fitXY" />
+
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -44,6 +48,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_name_user"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -53,6 +58,7 @@
                             android:textSize="15dp"
                             android:textStyle="bold" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -69,6 +75,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_contact"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -79,7 +86,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
-
 
 
                 <LinearLayout
@@ -137,14 +143,14 @@
                         android:src="@drawable/location" />
 
                     <TextView
-                        android:textStyle="bold"
-                        android:layout_gravity="center"
                         android:id="@+id/tv_location_homebook"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:text="Vị trí"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -176,7 +182,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="Date"
-                            android:textSize="16dp"
+                            android:textSize="12dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -193,7 +199,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="Date"
-                            android:textSize="16dp"
+                            android:textSize="12dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -217,14 +223,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="X"
+                            android:layout_gravity="center"
                             android:textColor="@color/white"
-                            android:textSize="16dp" />
+                            android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/tv_category"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
+                            android:textSize="12dp"
+                            android:layout_gravity="center"
                             android:text="Category"
                             android:textColor="@color/white" />
                     </LinearLayout>
@@ -252,11 +261,11 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
                             android:text="Receipts:"
-                            android:textSize="20dp"
+                            android:textSize="18dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -265,7 +274,7 @@ android:layout_marginLeft="10dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="0000"
-                            android:textSize="15dp"
+                            android:textSize="12dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -273,7 +282,7 @@ android:layout_marginLeft="10dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="VND"
-                            android:textSize="20dp"
+                            android:textSize="18dp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -288,7 +297,7 @@ android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:text="Applicationfee:"
+                                android:text="Appfee:"
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold" />
@@ -322,8 +331,6 @@ android:layout_marginLeft="10dp"
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
 
 
 </RelativeLayout>

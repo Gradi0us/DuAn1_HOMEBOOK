@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
             }else if(dataFo2.compareTo(x.getReturn_date())>0){
                 x.setStatus(2);
                 dao.UpdateOrder(x);
-                dao.DeleteOrder(x.getId());
+//                dao.DeleteOrder(x.getId());
                 Toast.makeText(this, " hết hạn", Toast.LENGTH_SHORT).show();
             }else if(dataFo2.compareTo(x.getBooking_date()) >= 0 && dataFo2.compareTo(x.getReturn_date()) <= 0){
                 x.setStatus(1);
