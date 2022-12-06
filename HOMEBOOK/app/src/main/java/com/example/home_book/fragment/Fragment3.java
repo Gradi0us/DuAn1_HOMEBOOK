@@ -125,10 +125,11 @@ public class Fragment3 extends Fragment {
 
         //add vao listview
         list1.add(new ListModelMenu(R.drawable.setting_item, "Quản lý tài khoản"));
+        list1.add(new ListModelMenu(R.drawable.add_money, "Nạp tiền"));
         list1.add(new ListModelMenu(R.drawable.changepass_item, "Đổi mật khẩu"));
         list1.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
         list1.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
-        list1.add(new ListModelMenu(R.drawable.language, "Ngôn ngữ"));
+//        list1.add(new ListModelMenu(R.drawable.language, "Ngôn ngữ"));
         list1.add(new ListModelMenu(R.drawable.exit, "Đăng xuất"));
 
         ListMenuAdapter adapter = new ListMenuAdapter(getContext(), R.layout.item_menu, list1);
@@ -144,21 +145,26 @@ public class Fragment3 extends Fragment {
                             .replace(R.id.frame, new FragmentTaiKhoan())
                             .commit();
                 }
-                if (i == 1) {
+                if (i == 2) {
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentManager
                             .beginTransaction()
                             .replace(R.id.frame, new ChangePassFragment())
                             .commit();
                 }
-                if (i == 2) {
+                if (i == 3) {
                     startActivity(new Intent(getContext(), LienHeActivity.class));
                 }
-                if (i == 3) {
+                if (i == 4) {
                     startActivity(new Intent(getContext(), ThongTin.class));
                 }
-                if (i == 4) {
-                    startActivity(new Intent(getContext(), ChangeLanguage.class));
+                if (i == 1) {
+//                    startActivity(new Intent(getContext(), ChangeLanguage.class));
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame, new Fragment2())
+                            .commit();
                 }
                 if (i == 5) {
                     SharedPreferences.Editor edit = sP.edit();
@@ -174,7 +180,7 @@ public class Fragment3 extends Fragment {
 
         //listview admin
 
-        list2.add(new ListModelMenu(R.drawable.add_money, "Thêm Tiền"));
+        list2.add(new ListModelMenu(R.drawable.add_money, "Xác nhận nạp tiền"));
         list2.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
         list2.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
         list2.add(new ListModelMenu(R.drawable.exit, "Đăng xuất"));
@@ -192,6 +198,7 @@ public class Fragment3 extends Fragment {
                                 .beginTransaction()
                                 .replace(R.id.frame, new MoneyAdminFragment())
                                 .commit();
+                        break;
                     }
                     case 1:startActivity(new Intent(getContext(), LienHeActivity.class));break;
                     case 2:startActivity(new Intent(getContext(), ThongTin.class));break;
