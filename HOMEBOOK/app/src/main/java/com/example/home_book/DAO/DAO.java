@@ -165,6 +165,9 @@ public class DAO {
     public void DeleteFavourite(int ID) {
         db.delete("room_favourite_tb", "id=?", new String[]{String.valueOf(ID)});
     }
+    public void DeleteFavourite2(int ID) {
+        db.delete("room_favourite_tb", "room_id=?", new String[]{String.valueOf(ID)});
+    }
 
     public List<user> getUser(String sql, String... args) {
         List<user> list = new ArrayList<>();
