@@ -660,13 +660,27 @@ public class DAO {
     }
 
     @SuppressLint("Range")
-    public int getDoanhThu(String tuNgay, String denNgay) {
-        String sqlDoanhThu = "SELECT SUM(money) as doanhThu FROM order_tb WHERE booking_date BETWEEN ? AND ?";
+    public int getDoanhThuPhong(String x,String tuNgay, String denNgay) {
+        String sqlDoanhThu = "SELECT SUM(money) as doanhThu FROM order_tb a inner JOIN room_tb b on a.room_id = b.id WHERE b.collaborate_id = ? and a.booking_date BETWEEN ? AND ?";
         List<Integer> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{tuNgay, denNgay});
+        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{x,tuNgay, denNgay});
         while (c.moveToNext()) {
             try {
                 list.add(Integer.parseInt(c.getString(c.getColumnIndex("doanhThu"))));
+            } catch (Exception e) {
+                list.add(0);
+            }
+        }
+        return list.get(0);
+    }
+
+    public int getDoanhThuCaNhan(String x,String tuNgay, String denNgay) {
+        String sqlDoanhThu = "SELECT SUM((money-money*5/100)*1/100) as doanhThu FROM order_tb a inner JOIN room_tb b on a.room_id = b.id WHERE b.collaborate_id = ? and a.booking_date BETWEEN ? AND ?";
+        List<Integer> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{x,tuNgay, denNgay});
+        while (c.moveToNext()) {
+            try {
+                list.add(Integer.parseInt(c.getString(0)));
             } catch (Exception e) {
                 list.add(0);
             }
