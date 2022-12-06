@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.home_book.database.AppSQL;
 import com.example.home_book.model.Favourite;
 import com.example.home_book.model.DateCurrent;
+import com.example.home_book.model.NapThe;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.admin;
 import com.example.home_book.model.order;
@@ -660,7 +661,7 @@ public class DAO {
 
     @SuppressLint("Range")
     public int getDoanhThu(String tuNgay, String denNgay) {
-        String sqlDoanhThu = "SELECT SUM(cost) as doanhThu FROM room_tb INNER JOIN order_tb WHERE order_tb.booking_date BETWEEN ? AND ?";
+        String sqlDoanhThu = "SELECT SUM(money) as doanhThu FROM order_tb WHERE booking_date BETWEEN ? AND ?";
         List<Integer> list = new ArrayList<>();
         Cursor c = db.rawQuery(sqlDoanhThu, new String[]{tuNgay, denNgay});
         while (c.moveToNext()) {
@@ -671,5 +672,48 @@ public class DAO {
             }
         }
         return list.get(0);
+    }
+
+    public List<NapThe> getNapThe(String sql, String... args) {
+        List<NapThe> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, args);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int id = c.getInt(0);
+            int user_id = c.getInt(1);
+            int money = c.getInt(2);
+            int status = c.getInt(3);
+            NapThe x = new NapThe(id, user_id,money,status);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+    }
+
+    public NapThe get1NapThe(String sql, String x) {
+        List<NapThe> list = getNapThe(sql,x);
+        return list.get(0);
+    }
+
+    public long AddNapThe(NapThe money){
+        ContentValues value = new ContentValues();
+        value.put("user_id",money.getUser_id());
+        value.put("money",money.getMoney());
+        value.put("status",money.getStatus());
+        return db.insert("napthe_tb",null, value);
+    }
+
+    public long UpdateNapThe(NapThe x){
+        ContentValues value = new ContentValues();
+        value.put("id",x.getId());
+        value.put("user_id",x.getUser_id());
+        value.put("money",x.getMoney());
+        value.put("status",x.getStatus());
+        return db.update("napthe_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
+    }
+
+    public void DeleteNapThe(int ID) {
+        db.delete("napthe_tb", "id=?", new String[]{String.valueOf(ID)});
     }
 }
