@@ -309,7 +309,8 @@
                                 android:text="0000"
                                 android:textColor="@color/white"
                                 android:textSize="13dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:id="@+id/txtAppFee"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
