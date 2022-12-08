@@ -229,6 +229,10 @@ public class DAO {
         return db.update("user_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
 
+    public void DeleteUser(int ID) {
+        db.delete("user_tb", "id=?", new String[]{String.valueOf(ID)});
+    }
+
 //    public ArrayList<Room> Search(String location1) {
 //        String sql = " SELECT * FROM room_tb where location like '%" + location1 + "%'";
 //        getRoom(sql);
