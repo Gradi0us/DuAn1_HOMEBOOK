@@ -25,6 +25,7 @@ import com.example.home_book.menu.FragmentTaiKhoan;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
 import com.example.home_book.menu.Money;
+import com.example.home_book.menu.MoneyAdminFragment;
 import com.example.home_book.model.admin;
 import com.example.home_book.model.user;
 import com.example.home_book.menu.ThongTin;
@@ -35,11 +36,8 @@ import java.util.ArrayList;
 
 public class Fragment3 extends Fragment {
 
-    ListView lv;
     String name;
-    TextView textView;
-    ImageView userImage;
-    Toolbar toolbar;
+    TextView textView,moneyTxt;
     ImageView avatar;
 
     public Fragment3() {
@@ -49,13 +47,15 @@ public class Fragment3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_3, container, false);
 
-        ListView listView = v.findViewById(R.id.lvmenu);
+        ListView listViewUser = v.findViewById(R.id.lvmenuUser);
+        ListView listViewAdmin = v.findViewById(R.id.lvmenuAdmin);
 
         textView = v.findViewById(R.id.txtUsername1);
         avatar = v.findViewById(R.id.avatar);
+        moneyTxt = v.findViewById(R.id.txtMoney1);
 
         v.findViewById(R.id.regis).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +79,12 @@ public class Fragment3 extends Fragment {
             }
         });
 
-        ArrayList<ListModelMenu> list = new ArrayList<>();
+        listViewUser.setVisibility(View.GONE);
+        listViewAdmin.setVisibility(View.GONE);
+        moneyTxt.setVisibility(View.GONE);
+
+        ArrayList<ListModelMenu> list1 = new ArrayList<>();
+        ArrayList<ListModelMenu> list2 = new ArrayList<>();
         SharedPreferences sP = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
         String email = sP.getString("Email", "");
         String pass = sP.getString("Password", "");
@@ -88,7 +93,7 @@ public class Fragment3 extends Fragment {
 
         DAO dao = new DAO(getContext());
         if (dao.checkAdmin(userAd, passAd)) {
-            listView.setVisibility(View.VISIBLE);
+            listViewAdmin.setVisibility(View.VISIBLE);
             v.findViewById(R.id.regis).setVisibility(View.GONE);
             v.findViewById(R.id.login).setVisibility(View.GONE);
 
@@ -98,12 +103,11 @@ public class Fragment3 extends Fragment {
             textView.setText(name);
             avatar.setImageResource(R.drawable.usermanage);
 
-
-
         }
 
         if (dao.checkLogin(email, pass)) {
-            listView.setVisibility(View.VISIBLE);
+            listViewUser.setVisibility(View.VISIBLE);
+            moneyTxt.setVisibility(View.VISIBLE);
             v.findViewById(R.id.regis).setVisibility(View.GONE);
             v.findViewById(R.id.login).setVisibility(View.GONE);
 
@@ -111,28 +115,27 @@ public class Fragment3 extends Fragment {
             user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             textView.setText(name);
+            moneyTxt.setText("Bạn đang có: " + x.getMoney()+"đ");
             if (x.getAvatar() == 0) {
                 avatar.setImageResource(R.drawable.usermanage);
             } else {
                 avatar.setImageResource(x.getAvatar());
             }
-
-        } else {
-            listView.setVisibility(View.GONE);
         }
+
         //add vao listview
-        list.add(new ListModelMenu(R.drawable.setting_item, "Quản lý tài khoản"));
-        list.add(new ListModelMenu(R.drawable.changepass_item, "Đổi mật khẩu"));
-        list.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
-        list.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
-        list.add(new ListModelMenu(R.drawable.language, "Ngôn ngữ"));
-        list.add(new ListModelMenu(R.drawable.add_money, "Thêm Tiền"));
-        list.add(new ListModelMenu(R.drawable.exit, "Thoát ứng dụng"));
+        list1.add(new ListModelMenu(R.drawable.setting_item, "Quản lý tài khoản"));
+        list1.add(new ListModelMenu(R.drawable.add_money, "Nạp tiền"));
+        list1.add(new ListModelMenu(R.drawable.changepass_item, "Đổi mật khẩu"));
+        list1.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
+        list1.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
+//        list1.add(new ListModelMenu(R.drawable.language, "Ngôn ngữ"));
+        list1.add(new ListModelMenu(R.drawable.exit, "Đăng xuất"));
 
-        ListMenuAdapter adapter = new ListMenuAdapter(getContext(), R.layout.item_menu, list);
-        listView.setAdapter(adapter);
+        ListMenuAdapter adapter = new ListMenuAdapter(getContext(), R.layout.item_menu, list1);
+        listViewUser.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
@@ -142,33 +145,73 @@ public class Fragment3 extends Fragment {
                             .replace(R.id.frame, new FragmentTaiKhoan())
                             .commit();
                 }
-                if (i == 1) {
+                if (i == 2) {
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentManager
                             .beginTransaction()
                             .replace(R.id.frame, new ChangePassFragment())
                             .commit();
                 }
-                if (i == 2) {
+                if (i == 3) {
                     startActivity(new Intent(getContext(), LienHeActivity.class));
                 }
-                if (i == 3) {
+                if (i == 4) {
                     startActivity(new Intent(getContext(), ThongTin.class));
                 }
-                if (i == 4) {
-                    startActivity(new Intent(getContext(), ChangeLanguage.class));
+                if (i == 1) {
+//                    startActivity(new Intent(getContext(), ChangeLanguage.class));
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame, new Fragment2())
+                            .commit();
                 }
                 if (i == 5) {
-                    startActivity(new Intent(getContext(), Money.class));
-                }
-                if (i == 6) {
-                    System.exit(0);
+                    SharedPreferences.Editor edit = sP.edit();
+                    edit.putString("Email", "");
+                    edit.putString("Password", "");
+                    edit.commit();
+                    getActivity().finish();
                 }
 
 
             }
         });
 
+        //listview admin
+
+        list2.add(new ListModelMenu(R.drawable.add_money, "Xác nhận nạp tiền"));
+        list2.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
+        list2.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
+        list2.add(new ListModelMenu(R.drawable.exit, "Đăng xuất"));
+
+        ListMenuAdapter adapter2 = new ListMenuAdapter(getContext(), R.layout.item_menu, list2);
+        listViewAdmin.setAdapter(adapter2);
+
+        listViewAdmin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:{
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager
+                                .beginTransaction()
+                                .replace(R.id.frame, new MoneyAdminFragment())
+                                .commit();
+                        break;
+                    }
+                    case 1:startActivity(new Intent(getContext(), LienHeActivity.class));break;
+                    case 2:startActivity(new Intent(getContext(), ThongTin.class));break;
+                    case 3:{
+                        SharedPreferences.Editor edit = sP.edit();
+                        edit.putString("UserAdmin", "");
+                        edit.putString("PassAdmin", "");
+                        edit.commit();
+                        getActivity().finish();
+                    }
+                }
+            }
+        });
 
         return v;
     }

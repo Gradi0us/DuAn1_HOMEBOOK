@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
+    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
+    android:id="@+id/layout_click"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center"
     android:layout_height="200dp">
     <LinearLayout
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
 
         android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
+
         android:gravity="center"
         android:orientation="vertical">
 
@@ -18,6 +22,17 @@
 
             android:layout_height="match_parent">
 
+
+
+
+
+
+            <ImageView
+                android:id="@+id/img_HomeBook"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/khachsan2" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,7 +44,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_bed_24" />
+                    android:src="@drawable/white_bed" />
 
                 <TextView
                     android:id="@+id/tv_beds"
@@ -37,33 +52,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="X"
+                    android:textColor="@color/white"
                     android:textSize="16dp"
                     android:textStyle="bold" />
-                <ImageView
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/black_people" />
 
-                <TextView
-                    android:id="@+id/tv_people"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="X"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
             </LinearLayout>
-
-
-
-
-            <ImageView
-                android:id="@+id/img_HomeBook"
-                android:layout_width="400dp"
-                android:layout_height="200dp"
-
-                android:src="@drawable/ic_baseline_house_24" />
             <LinearLayout
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="@dimen/edt_btn"
@@ -72,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_Name"
                     style="@style/item_size"
                     android:text="Hotel_name" />
@@ -95,6 +89,7 @@
                 android:src="@drawable/location" />
 
             <TextView
+                android:textColor="@color/white"
                 android:id="@+id/tv_vitri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,10 +111,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category:"
+                    android:textColor="@color/white"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <TextView
+                <TextView android:textColor="@color/white"
+
                     android:id="@+id/tv_Type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,7 +136,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Status"
+                    android:text="Status" android:textColor="@color/white"
+
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -149,6 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="X"
+                    android:textColor="@color/white"
                     android:textSize="16dp"
                     android:textStyle="bold" />
             </LinearLayout>

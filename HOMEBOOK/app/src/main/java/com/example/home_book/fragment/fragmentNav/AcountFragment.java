@@ -1,7 +1,10 @@
 package com.example.home_book.fragment.fragmentNav;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -23,13 +26,16 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.activity.BottomNavActivity;
 import com.example.home_book.adapter.HomeBookApdater;
 import com.example.home_book.adapter.ListMarketAdapter;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.roomImage;
+import com.example.home_book.model.user;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -47,7 +53,7 @@ public class AcountFragment extends Fragment {
     int REQUESTS_CODE_FOLDER = 123;
     int RESULT_OK = 123;
     ImageView imgAvtHome;
-    int myRating;
+    int myRating,ctv_id;
     DAO dao;
     byte[] IMG;
     boolean wifi,ac,minibar,parking,pool,buffet;
@@ -65,6 +71,16 @@ public class AcountFragment extends Fragment {
         View v = inflater.inflate(R.layout.layout_upload_fragment, container, false);
         recyclerView = v.findViewById(R.id.recycles_market);
         dao = new DAO(getContext());
+
+        SharedPreferences sP = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
+        String email = sP.getString("Email", "");
+        String pass = sP.getString("Password", "");
+
+        if (dao.checkLogin(email, pass)) {
+            user x = dao.get1User("select * from user_tb where email = ?", email);
+            ctv_id = x.getId();
+        }
+
         FloatingActionButton floatingActionButton = v.findViewById(R.id.btn_add);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +103,7 @@ public class AcountFragment extends Fragment {
         TextInputEditText edtcost = view.findViewById(R.id.edt_cost);
         TextInputEditText edtstatus = view.findViewById(R.id.edt_status);
         TextInputEditText edtlocation = view.findViewById(R.id.edt_location);
-        TextInputEditText edtpeople = view.findViewById(R.id.edt_people);
+//        TextInputEditText edtpeople = view.findViewById(R.id.edt_people);
         ImageView imgAddimage = view.findViewById(R.id.img_addimage);
         imgAvtHome = view.findViewById(R.id.img_avthome);
         RatingBar ratingBara = view.findViewById(R.id.star_homebook);
@@ -110,9 +126,9 @@ public class AcountFragment extends Fragment {
         ArrayAdapter adapterBed = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, bed);
         spnbeds.setAdapter(adapterBed);
         ArrayList<String> category = new ArrayList<>();
-        category.add("hotel");
-        category.add("homestay");
-        category.add("apartment");
+        category.add("Hotel");
+        category.add("Homestay");
+        category.add("Apartment");
         ArrayAdapter adapterCategory = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, category);
         spncategory.setAdapter(adapterCategory);
         imgAddimage.setOnClickListener(new View.OnClickListener() {
@@ -168,18 +184,26 @@ public class AcountFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int beds = (int) spnbeds.getSelectedItemPosition();
+                int beds = spnbeds.getSelectedItemPosition();
                 String category = (String) spncategory.getSelectedItem();
                 String name = edtname.getText().toString().trim();
                 String hoteldetail = edthoteldetail.getText().toString().trim();
                 String cost = edtcost.getText().toString().trim();
-                String people = edtpeople.getText().toString().trim();
+//                String people = edtpeople.getText().toString().trim();
                 String status = edtstatus.getText().toString().trim();
                 String location = edtlocation.getText().toString().trim();
                 myRating = (int) ratingBara.getRating();
-                dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG));
-                alertDialog.cancel();
-                loadDaTa();
+                if (name.length() <= 0 ||
+                        hoteldetail.length()<=0 ||
+                        cost.length()<=0 ||
+                        status.length()<=0 ||
+                        location.length()<=0){
+                    Toast.makeText(getActivity(), "Không để trống", Toast.LENGTH_SHORT).show();
+                }else{
+                    dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG,ctv_id));
+                    alertDialog.cancel();
+                    loadDaTa();
+                }
             }
         });
 
@@ -227,7 +251,7 @@ public class AcountFragment extends Fragment {
 //        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom2();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        ListMarketAdapter homeBookApdater = new ListMarketAdapter(getContext(),list);
+        ListMarketAdapter homeBookApdater = new ListMarketAdapter(getContext(),list,getActivity());
         recyclerView.setAdapter(homeBookApdater);
     }
 }

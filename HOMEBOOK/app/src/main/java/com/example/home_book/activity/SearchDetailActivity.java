@@ -54,8 +54,8 @@ public class SearchDetailActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewList);
         star = findViewById(R.id.star_homebook);
         search = findViewById(R.id.searchDetailButton);
-        beginD = findViewById(R.id.beginNgay);
-        returnD = findViewById(R.id.returnNgay);
+//        beginD = findViewById(R.id.beginNgay);
+//        returnD = findViewById(R.id.returnNgay);
 
         dao = new DAO(this);
 
@@ -80,53 +80,53 @@ public class SearchDetailActivity extends AppCompatActivity {
         ArrayAdapter adapterCategory = new ArrayAdapter(this, android.R.layout.simple_spinner_item, category);
         spinnerCategory.setAdapter(adapterCategory);
 
-        beginD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        yy = year;
-                        MM = month;
-                        dd = dayOfMonth;
-                        GregorianCalendar gC = new GregorianCalendar(yy, MM, dd);
-                        beginD.setText(format.format(gC.getTime()));
-                    }
-                };
-
-                Calendar calendar = Calendar.getInstance();
-                yy = calendar.get(Calendar.YEAR);
-                MM = calendar.get(Calendar.MONTH);
-                dd = calendar.get(Calendar.DATE);
-
-                DatePickerDialog d = new DatePickerDialog(SearchDetailActivity.this, 0, chonDate, yy, MM, dd);
-                d.show();
-            }
-        });
-
-        returnD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        yy = year;
-                        MM = month;
-                        dd = dayOfMonth;
-                        GregorianCalendar gC = new GregorianCalendar(yy, MM, dd);
-                        returnD.setText(format.format(gC.getTime()));
-                    }
-                };
-
-                Calendar calendar = Calendar.getInstance();
-                yy = calendar.get(Calendar.YEAR);
-                MM = calendar.get(Calendar.MONTH);
-                dd = calendar.get(Calendar.DATE);
-
-                DatePickerDialog d = new DatePickerDialog(SearchDetailActivity.this, 0, chonDate, yy, MM, dd);
-                d.show();
-            }
-        });
+//        beginD.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                        yy = year;
+//                        MM = month;
+//                        dd = dayOfMonth;
+//                        GregorianCalendar gC = new GregorianCalendar(yy, MM, dd);
+//                        beginD.setText(format.format(gC.getTime()));
+//                    }
+//                };
+//
+//                Calendar calendar = Calendar.getInstance();
+//                yy = calendar.get(Calendar.YEAR);
+//                MM = calendar.get(Calendar.MONTH);
+//                dd = calendar.get(Calendar.DATE);
+//
+//                DatePickerDialog d = new DatePickerDialog(SearchDetailActivity.this, 0, chonDate, yy, MM, dd);
+//                d.show();
+//            }
+//        });
+//
+//        returnD.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                        yy = year;
+//                        MM = month;
+//                        dd = dayOfMonth;
+//                        GregorianCalendar gC = new GregorianCalendar(yy, MM, dd);
+//                        returnD.setText(format.format(gC.getTime()));
+//                    }
+//                };
+//
+//                Calendar calendar = Calendar.getInstance();
+//                yy = calendar.get(Calendar.YEAR);
+//                MM = calendar.get(Calendar.MONTH);
+//                dd = calendar.get(Calendar.DATE);
+//
+//                DatePickerDialog d = new DatePickerDialog(SearchDetailActivity.this, 0, chonDate, yy, MM, dd);
+//                d.show();
+//            }
+//        });
 
 
         editLocation.addTextChangedListener(new TextWatcher() {
@@ -277,6 +277,7 @@ public class SearchDetailActivity extends AppCompatActivity {
             recyclerView.setAdapter(homeBookApdater);
         }
     }
+
 
     private void tim(String x, String y, String z, String s) {
         String sql = " SELECT * FROM room_tb where status >= ? and beds = ? and category_name like ? and rate >= ?";

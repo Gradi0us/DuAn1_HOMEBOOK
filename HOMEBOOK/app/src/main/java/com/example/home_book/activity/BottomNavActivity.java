@@ -75,12 +75,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
         String email = sP.getString("Email", "");
         String pass = sP.getString("Password", "");
 
-//        hiểu r =))
-//        cái dữ liệu ở trên ý là nó set lúc vào onCreate và onCreate nó chạy 1 lần khởi tạo xong hết r nó k chạy lại nữa trừ khi cái activity này bị destroy
-//            bây giờ là làm thế nào để nó load lại activity
-//        load lại thì nó mới chạy vô cái thg lấy dữ liệu kia đc
-//        mấy cái này k thấy khả quan cho lắm
-//        nma cứ thử vậy
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         navigationView.setVisibility(View.GONE);
         menuIcon.setVisibility(View.GONE);
@@ -122,22 +117,23 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
 
                 switch (item.getItemId()) {
                     case R.id.Find:
+                        navigationView.setVisibility(View.GONE);
                         layout.setVisibility(View.VISIBLE);
                         replaceFragment(fragment1);
                         Intent refresh = new Intent(BottomNavActivity.this, BottomNavActivity.class);
                         startActivity(refresh);
                         overridePendingTransition(0, 0);
-//                        cái này là cái gì đây ???
-                        finish(); //
-//                        vậy thì hay
-//                        trông nó hơi ngu ngu xíu nma ra đcc kết quả =))
+                        finish();
                         break;
                     case R.id.Cart:
                         navigationView.setVisibility(View.GONE);
                         menuIcon.setVisibility(View.GONE);
                         layout.setVisibility(View.VISIBLE);
                         replaceFragment(fragment4);
-
+//                        Intent refresh = new Intent(BottomNavActivity.this, BottomNavActivity.class);
+//                        startActivity(refresh);
+//                        overridePendingTransition(0, 0);
+//                        finish();
                         break;
 
                     case R.id.Music:
@@ -243,7 +239,6 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
         drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-
                 // Scale the View based on current slide offset
                 final float diffScaledOffset = slideOffset * (1 - END_SCALE);
                 final float offsetScale = 1 - diffScaledOffset;
@@ -318,8 +313,6 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
     @Override
     protected void onResume() {
         super.onResume();
-//        Sao nó k nhảy vào đây ???
-
         SharedPreferences sP = getSharedPreferences("User_File", MODE_PRIVATE);
         String email = sP.getString("Email", "");
         String pass = sP.getString("Password", "");

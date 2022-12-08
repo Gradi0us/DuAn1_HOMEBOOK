@@ -86,9 +86,9 @@
         <LinearLayout
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="244dp"
+
+
             android:layout_marginBottom="7dp"
             android:orientation="horizontal">
 
@@ -107,11 +107,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="200dp"
+            android:layout_marginEnd="150dp"
             android:layout_marginBottom="7dp">
 
             <ImageView
@@ -143,16 +144,16 @@
             android:layout_height="wrap_content"
             android:text="Details"
             android:textColor="@color/gray"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_note_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:text="Aloalo"
-            android:textSize="17dp" />
+            android:textSize="12dp" />
     </RelativeLayout>
 
     <RelativeLayout

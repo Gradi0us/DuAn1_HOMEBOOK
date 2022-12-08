@@ -143,7 +143,13 @@ public class OrderAcivity extends AppCompatActivity {
             buffet = room.isBuffet();
             minibar = room.isMinibar();
             tvLocation.setText(location);
-            tvBeds.setText(String.valueOf(beds));
+            switch (room.getBeds()){
+                case 0:tvBeds.setText("Phòng đơn");break;
+                case 1:tvBeds.setText("Phòng sinh đôi");break;
+                case 2:tvBeds.setText("Phòng đôi");break;
+                case 3:tvBeds.setText("Phòng ba");break;
+                case 4:tvBeds.setText("Phòng bốn");break;
+            }
             tvName.setText(name);
             ratingBar.setRating(rate);
             tvCategory.setText(category);
@@ -233,12 +239,13 @@ public class OrderAcivity extends AppCompatActivity {
                                 Favourite fa = dao.get1Favourite(r.getId()+"",u.getId()+"");
                                 dao.DeleteFavourite(fa.getId());
                                 Toast.makeText(OrderAcivity.this, "Xóa Thành Công", Toast.LENGTH_SHORT).show();
+                                timF.setChecked(false);
                             }
                         });
                         builder.setNegativeButton("KO", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                timF.setChecked(true);
                             }
                         });
                         android.app.AlertDialog alertDialog = builder.create();
@@ -410,8 +417,18 @@ public class OrderAcivity extends AppCompatActivity {
                             user x1 = dao.get1User("select * from user_tb where email = ?", email);
                             name_user = x1.getFullname();
                             id_user = x1.getId();
-                            dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0));
-                            Toast.makeText(this, "Order thành công", Toast.LENGTH_SHORT).show();
+
+                            long diff = dateReturn.getTime() - dateBooking.getTime();
+                            int dayCount = (int) diff/(24 * 60 * 60 * 1000);
+
+                            if(x1.getMoney() >= (cost*dayCount)){
+                                dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0,(cost*dayCount)));
+                                Toast.makeText(this, "Order thành công. Cọc 5% tiền.", Toast.LENGTH_SHORT).show();
+                                x1.setMoney(x1.getMoney()-((cost*dayCount)*5/100));
+                                dao.UpdateUser(x1);
+                            }else{
+                                Toast.makeText(this, "Không đủ tiền", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 } else {
