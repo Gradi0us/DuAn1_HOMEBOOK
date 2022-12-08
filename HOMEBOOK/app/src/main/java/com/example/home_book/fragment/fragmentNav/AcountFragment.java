@@ -251,7 +251,7 @@ public class AcountFragment extends Fragment {
 //        ArrayList<Room> list = (ArrayList<Room>) dao.getRoom2();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        ListMarketAdapter homeBookApdater = new ListMarketAdapter(getContext(),list);
+        ListMarketAdapter homeBookApdater = new ListMarketAdapter(getContext(),list,getActivity());
         recyclerView.setAdapter(homeBookApdater);
     }
 }
