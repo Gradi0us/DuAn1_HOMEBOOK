@@ -10,10 +10,11 @@
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ds_orders"
+            android:layout_marginBottom="120dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </ScrollView>
 
+    </ScrollView>
 
 
 

@@ -42,8 +42,8 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DAO dao = new DAO(context);
-        user  user = dao.get1User("select * from user_tb where id=?",String.valueOf(listBooking.get(position).getUser_id()));
-        Room room = dao.get1Room("select * from room_tb where id=?",String.valueOf(listBooking.get(position).getRoom_id()));
+        user user = dao.get1User("select * from user_tb where id=?",listBooking.get(position).getUser_id()+"");
+        Room room = dao.get1Room("select * from room_tb where id=?",listBooking.get(position).getRoom_id()+"");
         holder.tvNameUser.setText(user.getFullname());
         holder.tvContact.setText(String.valueOf(user.getPhone()));
         holder.ratingBar.setRating(room.getRate());
@@ -66,6 +66,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
         byte[] hinhanh = room.getIMG();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
         holder.imghomebook.setImageBitmap(bitmap);
+        holder.txtAppFee.setText(tienHoaDon*5/100+"");
     }
 
     @Override
@@ -74,7 +75,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tvNameHomeBook,tvNameUser,tvCost,tvLocation,tvBeds,tvContact,tvDateCheckIn,tvDateCheckOut,tvCategroy;
+        TextView tvNameHomeBook,tvNameUser,tvCost,tvLocation,tvBeds,tvContact,tvDateCheckIn,tvDateCheckOut,tvCategroy,txtAppFee;
         ImageView imghomebook;
         RatingBar ratingBar;
         public ViewHolder(@NonNull View itemView) {
@@ -90,6 +91,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
             tvDateCheckOut = itemView.findViewById(R.id.tv_datecheckout);
             imghomebook = itemView.findViewById(R.id.img_homebook);
             ratingBar = itemView.findViewById(R.id.number_stars);
+            txtAppFee = itemView.findViewById(R.id.txtAppFee);
         }
     }
 }
