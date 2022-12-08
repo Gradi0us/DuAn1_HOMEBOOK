@@ -99,7 +99,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             });
 
             Date date = new Date();
-            if(date.after(list.get(i).getBooking_date()) || date.equals(list.get(i).getBooking_date()) && date.before(list.get(i).getReturn_date())){
+            if( (date.after(list.get(i).getBooking_date()) && date.before(list.get(i).getReturn_date()) ) || date.equals(list.get(i).getBooking_date())){
                 holder.button.setText("Đang nhận phòng");
                 holder.button.setBackgroundResource(R.drawable.type_red);
                 holder.button.setEnabled(false);
@@ -107,11 +107,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 dao.UpdateOrder(list.get(i));
                 fragment.congThemTien(list.get(i),tienHoaDon);
             }
-            if(date.after(list.get(i).getReturn_date()) || date.equals(list.get(i).getReturn_date()) && date.after(list.get(i).getBooking_date())){
+            if(date.after(list.get(i).getReturn_date()) || ( date.equals(list.get(i).getReturn_date()) && date.after(list.get(i).getBooking_date()) )){
                 holder.button.setText("Đã trả phòng");
                 holder.button.setBackgroundResource(R.drawable.type_green);
                 holder.button.setEnabled(false);
                 list.get(i).setStatus(2);
+                dao.UpdateOrder(list.get(i));
             }
         }
     }

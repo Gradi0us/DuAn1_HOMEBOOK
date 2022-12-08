@@ -435,6 +435,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="670dp">
@@ -444,7 +445,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="40dp"
+
             android:text="Cost"
             android:textSize="30dp"
             android:textStyle="bold" />
@@ -473,7 +474,7 @@
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="70dp"
+          android:layout_marginLeft="30dp"
             android:background="@drawable/login_button_bk"
 
             android:text="Order"
