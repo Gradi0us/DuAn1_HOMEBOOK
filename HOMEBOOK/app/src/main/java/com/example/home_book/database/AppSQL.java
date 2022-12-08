@@ -2,6 +2,7 @@ package com.example.home_book.database;
 
 import static com.example.home_book.database.SQLInsert.adminstrator_Values;
 import static com.example.home_book.database.SQLInsert.favourite_Values;
+import static com.example.home_book.database.SQLInsert.rating_Values;
 import static com.example.home_book.database.SQLInsert.room_Values;
 import static com.example.home_book.database.SQLInsert.user_Values;
 
@@ -22,6 +23,7 @@ public class AppSQL extends SQLiteOpenHelper {
     final String DateTable = "create table date_tb(id integer primary key autoincrement, current date not null, checkD integer not null)";
 
     final String NapTheTable = "create table napthe_tb(id integer primary key autoincrement, user_id integer references user_tb(id) NOT NULL, money int NOT NULL, status int NOT NULL)";
+    final String RatingTable = "create table rating_tb(id integer primary key autoincrement, user_id integer references user_tb(id) NOT NULL, room_id integer references room_tb(id) NOT NULL, rating integer NOT NULL)";
 
     Context context;
     SQLiteDatabase database;
@@ -41,11 +43,13 @@ public class AppSQL extends SQLiteOpenHelper {
         db.execSQL(RoomFavouriteTable);
         db.execSQL(DateTable);
         db.execSQL(NapTheTable);
+        db.execSQL(RatingTable);
 
         db.execSQL(adminstrator_Values);
         db.execSQL(user_Values);
 //        db.execSQL(room_Values);
         db.execSQL(favourite_Values);
+        db.execSQL(rating_Values);
        
     }
 

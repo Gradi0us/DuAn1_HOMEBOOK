@@ -20,4 +20,7 @@ public class SQLInsert {
 
     public static final String favourite_Values = "insert into room_favourite_tb(room_id,user_id) " +
             "values ('2','1'),('3','1'),('2','2')";
+
+    public static final String rating_Values = "insert into rating_tb(user_id,room_id,rating) " +
+            "values ('6','1','4'),('6','2','5'),('6','3','3'),('3','2','4')";
 }
