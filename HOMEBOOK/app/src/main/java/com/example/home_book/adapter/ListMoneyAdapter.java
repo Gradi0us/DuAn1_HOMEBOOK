@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.menu.MoneyAdminFragment;
+import com.example.home_book.menu.NapTheAdminFragment;
 import com.example.home_book.model.NapThe;
 import com.example.home_book.model.user;
 
@@ -26,9 +26,9 @@ public class ListMoneyAdapter extends RecyclerView.Adapter<ListMoneyAdapter.View
 
     Context context;
     ArrayList<NapThe> list;
-    MoneyAdminFragment fragment;
+    NapTheAdminFragment fragment;
 
-    public ListMoneyAdapter(Context context, ArrayList<NapThe> list, MoneyAdminFragment fragment) {
+    public ListMoneyAdapter(Context context, ArrayList<NapThe> list, NapTheAdminFragment fragment) {
         this.context = context;
         this.list = list;
         this.fragment = fragment;

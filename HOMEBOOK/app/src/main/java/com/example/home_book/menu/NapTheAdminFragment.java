@@ -21,7 +21,7 @@ import com.example.home_book.model.user;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoneyAdminFragment extends Fragment {
+public class NapTheAdminFragment extends Fragment {
 
     RecyclerView recyclerView;
 
@@ -101,7 +101,7 @@ public class MoneyAdminFragment extends Fragment {
         List<NapThe> list = dao.getNapThe("SELECT * FROM napthe_tb",null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        ListMoneyAdapter adapter = new ListMoneyAdapter(getContext(), (ArrayList<NapThe>) list,MoneyAdminFragment.this);
+        ListMoneyAdapter adapter = new ListMoneyAdapter(getContext(), (ArrayList<NapThe>) list, NapTheAdminFragment.this);
         recyclerView.setAdapter(adapter);
     }
 }
