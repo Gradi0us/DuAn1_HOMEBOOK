@@ -126,6 +126,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 DAO dao = new DAO(context);
                 dao.DeleteOrder(x.getId());
                 fragment.loadData();
+                dao = new DAO(context);
+                dao.getOrder("select*from order_tb");
             }
         });
         builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
