@@ -25,6 +25,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.home_book.DAO.DAO;
+import com.example.home_book.fragment.CartFragment;
 import com.example.home_book.fragment.FavouriteFragment;
 import com.example.home_book.fragment.Fragment3;
 import com.example.home_book.fragment.fragmentNav.AcountFragment;
@@ -426,6 +427,7 @@ public class OrderAcivity extends AppCompatActivity {
                                 Toast.makeText(this, "Order thành công. Cọc 5% tiền.", Toast.LENGTH_SHORT).show();
                                 x1.setMoney(x1.getMoney()-((cost*dayCount)*5/100));
                                 dao.UpdateUser(x1);
+                                startActivity(new Intent(OrderAcivity.this, BottomNavActivity.class));
                             }else{
                                 Toast.makeText(this, "Không đủ tiền", Toast.LENGTH_SHORT).show();
                             }

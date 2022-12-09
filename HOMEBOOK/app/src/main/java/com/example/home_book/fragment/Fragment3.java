@@ -22,6 +22,7 @@ import com.example.home_book.DAO.DAO;
 import com.example.home_book.menu.ChangeLanguage;
 import com.example.home_book.menu.ChangePassFragment;
 import com.example.home_book.menu.FragmentTaiKhoan;
+import com.example.home_book.menu.LSDatActivity;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
 import com.example.home_book.menu.Money;
@@ -127,9 +128,9 @@ public class Fragment3 extends Fragment {
         list1.add(new ListModelMenu(R.drawable.setting_item, "Quản lý tài khoản"));
         list1.add(new ListModelMenu(R.drawable.add_money, "Nạp tiền"));
         list1.add(new ListModelMenu(R.drawable.changepass_item, "Đổi mật khẩu"));
+        list1.add(new ListModelMenu(R.drawable.history, "Lịch sử đặt phòng"));
         list1.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
         list1.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
-//        list1.add(new ListModelMenu(R.drawable.language, "Ngôn ngữ"));
         list1.add(new ListModelMenu(R.drawable.exit, "Đăng xuất"));
 
         ListMenuAdapter adapter = new ListMenuAdapter(getContext(), R.layout.item_menu, list1);
@@ -153,9 +154,12 @@ public class Fragment3 extends Fragment {
                             .commit();
                 }
                 if (i == 3) {
-                    startActivity(new Intent(getContext(), LienHeActivity.class));
+                    startActivity(new Intent(getContext(), LSDatActivity.class));
                 }
                 if (i == 4) {
+                    startActivity(new Intent(getContext(), LienHeActivity.class));
+                }
+                if (i == 5) {
                     startActivity(new Intent(getContext(), ThongTin.class));
                 }
                 if (i == 1) {
@@ -166,7 +170,7 @@ public class Fragment3 extends Fragment {
                             .replace(R.id.frame, new Fragment2())
                             .commit();
                 }
-                if (i == 5) {
+                if (i == 6) {
                     SharedPreferences.Editor edit = sP.edit();
                     edit.putString("Email", "");
                     edit.putString("Password", "");

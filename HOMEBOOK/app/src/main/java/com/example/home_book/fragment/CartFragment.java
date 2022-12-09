@@ -65,6 +65,8 @@ public class CartFragment extends Fragment {
         return v;
     }
     public void loadData(){
+        dao = new DAO(getActivity());
+        list = dao.getOrder("select * from order_tb");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         OrderAdapter homeBookApdater = new OrderAdapter(getContext(), (ArrayList<order>) list,CartFragment.this);
