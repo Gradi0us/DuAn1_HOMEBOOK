@@ -10,6 +10,7 @@ import com.example.home_book.database.AppSQL;
 import com.example.home_book.model.Favourite;
 import com.example.home_book.model.DateCurrent;
 import com.example.home_book.model.NapThe;
+import com.example.home_book.model.rating;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.admin;
 import com.example.home_book.model.order;
@@ -736,5 +737,41 @@ public class DAO {
 
     public void DeleteNapThe(int ID) {
         db.delete("napthe_tb", "id=?", new String[]{String.valueOf(ID)});
+    }
+    public long AddRating(rating rating){
+        ContentValues values = new ContentValues();
+        values.put("user_id",rating.getUser_id());
+        values.put("room_id",rating.getRoom_id());
+        values.put("rating",rating.getRating());
+        values.put("note",rating.getNote());
+        long a = db.insert("rating_tb",null,values);
+        return a;
+    }
+    public long UpdateRating(rating rating){
+        ContentValues values = new ContentValues();
+        values.put("rating",rating.getRating());
+        values.put("note",rating.getNote());
+        long a = db.update("rating_tb",values,"id=?",new String[]{String.valueOf(rating.getId())});
+        return a;
+    }
+    public void DeleteRating(int id){
+        db.delete("rating_tb","id=?",new String[]{String.valueOf(id)});
+    }
+    public List<rating> GetAllRating(String sql, String... args){
+        List<rating> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sql, args);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int id = c.getInt(0);
+            int user_id = c.getInt(1);
+            int room_id = c.getInt(2);
+            int rating1 = c.getInt(3);
+            String note = c.getString(4);
+            rating x = new rating(id,user_id,room_id,rating1,note);
+            list.add(x);
+            c.moveToNext();
+        }
+        c.close();
+        return list;
     }
 }

@@ -30,11 +30,8 @@ import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.activity.BottomNavActivity;
-import com.example.home_book.adapter.HomeBookApdater;
 import com.example.home_book.adapter.ListMarketAdapter;
 import com.example.home_book.model.Room;
-import com.example.home_book.model.roomImage;
 import com.example.home_book.model.user;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -43,10 +40,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
-import com.example.home_book.model.rooms;
-
-import java.util.List;
 
 
 public class AcountFragment extends Fragment {
