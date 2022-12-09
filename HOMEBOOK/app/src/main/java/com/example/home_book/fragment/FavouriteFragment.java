@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.database.adapter.HomeBookApdater;
+import com.example.home_book.adapter.HomeBookApdater;
 import com.example.home_book.model.Favourite;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.user;
