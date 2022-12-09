@@ -12,6 +12,13 @@ public class rating {
         this.note = note;
     }
 
+    public rating(int user_id, int room_id, int rating, String note) {
+        this.user_id = user_id;
+        this.room_id = room_id;
+        this.rating = rating;
+        this.note = note;
+    }
+
     public rating(int rating, String note) {
         this.rating = rating;
         this.note = note;
