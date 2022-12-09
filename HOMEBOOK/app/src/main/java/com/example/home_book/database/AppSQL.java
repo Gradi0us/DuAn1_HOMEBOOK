@@ -23,7 +23,7 @@ public class AppSQL extends SQLiteOpenHelper {
     final String DateTable = "create table date_tb(id integer primary key autoincrement, current date not null, checkD integer not null)";
 
     final String NapTheTable = "create table napthe_tb(id integer primary key autoincrement, user_id integer references user_tb(id) NOT NULL, money int NOT NULL, status int NOT NULL)";
-    final String RatingTable = "create table rating_tb(id integer primary key autoincrement, user_id integer references user_tb(id) NOT NULL, room_id integer references room_tb(id) NOT NULL, rating integer NOT NULL)";
+    final String RatingTable = "create table rating_tb(id integer primary key autoincrement, user_id integer references user_tb(id) NOT NULL, room_id integer references room_tb(id) NOT NULL, rating integer NOT NULL,note text NOT NULL)";
 
     Context context;
     SQLiteDatabase database;

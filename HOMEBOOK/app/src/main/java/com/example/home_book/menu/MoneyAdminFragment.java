@@ -1,35 +1,21 @@
 package com.example.home_book.menu;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.activity.OrderAcivity;
 import com.example.home_book.adapter.ListMoneyAdapter;
-import com.example.home_book.adapter.OrderAdapter;
 import com.example.home_book.fragment.Fragment3;
-import com.example.home_book.model.Favourite;
 import com.example.home_book.model.NapThe;
-import com.example.home_book.model.order;
 import com.example.home_book.model.user;
 
 import java.util.ArrayList;

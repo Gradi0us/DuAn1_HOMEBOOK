@@ -1,18 +1,9 @@
 package com.example.home_book.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,46 +11,24 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
 import com.example.home_book.adapter.HomeBookApdater;
-import com.example.home_book.fragment.fragmentNav.AcountFragment;
-import com.example.home_book.fragment.fragmentNav.HomeFragment;
-import com.example.home_book.fragment.fragmentNav.RateFragment;
-import com.example.home_book.fragment.fragmentNav.SettingFragment;
-import com.example.home_book.model.ListModelMenu;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.categories;
-import com.example.home_book.model.order;
-import com.example.home_book.model.rooms;
-import com.example.home_book.model.user;
-import com.google.android.material.navigation.NavigationView;
-import com.example.home_book.model.rooms;
-import com.example.home_book.model.roomImage;
 
-import com.google.android.material.textfield.TextInputEditText;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 public class FindFragment extends Fragment {
     categories category;
