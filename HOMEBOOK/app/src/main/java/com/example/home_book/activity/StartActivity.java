@@ -60,6 +60,8 @@ public class StartActivity extends AppCompatActivity {
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString("Email", "");
         edit.putString("Password", "");
+        edit.putString("UserAdmin", "");
+        edit.putString("PassAdmin", "");
         edit.commit();
         //
 //        currentDate = dateFormat.format(date);

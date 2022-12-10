@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -19,13 +18,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.home_book.DAO.DAO;
-import com.example.home_book.menu.ChangeLanguage;
+import com.example.home_book.menu.AccountManagerFragment;
+import com.example.home_book.menu.AdminHistoryFragment;
 import com.example.home_book.menu.ChangePassFragment;
 import com.example.home_book.menu.FragmentTaiKhoan;
+import com.example.home_book.menu.LSDatActivity;
 import com.example.home_book.menu.LienHeActivity;
 import com.example.home_book.R;
-import com.example.home_book.menu.Money;
-import com.example.home_book.menu.MoneyAdminFragment;
+import com.example.home_book.menu.NapTheAdminFragment;
 import com.example.home_book.model.admin;
 import com.example.home_book.model.user;
 import com.example.home_book.menu.ThongTin;
@@ -125,10 +125,11 @@ public class Fragment3 extends Fragment {
 
         //add vao listview
         list1.add(new ListModelMenu(R.drawable.setting_item, "Quản lý tài khoản"));
+        list1.add(new ListModelMenu(R.drawable.add_money, "Nạp tiền"));
         list1.add(new ListModelMenu(R.drawable.changepass_item, "Đổi mật khẩu"));
+        list1.add(new ListModelMenu(R.drawable.history, "Lịch sử đặt phòng"));
         list1.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
         list1.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
-        list1.add(new ListModelMenu(R.drawable.language, "Ngôn ngữ"));
         list1.add(new ListModelMenu(R.drawable.exit, "Đăng xuất"));
 
         ListMenuAdapter adapter = new ListMenuAdapter(getContext(), R.layout.item_menu, list1);
@@ -144,23 +145,31 @@ public class Fragment3 extends Fragment {
                             .replace(R.id.frame, new FragmentTaiKhoan())
                             .commit();
                 }
-                if (i == 1) {
+                if (i == 2) {
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentManager
                             .beginTransaction()
                             .replace(R.id.frame, new ChangePassFragment())
                             .commit();
                 }
-                if (i == 2) {
-                    startActivity(new Intent(getContext(), LienHeActivity.class));
-                }
                 if (i == 3) {
-                    startActivity(new Intent(getContext(), ThongTin.class));
+                    startActivity(new Intent(getContext(), LSDatActivity.class));
                 }
                 if (i == 4) {
-                    startActivity(new Intent(getContext(), ChangeLanguage.class));
+                    startActivity(new Intent(getContext(), LienHeActivity.class));
                 }
                 if (i == 5) {
+                    startActivity(new Intent(getContext(), ThongTin.class));
+                }
+                if (i == 1) {
+//                    startActivity(new Intent(getContext(), ChangeLanguage.class));
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame, new Fragment2())
+                            .commit();
+                }
+                if (i == 6) {
                     SharedPreferences.Editor edit = sP.edit();
                     edit.putString("Email", "");
                     edit.putString("Password", "");
@@ -174,7 +183,9 @@ public class Fragment3 extends Fragment {
 
         //listview admin
 
-        list2.add(new ListModelMenu(R.drawable.add_money, "Thêm Tiền"));
+        list2.add(new ListModelMenu(R.drawable.add_money, "Xác nhận nạp tiền"));
+        list2.add(new ListModelMenu(R.drawable.ic_accounts, "Quản lý tài khoản"));
+        list2.add(new ListModelMenu(R.drawable.graph_black, "Thống kê"));
         list2.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
         list2.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
         list2.add(new ListModelMenu(R.drawable.exit, "Đăng xuất"));
@@ -190,12 +201,29 @@ public class Fragment3 extends Fragment {
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         fragmentManager
                                 .beginTransaction()
-                                .replace(R.id.frame, new MoneyAdminFragment())
+                                .replace(R.id.frame, new NapTheAdminFragment())
                                 .commit();
+                        break;
                     }
-                    case 1:startActivity(new Intent(getContext(), LienHeActivity.class));break;
-                    case 2:startActivity(new Intent(getContext(), ThongTin.class));break;
-                    case 3:{
+                    case 1:{
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager
+                                .beginTransaction()
+                                .replace(R.id.frame, new AccountManagerFragment())
+                                .commit();
+                        break;
+                    }
+                    case 2:{
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager
+                                .beginTransaction()
+                                .replace(R.id.frame, new AdminHistoryFragment())
+                                .commit();
+                        break;
+                    }
+                    case 3:startActivity(new Intent(getContext(), LienHeActivity.class));break;
+                    case 4:startActivity(new Intent(getContext(), ThongTin.class));break;
+                    case 5:{
                         SharedPreferences.Editor edit = sP.edit();
                         edit.putString("UserAdmin", "");
                         edit.putString("PassAdmin", "");

@@ -132,36 +132,36 @@ public class MainActivity extends AppCompatActivity {
         BitmapDrawable bitmapDrawable7 = (BitmapDrawable) getDrawable(R.drawable.khachsan8);
         Bitmap bitmap7 = bitmapDrawable7.getBitmap();
         ByteArrayOutputStream stream7 = new ByteArrayOutputStream();
-        bitmap7.compress(Bitmap.CompressFormat.PNG, 100, stream6);
+        bitmap7.compress(Bitmap.CompressFormat.PNG, 100, stream7);
         byte[] IMG7 = stream7.toByteArray();
 
         BitmapDrawable bitmapDrawable8 = (BitmapDrawable) getDrawable(R.drawable.khachsan9);
         Bitmap bitmap8 = bitmapDrawable8.getBitmap();
         ByteArrayOutputStream stream8 = new ByteArrayOutputStream();
-        bitmap8.compress(Bitmap.CompressFormat.PNG, 100, stream6);
+        bitmap8.compress(Bitmap.CompressFormat.PNG, 100, stream8);
         byte[] IMG8 = stream8.toByteArray();
 
 
 
         List<Room> list = dao.getRoom("select * from room_tb",null);
         if(list.size()==0){
-            dao.AddRoom(new Room(5,2,14,2200000,true,true,true,true,true,true,"Khách sạn Sheraton Hà Nội 5 sao là sự lựa chọn phổ biến dành cho du khách ở tại thủ đô, cho dù du lịch khám phá hay chỉ ghé qua nơi đây. Cho dù là khách đi công tác hay khách đi nghỉ mát đều cảm thấy thoải mái với dịch vụ và tiện nghi tại khách sạn.","Sheraton","Apartment","HaNoi",IMG));
+            dao.AddRoom(new Room(5,2,14,2200000,true,true,true,true,true,true,"Khách sạn Sheraton Hà Nội 5 sao là sự lựa chọn phổ biến dành cho du khách ở tại thủ đô, cho dù du lịch khám phá hay chỉ ghé qua nơi đây. Cho dù là khách đi công tác hay khách đi nghỉ mát đều cảm thấy thoải mái với dịch vụ và tiện nghi tại khách sạn.","Sheraton","Apartment","HaNoi",IMG,2));
 
-            dao.AddRoom(new Room(4,4,5,940000,true,true,true,true,true,true,"Mường Thanh Nha Trang đạt tiêu chuẩn 4 sao với nội thất cao cấp. Các phòng đều cho tầm nhìn ra thành phố, biển hoặc đồi núi, khiến không gian phòng càng thêm rộng mở, thoáng đãng, với nhiều tiện nghi và trang bị trang thiết bị hiện đại để tạo nét riêng biệt, mang lại cảm giác thư giãn, thoải mái cho khách lưu trú","Muong Thanh","Hotel","NhaTrang",IMG1));
+            dao.AddRoom(new Room(4,4,5,940000,true,true,true,true,true,true,"Mường Thanh Nha Trang đạt tiêu chuẩn 4 sao với nội thất cao cấp. Các phòng đều cho tầm nhìn ra thành phố, biển hoặc đồi núi, khiến không gian phòng càng thêm rộng mở, thoáng đãng, với nhiều tiện nghi và trang bị trang thiết bị hiện đại để tạo nét riêng biệt, mang lại cảm giác thư giãn, thoải mái cho khách lưu trú","Muong Thanh","Hotel","NhaTrang",IMG1,2));
 
-            dao.AddRoom(new Room(5,2,5,1200000,true,true,true,true,true,true,"HomeBook Homestay sẽ là điểm đến tốt nhất với giá cả hợp lí cho mọi người.","HomeBook","Homestay","HCM",IMG2));
+            dao.AddRoom(new Room(5,2,5,1200000,true,true,true,true,true,true,"HomeBook Homestay sẽ là điểm đến tốt nhất với giá cả hợp lí cho mọi người.","HomeBook","Homestay","HCM",IMG2,3));
 
-            dao.AddRoom(new Room(5,3,3,2300000,true,true,true,true,true,true,"FLC GrandHotel là quần thể  khách sạn du lịch sinh thái, nghỉ dưỡng sang trọng đẳng cấp đạt tiêu chuẩn 5 sao đầu tiên tại Bắc và Bắc Trung Bộ.","FLC_GrandHotel","Hotel","ThanhHoa",IMG3));
+            dao.AddRoom(new Room(5,3,3,2300000,true,true,true,true,true,true,"FLC GrandHotel là quần thể  khách sạn du lịch sinh thái, nghỉ dưỡng sang trọng đẳng cấp đạt tiêu chuẩn 5 sao đầu tiên tại Bắc và Bắc Trung Bộ.","FLC_GrandHotel","Hotel","ThanhHoa",IMG3,4));
 
-            dao.AddRoom(new Room(5,2,2,2900000,true,true,true,true,true,true,"Đà Nẵng Golden Bay Hotel là một khách sạn hướng về phía Tây thành phố, tầm nhìn bao trọn vịnh Đà Nẵng, rất phù hợp để ngắm hoàng hôn. Tọa lạc ngay tại vị trí nơi dòng sông Hàn đổ ra Biển Đông, Golden Bay Hotel hội tụ vẻ đẹp hài hòa của núi, biển, trời xanh và là điểm xuất phát lý tưởng để khám phá thành phố Đà Nẵng năng động.","GolderBay","Hotel","DaNang",IMG4));
+            dao.AddRoom(new Room(5,2,2,2900000,true,true,true,true,true,true,"Đà Nẵng Golden Bay Hotel là một khách sạn hướng về phía Tây thành phố, tầm nhìn bao trọn vịnh Đà Nẵng, rất phù hợp để ngắm hoàng hôn. Tọa lạc ngay tại vị trí nơi dòng sông Hàn đổ ra Biển Đông, Golden Bay Hotel hội tụ vẻ đẹp hài hòa của núi, biển, trời xanh và là điểm xuất phát lý tưởng để khám phá thành phố Đà Nẵng năng động.","GolderBay","Hotel","DaNang",IMG4,1));
 
-            dao.AddRoom(new Room(3,3,5,400000,true,true,false,true,false,true,"Khách sạn Hoà Bình là hệ thống khách sạn số một tại Bắc Giang với tiêu chí hàng đầu là sự tín nghiệm của khách hàng ","Hoa Binh","Hotel","BacGiang",IMG5));
+            dao.AddRoom(new Room(3,3,5,400000,true,true,false,true,false,true,"Khách sạn Hoà Bình là hệ thống khách sạn số một tại Bắc Giang với tiêu chí hàng đầu là sự tín nghiệm của khách hàng ","Hoa Binh","Hotel","BacGiang",IMG5,2));
 
-            dao.AddRoom(new Room(3,2,5,350000,true,true,true,false,false,true,"Homestay Đức Sensei là một Homestay đi đầu bởi giá tiền tốt và được nhiều người tin tưởng sử dụng","DucSensei","Homestay","HaNam",IMG6));
+            dao.AddRoom(new Room(3,2,5,350000,true,true,true,false,false,true,"Homestay Đức Sensei là một Homestay đi đầu bởi giá tiền tốt và được nhiều người tin tưởng sử dụng","DucSensei","Homestay","HaNam",IMG6,5));
 
-            dao.AddRoom(new Room(2,1,5,180000,true,true,false,true,false,true,"MinhHoang là khách sạn giá rẻ với nhiều tính năng ưu việt","MinhHoang","Hotel","LangSon",IMG7));
+            dao.AddRoom(new Room(2,1,5,180000,true,true,false,true,false,true,"MinhHoang là khách sạn giá rẻ với nhiều tính năng ưu việt","MinhHoang","Hotel","LangSon",IMG7,1));
 
-            dao.AddRoom(new Room(5,4,5,3900000,true,true,true,true,true,true,"HomeBook Apartment Situated 150 metres from Quy Nhon Beach,HomeBook APARTMENT  offers a restaurant, a shared lounge and air-conditioned accommodation with a terrace and free WiFi. Each unit has a balcony, a fully equipped kitchenette with a microwave, a seating area, a flat-screen TV, a washing machine, and a private bathroom with bidet and slippers. For added convenience, the property can provide towels and bed linen for an extra charge. Both a bicycle rental service and a car rental service are available at the apartment. The nearest airport is Phu Cat Airport, 28 km from FLC SEA TOWER APARTMENT Minh Minh.","HomeBook","Apartment","QuyNhon",IMG8));
+            dao.AddRoom(new Room(5,4,5,3900000,true,true,true,true,true,true,"HomeBook Apartment Situated 150 metres from Quy Nhon Beach,HomeBook APARTMENT  offers a restaurant, a shared lounge and air-conditioned accommodation with a terrace and free WiFi. Each unit has a balcony, a fully equipped kitchenette with a microwave, a seating area, a flat-screen TV, a washing machine, and a private bathroom with bidet and slippers. For added convenience, the property can provide towels and bed linen for an extra charge. Both a bicycle rental service and a car rental service are available at the apartment. The nearest airport is Phu Cat Airport, 28 km from FLC SEA TOWER APARTMENT Minh Minh.","HomeBook","Apartment","QuyNhon",IMG8,3));
 
         }
 
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
             }else if(dataFo2.compareTo(x.getReturn_date())>0){
                 x.setStatus(2);
                 dao.UpdateOrder(x);
-                dao.DeleteOrder(x.getId());
+//                dao.DeleteOrder(x.getId());
                 Toast.makeText(this, " hết hạn", Toast.LENGTH_SHORT).show();
             }else if(dataFo2.compareTo(x.getBooking_date()) >= 0 && dataFo2.compareTo(x.getReturn_date()) <= 0){
                 x.setStatus(1);

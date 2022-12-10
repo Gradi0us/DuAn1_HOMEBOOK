@@ -33,25 +33,30 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <CheckBox
-                android:text="Chưa đến hạn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <CheckBox
-                android:text="Đang sử dụng"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <CheckBox
-                android:text="Đã trả phòng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:text="Chưa đến hạn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:text="Đang sử dụng"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:text="Đã trả phòng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ds_booking"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

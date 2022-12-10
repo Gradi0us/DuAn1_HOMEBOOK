@@ -2,8 +2,6 @@ package com.example.home_book.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,13 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.adapter.HomeBookApdater;
+import com.example.home_book.database.adapter.HomeBookApdater;
 import com.example.home_book.model.Favourite;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.user;
