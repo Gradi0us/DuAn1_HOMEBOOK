@@ -124,13 +124,13 @@ public class Fragment3 extends Fragment {
         }
 
         //add vao listview
-        list1.add(new ListModelMenu(R.drawable.setting_item, "Quản lý tài khoản"));
-        list1.add(new ListModelMenu(R.drawable.add_money, "Nạp tiền"));
-        list1.add(new ListModelMenu(R.drawable.changepass_item, "Đổi mật khẩu"));
-        list1.add(new ListModelMenu(R.drawable.history, "Lịch sử đặt phòng"));
-        list1.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
-        list1.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
-        list1.add(new ListModelMenu(R.drawable.exit, "Đăng xuất"));
+        list1.add(new ListModelMenu(R.drawable.setting_item, "Account Management"));
+        list1.add(new ListModelMenu(R.drawable.add_money, "Deposit"));
+        list1.add(new ListModelMenu(R.drawable.changepass_item, "Change Password"));
+        list1.add(new ListModelMenu(R.drawable.history, "Booking History"));
+        list1.add(new ListModelMenu(R.drawable.contact, "Contact"));
+        list1.add(new ListModelMenu(R.drawable.in4, "information"));
+        list1.add(new ListModelMenu(R.drawable.exit, "Log out"));
 
         ListMenuAdapter adapter = new ListMenuAdapter(getContext(), R.layout.item_menu, list1);
         listViewUser.setAdapter(adapter);
