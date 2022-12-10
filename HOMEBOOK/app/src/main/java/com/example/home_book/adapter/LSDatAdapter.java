@@ -58,7 +58,7 @@ public class LSDatAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.item_history, null);
+        view = inflater.inflate(R.layout.item_historyy, null);
 
         if(view!=null){
             holder = new ViewHolder();

@@ -18,13 +18,14 @@ import com.example.home_book.activity.RatingActivity;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHolder>{
     Context context;
     ArrayList<order> list;
     DAO dao ;
-
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     public HistoryAdapter(Context context, ArrayList<order> list) {
         this.context = context;
         this.list = list;
@@ -56,6 +57,8 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
                 context.startActivity(intent);
             }
         });
+        holder.tvDatecheckin.setText(format.format(list.get(position).getBooking_date()));
+        holder.tvDatecheckout.setText(format.format(list.get(position).getReturn_date()));
     }
 
     @Override
@@ -64,7 +67,7 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tvNameHome,tvLocation,tvBeds,tvCategory;
+        TextView tvNameHome,tvLocation,tvBeds,tvCategory,tvDatecheckin,tvDatecheckout;
         Button btnDanhGia;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +76,8 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
             tvBeds = itemView.findViewById(R.id.tv_beds_ls);
             tvCategory = itemView.findViewById(R.id.tv_category_ls);
             btnDanhGia = itemView.findViewById(R.id.btn_danhgia1);
+            tvDatecheckin = itemView.findViewById(R.id.tv_datecheckin);
+            tvDatecheckout = itemView.findViewById(R.id.tv_datecheckout);
         }
     }
 }
