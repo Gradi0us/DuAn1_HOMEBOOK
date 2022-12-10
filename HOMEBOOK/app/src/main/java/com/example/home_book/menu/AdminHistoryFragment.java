@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
 import com.example.home_book.model.order;
+import com.example.home_book.model.rating;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class AdminHistoryFragment extends Fragment {
     Spinner historyAdminSpinner;
     ListView listMoneyHistory,listRateHistory;
     ArrayList<order> listOrder;
-    ArrayList<> listRate;
+    ArrayList<rating> listRate;
     DAO dao;
 
     @Override
