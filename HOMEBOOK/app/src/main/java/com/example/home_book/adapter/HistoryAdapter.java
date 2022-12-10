@@ -19,7 +19,6 @@ import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHolder>{
     Context context;
@@ -35,7 +34,7 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_history, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_historyy, parent, false);
         return new ViewHolder(v);
     }
 
