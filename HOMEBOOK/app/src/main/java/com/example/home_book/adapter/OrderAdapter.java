@@ -90,7 +90,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Dialog(list.get(i),tienHoaDon);
+                    Dialog(list.get(i));
                 }
             });
 
@@ -113,8 +113,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         }
     }
 
-    private void Dialog(order x,int tien) {
-        Log.d("tien",tien+"");
+    private void Dialog(order x) {
+//        Log.d("tien",tien+"");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Are you sure about that ?");
@@ -122,12 +122,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-//                fragment.xoaDon(x,tien);
-                DAO dao = new DAO(context);
-                dao.DeleteOrder(x.getId());
-                fragment.loadData();
-                dao = new DAO(context);
-                dao.getOrder("select*from order_tb");
+                fragment.xoaDon(x);
+//                DAO dao = new DAO(context);
+//                dao.DeleteOrder(x.getId());
+//                fragment.loadData();
             }
         });
         builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {

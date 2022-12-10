@@ -167,6 +167,7 @@ public class DAO {
     public void DeleteFavourite(int ID) {
         db.delete("room_favourite_tb", "id=?", new String[]{String.valueOf(ID)});
     }
+
     public void DeleteFavourite2(int ID) {
         db.delete("room_favourite_tb", "room_id=?", new String[]{String.valueOf(ID)});
     }
@@ -294,7 +295,7 @@ public class DAO {
                 parking = true;
             }
             byte[] IMG = c.getBlob(14);
-            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG,collaborate_id);
+            Room x = new Room(id, rate, beds, status, cost, wifi, ac, buffet, parking, pool, minibar, note, name, category, location, IMG, collaborate_id);
             list.add(x);
             c.moveToNext();
         }
@@ -382,7 +383,7 @@ public class DAO {
         value.put("cost", x.getCost());
         value.put("status", x.getStatus());
         value.put("image", x.getIMG());
-        value.put("collaborate_id",x.getCollaborate_id());
+        value.put("collaborate_id", x.getCollaborate_id());
         if (x.isWifi() == false) {
             value.put("wifi", 0);
         } else {
@@ -428,7 +429,7 @@ public class DAO {
         value.put("cost", x.getCost());
         value.put("status", x.getStatus());
         value.put("image", x.getIMG());
-        value.put("collaborate_id",x.getCollaborate_id());
+        value.put("collaborate_id", x.getCollaborate_id());
         if (x.isWifi() == false) {
             value.put("wifi", 0);
         } else {
@@ -487,7 +488,7 @@ public class DAO {
             String note = c.getString(8);
             int status = c.getInt(9);
             int money = c.getInt(10);
-            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status,money);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status, money);
             list.add(x);
             c.moveToNext();
         }
@@ -516,7 +517,7 @@ public class DAO {
             String note = c.getString(8);
             int status = c.getInt(9);
             int money = c.getInt(10);
-            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status,money);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status, money);
             list.add(x);
             c.moveToNext();
         }
@@ -545,7 +546,7 @@ public class DAO {
             String note = c.getString(8);
             int status = c.getInt(9);
             int money = c.getInt(10);
-            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status,money);
+            order x = new order(id, user_id, number, ngayNhan, ngayTra, gioNhan, gioTra, room_id, note, status, money);
             list.add(x);
             c.moveToNext();
         }
@@ -668,10 +669,10 @@ public class DAO {
     }
 
     @SuppressLint("Range")
-    public int getDoanhThuPhong(String x,String tuNgay, String denNgay) {
+    public int getDoanhThuPhong(String x, String tuNgay, String denNgay) {
         String sqlDoanhThu = "SELECT SUM(money) as doanhThu FROM order_tb a inner JOIN room_tb b on a.room_id = b.id WHERE b.collaborate_id = ? and a.booking_date BETWEEN ? AND ?";
         List<Integer> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{x,tuNgay, denNgay});
+        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{x, tuNgay, denNgay});
         while (c.moveToNext()) {
             try {
                 list.add(Integer.parseInt(c.getString(c.getColumnIndex("doanhThu"))));
@@ -682,10 +683,10 @@ public class DAO {
         return list.get(0);
     }
 
-    public int getDoanhThuCaNhan(String x,String tuNgay, String denNgay) {
+    public int getDoanhThuCaNhan(String x, String tuNgay, String denNgay) {
         String sqlDoanhThu = "SELECT SUM((money-money*5/100)*1/100) as doanhThu FROM order_tb a inner JOIN room_tb b on a.room_id = b.id WHERE b.collaborate_id = ? and a.booking_date BETWEEN ? AND ?";
         List<Integer> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{x,tuNgay, denNgay});
+        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{x, tuNgay, denNgay});
         while (c.moveToNext()) {
             try {
                 list.add(Integer.parseInt(c.getString(0)));
@@ -705,7 +706,7 @@ public class DAO {
             int user_id = c.getInt(1);
             int money = c.getInt(2);
             int status = c.getInt(3);
-            NapThe x = new NapThe(id, user_id,money,status);
+            NapThe x = new NapThe(id, user_id, money, status);
             list.add(x);
             c.moveToNext();
         }
@@ -714,50 +715,54 @@ public class DAO {
     }
 
     public NapThe get1NapThe(String sql, String x) {
-        List<NapThe> list = getNapThe(sql,x);
+        List<NapThe> list = getNapThe(sql, x);
         return list.get(0);
     }
 
-    public long AddNapThe(NapThe money){
+    public long AddNapThe(NapThe money) {
         ContentValues value = new ContentValues();
-        value.put("user_id",money.getUser_id());
-        value.put("money",money.getMoney());
-        value.put("status",money.getStatus());
-        return db.insert("napthe_tb",null, value);
+        value.put("user_id", money.getUser_id());
+        value.put("money", money.getMoney());
+        value.put("status", money.getStatus());
+        return db.insert("napthe_tb", null, value);
     }
 
-    public long UpdateNapThe(NapThe x){
+    public long UpdateNapThe(NapThe x) {
         ContentValues value = new ContentValues();
-        value.put("id",x.getId());
-        value.put("user_id",x.getUser_id());
-        value.put("money",x.getMoney());
-        value.put("status",x.getStatus());
+        value.put("id", x.getId());
+        value.put("user_id", x.getUser_id());
+        value.put("money", x.getMoney());
+        value.put("status", x.getStatus());
         return db.update("napthe_tb", value, "id=?", new String[]{String.valueOf(x.getId())});
     }
 
     public void DeleteNapThe(int ID) {
         db.delete("napthe_tb", "id=?", new String[]{String.valueOf(ID)});
     }
-    public long AddRating(rating rating){
+
+    public long AddRating(rating rating) {
         ContentValues values = new ContentValues();
-        values.put("user_id",rating.getUser_id());
-        values.put("room_id",rating.getRoom_id());
-        values.put("rating",rating.getRating());
-        values.put("note",rating.getNote());
-        long a = db.insert("rating_tb",null,values);
+        values.put("user_id", rating.getUser_id());
+        values.put("order_id", rating.getOrder_id());
+        values.put("rating", rating.getRating());
+        values.put("note", rating.getNote());
+        long a = db.insert("rating_tb", null, values);
         return a;
     }
-    public long UpdateRating(rating rating){
+
+    public long UpdateRating(rating rating) {
         ContentValues values = new ContentValues();
-        values.put("rating",rating.getRating());
-        values.put("note",rating.getNote());
-        long a = db.update("rating_tb",values,"id=?",new String[]{String.valueOf(rating.getId())});
+        values.put("rating", rating.getRating());
+        values.put("note", rating.getNote());
+        long a = db.update("rating_tb", values, "id=?", new String[]{String.valueOf(rating.getId())});
         return a;
     }
-    public void DeleteRating(int id){
-        db.delete("rating_tb","id=?",new String[]{String.valueOf(id)});
+
+    public void DeleteRating(int id) {
+        db.delete("rating_tb", "id=?", new String[]{String.valueOf(id)});
     }
-    public List<rating> GetAllRating(String sql, String... args){
+
+    public List<rating> GetAllRating(String sql, String... args) {
         List<rating> list = new ArrayList<>();
         Cursor c = db.rawQuery(sql, args);
         c.moveToFirst();
@@ -767,7 +772,7 @@ public class DAO {
             int room_id = c.getInt(2);
             int rating1 = c.getInt(3);
             String note = c.getString(4);
-            rating x = new rating(id,user_id,room_id,rating1,note);
+            rating x = new rating(id, user_id, room_id, rating1, note);
             list.add(x);
             c.moveToNext();
         }
