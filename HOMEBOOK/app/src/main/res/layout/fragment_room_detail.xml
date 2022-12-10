@@ -390,12 +390,13 @@
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <LinearLayout
+            android:layout_marginLeft="30dp"
             android:orientation="horizontal"
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_marginLeft="30dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
@@ -433,12 +434,29 @@
 
         </LinearLayout>
 
+
+    </LinearLayout>
+    <LinearLayout
+
+        android:gravity="center"
+        android:layout_marginTop="660dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+<Button
+    android:background="@drawable/type_blue"
+    android:text="View Rate"
+    android:textAllCaps="false"
+    android:textSize="15dp"
+    android:textStyle="bold"
+    android:textColor="@color/white"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="670dp">
+        android:layout_marginTop="690dp">
 
         <TextView
             android:id="@+id/tv_cost_order"

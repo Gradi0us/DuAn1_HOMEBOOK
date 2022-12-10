@@ -32,7 +32,7 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvRating.setText(list.get(position).getRating());
+        holder.tvRating.setText(list.get(position).getRating()+"");
         holder.tvNote.setText(list.get(position).getNote());
     }
 

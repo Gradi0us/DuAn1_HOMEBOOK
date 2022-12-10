@@ -52,6 +52,7 @@ public class RatingActivity extends AppCompatActivity {
         btnDanhGia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (btnRatte.isChecked()) {
                     danhgia = 1;
                 } else if (btnTe.isChecked()) {
@@ -66,6 +67,8 @@ public class RatingActivity extends AppCompatActivity {
                 String note = edtNote.getText().toString();
                 rating rating = new rating(user_id, room_id, danhgia, note);
                 dao.AddRating(rating);
+                List<rating> list = dao.GetAllRating("select * from rating_tb where room_id = " + room_id + "");
+                loadData(list);
             }
         });
     }
