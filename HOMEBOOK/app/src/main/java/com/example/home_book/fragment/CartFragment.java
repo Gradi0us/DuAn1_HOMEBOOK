@@ -54,7 +54,7 @@ public class CartFragment extends Fragment {
         if(!email.equals("")&&!pass.equals("")){
             if (dao.checkLogin(email, pass)) {
                 user x = dao.get1User("select * from user_tb where email = ?", email);
-                list = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+"");
+                list = dao.getNhieuOrder("SELECT * FROM order_tb where user_id = ? and status != '3'",x.getId()+"");
                 loadData();
             }
         }else {
@@ -94,13 +94,16 @@ public class CartFragment extends Fragment {
         alertDialog.show();
     }
 
-    public void xoaDon(order x, int tien){
+    public void xoaDon(order x){
         DAO dao = new DAO(getActivity());
-        dao.DeleteOrder(x.getId());
-        user user = dao.get1User("select * from user_tb where id = ?",x.getUser_id()+"");
-        int tienThemLai = tien - (tien*5/100);
-        user.setMoney(user.getMoney() + tienThemLai);
-        dao.UpdateUser(user);
+        x.setStatus(3);
+        dao.UpdateOrder(x);
+
+//        dao.DeleteOrder(x.getId());
+//        user user = dao.get1User("select * from user_tb where id = ?",x.getUser_id()+"");
+//        int tienThemLai = tien - (tien*5/100);
+//        user.setMoney(user.getMoney() + tienThemLai);
+//        dao.UpdateUser(user);
         loadData();
     }
 

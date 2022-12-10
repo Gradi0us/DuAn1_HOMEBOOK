@@ -22,6 +22,7 @@ import com.example.home_book.model.Room;
 import com.example.home_book.model.user;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FavouriteFragment extends Fragment {
 
@@ -29,7 +30,7 @@ public class FavouriteFragment extends Fragment {
     TextView txtTrong;
     ArrayList<Favourite> list1;
     String user_id = "";
-    ArrayList<Room> list2 = new ArrayList<>();
+    List<Room> list2;
     DAO dao;
 
     @Override
@@ -40,6 +41,8 @@ public class FavouriteFragment extends Fragment {
         recyclerView = view.findViewById(R.id.favouriteRecyclerView);
         txtTrong = view.findViewById(R.id.txtTrong);
         dao = new DAO(getActivity());
+
+        list2 = new ArrayList<>();
 
         SharedPreferences sP = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
         String email = sP.getString("Email", "");
@@ -111,7 +114,7 @@ public class FavouriteFragment extends Fragment {
     public void LoadData(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list2, getActivity());
+        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), (ArrayList<Room>) list2, getActivity());
         recyclerView.setAdapter(homeBookApdater);
     }
 }
