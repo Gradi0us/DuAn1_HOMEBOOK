@@ -26,6 +26,7 @@ import com.example.home_book.model.order;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     Context context;
@@ -125,7 +126,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 //                fragment.xoaDon(x,tien);
                 DAO dao = new DAO(context);
                 dao.DeleteOrder(x.getId());
-                fragment.loadData();
+                List<order> listOrder = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+"");
+                fragment.loadData(listOrder);
                 dao = new DAO(context);
                 dao.getOrder("select*from order_tb");
             }

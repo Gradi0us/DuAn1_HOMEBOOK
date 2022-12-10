@@ -14,25 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.adapter.HistoryAdapter;
 import com.example.home_book.adapter.OrderAdapter;
-import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 import com.example.home_book.model.user;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class CartFragment extends Fragment {
+public class HistoryFragment extends Fragment {
     RecyclerView recyclerView;
     DAO dao;
-    Button button;
     List<order> list;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +39,16 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_cart, container, false);
-
-
-        recyclerView = v.findViewById(R.id.ds_orders);
-        dao = new DAO(getActivity());
+        View v = inflater.inflate(R.layout.fragment_history, container, false);
+        recyclerView = v.findViewById(R.id.ds_homebook);
+        dao = new DAO(getContext());
         SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
         String email = sP.getString("Email","");
         String pass = sP.getString("Password","");
         if(!email.equals("")&&!pass.equals("")){
             if (dao.checkLogin(email, pass)) {
                 user x = dao.get1User("select * from user_tb where email = ?", email);
-                list = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+"");
+                list = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+" and status = 2");
                 loadData(list);
             }
         }else {
@@ -64,11 +58,11 @@ public class CartFragment extends Fragment {
     }
     public void loadData(List<order> list){
         dao = new DAO(getActivity());
-//        list = dao.getOrder("select * from order_tb");
+//        list = dao.getOrder("select * from order_tb where status = 2");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        OrderAdapter homeBookApdater = new OrderAdapter(getContext(), (ArrayList<order>) list,CartFragment.this);
-        recyclerView.setAdapter(homeBookApdater);
+        HistoryAdapter adapter = new HistoryAdapter(getContext(), (ArrayList<order>) list);
+        recyclerView.setAdapter(adapter);
     }
     private void Dialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -92,28 +86,5 @@ public class CartFragment extends Fragment {
 //            });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-    }
-
-    public void xoaDon(order x, int tien){
-        DAO dao = new DAO(getActivity());
-        dao.DeleteOrder(x.getId());
-        user user = dao.get1User("select * from user_tb where id = ?",x.getUser_id()+"");
-        int tienThemLai = tien - (tien*5/100);
-        user.setMoney(user.getMoney() + tienThemLai);
-        dao.UpdateUser(user);
-        list = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+"");
-        loadData(list);
-    }
-
-    public void congThemTien(order x, int tien){
-        DAO dao = new DAO(getActivity());
-        user user = dao.get1User("select * from user_tb where id = ?",x.getUser_id()+"");
-        int tienThem = tien - (tien*5/100);
-        user.setMoney(user.getMoney() - tienThem);
-        dao.UpdateUser(user);
-        Room room = dao.get1Room("select * from room_tb where id = ?",x.getRoom_id()+"");
-        user ctv = dao.get1User("select * from user_tb where id = ?",room.getCollaborate_id() + "");
-        ctv.setMoney(ctv.getMoney() + (tienThem*1/100));
-        dao.UpdateUser(ctv);
     }
 }

@@ -25,7 +25,7 @@ public class AdminHistoryFragment extends Fragment {
     Spinner historyAdminSpinner;
     ListView listMoneyHistory,listRateHistory;
     ArrayList<order> listOrder;
-    ArrayList<> listRate;
+//    ArrayList<> listRate;
     DAO dao;
 
     @Override

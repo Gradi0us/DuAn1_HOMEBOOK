@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.RatingActivity">
+    <LinearLayout
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_ratte"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rất tệ" />
+
+            <RadioButton
+                android:id="@+id/btn_te"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tệ" />
+
+            <RadioButton
+                android:id="@+id/btn_binhthuong"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bình thương" />
+
+            <RadioButton
+                android:id="@+id/btn_tot"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tốt" />
+
+            <RadioButton
+                android:id="@+id/btn_rattot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rất tốt" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/edt_noteRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_addRating"
+            android:text="Gửi đánh giá"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ds_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

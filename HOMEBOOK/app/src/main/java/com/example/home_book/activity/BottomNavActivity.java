@@ -29,6 +29,7 @@ import com.example.home_book.fragment.FavouriteFragment;
 import com.example.home_book.fragment.FindFragment;
 import com.example.home_book.fragment.Fragment2;
 import com.example.home_book.fragment.Fragment3;
+import com.example.home_book.fragment.TabCartFragment;
 import com.example.home_book.fragment.fragmentNav.AcountFragment;
 import com.example.home_book.fragment.fragmentNav.HomeFragment;
 import com.example.home_book.fragment.fragmentNav.RateFragment;
@@ -101,7 +102,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
         final Fragment fragment1 = new FindFragment();
         final Fragment fragment2 = new FavouriteFragment();
         final Fragment fragment3 = new Fragment3();
-        final Fragment fragment4 = new CartFragment();
+        final Fragment fragment4 = new TabCartFragment();
 
         naviagtionDrawer();
 

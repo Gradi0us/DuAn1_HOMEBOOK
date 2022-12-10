@@ -49,7 +49,7 @@ public class AppSQL extends SQLiteOpenHelper {
         db.execSQL(user_Values);
 //        db.execSQL(room_Values);
         db.execSQL(favourite_Values);
-        db.execSQL(rating_Values);
+//        db.execSQL(rating_Values);
        
     }
 

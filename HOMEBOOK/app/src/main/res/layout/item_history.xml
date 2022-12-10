@@ -118,6 +118,14 @@
                         android:text="Delete"
                         android:textAllCaps="false"
                         android:textColor="@color/black" />
+                    <Button
+                        android:id="@+id/btn_danhgia1"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/type"
+                        android:text="Đánh giá"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
 
