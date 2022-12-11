@@ -115,4 +115,5 @@ public class FavouriteFragment extends Fragment {
         HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), list2, getActivity());
         recyclerView.setAdapter(homeBookApdater);
     }
+
 }
