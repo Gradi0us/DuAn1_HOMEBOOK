@@ -370,7 +370,13 @@ public class OrderAcivity extends AppCompatActivity {
         btnViewRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialongViewRate();
+//                DialongViewRate();
+                Intent intent = new Intent(OrderAcivity.this,ViewRateActivity.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("room_id",id_room);
+                intent.putExtra("bundle",bundle1);
+                startActivity(intent);
+
             }
         });
     }
@@ -463,27 +469,27 @@ public class OrderAcivity extends AppCompatActivity {
         }
     }
 
-    public void DialongViewRate() {
-        Dialog builder = new Dialog(this);
-//        View alert = LayoutInflater.from(this).inflate(R.layout.layout_viewrate,null);
-        builder.setContentView(R.layout.layout_viewrate);
-        RecyclerView recyclerView = builder.findViewById(R.id.ds_rate);
-        DAO dao = new DAO(this);
-        List<rating> list = dao.GetAllRating("select * from rating_tb where room_id =" + id_room + "");
-        if (list.size() > 0) {
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(linearLayoutManager);
-            RatingAdapter homeBookApdater = new RatingAdapter(OrderAcivity.this, (ArrayList<rating>) list);
-            recyclerView.setAdapter(homeBookApdater);
-        } else {
-//            LinearLayout layout = builder.findViewById(R.id.layout_viewrate);
-//            layout.setBackgroundResource(R.drawable.m4_cat);
-            builder.dismiss();
-            DialongNull();
-        }
-//        builder.create();
-        builder.show();
-    }
+//    public void DialongViewRate() {
+//        Dialog builder = new Dialog(this);
+////        View alert = LayoutInflater.from(this).inflate(R.layout.layout_viewrate,null);
+//        builder.setContentView(R.layout.layout_viewrate);
+//        RecyclerView recyclerView = builder.findViewById(R.id.ds_rate);
+//        DAO dao = new DAO(this);
+//        List<rating> list = dao.GetAllRating("select * from rating_tb where room_id =" + id_room + "");
+//        if (list.size() > 0) {
+//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//            recyclerView.setLayoutManager(linearLayoutManager);
+//            RatingAdapter homeBookApdater = new RatingAdapter(OrderAcivity.this, (ArrayList<rating>) list);
+//            recyclerView.setAdapter(homeBookApdater);
+//        } else {
+////            LinearLayout layout = builder.findViewById(R.id.layout_viewrate);
+////            layout.setBackgroundResource(R.drawable.m4_cat);
+//            builder.dismiss();
+//            DialongNull();
+//        }
+////        builder.create();
+//        builder.show();
+//    }
 
     //nó vẫn k full mà =)) thì có mỗi 1 thg đánh giá chứ nhiêu
     public void DialongNull() {
