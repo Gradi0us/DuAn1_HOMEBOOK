@@ -54,17 +54,17 @@ public class CartFragment extends Fragment {
         if(!email.equals("")&&!pass.equals("")){
             if (dao.checkLogin(email, pass)) {
                 user x = dao.get1User("select * from user_tb where email = ?", email);
-                list = dao.getNhieuOrder("SELECT * FROM order_tb where user_id = ? and status != '3'",x.getId()+"");
-                loadData();
+                list = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+"");
+                loadData(list);
             }
         }else {
             Dialog();
         }
         return v;
     }
-    public void loadData(){
+    public void loadData(List<order> list){
         dao = new DAO(getActivity());
-        list = dao.getOrder("select * from order_tb");
+//        list = dao.getOrder("select * from order_tb");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         OrderAdapter homeBookApdater = new OrderAdapter(getContext(), (ArrayList<order>) list,CartFragment.this);
@@ -94,17 +94,15 @@ public class CartFragment extends Fragment {
         alertDialog.show();
     }
 
-    public void xoaDon(order x){
+    public void xoaDon(order x, int tien){
         DAO dao = new DAO(getActivity());
-        x.setStatus(3);
-        dao.UpdateOrder(x);
-
-//        dao.DeleteOrder(x.getId());
-//        user user = dao.get1User("select * from user_tb where id = ?",x.getUser_id()+"");
-//        int tienThemLai = tien - (tien*5/100);
-//        user.setMoney(user.getMoney() + tienThemLai);
-//        dao.UpdateUser(user);
-        loadData();
+        dao.DeleteOrder(x.getId());
+        user user = dao.get1User("select * from user_tb where id = ?",x.getUser_id()+"");
+        int tienThemLai = tien - (tien*5/100);
+        user.setMoney(user.getMoney() + tienThemLai);
+        dao.UpdateUser(user);
+        list = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+"");
+        loadData(list);
     }
 
     public void congThemTien(order x, int tien){
