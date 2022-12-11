@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.activity.BottomNavActivity;
 import com.example.home_book.activity.MainActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -129,6 +130,10 @@ public class LoginFragment extends Fragment {
                                 .commit();
 
 //                        startActivity(new Intent(getActivity(), MainActivity.class));
+                        Intent refresh = new Intent(getActivity(), BottomNavActivity.class);
+                        startActivity(refresh);
+                        getActivity().overridePendingTransition(0, 0);
+                        getActivity().finish();
                     } else {
                         Toast.makeText(getActivity(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                         Log.d("ok", "KO OK");

@@ -13,6 +13,7 @@
     app:layout_constraintTop_toTopOf="parent">
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
+        app:headerLayout="@layout/header_layout"
         android:layout_width="220dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -77,6 +78,7 @@
 
     <FrameLayout
         android:id="@+id/frame"
+        android:layout_marginBottom="55dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

@@ -8,18 +8,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
-import com.example.home_book.adapter.ListMarketAdapter;
 import com.example.home_book.adapter.OrderAdapter;
+import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 import com.example.home_book.model.user;
 
@@ -30,6 +30,9 @@ import java.util.List;
 public class CartFragment extends Fragment {
     RecyclerView recyclerView;
     DAO dao;
+    Button button;
+    List<order> list;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,8 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_cart, container, false);
+
+
         recyclerView = v.findViewById(R.id.ds_orders);
         dao = new DAO(getActivity());
         SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
@@ -49,18 +54,20 @@ public class CartFragment extends Fragment {
         if(!email.equals("")&&!pass.equals("")){
             if (dao.checkLogin(email, pass)) {
                 user x = dao.get1User("select * from user_tb where email = ?", email);
-                loadData(x.getId());
+                list = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+"");
+                loadData(list);
             }
         }else {
             Dialog();
         }
         return v;
     }
-    private void loadData(int id){
-        List<order> list = dao.getOrder("SELECT * FROM order_tb where user_id = "+id+"");
+    public void loadData(List<order> list){
+        dao = new DAO(getActivity());
+//        list = dao.getOrder("select * from order_tb");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        OrderAdapter homeBookApdater = new OrderAdapter(getContext(), (ArrayList<order>) list);
+        OrderAdapter homeBookApdater = new OrderAdapter(getContext(), (ArrayList<order>) list,CartFragment.this);
         recyclerView.setAdapter(homeBookApdater);
     }
     private void Dialog(){
@@ -85,5 +92,28 @@ public class CartFragment extends Fragment {
 //            });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public void xoaDon(order x, int tien){
+        DAO dao = new DAO(getActivity());
+        dao.DeleteOrder(x.getId());
+        user user = dao.get1User("select * from user_tb where id = ?",x.getUser_id()+"");
+        int tienThemLai = tien - (tien*5/100);
+        user.setMoney(user.getMoney() + tienThemLai);
+        dao.UpdateUser(user);
+        list = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+"");
+        loadData(list);
+    }
+
+    public void congThemTien(order x, int tien){
+        DAO dao = new DAO(getActivity());
+        user user = dao.get1User("select * from user_tb where id = ?",x.getUser_id()+"");
+        int tienThem = tien - (tien*5/100);
+        user.setMoney(user.getMoney() - tienThem);
+        dao.UpdateUser(user);
+        Room room = dao.get1Room("select * from room_tb where id = ?",x.getRoom_id()+"");
+        user ctv = dao.get1User("select * from user_tb where id = ?",room.getCollaborate_id() + "");
+        ctv.setMoney(ctv.getMoney() + (tienThem*1/100));
+        dao.UpdateUser(ctv);
     }
 }

@@ -29,6 +29,7 @@ import com.example.home_book.fragment.FavouriteFragment;
 import com.example.home_book.fragment.FindFragment;
 import com.example.home_book.fragment.Fragment2;
 import com.example.home_book.fragment.Fragment3;
+import com.example.home_book.fragment.TabCartFragment;
 import com.example.home_book.fragment.fragmentNav.AcountFragment;
 import com.example.home_book.fragment.fragmentNav.HomeFragment;
 import com.example.home_book.fragment.fragmentNav.RateFragment;
@@ -39,6 +40,9 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class BottomNavActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,7 +60,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
     ImageView avatar;
 
     static final float END_SCALE = 0.7f;
-
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +78,12 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
         SharedPreferences sP = getSharedPreferences("User_File", MODE_PRIVATE);
         String email = sP.getString("Email", "");
         String pass = sP.getString("Password", "");
-
+        //
+        View header = navigationView.getHeaderView(0);
+        TextView txtUsernameHeader = header.findViewById(R.id.txtviewUsername);
+        TextView txtCurrentDate = header.findViewById(R.id.tv_currentdate);
+        ImageView imageAVT = header.findViewById(R.id.imageAvtar);
+        //
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         navigationView.setVisibility(View.GONE);
@@ -82,13 +91,19 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
 
         DAO dao = new DAO(BottomNavActivity.this);
         if (dao.checkLogin(email, pass)) {
+            Date date = new Date();
+            String dataFo1 = dateFormat.format(date);
             user x = dao.get1User("select * from user_tb where email = ?", email);
             name = x.getFullname();
             txtUsername.setText(name);
+            txtUsernameHeader.setText(name);
+            txtCurrentDate.setText(dataFo1);
             if (x.getAvatar() == 0) {
                 avatar.setImageResource(R.drawable.usermanage);
+                imageAVT.setImageResource(R.drawable.usermanage);
             } else {
                 avatar.setImageResource(x.getAvatar());
+                imageAVT.setImageResource(x.getAvatar());
             }
 
             int role = 0;
@@ -101,7 +116,7 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
         final Fragment fragment1 = new FindFragment();
         final Fragment fragment2 = new FavouriteFragment();
         final Fragment fragment3 = new Fragment3();
-        final Fragment fragment4 = new CartFragment();
+        final Fragment fragment4 = new TabCartFragment();
 
         naviagtionDrawer();
 
@@ -130,7 +145,10 @@ public class BottomNavActivity extends AppCompatActivity implements NavigationVi
                         menuIcon.setVisibility(View.GONE);
                         layout.setVisibility(View.VISIBLE);
                         replaceFragment(fragment4);
-
+//                        Intent refresh = new Intent(BottomNavActivity.this, BottomNavActivity.class);
+//                        startActivity(refresh);
+//                        overridePendingTransition(0, 0);
+//                        finish();
                         break;
 
                     case R.id.Music:

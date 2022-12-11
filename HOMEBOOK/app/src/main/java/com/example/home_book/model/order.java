@@ -7,20 +7,12 @@ public class order {
     int id,user_id,number_people,room_id;
     Date booking_date,return_date;
     String time_checkin,time_checkout,note;
-    int status;
+    int status,money;
 
     public order() {
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public order(int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note, int status) {
+    public order(int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note, int status,int money) {
         this.user_id = user_id;
         this.number_people = number_people;
         this.room_id = room_id;
@@ -30,8 +22,9 @@ public class order {
         this.booking_date = booking_date;
         this.return_date = return_date;
         this.status = status;
+        this.money = money;
     }
-    public order(int id, int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note,int status) {
+    public order(int id, int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note,int status,int money) {
         this.id = id;
         this.user_id = user_id;
         this.number_people = number_people;
@@ -42,28 +35,7 @@ public class order {
         this.booking_date = booking_date;
         this.return_date = return_date;
         this.status = status;
-    }
-    public order(int id, int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note) {
-        this.id = id;
-        this.user_id = user_id;
-        this.number_people = number_people;
-        this.room_id = room_id;
-        this.time_checkin = time_checkin;
-        this.time_checkout = time_checkout;
-        this.note = note;
-        this.booking_date = booking_date;
-        this.return_date = return_date;
-    }
-
-    public order( int user_id, int number_people, Date booking_date, Date return_date, String time_checkin, String time_checkout, int room_id, String note) {
-        this.user_id = user_id;
-        this.number_people = number_people;
-        this.room_id = room_id;
-        this.time_checkin = time_checkin;
-        this.time_checkout = time_checkout;
-        this.note = note;
-        this.booking_date = booking_date;
-        this.return_date = return_date;
+        this.money = money;
     }
 
     public int getId() {
@@ -136,5 +108,21 @@ public class order {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }
