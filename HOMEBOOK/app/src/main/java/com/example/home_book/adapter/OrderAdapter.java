@@ -26,6 +26,7 @@ import com.example.home_book.model.order;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     Context context;
@@ -90,7 +91,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Dialog(list.get(i));
+                    Dialog(list.get(i),tienHoaDon);
                 }
             });
 
@@ -113,8 +114,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         }
     }
 
-    private void Dialog(order x) {
-//        Log.d("tien",tien+"");
+    private void Dialog(order x,int tien) {
+        Log.d("tien",tien+"");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Are you sure about that ?");
@@ -122,10 +123,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                fragment.xoaDon(x);
-//                DAO dao = new DAO(context);
-//                dao.DeleteOrder(x.getId());
-//                fragment.loadData();
+//                fragment.xoaDon(x,tien);
+                DAO dao = new DAO(context);
+                dao.DeleteOrder(x.getId());
+                List<order> listOrder = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+"");
+                fragment.loadData(listOrder);
+                dao = new DAO(context);
+                dao.getOrder("select*from order_tb");
             }
         });
         builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
