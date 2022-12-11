@@ -741,7 +741,7 @@ public class DAO {
     public long AddRating(rating rating){
         ContentValues values = new ContentValues();
         values.put("user_id",rating.getUser_id());
-        values.put("room_id",rating.getRoom_id());
+        values.put("order_id",rating.getOrder_id());
         values.put("rating",rating.getRating());
         values.put("note",rating.getNote());
         long a = db.insert("rating_tb",null,values);
@@ -757,7 +757,7 @@ public class DAO {
     public void DeleteRating(int id){
         db.delete("rating_tb","id=?",new String[]{String.valueOf(id)});
     }
-    public List<rating> GetAllRating(String sql){
+    public List<rating> GetAllRating(String sql,String... args){
         List<rating> list = new ArrayList<>();
         Cursor c = db.rawQuery(sql,null);
         c.moveToFirst();
