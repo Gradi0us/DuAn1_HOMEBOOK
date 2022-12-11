@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
@@ -64,11 +65,17 @@ public class RatingActivity extends AppCompatActivity {
                 } else if (btnRatTot.isChecked()) {
                     danhgia = 5;
                 }
-                String note = edtNote.getText().toString();
-                rating rating = new rating(user_id, room_id, danhgia, note);
-                dao.AddRating(rating);
-                List<rating> list = dao.GetAllRating("select * from rating_tb where room_id = " + room_id + "");
-                loadData(list);
+                List<rating> listCheck = dao.GetAllRating("select * from rating_tb where room_id = " + room_id + " and user_id ="+user_id+"");
+                if(listCheck.size()==0){
+                    String note = edtNote.getText().toString();
+                    rating rating = new rating(user_id, room_id, danhgia, note);
+                    dao.AddRating(rating);
+                    List<rating> list = dao.GetAllRating("select * from rating_tb where room_id = " + room_id + "");
+                    loadData(list);
+                }else {
+                    Toast.makeText(RatingActivity.this, "Bạn đã đánh giá", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

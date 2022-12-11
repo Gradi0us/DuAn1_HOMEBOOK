@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,9 +44,17 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Room roomList = dao.get1Room("select * from room_tb where id=?",String.valueOf(list.get(position).getRoom_id()));
         holder.tvNameHome.setText(roomList.getName());
-        holder.tvBeds.setText(roomList.getBeds()+"");
+//        holder.tvBeds.setText(roomList.getBeds()+"");
         holder.tvCategory.setText(roomList.getCategory());
         holder.tvLocation.setText(roomList.getLocation());
+        holder.numberstar.setRating(roomList.getRate());
+        switch (roomList.getBeds()){
+            case 0:holder.tvBeds.setText("Phòng đơn");break;
+            case 1:holder.tvBeds.setText("Phòng sinh đôi");break;
+            case 2:holder.tvBeds.setText("Phòng đôi");break;
+            case 3:holder.tvBeds.setText("Phòng ba");break;
+            case 4:holder.tvBeds.setText("Phòng bốn");break;
+        }
         holder.btnDanhGia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +78,7 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView tvNameHome,tvLocation,tvBeds,tvCategory,tvDatecheckin,tvDatecheckout;
         Button btnDanhGia;
+        RatingBar numberstar;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNameHome = itemView.findViewById(R.id.tv_name_homebook_ls);
@@ -78,6 +88,7 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
             btnDanhGia = itemView.findViewById(R.id.btn_danhgia1);
             tvDatecheckin = itemView.findViewById(R.id.tv_datecheckin);
             tvDatecheckout = itemView.findViewById(R.id.tv_datecheckout);
+            numberstar = itemView.findViewById(R.id.number_stars);
         }
     }
 }
