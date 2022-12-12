@@ -110,6 +110,7 @@ public class AcountFragment extends Fragment {
         Button btnCancel = view.findViewById(R.id.btn_cancel);
         Spinner spnbeds = view.findViewById(R.id.spn_beds);
         Spinner spncategory = view.findViewById(R.id.spn_category);
+        ImageView btnout = view.findViewById(R.id.btn_out);
         ArrayList<String> bed = new ArrayList<>();
         bed.add("Single Room");
         bed.add("Twin Room");
@@ -206,7 +207,12 @@ public class AcountFragment extends Fragment {
             alertDialog.cancel();
             }
         });
-
+        btnout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
 
         alertDialog.show();
 
