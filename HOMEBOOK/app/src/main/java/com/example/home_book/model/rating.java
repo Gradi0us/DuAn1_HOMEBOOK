@@ -4,17 +4,23 @@ public class rating {
     int id,user_id,room_id,rating;
     String note;
 
-    public rating(int id, int user_id, int order_id, int rating, String note) {
+    public rating(int id, int user_id, int room_id, int rating, String note) {
         this.id = id;
         this.user_id = user_id;
-        this.room_id = order_id;
+
+
+        this.room_id = room_id;
+
         this.rating = rating;
         this.note = note;
     }
 
-    public rating(int user_id, int order_id, int rating, String note) {
+    public rating(int user_id, int room_id, int rating, String note) {
         this.user_id = user_id;
-        this.room_id = order_id;
+
+
+        this.room_id = room_id;
+
         this.rating = rating;
         this.note = note;
     }
