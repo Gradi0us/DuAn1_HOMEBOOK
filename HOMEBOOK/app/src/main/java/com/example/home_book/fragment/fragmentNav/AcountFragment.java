@@ -3,7 +3,6 @@ package com.example.home_book.fragment.fragmentNav;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -111,7 +110,6 @@ public class AcountFragment extends Fragment {
         Button btnCancel = view.findViewById(R.id.btn_cancel);
         Spinner spnbeds = view.findViewById(R.id.spn_beds);
         Spinner spncategory = view.findViewById(R.id.spn_category);
-        ImageView btnOut = view.findViewById(R.id.thoat);
         ArrayList<String> bed = new ArrayList<>();
         bed.add("Single Room");
         bed.add("Twin Room");
@@ -192,9 +190,8 @@ public class AcountFragment extends Fragment {
                         hoteldetail.length()<=0 ||
                         cost.length()<=0 ||
                         status.length()<=0 ||
-                        location.length()<=0||IMG.length<=0){
-                    Toast.makeText(getActivity(), "Do not leave blank", Toast.LENGTH_SHORT).show();
-                    DialogNotification("Do not leave blank");
+                        location.length()<=0){
+                    Toast.makeText(getActivity(), "Không để trống", Toast.LENGTH_SHORT).show();
                 }else{
                     dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG,ctv_id));
                     alertDialog.cancel();
@@ -209,12 +206,7 @@ public class AcountFragment extends Fragment {
             alertDialog.cancel();
             }
         });
-        btnOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alertDialog.dismiss();
-            }
-        });
+
 
         alertDialog.show();
 
@@ -254,22 +246,5 @@ public class AcountFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         ListMarketAdapter homeBookApdater = new ListMarketAdapter(getContext(),list,getActivity());
         recyclerView.setAdapter(homeBookApdater);
-    }
-    public void DialogNotification(String notification) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        View alert = LayoutInflater.from(this).inflate(R.layout.layout_viewrate,null);
-//        builder.setContentView(R.layout.layout_viewrate);
-        builder.setMessage(notification);
-        builder.setCancelable(true);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.create();
-        alertDialog.show();
     }
 }

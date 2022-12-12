@@ -63,10 +63,10 @@ public class AdminHistoryFragment extends Fragment {
         dao = new DAO(getActivity());
 
         ArrayList<String> cheDo = new ArrayList<>();
-        cheDo.add("Tổng chi phí của thành viên");
-        cheDo.add("Thu nhập của collaborate");
-        cheDo.add("Thu nhập của app");
-        cheDo.add("Lịch sử đánh giá");
+        cheDo.add("Member's total cost");
+        cheDo.add("Collaborate revenue");
+        cheDo.add("Application revenue");
+        cheDo.add("History Review");
         ArrayAdapter adapterCheDo = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, cheDo);
         historyAdminSpinner.setAdapter(adapterCheDo);
 
@@ -218,11 +218,11 @@ public class AdminHistoryFragment extends Fragment {
                 Room room = dao.get1Room("select * from room_tb where id = ?",listOrder.get(position).getRoom_id()+"");
 
                 switch (room.getBeds()){
-                    case 0:loaiPhong = "Phòng đơn";break;
-                    case 1:loaiPhong = "Phòng sinh đôi";break;
-                    case 2:loaiPhong = "Phòng đôi";break;
-                    case 3:loaiPhong = "Phòng ba";break;
-                    case 4:loaiPhong = "Phòng bốn";break;
+                    case 0:loaiPhong = "Single room";break;
+                    case 1:loaiPhong = "Twin room";break;
+                    case 2:loaiPhong = "Double room";break;
+                    case 3:loaiPhong = "Triple room";break;
+                    case 4:loaiPhong = "Quad room";break;
                 }
 
                 long diff = listOrder.get(position).getReturn_date().getTime() - listOrder.get(position).getBooking_date().getTime();
@@ -230,15 +230,15 @@ public class AdminHistoryFragment extends Fragment {
 
                 holder.ten.setText(user.getFullname());
                 holder.phong.setText(room.getName() + " - " + loaiPhong);
-                holder.money.setText("Giá: " + (int)(room.getCost() * dayCount)+"đ");
+                holder.money.setText("Cost: " + (int)(room.getCost() * dayCount)+"đ");
                 holder.day.setText(format.format(listOrder.get(position).getBooking_date()) + " - " + format.format(listOrder.get(position).getReturn_date()));
 
                 if(listOrder.get(position).getStatus() == 1){
-                    holder.status.setText("Đang nhận phòng");
+                    holder.status.setText("Check In");
                     holder.status.setTextColor(Color.RED);
                 }
                 if(listOrder.get(position).getStatus() == 2){
-                    holder.status.setText("Đã trả phòng");
+                    holder.status.setText("Check Out");
                     holder.status.setTextColor(Color.GREEN);
                 }
 
@@ -300,24 +300,24 @@ public class AdminHistoryFragment extends Fragment {
                 int dayCount = (int) diff/(24 * 60 * 60 * 1000);
 
                 switch (room.getBeds()){
-                    case 0:loaiPhong = "Phòng đơn";break;
-                    case 1:loaiPhong = "Phòng sinh đôi";break;
-                    case 2:loaiPhong = "Phòng đôi";break;
-                    case 3:loaiPhong = "Phòng ba";break;
-                    case 4:loaiPhong = "Phòng bốn";break;
+                    case 0:loaiPhong = "Single room";break;
+                    case 1:loaiPhong = "Twin room";break;
+                    case 2:loaiPhong = "Double room";break;
+                    case 3:loaiPhong = "Triple room";break;
+                    case 4:loaiPhong = "Quad room";break;
                 }
 
                 holder.ten.setText(user.getFullname());
                 holder.phong.setText(room.getName() + " - " + loaiPhong);
-                holder.money.setText("Tiền: " + (((int)(room.getCost() * dayCount)) - ((int)(room.getCost() * dayCount))*5/100)*1/100+"đ");
+                holder.money.setText("Cost: " + (((int)(room.getCost() * dayCount)) - ((int)(room.getCost() * dayCount))*5/100)*1/100+"đ");
                 holder.day.setText(format.format(listOrder.get(position).getBooking_date()) + " - " + format.format(listOrder.get(position).getReturn_date()));
 
                 if(listOrder.get(position).getStatus() == 1){
-                    holder.status.setText("Đang nhận phòng");
+                    holder.status.setText("Check In");
                     holder.status.setTextColor(Color.RED);
                 }
                 if(listOrder.get(position).getStatus() == 2){
-                    holder.status.setText("Đã trả phòng");
+                    holder.status.setText("Check Out");
                     holder.status.setTextColor(Color.GREEN);
                 }
 
@@ -379,11 +379,11 @@ public class AdminHistoryFragment extends Fragment {
                 int dayCount = (int) diff/(24 * 60 * 60 * 1000);
 
                 switch (room.getBeds()){
-                    case 0:loaiPhong = "Phòng đơn";break;
-                    case 1:loaiPhong = "Phòng sinh đôi";break;
-                    case 2:loaiPhong = "Phòng đôi";break;
-                    case 3:loaiPhong = "Phòng ba";break;
-                    case 4:loaiPhong = "Phòng bốn";break;
+                    case 0:loaiPhong = "Single room";break;
+                    case 1:loaiPhong = "Twin room";break;
+                    case 2:loaiPhong = "Double room";break;
+                    case 3:loaiPhong = "Triple room";break;
+                    case 4:loaiPhong = "Quad room";break;
                 }
 
                 holder.ten.setText(user.getFullname());
@@ -392,21 +392,21 @@ public class AdminHistoryFragment extends Fragment {
                 holder.day.setText(format.format(listOrder.get(position).getBooking_date()) + " - " + format.format(listOrder.get(position).getReturn_date()));
 
                 if(listOrder.get(position).getStatus() == 0){
-                    holder.status.setText("Đang đợi phòng");
+                    holder.status.setText("Wait order");
                     holder.status.setTextColor(Color.BLACK);
                 }
 
                 if(listOrder.get(position).getStatus() == 1){
-                    holder.status.setText("Đã nhận phòng");
+                    holder.status.setText("Check In");
                     holder.status.setTextColor(Color.RED);
                 }
                 if(listOrder.get(position).getStatus() == 2){
-                    holder.status.setText("Đã trả phòng");
+                    holder.status.setText("Check Out");
                     holder.status.setTextColor(Color.GREEN);
                 }
 
                 if(listOrder.get(position).getStatus() == 3){
-                    holder.status.setText("Đã hủy phòng");
+                    holder.status.setText("Cancel");
                     holder.status.setTextColor(Color.BLACK);
                 }
 
@@ -417,7 +417,7 @@ public class AdminHistoryFragment extends Fragment {
         };
 
         listMoneyHistory.setAdapter(adapter);
-        txtTongGia.setText("Tổng: " + tongGia);
+        txtTongGia.setText("Total: " + tongGia);
 
     }
 
@@ -475,16 +475,16 @@ public class AdminHistoryFragment extends Fragment {
                 int dayCount = (int) diff/(24 * 60 * 60 * 1000);
 
                 switch (room.getBeds()){
-                    case 0:loaiPhong = "Phòng đơn";break;
-                    case 1:loaiPhong = "Phòng sinh đôi";break;
-                    case 2:loaiPhong = "Phòng đôi";break;
-                    case 3:loaiPhong = "Phòng ba";break;
-                    case 4:loaiPhong = "Phòng bốn";break;
+                    case 0:loaiPhong = "Single room";break;
+                    case 1:loaiPhong = "Twin room";break;
+                    case 2:loaiPhong = "Double room";break;
+                    case 3:loaiPhong = "Triple room";break;
+                    case 4:loaiPhong = "Quad room";break;
                 }
 
                 holder.ten.setText(user.getFullname());
                 holder.phong.setText(room.getName() + " - " + loaiPhong);
-                holder.money.setText("Giá: " + (int)(room.getCost() * dayCount) + "đ");
+                holder.money.setText("Cost: " + (int)(room.getCost() * dayCount) + "đ");
                 holder.day.setText(format.format(order.getBooking_date()) + " - " + format.format(order.getReturn_date()));
 
                 switch (listRate.get(position).getRating()){

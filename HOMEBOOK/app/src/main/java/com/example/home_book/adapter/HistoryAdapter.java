@@ -22,12 +22,11 @@ import com.example.home_book.model.order;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
+public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHolder>{
     Context context;
     ArrayList<order> list;
-    DAO dao;
+    DAO dao ;
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-
     public HistoryAdapter(Context context, ArrayList<order> list) {
         this.context = context;
         this.list = list;
@@ -43,50 +42,32 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Room roomList = dao.get1Room("select * from room_tb where id=?", String.valueOf(list.get(position).getRoom_id()));
+        Room roomList = dao.get1Room("select * from room_tb where id=?",String.valueOf(list.get(position).getRoom_id()));
         holder.tvNameHome.setText(roomList.getName());
 //        holder.tvBeds.setText(roomList.getBeds()+"");
         holder.tvCategory.setText(roomList.getCategory());
         holder.tvLocation.setText(roomList.getLocation());
         holder.numberstar.setRating(roomList.getRate());
-        switch (roomList.getBeds()) {
-            case 0:
-                holder.tvBeds.setText("Single room");
-                break;
-            case 1:
-                holder.tvBeds.setText("Twin room");
-                break;
-            case 2:
-                holder.tvBeds.setText("Double room");
-                break;
-            case 3:
-                holder.tvBeds.setText("Triple room");
-                break;
-            case 4:
-                holder.tvBeds.setText("Quad room");
-                break;
+        switch (roomList.getBeds()){
+            case 0:holder.tvBeds.setText("Single room");break;
+            case 1:holder.tvBeds.setText("Twin room");break;
+            case 2:holder.tvBeds.setText("Double room");break;
+            case 3:holder.tvBeds.setText("Triple room");break;
+            case 4:holder.tvBeds.setText("Quad room");break;
         }
         holder.btnDanhGia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, RatingActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("user_id", list.get(holder.getAdapterPosition()).getUser_id());
-                bundle.putInt("room_id", list.get(holder.getAdapterPosition()).getRoom_id());
-                intent.putExtra("bundle", bundle);
+                bundle.putInt("user_id",list.get(holder.getAdapterPosition()).getUser_id());
+                bundle.putInt("room_id",list.get(holder.getAdapterPosition()).getRoom_id());
+                intent.putExtra("bundle",bundle);
                 context.startActivity(intent);
             }
         });
         holder.tvDatecheckin.setText(format.format(list.get(position).getBooking_date()));
         holder.tvDatecheckout.setText(format.format(list.get(position).getReturn_date()));
-        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                order order = list.get(holder.getAdapterPosition());
-                order.setStatus(0);
-                dao.UpdateOrder(order);
-            }
-        });
     }
 
     @Override
@@ -94,11 +75,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNameHome, tvLocation, tvBeds, tvCategory, tvDatecheckin, tvDatecheckout;
-        Button btnDanhGia, btnDelete;
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView tvNameHome,tvLocation,tvBeds,tvCategory,tvDatecheckin,tvDatecheckout;
+        Button btnDanhGia;
         RatingBar numberstar;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNameHome = itemView.findViewById(R.id.tv_name_homebook_ls);
@@ -109,7 +89,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             tvDatecheckin = itemView.findViewById(R.id.tv_datecheckin);
             tvDatecheckout = itemView.findViewById(R.id.tv_datecheckout);
             numberstar = itemView.findViewById(R.id.number_stars);
-            btnDelete = itemView.findViewById(R.id.xoa_button);
         }
     }
 }

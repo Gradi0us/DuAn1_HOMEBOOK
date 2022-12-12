@@ -62,12 +62,12 @@ public class ChangePassFragment extends Fragment {
                 if (validate() > 0) {
                     x.setPassword(edtpass.getText().toString());
                     if (dao.UpdateUser(x) > 0) {
-                        Toast.makeText(getActivity(), "Thay đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Change password successfully", Toast.LENGTH_SHORT).show();
                         edtpassold.setText("");
                         edtpass.setText("");
                         edrepass.setText("");
                     } else {
-                        Toast.makeText(getActivity(), "Thay đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Change password failed", Toast.LENGTH_SHORT).show();
 
                     }
                 }
@@ -79,7 +79,7 @@ public class ChangePassFragment extends Fragment {
     public int validate() {
         int check = 1;
         if (edtpassold.getText().length() == 0 || edtpass.getText().length() == 0 || edrepass.getText().length() == 0) {
-            Toast.makeText(getContext(), "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), " not enough information", Toast.LENGTH_SHORT).show();
             check = -1;
         } else {
             String pass = edtpass.getText().toString();
@@ -91,11 +91,11 @@ public class ChangePassFragment extends Fragment {
             String old = x.getPassword();
             Log.d("passs", old);
             if (!old.equals(edtpassold.getText().toString())) {
-                Toast.makeText(getContext(), "Mật khẩu cũ sai", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "The current password is false", Toast.LENGTH_SHORT).show();
                 check = -1;
             }
             if (!pass.equals(repass)) {
-                Toast.makeText(getContext(), "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Password is not similar", Toast.LENGTH_SHORT).show();
                 check = -1;
             }
         }

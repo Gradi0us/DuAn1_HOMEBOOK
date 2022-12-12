@@ -14,7 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:text="Từ Ngày"
+            android:background="@drawable/gradient_gray"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:text="Begin date"
             android:id="@+id/btnTungay"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -36,7 +40,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:text="Đến Ngày"
+            android:background="@drawable/color_gradient"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:text="Target Date"
             android:id="@+id/btndenngay"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -52,25 +60,37 @@
 
     </LinearLayout>
     <Button
+        android:background="@drawable/type_blue"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAllCaps="false"
         android:textSize="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:text="Doanh Thu"
+        android:text="Check"
         android:id="@+id/btndoanhthu"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:background="@drawable/gradient_gray"
+
+        android:textStyle="bold"
         android:layout_marginTop="20dp"
-        android:text="Doanh Thu Phòng"
+        android:text="Room proceeds"
         android:textSize="20dp"
         android:id="@+id/tvDoanhthuPhong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:background="@drawable/color_gradient"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:layout_marginTop="20dp"
-        android:text="Doanh Thu Cá Nhân"
+        android:text="Your takings"
         android:textSize="20dp"
         android:id="@+id/tvDoanhthuCaNhan"
         android:layout_width="match_parent"

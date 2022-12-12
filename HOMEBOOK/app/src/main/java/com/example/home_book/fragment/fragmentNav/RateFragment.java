@@ -120,8 +120,8 @@ public class RateFragment extends Fragment {
 
     private void LoadData(user x,String tungay,String denngay){
         DAO dao = new DAO(getActivity());
-        tvdoanhthuPhong.setText("Doanh thu các phòng: "+dao.getDoanhThuPhong(x.getId()+"",tungay,denngay)+" VNĐ");
-        tvdoanhthuCaNhan.setText("Doanh thu của bạn: "+dao.getDoanhThuCaNhan(x.getId()+"",tungay,denngay)+" VNĐ");
+        tvdoanhthuPhong.setText("Room revenue: "+dao.getDoanhThuPhong(x.getId()+"",tungay,denngay)+" VNĐ");
+        tvdoanhthuCaNhan.setText("Your revenue: "+dao.getDoanhThuCaNhan(x.getId()+"",tungay,denngay)+" VNĐ");
     }
 
 }
