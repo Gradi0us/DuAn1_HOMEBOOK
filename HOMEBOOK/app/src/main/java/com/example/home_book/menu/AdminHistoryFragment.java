@@ -464,7 +464,11 @@ public class AdminHistoryFragment extends Fragment {
 
                 String loaiPhong = "";
                 user user = dao.get1User("select * from user_tb where id = ?",listRate.get(position).getUser_id()+"");
+
                 order order = dao.getOrder1("select * from order_tb where id = ?",listOrder.get(position).getId()+"");
+
+   //             order order = dao.getOrder1("select * from order_tb where id = ?",listRate.get(position).getOrder_id()+"");
+
                 Room room = dao.get1Room("select * from room_tb where id = ?",order.getRoom_id() + "");
 
                 long diff = order.getReturn_date().getTime() - order.getBooking_date().getTime();
@@ -517,6 +521,7 @@ public class AdminHistoryFragment extends Fragment {
     }
 
 }
+
 
 
 

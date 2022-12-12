@@ -12,10 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:gravity="bottom|center"
 
+      
         android:paddingVertical="10dp"
-        android:weightSum="5">
+
+        android:weightSum="5"
+        android:gravity="bottom|center">
 
 
         <EditText
@@ -30,58 +32,66 @@
 
         <EditText
 
+
             android:id="@+id/txtEndHistory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="2dp"
+
             android:layout_marginLeft="20dp"
+            
             android:layout_weight="2"
             android:editable="false"
             android:gravity="center"
 
-            />
+
+           />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonLocHistory"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/type_blue"
-        android:text="Lọc"
-        android:textColor="@color/white" />
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+      android:textColor="@color/white"
+        android:id="@+id/buttonLocHistory"
+        android:text="Lọc"/>
 
     <Spinner
+     android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Đến ngày" />
+            android:hint="Đến ngày" />
+        <Button
+            android:id="@+id/buttonLocHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lọc" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonLocHistory"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Lọc" />
     <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:layout_width="match_parent">
+        android:layout_weight="0.3">
 
         <Spinner
             android:id="@+id/historyAdminSpinner"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="25dp"
-            android:layout_width="wrap_content" />
+            android:layout_marginLeft="25dp" />
 
         <TextView
-            android:gravity="end"
             android:id="@+id/txtTongGia"
-            android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="end"
             android:text="Tổng: ..."
             android:textSize="18dp" />
+
+    </LinearLayout>
+
 
     </LinearLayout>
     <FrameLayout
@@ -92,6 +102,7 @@
 
         <ListView
             android:id="@+id/listMoneyHistory"
+
             android:layout_height="match_parent"
             android:layout_width="match_parent" />
 
@@ -99,6 +110,15 @@
             android:id="@+id/listRateHistory"
             android:layout_height="match_parent"
             android:layout_width="match_parent" />
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ListView
+            android:id="@+id/listRateHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 
     </FrameLayout>
 </LinearLayout>

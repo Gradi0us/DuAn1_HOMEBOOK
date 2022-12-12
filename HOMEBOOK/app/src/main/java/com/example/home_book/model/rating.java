@@ -1,20 +1,20 @@
 package com.example.home_book.model;
 
 public class rating {
-    int id,user_id,room_id,rating;
+    int id,user_id,order_id,rating;
     String note;
 
-    public rating(int id, int user_id, int room_id, int rating, String note) {
+    public rating(int id, int user_id, int order_id, int rating, String note) {
         this.id = id;
         this.user_id = user_id;
-        this.room_id = room_id;
+        this.order_id = order_id;
         this.rating = rating;
         this.note = note;
     }
 
-    public rating(int user_id, int room_id, int rating, String note) {
+    public rating(int user_id, int order_id, int rating, String note) {
         this.user_id = user_id;
-        this.room_id = room_id;
+        this.order_id = order_id;
         this.rating = rating;
         this.note = note;
     }
@@ -40,12 +40,12 @@ public class rating {
         this.user_id = user_id;
     }
 
-    public int getRoom_id() {
-        return room_id;
+    public int getOrder_id() {
+        return order_id;
     }
 
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 
     public int getRating() {

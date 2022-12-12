@@ -27,25 +27,29 @@
                     android:textColor="@color/gray"
                     android:textSize="25dp"
                     android:textStyle="bold" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/img_addimage"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="130dp"
+                        android:layout_marginTop="40dp"
+                        android:src="@drawable/edit" />
 
-                <ImageView
-                    android:id="@+id/img_addimage"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="130dp"
-                    android:layout_marginTop="40dp"
-                    android:src="@drawable/edit" />
+                    <ImageView
+                        android:id="@+id/img_avthome"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/ic_baseline_house_24" />
+                </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/img_avthome"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
 
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="135dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginBottom="20dp"
-                    android:src="@drawable/ic_baseline_house_24" />
 
             </RelativeLayout>
 
@@ -72,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Nameeeeeeeeeeee"
+                        android:hint="What's your hotel name ?"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:paddingVertical="10dp" />
