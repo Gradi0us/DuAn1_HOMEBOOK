@@ -61,6 +61,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
 //        imageAVT.setImageBitmap(bitmap);
             holder.imageView.setImageBitmap(bitmap);
+
 //            holder.tvCategory.setText(roomList.getLocation());
             holder.tvName.setText(roomList.getName());
 
@@ -97,7 +98,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
             Date date = new Date();
             if( (date.after(list.get(i).getBooking_date()) && date.before(list.get(i).getReturn_date()) ) || date.equals(list.get(i).getBooking_date())){
-                holder.button.setText("Đang nhận phòng");
+                holder.button.setText("Check In");
                 holder.button.setBackgroundResource(R.drawable.type_red);
                 holder.button.setEnabled(false);
                 list.get(i).setStatus(1);
@@ -105,7 +106,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 fragment.congThemTien(list.get(i),tienHoaDon);
             }
             if(date.after(list.get(i).getReturn_date()) || ( date.equals(list.get(i).getReturn_date()) && date.after(list.get(i).getBooking_date()) )){
-                holder.button.setText("Đã trả phòng");
+                holder.button.setText("Check Out");
                 holder.button.setBackgroundResource(R.drawable.type_green);
                 holder.button.setEnabled(false);
                 list.get(i).setStatus(2);
@@ -149,7 +150,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         RatingBar ratingBar;
-        ImageView imageView;
+        ImageView imageView,img;
         Button button;
         TextView tvDateCheckIn, tvDateCheckOut, tvName, tvLocation, tvCategory, tvBeds, tvCost, tvPeople;
 
@@ -162,6 +163,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             tvName = itemView.findViewById(R.id.tv_name_homebook);
             tvLocation = itemView.findViewById(R.id.tv_location_homebook);
             ratingBar = itemView.findViewById(R.id.number_stars);
+            img = itemView.findViewById(R.id.order_history);
             imageView = itemView.findViewById(R.id.img_homebook);
             button = itemView.findViewById(R.id.cancel_button);
             tvCategory = itemView.findViewById(R.id.tv_category);

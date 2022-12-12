@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.adapter.FavoritesAdapter;
 import com.example.home_book.adapter.HomeBookApdater;
 import com.example.home_book.model.Favourite;
 import com.example.home_book.model.Room;
@@ -48,7 +49,7 @@ public class FavouriteFragment extends Fragment {
         String email = sP.getString("Email", "");
         String pass = sP.getString("Password", "");
 
-        txtTrong.setText("Vui lòng đăng nhập để xem yêu thích");
+        txtTrong.setText("Please login to view your favorites");
 
         if (dao.checkLogin(email, pass)) {
             user x = dao.get1User("select * from user_tb where email = ?", email);
@@ -62,7 +63,7 @@ public class FavouriteFragment extends Fragment {
                 list1 = (ArrayList<Favourite>) dao.getFavourite(user_id);
                 if (list1.size() <= 0) {
                     txtTrong.setVisibility(View.VISIBLE);
-                    txtTrong.setText("Không có yêu thích");
+                    txtTrong.setText("No favorites");
                 } else {
                     for(Favourite f : list1){
                         String room_id = f.getRoom_id() +"";
@@ -114,7 +115,7 @@ public class FavouriteFragment extends Fragment {
     public void LoadData(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        HomeBookApdater homeBookApdater = new HomeBookApdater(getContext(), (ArrayList<Room>) list2, getActivity());
+        FavoritesAdapter homeBookApdater = new FavoritesAdapter(getContext(), (ArrayList<Room>) list2, getActivity());
         recyclerView.setAdapter(homeBookApdater);
     }
 
