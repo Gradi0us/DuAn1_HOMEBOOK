@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title=""/>
-    <item android:id="@+id/mHome"
-        android:title="Home"
-        android:icon="@drawable/ic_baseline_house_24"/>
-    <item android:id="@+id/mAcount"
-        android:title="Market"
-        android:icon="@drawable/rate"/>
 
-    <item android:id="@+id/mRate"
-        android:title="Revenue"
-        android:icon="@drawable/graph"/>
+        <item android:id="@+id/mHome"
+            android:title="Home"
+            android:icon="@drawable/ic_baseline_house_24"/>
+        <item android:id="@+id/mAcount"
+            android:title="Market"
+            android:icon="@drawable/rate"/>
 
-    <item android:id="@+id/mSetting"
-        android:title="Booking list"
-        android:icon="@drawable/setting"/>
+        <item android:id="@+id/mRate"
+            android:title="Revenue"
+            android:icon="@drawable/graph"/>
 
-    <item
-        android:textColor="#78593C"
-        android:title="________________________________"/>
-
-    <item android:id="@+id/mthoat"
-        android:title="Log out"
-        android:icon="@drawable/ic_baseline_logout_24"/>
+        <item android:id="@+id/mSetting"
+            android:title="Booking list"
+            android:icon="@drawable/setting"/>
 
 </menu>

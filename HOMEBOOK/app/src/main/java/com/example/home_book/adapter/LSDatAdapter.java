@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.home_book.DAO.DAO;
@@ -50,15 +51,17 @@ public class LSDatAdapter extends BaseAdapter {
     }
 
     public class ViewHolder{
-        TextView tvName, tvLocation, tvCategory, tvBeds;
+        TextView tvName, tvLocation, tvCategory, tvBeds,tvbegin,tvend,tvcost;
         ImageView imageView;
+        RatingBar tvrate;
+
         Button delete;
     }
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.item_history, null);
+        view = inflater.inflate(R.layout.item_lsdat, null);
 
         if(view!=null){
             holder = new ViewHolder();
@@ -67,6 +70,10 @@ public class LSDatAdapter extends BaseAdapter {
             holder.tvLocation = view.findViewById(R.id.tv_location_homebook_ls);
             holder.tvCategory = view.findViewById(R.id.tv_category_ls);
             holder.tvBeds = view.findViewById(R.id.tv_beds_ls);
+            holder.tvrate = view.findViewById(R.id.number_stars);
+            holder.tvbegin = view.findViewById(R.id.tv_datecheckin);
+            holder.tvend = view.findViewById(R.id.tv_datecheckout);
+            holder.tvcost= view.findViewById(R.id.tv_money);
 
             view.setTag(holder);
         }else {
@@ -95,6 +102,11 @@ public class LSDatAdapter extends BaseAdapter {
                 }
                 holder.tvCategory.setText(roomList.getCategory());
                 holder.tvLocation.setText(roomList.getLocation());
+                holder.tvrate.setRating(roomList.getRate());
+                holder.tvbegin.setText(format.format(list.get(i).getBooking_date()));
+                holder.tvend.setText(format.format(list.get(i).getReturn_date()));
+                holder.tvcost.setText(roomList.getCost()+"");
+
             }
 
 

@@ -757,9 +757,10 @@ public class DAO {
     public void DeleteRating(int id){
         db.delete("rating_tb","id=?",new String[]{String.valueOf(id)});
     }
-    public List<rating> GetAllRating(String sql,String... args){
+
+    public List<rating> GetAllRating(String sql,String...args){
         List<rating> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sql,null);
+        Cursor c = db.rawQuery(sql,args);
         c.moveToFirst();
         while (!c.isAfterLast()) {
             int id = c.getInt(0);

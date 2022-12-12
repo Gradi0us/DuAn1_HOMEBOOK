@@ -1,6 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="200dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp">
 
@@ -9,28 +9,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="170dp">
+            android:layout_height="140dp">
 
             <ImageView
-                android:id="@+id/img_homebook"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/khachsan1"
                 android:scaleType="fitXY" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
 
-                android:layout_alignParentBottom="true"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginBottom="61dp"
+                android:layout_marginBottom="60dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_name_homebook"
+
+                    android:id="@+id/tv_name_homebook_ls"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="name_hotel"
@@ -43,16 +43,60 @@
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
+android:layout_marginTop="2dp"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:stepSize="0.5" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="115dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/white_calendar" />
+
+                <TextView
+                    android:id="@+id/tv_datecheckin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Date"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text=" /"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_datecheckout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Date"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_marginTop="85dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
@@ -63,7 +107,7 @@
                     android:src="@drawable/white_bed" />
 
                 <TextView
-                    android:id="@+id/tv_beds"
+                    android:id="@+id/tv_beds_ls"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -71,7 +115,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
-                    android:id="@+id/tv_category"
+                    android:id="@+id/tv_category_ls"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -85,9 +129,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginBottom="35dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -96,7 +140,7 @@
                     android:src="@drawable/location" />
 
                 <TextView
-                    android:id="@+id/tv_location_homebook"
+                    android:id="@+id/tv_location_homebook_ls"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -109,47 +153,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/calendar" />
-
-                <TextView
-                    android:id="@+id/tv_datecheckin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Date"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text=" /"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_datecheckout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Date"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -159,57 +164,35 @@
             </LinearLayout>
 
             <LinearLayout
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
+                android:layout_marginTop="10dp"
+                android:gravity="center">
 
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cost:"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_cost"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="0000"
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="VND"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp">
 
+                    android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/cancel_button"
-                        android:layout_width="180dp"
+                        android:id="@+id/xoa_button"
+                        android:layout_width="170dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/type"
-                        android:text="Cancel"
+                        android:text="Delete"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btn_danhgia1"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/type_blue"
+                        android:text="Đánh giá"
                         android:textAllCaps="false"
                         android:textColor="@color/white" />
                 </LinearLayout>
@@ -220,4 +203,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

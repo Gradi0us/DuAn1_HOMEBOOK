@@ -2,10 +2,13 @@ package com.example.home_book.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +28,8 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.home_book.DAO.DAO;
+import com.example.home_book.adapter.OrderAdapter;
+import com.example.home_book.adapter.RatingAdapter;
 import com.example.home_book.fragment.CartFragment;
 import com.example.home_book.fragment.FavouriteFragment;
 import com.example.home_book.fragment.Fragment3;
@@ -32,6 +37,7 @@ import com.example.home_book.fragment.fragmentNav.AcountFragment;
 import com.example.home_book.model.Favourite;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
+import com.example.home_book.model.rating;
 import com.example.home_book.model.user;
 import com.example.home_book.slideshow.The_Slide_Items_Model_Class;
 import com.example.home_book.slideshow.adapter.The_Slide_Items_Pager_Adapter;
@@ -72,8 +78,9 @@ public class OrderAcivity extends AppCompatActivity {
     Date date = new Date();
     String currentDate;
     byte[] img;
-    boolean wifi,parking,buffet,ac,pool,minibar;
+    boolean wifi, parking, buffet, ac, pool, minibar;
     //System.out.println(dateFormat.format(date));
+    Button btnViewRate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,11 +105,11 @@ public class OrderAcivity extends AppCompatActivity {
         btnOrder = findViewById(R.id.btn_order);
 
         timF = findViewById(R.id.timFavourite);
-
+        btnViewRate = findViewById(R.id.btn_viewrate);
         //
         currentDate = dateFormat.format(date);
         //
-        
+
         dao = new DAO(this);
         Calendar calendar = Calendar.getInstance();
         yY = calendar.get(Calendar.YEAR);
@@ -115,7 +122,7 @@ public class OrderAcivity extends AppCompatActivity {
 //            category = bundle.getString("category");
 //            note = bundle.getString("note");
             id_room = bundle.getInt("id");
-            Room room = dao.get1Room("select * from room_tb where id = ?",String.valueOf(id_room));
+            Room room = dao.get1Room("select * from room_tb where id = ?", String.valueOf(id_room));
 //            location = bundle.getString("location");
 //            status = bundle.getInt("status");
 //            beds = bundle.getInt("beds");
@@ -144,12 +151,22 @@ public class OrderAcivity extends AppCompatActivity {
             buffet = room.isBuffet();
             minibar = room.isMinibar();
             tvLocation.setText(location);
-            switch (room.getBeds()){
-                case 0:tvBeds.setText("Phòng đơn");break;
-                case 1:tvBeds.setText("Phòng sinh đôi");break;
-                case 2:tvBeds.setText("Phòng đôi");break;
-                case 3:tvBeds.setText("Phòng ba");break;
-                case 4:tvBeds.setText("Phòng bốn");break;
+            switch (room.getBeds()) {
+                case 0:
+                    tvBeds.setText("Phòng đơn");
+                    break;
+                case 1:
+                    tvBeds.setText("Phòng sinh đôi");
+                    break;
+                case 2:
+                    tvBeds.setText("Phòng đôi");
+                    break;
+                case 3:
+                    tvBeds.setText("Phòng ba");
+                    break;
+                case 4:
+                    tvBeds.setText("Phòng bốn");
+                    break;
             }
             tvName.setText(name);
             ratingBar.setRating(rate);
@@ -237,7 +254,7 @@ public class OrderAcivity extends AppCompatActivity {
                         builder.setPositiveButton("CÓ", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Favourite fa = dao.get1Favourite(r.getId()+"",u.getId()+"");
+                                Favourite fa = dao.get1Favourite(r.getId() + "", u.getId() + "");
                                 dao.DeleteFavourite(fa.getId());
                                 Toast.makeText(OrderAcivity.this, "Xóa Thành Công", Toast.LENGTH_SHORT).show();
                                 timF.setChecked(false);
@@ -350,7 +367,18 @@ public class OrderAcivity extends AppCompatActivity {
 
             }
         });
+        btnViewRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                DialongViewRate();
+                Intent intent = new Intent(OrderAcivity.this,ViewRateActivity.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("room_id",id_room);
+                intent.putExtra("bundle",bundle1);
+                startActivity(intent);
 
+            }
+        });
     }
 
     public class The_slide_timer extends TimerTask {
@@ -420,15 +448,15 @@ public class OrderAcivity extends AppCompatActivity {
                             id_user = x1.getId();
 
                             long diff = dateReturn.getTime() - dateBooking.getTime();
-                            int dayCount = (int) diff/(24 * 60 * 60 * 1000);
+                            int dayCount = (int) diff / (24 * 60 * 60 * 1000);
 
-                            if(x1.getMoney() >= (cost*dayCount)){
-                                dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0,(cost*dayCount)));
+                            if (x1.getMoney() >= (cost * dayCount)) {
+                                dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0, (cost * dayCount)));
                                 Toast.makeText(this, "Order thành công. Cọc 5% tiền.", Toast.LENGTH_SHORT).show();
-                                x1.setMoney(x1.getMoney()-((cost*dayCount)*5/100));
+                                x1.setMoney(x1.getMoney() - ((cost * dayCount) * 5 / 100));
                                 dao.UpdateUser(x1);
                                 startActivity(new Intent(OrderAcivity.this, BottomNavActivity.class));
-                            }else{
+                            } else {
                                 Toast.makeText(this, "Không đủ tiền", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -439,5 +467,48 @@ public class OrderAcivity extends AppCompatActivity {
                 }
             }
         }
-    }}
+    }
+
+//    public void DialongViewRate() {
+//        Dialog builder = new Dialog(this);
+////        View alert = LayoutInflater.from(this).inflate(R.layout.layout_viewrate,null);
+//        builder.setContentView(R.layout.layout_viewrate);
+//        RecyclerView recyclerView = builder.findViewById(R.id.ds_rate);
+//        DAO dao = new DAO(this);
+//        List<rating> list = dao.GetAllRating("select * from rating_tb where room_id =" + id_room + "");
+//        if (list.size() > 0) {
+//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//            recyclerView.setLayoutManager(linearLayoutManager);
+//            RatingAdapter homeBookApdater = new RatingAdapter(OrderAcivity.this, (ArrayList<rating>) list);
+//            recyclerView.setAdapter(homeBookApdater);
+//        } else {
+////            LinearLayout layout = builder.findViewById(R.id.layout_viewrate);
+////            layout.setBackgroundResource(R.drawable.m4_cat);
+//            builder.dismiss();
+//            DialongNull();
+//        }
+////        builder.create();
+//        builder.show();
+//    }
+
+    //nó vẫn k full mà =)) thì có mỗi 1 thg đánh giá chứ nhiêu
+    public void DialongNull() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        View alert = LayoutInflater.from(this).inflate(R.layout.layout_viewrate,null);
+//        builder.setContentView(R.layout.layout_viewrate);
+        builder.setMessage("Rating is a null!");
+        builder.setCancelable(true);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.create();
+        alertDialog.show();
+    }
+
+}
 

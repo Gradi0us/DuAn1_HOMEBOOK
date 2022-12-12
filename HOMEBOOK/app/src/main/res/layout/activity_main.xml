@@ -46,6 +46,7 @@
 
                 <TextView
                     style="@style/headersearchh"
+                    android:textColor="@color/white"
                     android:text="                  Easy to pick easy to use"
                     android:layout_marginTop="40dp"
                     android:layout_marginBottom="5dp"

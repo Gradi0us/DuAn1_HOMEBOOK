@@ -32,10 +32,8 @@ public class LSDatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lsdat);
-
         tabLayout = findViewById(R.id.tabLs);
         frameLayout =findViewById(R.id.frameLs);
-
         fragment = new ChuaFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
