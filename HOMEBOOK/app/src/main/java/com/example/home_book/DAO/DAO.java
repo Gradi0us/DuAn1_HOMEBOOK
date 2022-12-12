@@ -742,6 +742,7 @@ public class DAO {
         ContentValues values = new ContentValues();
         values.put("user_id",rating.getUser_id());
         values.put("room_id",rating.getRoom_id());
+
         values.put("rating",rating.getRating());
         values.put("note",rating.getNote());
         long a = db.insert("rating_tb",null,values);
