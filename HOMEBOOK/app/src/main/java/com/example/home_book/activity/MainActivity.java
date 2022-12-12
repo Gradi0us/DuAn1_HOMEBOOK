@@ -235,16 +235,16 @@ public class MainActivity extends AppCompatActivity {
         }
         for (order x: orderList){
             if(dataFo2.compareTo(x.getBooking_date())<0){
-                Toast.makeText(this, "chưa đến ngày", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "chưa đến ngày", Toast.LENGTH_SHORT).show();
             }else if(dataFo2.compareTo(x.getReturn_date())>0){
                 x.setStatus(2);
                 dao.UpdateOrder(x);
 //                dao.DeleteOrder(x.getId());
-                Toast.makeText(this, " hết hạn", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, " hết hạn", Toast.LENGTH_SHORT).show();
             }else if(dataFo2.compareTo(x.getBooking_date()) >= 0 && dataFo2.compareTo(x.getReturn_date()) <= 0){
                 x.setStatus(1);
                 dao.UpdateOrder(x);
-                Toast.makeText(this, "Đang được sử dụng", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Đang được sử dụng", Toast.LENGTH_SHORT).show();
             }
         }
         
