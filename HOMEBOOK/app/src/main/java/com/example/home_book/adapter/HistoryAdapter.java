@@ -49,11 +49,11 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
         holder.tvLocation.setText(roomList.getLocation());
         holder.numberstar.setRating(roomList.getRate());
         switch (roomList.getBeds()){
-            case 0:holder.tvBeds.setText("Phòng đơn");break;
-            case 1:holder.tvBeds.setText("Phòng sinh đôi");break;
-            case 2:holder.tvBeds.setText("Phòng đôi");break;
-            case 3:holder.tvBeds.setText("Phòng ba");break;
-            case 4:holder.tvBeds.setText("Phòng bốn");break;
+            case 0:holder.tvBeds.setText("Single room");break;
+            case 1:holder.tvBeds.setText("Twin room");break;
+            case 2:holder.tvBeds.setText("Double room");break;
+            case 3:holder.tvBeds.setText("Triple room");break;
+            case 4:holder.tvBeds.setText("Quad room");break;
         }
         holder.btnDanhGia.setOnClickListener(new View.OnClickListener() {
             @Override
