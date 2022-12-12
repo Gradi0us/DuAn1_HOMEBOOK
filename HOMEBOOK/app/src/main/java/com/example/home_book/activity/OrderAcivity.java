@@ -81,6 +81,7 @@ public class OrderAcivity extends AppCompatActivity {
     boolean wifi, parking, buffet, ac, pool, minibar;
     //System.out.println(dateFormat.format(date));
     Button btnViewRate;
+    int collaborate_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,19 +154,19 @@ public class OrderAcivity extends AppCompatActivity {
             tvLocation.setText(location);
             switch (room.getBeds()) {
                 case 0:
-                    tvBeds.setText("Phòng đơn");
+                    tvBeds.setText("Single room");
                     break;
                 case 1:
-                    tvBeds.setText("Phòng sinh đôi");
+                    tvBeds.setText("Twin room");
                     break;
                 case 2:
-                    tvBeds.setText("Phòng đôi");
+                    tvBeds.setText("Double room");
                     break;
                 case 3:
-                    tvBeds.setText("Phòng ba");
+                    tvBeds.setText("Triple room");
                     break;
                 case 4:
-                    tvBeds.setText("Phòng bốn");
+                    tvBeds.setText("Quad room");
                     break;
             }
             tvName.setText(name);
@@ -204,7 +205,7 @@ public class OrderAcivity extends AppCompatActivity {
             } else {
                 imgBuffet.setVisibility(View.GONE);
             }
-
+            collaborate_id = room.getCollaborate_id();
         }
 
         SharedPreferences sP = getSharedPreferences("User_File", MODE_PRIVATE);
@@ -371,10 +372,10 @@ public class OrderAcivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                DialongViewRate();
-                Intent intent = new Intent(OrderAcivity.this,ViewRateActivity.class);
+                Intent intent = new Intent(OrderAcivity.this, ViewRateActivity.class);
                 Bundle bundle1 = new Bundle();
-                bundle1.putInt("room_id",id_room);
-                intent.putExtra("bundle",bundle1);
+                bundle1.putInt("room_id", id_room);
+                intent.putExtra("bundle", bundle1);
                 startActivity(intent);
 
             }
@@ -430,41 +431,48 @@ public class OrderAcivity extends AppCompatActivity {
                 user x = dao.get1User("select * from user_tb where email = ?", email);
                 name_user = x.getFullname();
                 id_user = x.getId();
+                if (id_user == collaborate_id) {
+                    DialongCheckAdd(email, pass);
+                } else {
+                    if (!edtReturnDate.getText().toString().equals("") && !edtBookingDate.getText().toString().equals("")) {
+                        if (date.compareTo(dateBooking) > 0) {
+                            Toast.makeText(OrderAcivity.this, "Order date must be after current date", Toast.LENGTH_SHORT).show();
+                            DialogNotification("Order date must be after current date");
+                        } else if (date.compareTo(dateReturn) > 0) {
+                            Toast.makeText(OrderAcivity.this, "Payment date must be after current date", Toast.LENGTH_SHORT).show();
+                            DialogNotification("Payment date must be after current date");
+                        } else if (dateBooking.compareTo(dateReturn) >= 0) {
+                            Toast.makeText(OrderAcivity.this, "Order date must be before payment date", Toast.LENGTH_SHORT).show();
+                            DialogNotification("Order date must be before payment date");
+                        } else {
+                            DAO dao = new DAO(OrderAcivity.this);
+                            if (dao.checkLogin(email, pass)) {
+                                user x1 = dao.get1User("select * from user_tb where email = ?", email);
+                                name_user = x1.getFullname();
+                                id_user = x1.getId();
 
-// duoi cua main
+                                long diff = dateReturn.getTime() - dateBooking.getTime();
+                                int dayCount = (int) diff / (24 * 60 * 60 * 1000);
 
-                if (!edtReturnDate.getText().toString().equals("") && !edtBookingDate.getText().toString().equals("")) {
-                    if (date.compareTo(dateBooking) > 0) {
-                        Toast.makeText(this, "Ngày đặt phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
-                    } else if (date.compareTo(dateReturn) > 0) {
-                        Toast.makeText(this, "Ngày trả phải sau ngày hiện tại", Toast.LENGTH_SHORT).show();
-                    } else if (dateBooking.compareTo(dateReturn) >= 0) {
-                        Toast.makeText(this, "Ngày đặt phải trước ngày trả", Toast.LENGTH_SHORT).show();
-                    } else {
-                        DAO dao = new DAO(this);
-                        if (dao.checkLogin(email, pass)) {
-                            user x1 = dao.get1User("select * from user_tb where email = ?", email);
-                            name_user = x1.getFullname();
-                            id_user = x1.getId();
-
-                            long diff = dateReturn.getTime() - dateBooking.getTime();
-                            int dayCount = (int) diff / (24 * 60 * 60 * 1000);
-
-                            if (x1.getMoney() >= (cost * dayCount)) {
-                                dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0, (cost * dayCount)));
-                                Toast.makeText(this, "Order thành công. Cọc 5% tiền.", Toast.LENGTH_SHORT).show();
-                                x1.setMoney(x1.getMoney() - ((cost * dayCount) * 5 / 100));
-                                dao.UpdateUser(x1);
-                                startActivity(new Intent(OrderAcivity.this, BottomNavActivity.class));
-                            } else {
-                                Toast.makeText(this, "Không đủ tiền", Toast.LENGTH_SHORT).show();
+                                if (x1.getMoney() >= (cost * dayCount)) {
+                                    dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0, (cost * dayCount)));
+                                    Toast.makeText(OrderAcivity.this, "Order was successful. Deposit 5% money.", Toast.LENGTH_SHORT).show();
+                                    x1.setMoney(x1.getMoney() - ((cost * dayCount) * 5 / 100));
+                                    dao.UpdateUser(x1);
+                                    startActivity(new Intent(OrderAcivity.this, BottomNavActivity.class));
+                                } else {
+                                    Toast.makeText(OrderAcivity.this, "Not enough money", Toast.LENGTH_SHORT).show();
+                                    DialogNotification("Not enough money");
+                                }
                             }
                         }
+                    } else {
+                        Toast.makeText(OrderAcivity.this, "Don't leave the booking date and return date blank", Toast.LENGTH_SHORT).show();
+                        DialogNotification("Don't leave the booking date and return date blank");
                     }
-                } else {
-                    Toast.makeText(this, "Không được bỏ trống ngày đặt và ngày trả", Toast.LENGTH_SHORT).show();
-
                 }
+
+
             }
         }
     }
@@ -492,11 +500,70 @@ public class OrderAcivity extends AppCompatActivity {
 //    }
 
     //nó vẫn k full mà =)) thì có mỗi 1 thg đánh giá chứ nhiêu
-    public void DialongNull() {
+    public void DialongCheckAdd(String email, String pass) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //        View alert = LayoutInflater.from(this).inflate(R.layout.layout_viewrate,null);
 //        builder.setContentView(R.layout.layout_viewrate);
-        builder.setMessage("Rating is a null!");
+        builder.setMessage("Do you agree to try the rental?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (!edtReturnDate.getText().toString().equals("") && !edtBookingDate.getText().toString().equals("")) {
+                    if (date.compareTo(dateBooking) > 0) {
+                        Toast.makeText(OrderAcivity.this, "Order date must be after current date", Toast.LENGTH_SHORT).show();
+                        DialogNotification("Order date must be after current date");
+                    } else if (date.compareTo(dateReturn) > 0) {
+                        Toast.makeText(OrderAcivity.this, "Payment date must be after current date", Toast.LENGTH_SHORT).show();
+                        DialogNotification("Payment date must be after current date");
+                    } else if (dateBooking.compareTo(dateReturn) >= 0) {
+                        Toast.makeText(OrderAcivity.this, "Order date must be before payment date", Toast.LENGTH_SHORT).show();
+                        DialogNotification("Order date must be before payment date");
+                    } else {
+                        DAO dao = new DAO(OrderAcivity.this);
+                        if (dao.checkLogin(email, pass)) {
+                            user x1 = dao.get1User("select * from user_tb where email = ?", email);
+                            name_user = x1.getFullname();
+                            id_user = x1.getId();
+
+                            long diff = dateReturn.getTime() - dateBooking.getTime();
+                            int dayCount = (int) diff / (24 * 60 * 60 * 1000);
+
+                            if (x1.getMoney() >= (cost * dayCount)) {
+                                dao.AddOrder(new order(id_user, 5, dateBooking, dateReturn, "a", "b", id_room, note, 0, (cost * dayCount)));
+                                Toast.makeText(OrderAcivity.this, "Order was successful. Deposit 5% money.", Toast.LENGTH_SHORT).show();
+                                x1.setMoney(x1.getMoney() - ((cost * dayCount) * 5 / 100));
+                                dao.UpdateUser(x1);
+                                startActivity(new Intent(OrderAcivity.this, BottomNavActivity.class));
+                            } else {
+                                Toast.makeText(OrderAcivity.this, "Not enough money", Toast.LENGTH_SHORT).show();
+                                DialogNotification("Not enough money");
+                            }
+                        }
+                    }
+                } else {
+                    Toast.makeText(OrderAcivity.this, "Don't leave the booking date and return date blank", Toast.LENGTH_SHORT).show();
+                    DialogNotification("Don't leave the booking date and return date blank");
+                }
+            }
+        });
+        builder.setNegativeButton("BACK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.create();
+        alertDialog.show();
+    }
+
+    public void DialogNotification(String notification) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        View alert = LayoutInflater.from(this).inflate(R.layout.layout_viewrate,null);
+//        builder.setContentView(R.layout.layout_viewrate);
+        builder.setMessage(notification);
         builder.setCancelable(true);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
