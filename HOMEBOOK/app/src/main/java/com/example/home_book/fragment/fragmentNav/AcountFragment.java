@@ -3,6 +3,7 @@ package com.example.home_book.fragment.fragmentNav;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -190,8 +191,9 @@ public class AcountFragment extends Fragment {
                         hoteldetail.length()<=0 ||
                         cost.length()<=0 ||
                         status.length()<=0 ||
-                        location.length()<=0){
-                    Toast.makeText(getActivity(), "Không để trống", Toast.LENGTH_SHORT).show();
+                        location.length()<=0||IMG.length<=0){
+                    Toast.makeText(getActivity(), "Do not leave blank", Toast.LENGTH_SHORT).show();
+                    DialogNotification("Do not leave blank");
                 }else{
                     dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG,ctv_id));
                     alertDialog.cancel();
@@ -246,5 +248,22 @@ public class AcountFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         ListMarketAdapter homeBookApdater = new ListMarketAdapter(getContext(),list,getActivity());
         recyclerView.setAdapter(homeBookApdater);
+    }
+    public void DialogNotification(String notification) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        View alert = LayoutInflater.from(this).inflate(R.layout.layout_viewrate,null);
+//        builder.setContentView(R.layout.layout_viewrate);
+        builder.setMessage(notification);
+        builder.setCancelable(true);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.create();
+        alertDialog.show();
     }
 }
