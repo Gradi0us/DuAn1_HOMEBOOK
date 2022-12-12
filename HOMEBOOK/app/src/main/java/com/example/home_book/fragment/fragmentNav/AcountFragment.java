@@ -107,7 +107,7 @@ public class AcountFragment extends Fragment {
         SwitchCompat swparking = view.findViewById(R.id.sw_parking);
         SwitchCompat swpool = view.findViewById(R.id.sw_pool);
         Button btnAdd = view.findViewById(R.id.btn_confirm);
-        Button btnCancel = view.findViewById(R.id.btn_cancel);
+        Button btnCancel = view.findViewById(R.id.thoat);
         Spinner spnbeds = view.findViewById(R.id.spn_beds);
         Spinner spncategory = view.findViewById(R.id.spn_category);
         ArrayList<String> bed = new ArrayList<>();
