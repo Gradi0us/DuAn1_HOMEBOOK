@@ -2,14 +2,11 @@ package com.example.home_book.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -51,11 +48,6 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
         holder.tvCategory.setText(roomList.getCategory());
         holder.tvLocation.setText(roomList.getLocation());
         holder.numberstar.setRating(roomList.getRate());
-        byte[] hinhanh = roomList.getIMG();
-        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
-//        imageAVT.setImageBitmap(bitmap);
-        holder.img.setImageBitmap(bitmap);
-
         switch (roomList.getBeds()){
             case 0:holder.tvBeds.setText("Single room");break;
             case 1:holder.tvBeds.setText("Twin room");break;
@@ -87,13 +79,11 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
         TextView tvNameHome,tvLocation,tvBeds,tvCategory,tvDatecheckin,tvDatecheckout;
         Button btnDanhGia;
         RatingBar numberstar;
-        ImageView img;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNameHome = itemView.findViewById(R.id.tv_name_homebook_ls);
             tvLocation = itemView.findViewById(R.id.tv_location_homebook_ls);
             tvBeds = itemView.findViewById(R.id.tv_beds_ls);
-            img = itemView.findViewById(R.id.order_history);
             tvCategory = itemView.findViewById(R.id.tv_category_ls);
             btnDanhGia = itemView.findViewById(R.id.btn_danhgia1);
             tvDatecheckin = itemView.findViewById(R.id.tv_datecheckin);

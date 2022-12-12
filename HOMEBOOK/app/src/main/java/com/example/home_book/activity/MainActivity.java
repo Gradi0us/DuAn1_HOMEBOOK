@@ -236,6 +236,8 @@ public class MainActivity extends AppCompatActivity {
         for (order x: orderList){
             if(dataFo2.compareTo(x.getBooking_date())<0){
 //                Toast.makeText(this, "chưa đến ngày", Toast.LENGTH_SHORT).show();
+                x.setStatus(0);
+                dao.UpdateOrder(x);
             }else if(dataFo2.compareTo(x.getReturn_date())>0){
                 x.setStatus(2);
                 dao.UpdateOrder(x);
