@@ -70,21 +70,11 @@ public class ListMarketAdapter extends RecyclerView.Adapter<ListMarketAdapter.Vi
         holder.ratingBar.setRating(lisRoom.get(position).getRate());
         holder.beds.setText(lisRoom.get(position).getBeds() + "");
         switch (lisRoom.get(position).getBeds()) {
-            case 0:
-                holder.beds.setText("Phòng đơn");
-                break;
-            case 1:
-                holder.beds.setText("Phòng sinh đôi");
-                break;
-            case 2:
-                holder.beds.setText("Phòng đôi");
-                break;
-            case 3:
-                holder.beds.setText("Phòng ba");
-                break;
-            case 4:
-                holder.beds.setText("Phòng bốn");
-                break;
+            case 0:holder.beds.setText("Single room");break;
+            case 1:holder.beds.setText("Twin room");break;
+            case 2:holder.beds.setText("Double room");break;
+            case 3:holder.beds.setText("Triple room");break;
+            case 4:holder.beds.setText("Quad room");break;
         }
         holder.status.setText((lisRoom.get(position).getStatus() - list.size()) + "");
         holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {

@@ -60,11 +60,11 @@ public class HomeBookApdater extends RecyclerView.Adapter<HomeBookApdater.ViewHo
 //        imageAVT.setImageBitmap(bitmap);
             holder.img_homebook.setImageBitmap(bitmap);
             switch (listRoom.get(position).getBeds()){
-                case 0:holder.tvBeds.setText("Phòng đơn");break;
-                case 1:holder.tvBeds.setText("Phòng sinh đôi");break;
-                case 2:holder.tvBeds.setText("Phòng đôi");break;
-                case 3:holder.tvBeds.setText("Phòng ba");break;
-                case 4:holder.tvBeds.setText("Phòng bốn");break;
+                case 0:holder.tvBeds.setText("Single room");break;
+                case 1:holder.tvBeds.setText("Twin room");break;
+                case 2:holder.tvBeds.setText("Double room");break;
+                case 3:holder.tvBeds.setText("Triple room");break;
+                case 4:holder.tvBeds.setText("Quad room");break;
             }
             holder.layoutitem.setOnClickListener(new View.OnClickListener() {
                 @Override

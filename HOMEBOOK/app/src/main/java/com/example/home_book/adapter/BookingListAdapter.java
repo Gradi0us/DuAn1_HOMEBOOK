@@ -51,11 +51,11 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
         holder.tvLocation.setText(room.getLocation());
         holder.tvNameHomeBook.setText(room.getName());
         switch (room.getBeds()){
-            case 0:holder.tvBeds.setText("Phòng đơn");break;
-            case 1:holder.tvBeds.setText("Phòng sinh đôi");break;
-            case 2:holder.tvBeds.setText("Phòng đôi");break;
-            case 3:holder.tvBeds.setText("Phòng ba");break;
-            case 4:holder.tvBeds.setText("Phòng bốn");break;
+            case 0:holder.tvBeds.setText("Single room");break;
+            case 1:holder.tvBeds.setText("Twin room");break;
+            case 2:holder.tvBeds.setText("Double room");break;
+            case 3:holder.tvBeds.setText("Triple room");break;
+            case 4:holder.tvBeds.setText("Quad room");break;
         }
         long diff = listBooking.get(position).getReturn_date().getTime() - listBooking.get(position).getBooking_date().getTime();
         int dayCount = (int) diff/(24 * 60 * 60 * 1000);
