@@ -86,7 +86,7 @@ public class AcountFragment extends Fragment {
     }
 
     public void DialogAddRoom() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.DialogTheme);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.float_button_call, null);
         builder.setView(view);
@@ -187,12 +187,13 @@ public class AcountFragment extends Fragment {
                 String status = edtstatus.getText().toString().trim();
                 String location = edtlocation.getText().toString().trim();
                 myRating = (int) ratingBara.getRating();
+
                 if (name.length() <= 0 ||
                         hoteldetail.length()<=0 ||
                         cost.length()<=0 ||
                         status.length()<=0 ||
-                        location.length()<=0){
-                    Toast.makeText(getActivity(), "Không để trống", Toast.LENGTH_SHORT).show();
+                        location.length()<=0||IMG==null){
+                    Toast.makeText(getActivity(), "Do not leave blank", Toast.LENGTH_SHORT).show();
                 }else{
                     dao.AddRoom(new Room(myRating,beds,Integer.parseInt(status),Integer.parseInt(cost),wifi,ac,buffet,parking,pool,minibar,hoteldetail,name,category,location,IMG,ctv_id));
                     alertDialog.cancel();

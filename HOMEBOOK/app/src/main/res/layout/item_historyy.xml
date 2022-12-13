@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/layout_history"
     android:layout_height="200dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp">
@@ -178,20 +179,20 @@ android:layout_marginTop="2dp"
 
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/xoa_button"
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/type"
-                        android:text="Delete"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white" />
+<!--                    <Button-->
+<!--                        android:id="@+id/xoa_button"-->
+<!--                        android:layout_width="170dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@drawable/type"-->
+<!--                        android:text="Delete"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:textColor="@color/white" />-->
 
                     <Button
                         android:id="@+id/btn_danhgia1"
-                        android:layout_width="170dp"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                  android:layout_marginBottom="5dp"
                         android:background="@drawable/type_blue"
                         android:text="Đánh giá"
                         android:textAllCaps="false"

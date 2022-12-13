@@ -90,10 +90,10 @@ public class LSDatAdapter extends BaseAdapter {
 
             Room roomList = dao.get1Room("select * from room_tb where id = ?", String.valueOf(id));
             if (roomList != null) {
-                //byte[] hinhanh = roomList.getIMG();
-                //Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
-//        imageAVT.setImageBitmap(bitmap);
-                // holder.imageView.setImageBitmap(bitmap);
+//                byte[] hinhanh = roomList.getIMG();
+//                Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
+//        holder.imageView.setImageBitmap(bitmap);
+//                 holder.imageView.setImageBitmap(bitmap);
 //            holder.tvCategory.setText(roomList.getLocation());
                 holder.tvName.setText(roomList.getName());
                 holder.tvBeds.setText(roomList.getBeds() + "");

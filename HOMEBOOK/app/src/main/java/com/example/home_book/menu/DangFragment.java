@@ -1,5 +1,10 @@
 package com.example.home_book.menu;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +19,7 @@ import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
 import com.example.home_book.adapter.LSDatAdapter;
 import com.example.home_book.model.order;
+import com.example.home_book.model.user;
 
 import java.util.List;
 
@@ -35,10 +41,39 @@ public class DangFragment extends Fragment {
 
         lv = v.findViewById(R.id.lvDang);
         dao = new DAO(getActivity());
-        list = dao.getOrder("select * from order_tb where status = 1");
-        LSDatAdapter adapter = new LSDatAdapter(getActivity(), list);
-        lv.setAdapter(adapter);
-
+        dao = new DAO(getActivity());
+        SharedPreferences sP = getActivity().getSharedPreferences("User_File",MODE_PRIVATE);
+        String email = sP.getString("Email","");
+        String pass = sP.getString("Password","");
+        if(!email.equals("")&&!pass.equals("")){
+            if (dao.checkLogin(email, pass)) {
+                user x = dao.get1User("select * from user_tb where email = ?", email);
+                list = dao.getOrder("SELECT * FROM order_tb where user_id = "+x.getId()+" and status = 1");
+                LSDatAdapter adapter = new LSDatAdapter(getActivity(), list);
+                lv.setAdapter(adapter);
+            }
+        }else {
+            Dialog();
+        }
         return v;
+    }
+    private void Dialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Please login!");
+        builder.setCancelable(true);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+//            builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                }
+//            });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

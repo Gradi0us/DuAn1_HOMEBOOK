@@ -130,16 +130,21 @@ public class FragmentTaiKhoan extends Fragment {
                     @Override
                     public void onClick(View view) {
                         String nameAC = edtchangedName.getText().toString();
-                        edtchangedName.setVisibility(View.GONE);
-                        btnsaveName.setVisibility(View.GONE);
-                        name.setVisibility(View.VISIBLE);
-                        changeName.setVisibility(View.VISIBLE);
-                        x.setFullname(nameAC);
-                        name.setText(nameAC);
+                        if(nameAC.length()!=0){
 
-                        dao.UpdateUser(x);
-                        Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                            edtchangedName.setVisibility(View.GONE);
+                            btnsaveName.setVisibility(View.GONE);
+                            name.setVisibility(View.VISIBLE);
+                            changeName.setVisibility(View.VISIBLE);
+                            x.setFullname(nameAC);
+                            name.setText(nameAC);
 
+                            dao.UpdateUser(x);
+                            Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+
+                        }else {
+
+                        }
                     }
                 });
             }
@@ -157,14 +162,16 @@ public class FragmentTaiKhoan extends Fragment {
                     @Override
                     public void onClick(View view) {
                         String sdtAC = edtChangeSdt.getText().toString();
-                        edtChangeSdt.setVisibility(View.GONE);
-                        btnsaveSdt.setVisibility(View.GONE);
-                        sdt.setVisibility(View.VISIBLE);
-                        changeSdt.setVisibility(View.VISIBLE);
-                        x.setPhone(sdtAC);
-                        sdt.setText(sdtAC);
-                        dao.UpdateUser(x);
-                        Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                        if(sdtAC.length()!=0){
+                            edtChangeSdt.setVisibility(View.GONE);
+                            btnsaveSdt.setVisibility(View.GONE);
+                            sdt.setVisibility(View.VISIBLE);
+                            changeSdt.setVisibility(View.VISIBLE);
+                            x.setPhone(sdtAC);
+                            sdt.setText(sdtAC);
+                            dao.UpdateUser(x);
+                            Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 });
