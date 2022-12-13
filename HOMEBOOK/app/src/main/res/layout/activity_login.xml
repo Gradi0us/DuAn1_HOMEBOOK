@@ -100,43 +100,43 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginHorizontal="20dp"
-            android:background="@color/primaryTextColor"/>
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="5dp"-->
+<!--            android:layout_marginHorizontal="20dp"-->
+<!--            android:background="@color/primaryTextColor"/>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="horizontal">-->
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/googleIn"
-                android:layout_width="25pt"
-                android:layout_height="25pt"
-                android:layout_margin="2mm"
-                android:src="@drawable/google_icon"
-                app:shapeAppearanceOverlay="@style/roundedIcon" />
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/googleIn"-->
+<!--                android:layout_width="25pt"-->
+<!--                android:layout_height="25pt"-->
+<!--                android:layout_margin="2mm"-->
+<!--                android:src="@drawable/google_icon"-->
+<!--                app:shapeAppearanceOverlay="@style/roundedIcon" />-->
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/facebookIn"
-                android:layout_width="25pt"
-                android:layout_height="25pt"
-                android:layout_margin="2mm"
-                android:src="@drawable/fb_icon"
-                app:shapeAppearanceOverlay="@style/roundedIcon" />
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/facebookIn"-->
+<!--                android:layout_width="25pt"-->
+<!--                android:layout_height="25pt"-->
+<!--                android:layout_margin="2mm"-->
+<!--                android:src="@drawable/fb_icon"-->
+<!--                app:shapeAppearanceOverlay="@style/roundedIcon" />-->
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/twitterIn"
-                android:layout_width="25pt"
-                android:layout_height="25pt"
-                android:layout_margin="2mm"
-                android:src="@drawable/twitter_icon"
-                app:shapeAppearanceOverlay="@style/roundedIcon" />
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/twitterIn"-->
+<!--                android:layout_width="25pt"-->
+<!--                android:layout_height="25pt"-->
+<!--                android:layout_margin="2mm"-->
+<!--                android:src="@drawable/twitter_icon"-->
+<!--                app:shapeAppearanceOverlay="@style/roundedIcon" />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <TextView
             android:layout_width="match_parent"

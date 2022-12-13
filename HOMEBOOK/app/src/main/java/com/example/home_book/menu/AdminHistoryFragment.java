@@ -1,6 +1,9 @@
 package com.example.home_book.menu;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -15,6 +18,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,11 +26,14 @@ import android.widget.Toast;
 
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
+import com.example.home_book.activity.MainActivity;
+import com.example.home_book.activity.OrderAcivity;
 import com.example.home_book.model.NapThe;
 import com.example.home_book.model.Room;
 import com.example.home_book.model.order;
 import com.example.home_book.model.rating;
 import com.example.home_book.model.user;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,7 +43,7 @@ import java.util.List;
 
 public class AdminHistoryFragment extends Fragment {
 
-    EditText txtBeginHistory, txtEndHistory;
+    TextInputEditText txtBeginHistory, txtEndHistory;
     TextView txtTongGia;
     Button buttonLocHistory;
     Spinner historyAdminSpinner;
@@ -116,13 +123,6 @@ public class AdminHistoryFragment extends Fragment {
             }
         });
 
-        buttonLocHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         historyAdminSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -132,21 +132,57 @@ public class AdminHistoryFragment extends Fragment {
                         txtTongGia.setVisibility(View.GONE);
                         listMoneyHistory.setVisibility(View.VISIBLE);
                         listRateHistory.setVisibility(View.GONE);
-                        listOrder = dao.getOrder("select * from order_tb where status != '0'");
+
+                        txtBeginHistory.setEnabled(true);
+                        txtEndHistory.setEnabled(true);
+                        buttonLocHistory.setEnabled(true);
+
+                        if(!txtBeginHistory.getText().toString().isEmpty() && !txtEndHistory.getText().toString().isEmpty()){
+                            listOrder = dao.getNhieuOrder("select * from order_tb where status != '0' and booking_date between ? and ?",txtBeginHistory.getText().toString(),txtEndHistory.getText().toString());
+                        } else{
+                            txtBeginHistory.setText("");
+                            txtEndHistory.setText("");
+                            listOrder = dao.getOrder("select * from order_tb where status != '0'");
+                        }
+
                         LoadMoneyMember();
                         break;
                     case 1:
                         txtTongGia.setText("");
                         txtTongGia.setVisibility(View.GONE);
                         listRateHistory.setVisibility(View.GONE);
-                        listOrder = dao.getOrder("select * from order_tb where status != '0'");
+
+                        txtBeginHistory.setEnabled(true);
+                        txtEndHistory.setEnabled(true);
+                        buttonLocHistory.setEnabled(true);
+
+                        if(!txtBeginHistory.getText().toString().isEmpty() && !txtEndHistory.getText().toString().isEmpty()){
+                            listOrder = dao.getNhieuOrder("select * from order_tb where status != '0' and booking_date between ? and ?",txtBeginHistory.getText().toString(),txtEndHistory.getText().toString());
+                        } else{
+                            txtBeginHistory.setText("");
+                            txtEndHistory.setText("");
+                            listOrder = dao.getOrder("select * from order_tb where status != '0'");
+                        }
+
                         LoadMoneyCollaborate();
                         break;
                     case 2:
                         txtTongGia.setVisibility(View.VISIBLE);
                         listMoneyHistory.setVisibility(View.VISIBLE);
                         listRateHistory.setVisibility(View.GONE);
-                        listOrder = dao.getOrder("select * from order_tb");
+
+                        txtBeginHistory.setEnabled(true);
+                        txtEndHistory.setEnabled(true);
+                        buttonLocHistory.setEnabled(true);
+
+                        if(!txtBeginHistory.getText().toString().isEmpty() && !txtEndHistory.getText().toString().isEmpty()){
+                            listOrder = dao.getNhieuOrder("select * from order_tb where booking_date between ? and ?",txtBeginHistory.getText().toString(),txtEndHistory.getText().toString());
+                        } else{
+                            txtBeginHistory.setText("");
+                            txtEndHistory.setText("");
+                            listOrder = dao.getOrder("select * from order_tb");
+                        }
+
                         LoadMoneyAdmin();
                         break;
                     case 3:
@@ -154,7 +190,13 @@ public class AdminHistoryFragment extends Fragment {
                         txtTongGia.setVisibility(View.GONE);
                         listMoneyHistory.setVisibility(View.GONE);
                         listRateHistory.setVisibility(View.VISIBLE);
+
+                        txtBeginHistory.setEnabled(false);
+                        txtEndHistory.setEnabled(false);
+                        buttonLocHistory.setEnabled(false);
+
                         listRate = dao.GetAllRating("select * from rating_tb",null);
+
                         LoadRate();
                         break;
                 }
@@ -163,6 +205,58 @@ public class AdminHistoryFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        buttonLocHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(txtBeginHistory.getText().toString().isEmpty() || txtEndHistory.getText().toString().isEmpty()){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("Please enter both date!");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+
+                switch (historyAdminSpinner.getSelectedItemPosition()) {
+                    case 0:
+                        if(!txtBeginHistory.getText().toString().isEmpty() && !txtEndHistory.getText().toString().isEmpty()){
+                            listOrder = dao.getNhieuOrder("select * from order_tb where status != '0' and booking_date between ? and ?",txtBeginHistory.getText().toString(),txtEndHistory.getText().toString());
+                        } else{
+                            listOrder = dao.getOrder("select * from order_tb where status != '0'");
+                        }
+                        LoadMoneyMember();
+                        break;
+
+                    case 1:
+                        if(!txtBeginHistory.getText().toString().isEmpty() && !txtEndHistory.getText().toString().isEmpty()){
+                            listOrder = dao.getNhieuOrder("select * from order_tb where status != '0' and booking_date between ? and ?",txtBeginHistory.getText().toString(),txtEndHistory.getText().toString());
+                        } else{
+                            listOrder = dao.getOrder("select * from order_tb where status != '0'");
+                        }
+                        LoadMoneyCollaborate();
+                        break;
+
+                    case 2:
+                        if(!txtBeginHistory.getText().toString().isEmpty() && !txtEndHistory.getText().toString().isEmpty()){
+                            listOrder = dao.getNhieuOrder("select * from order_tb where booking_date between ? and ?",txtBeginHistory.getText().toString(),txtEndHistory.getText().toString());
+                        } else{
+                            listOrder = dao.getOrder("select * from order_tb");
+                        }
+                        LoadMoneyAdmin();
+                        break;
+
+//                    case 3:
+//                        listRate = dao.GetAllRating("select * from rating_tb", null);
+//                        LoadRate();
+//                        break;
+                }
             }
         });
 
@@ -191,6 +285,7 @@ public class AdminHistoryFragment extends Fragment {
 
             class ViewHolder {
                 TextView ten, phong, money, day, status,note;
+                LinearLayout cmtLayout;
             }
 
             @Override
@@ -204,7 +299,7 @@ public class AdminHistoryFragment extends Fragment {
                     holder.money = convertView.findViewById(R.id.txtMoneyHistory);
                     holder.day = convertView.findViewById(R.id.txtNgayHistory);
                     holder.status = convertView.findViewById(R.id.txtStatusHistory);
-                    holder.note = convertView.findViewById(R.id.txtNoteHistory);
+                    holder.cmtLayout = convertView.findViewById(R.id.cmtLayout);
 
                     convertView.setTag(holder);
                 } else {
@@ -212,7 +307,7 @@ public class AdminHistoryFragment extends Fragment {
                 }
 
                 String loaiPhong = "";
-                holder.note.setVisibility(View.GONE);
+                holder.cmtLayout.setVisibility(View.GONE);
 
                 user user = dao.get1User("select * from user_tb where id = ?",listOrder.get(position).getUser_id()+"");
                 Room room = dao.get1Room("select * from room_tb where id = ?",listOrder.get(position).getRoom_id()+"");
@@ -230,7 +325,7 @@ public class AdminHistoryFragment extends Fragment {
 
                 holder.ten.setText(user.getFullname());
                 holder.phong.setText(room.getName() + " - " + loaiPhong);
-                holder.money.setText("Cost: " + (int)(room.getCost() * dayCount)+"đ");
+                holder.money.setText((room.getCost() * dayCount)+"đ");
                 holder.day.setText(format.format(listOrder.get(position).getBooking_date()) + " - " + format.format(listOrder.get(position).getReturn_date()));
 
                 if(listOrder.get(position).getStatus() == 1){
@@ -270,6 +365,7 @@ public class AdminHistoryFragment extends Fragment {
 
             class ViewHolder {
                 TextView ten, phong, money, day, status,note;
+                LinearLayout cmtLayout;
             }
 
             @Override
@@ -283,14 +379,14 @@ public class AdminHistoryFragment extends Fragment {
                     holder.money = convertView.findViewById(R.id.txtMoneyHistory);
                     holder.day = convertView.findViewById(R.id.txtNgayHistory);
                     holder.status = convertView.findViewById(R.id.txtStatusHistory);
-                    holder.note = convertView.findViewById(R.id.txtNoteHistory);
+                    holder.cmtLayout = convertView.findViewById(R.id.cmtLayout);
 
                     convertView.setTag(holder);
                 } else {
                     holder = (ViewHolder) convertView.getTag();
                 }
 
-                holder.note.setVisibility(View.GONE);
+                holder.cmtLayout.setVisibility(View.GONE);
 
                 String loaiPhong = "";
                 Room room = dao.get1Room("select * from room_tb where id = ?",listOrder.get(position).getRoom_id()+"");
@@ -309,7 +405,7 @@ public class AdminHistoryFragment extends Fragment {
 
                 holder.ten.setText(user.getFullname());
                 holder.phong.setText(room.getName() + " - " + loaiPhong);
-                holder.money.setText("Cost: " + (((int)(room.getCost() * dayCount)) - ((int)(room.getCost() * dayCount))*5/100)*1/100+"đ");
+                holder.money.setText((room.getCost() * dayCount) - ((room.getCost() * dayCount)*5/100)*1/100+"đ");
                 holder.day.setText(format.format(listOrder.get(position).getBooking_date()) + " - " + format.format(listOrder.get(position).getReturn_date()));
 
                 if(listOrder.get(position).getStatus() == 1){
@@ -349,6 +445,7 @@ public class AdminHistoryFragment extends Fragment {
 
             class ViewHolder {
                 TextView ten, phong, money, day, status,note;
+                LinearLayout cmtLayout;
             }
 
             @Override
@@ -362,14 +459,14 @@ public class AdminHistoryFragment extends Fragment {
                     holder.money = convertView.findViewById(R.id.txtMoneyHistory);
                     holder.day = convertView.findViewById(R.id.txtNgayHistory);
                     holder.status = convertView.findViewById(R.id.txtStatusHistory);
-                    holder.note = convertView.findViewById(R.id.txtNoteHistory);
+                    holder.cmtLayout = convertView.findViewById(R.id.cmtLayout);
 
                     convertView.setTag(holder);
                 } else {
                     holder = (ViewHolder) convertView.getTag();
                 }
 
-                holder.note.setVisibility(View.GONE);
+                holder.cmtLayout.setVisibility(View.GONE);
 
                 String loaiPhong = "";
                 user user = dao.get1User("select * from user_tb where id = ?",listOrder.get(position).getUser_id()+"");
@@ -388,7 +485,7 @@ public class AdminHistoryFragment extends Fragment {
 
                 holder.ten.setText(user.getFullname());
                 holder.phong.setText(room.getName() + " - " + loaiPhong);
-                holder.money.setText("Tiền: " + ((int)(room.getCost() * dayCount))*5/100 + "đ");
+                holder.money.setText((room.getCost() * dayCount)*5/100 + "đ");
                 holder.day.setText(format.format(listOrder.get(position).getBooking_date()) + " - " + format.format(listOrder.get(position).getReturn_date()));
 
                 if(listOrder.get(position).getStatus() == 0){
@@ -440,6 +537,7 @@ public class AdminHistoryFragment extends Fragment {
 
             class ViewHolder {
                 TextView ten, phong, money, day, status,note;
+                LinearLayout cmtLayout;
             }
 
             @Override
@@ -454,25 +552,27 @@ public class AdminHistoryFragment extends Fragment {
                     holder.day = convertView.findViewById(R.id.txtNgayHistory);
                     holder.status = convertView.findViewById(R.id.txtStatusHistory);
                     holder.note = convertView.findViewById(R.id.txtNoteHistory);
+                    holder.cmtLayout = convertView.findViewById(R.id.cmtLayout);
 
                     convertView.setTag(holder);
                 } else {
                     holder = (ViewHolder) convertView.getTag();
                 }
 
-                holder.note.setVisibility(View.VISIBLE);
+                holder.cmtLayout.setVisibility(View.VISIBLE);
 
                 String loaiPhong = "";
                 user user = dao.get1User("select * from user_tb where id = ?",listRate.get(position).getUser_id()+"");
 
-                order order = dao.getOrder1("select * from order_tb where id = ?",listOrder.get(position).getId()+"");
+//                order order = dao.getOrder1("select * from order_tb where id = ?",listOrder.get(position).getId()+"");
 
    //             order order = dao.getOrder1("select * from order_tb where id = ?",listRate.get(position).getOrder_id()+"");
 
-                Room room = dao.get1Room("select * from room_tb where id = ?",order.getRoom_id() + "");
+//                Room room = dao.get1Room("select * from room_tb where id = ?",order.getRoom_id() + "");
+                Room room = dao.get1Room("select * from room_tb where id = ?",listRate.get(position).getRoom_id() + "");
 
-                long diff = order.getReturn_date().getTime() - order.getBooking_date().getTime();
-                int dayCount = (int) diff/(24 * 60 * 60 * 1000);
+//                long diff = order.getReturn_date().getTime() - order.getBooking_date().getTime();
+//                int dayCount = (int) diff/(24 * 60 * 60 * 1000);
 
                 switch (room.getBeds()){
                     case 0:loaiPhong = "Single room";break;
@@ -484,8 +584,10 @@ public class AdminHistoryFragment extends Fragment {
 
                 holder.ten.setText(user.getFullname());
                 holder.phong.setText(room.getName() + " - " + loaiPhong);
-                holder.money.setText("Cost: " + (int)(room.getCost() * dayCount) + "đ");
-                holder.day.setText(format.format(order.getBooking_date()) + " - " + format.format(order.getReturn_date()));
+//                holder.money.setText("Cost: " + (int)(room.getCost() * dayCount) + "đ");
+//                holder.day.setText(format.format(order.getBooking_date()) + " - " + format.format(order.getReturn_date()));
+                holder.money.setText("");
+                holder.day.setText("");
 
                 switch (listRate.get(position).getRating()){
                     case 1:
@@ -510,7 +612,7 @@ public class AdminHistoryFragment extends Fragment {
                         break;
                 }
 
-                holder.note.setText("Note: " + listRate.get(position).getNote());
+                holder.note.setText(listRate.get(position).getNote() + "");
 
                 return convertView;
             }
