@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.example.home_book.DAO.DAO;
 import com.example.home_book.R;
 import com.example.home_book.menu.LSDatActivity;
@@ -57,6 +59,7 @@ public class LSDatAdapter extends BaseAdapter {
 
         Button delete;
     }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
@@ -67,6 +70,7 @@ public class LSDatAdapter extends BaseAdapter {
             holder = new ViewHolder();
 
             holder.tvName = view.findViewById(R.id.tv_name_homebook_ls);
+            holder.imageView = view.findViewById(R.id.history_img);
             holder.tvLocation = view.findViewById(R.id.tv_location_homebook_ls);
             holder.tvCategory = view.findViewById(R.id.tv_category_ls);
             holder.tvBeds = view.findViewById(R.id.tv_beds_ls);
@@ -86,10 +90,10 @@ public class LSDatAdapter extends BaseAdapter {
 
             Room roomList = dao.get1Room("select * from room_tb where id = ?", String.valueOf(id));
             if (roomList != null) {
-                //byte[] hinhanh = roomList.getIMG();
-                //Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
-//        imageAVT.setImageBitmap(bitmap);
-                // holder.imageView.setImageBitmap(bitmap);
+//                byte[] hinhanh = roomList.getIMG();
+//                Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
+//        holder.imageView.setImageBitmap(bitmap);
+//                 holder.imageView.setImageBitmap(bitmap);
 //            holder.tvCategory.setText(roomList.getLocation());
                 holder.tvName.setText(roomList.getName());
                 holder.tvBeds.setText(roomList.getBeds() + "");
@@ -103,6 +107,10 @@ public class LSDatAdapter extends BaseAdapter {
                 holder.tvCategory.setText(roomList.getCategory());
                 holder.tvLocation.setText(roomList.getLocation());
                 holder.tvrate.setRating(roomList.getRate());
+                byte[] hinhanh = roomList.getIMG();
+                Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
+
+                holder.imageView.setImageBitmap(bitmap);
                 holder.tvbegin.setText(format.format(list.get(i).getBooking_date()));
                 holder.tvend.setText(format.format(list.get(i).getReturn_date()));
                 holder.tvcost.setText(roomList.getCost()+"");
@@ -115,5 +123,7 @@ public class LSDatAdapter extends BaseAdapter {
 
             return view;
     }
+
+
 
 }

@@ -20,17 +20,17 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chưa ở" />
+            android:text="Waiting" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đang ở" />
+            android:text="Check In" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đã ở" />
+            android:text="Check Out" />
     </com.google.android.material.tabs.TabLayout>
 
     <FrameLayout

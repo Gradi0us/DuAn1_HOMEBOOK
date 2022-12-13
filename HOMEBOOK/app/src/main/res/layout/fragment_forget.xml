@@ -30,6 +30,8 @@
         android:layout_marginBottom="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/emailForget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,6 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -59,6 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -71,11 +77,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+        android:textColor="@color/white"
+            android:textStyle="bold"
+
             android:id="@+id/btn_saveForget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/login_button_bk"
-            android:text="CHECK"
+            android:text="Check"
+            android:textAllCaps="false"
             android:textSize="20dp"
             android:paddingHorizontal="5dp"
             android:layout_gravity="center"/>

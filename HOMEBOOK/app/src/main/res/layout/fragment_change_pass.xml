@@ -22,12 +22,14 @@
         android:layout_width="200dp"
         android:layout_height="200dp"/>
     <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         app:passwordToggleEnabled="true"
         android:layout_marginBottom="20dp"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="Mật khẩu cũ"
+            android:hint="Current password"
             android:id="@+id/passold"
             android:inputType="textPassword"
             android:maxLines="1"
@@ -37,10 +39,12 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         app:passwordToggleEnabled="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="Mật khẩu mới"
+            android:hint="New password"
             android:id="@+id/passnew"
             android:inputType="textPassword"
             android:maxLines="1"
@@ -53,31 +57,39 @@
         android:layout_marginBottom="20dp"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="Nhập lại mật khẩu"
+            android:hint="Confirm password"
             android:id="@+id/repass"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:inputType="textPassword"
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
     <LinearLayout
+        android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             android:textSize="20dp"
-            android:layout_marginLeft="50dp"
+       android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textStyle="bold"
             android:id="@+id/btnSavepass"
-            android:text="Lưu"
-            android:layout_width="100dp"
+            android:text="Save"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:background="@drawable/login_button_bk"/>
         <Button
             android:textSize="20dp"
-            android:layout_marginLeft="110dp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+          android:layout_marginLeft="20dp"
             android:id="@+id/cancelsave"
-            android:text="Hủy"
-            android:layout_width="100dp"
+            android:text="Cancel"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:background="@drawable/login_button_bk"/>
 
