@@ -43,6 +43,7 @@ import com.example.home_book.slideshow.The_Slide_Items_Model_Class;
 import com.example.home_book.slideshow.adapter.The_Slide_Items_Pager_Adapter;
 import com.example.home_book.R;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -110,6 +111,8 @@ public class OrderAcivity extends AppCompatActivity {
         //
         currentDate = dateFormat.format(date);
         //
+
+        SharedPreferences sharedPreferences = getSharedPreferences("User_File", MODE_PRIVATE);
 
         dao = new DAO(this);
         Calendar calendar = Calendar.getInstance();
@@ -406,23 +409,71 @@ public class OrderAcivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Please login!");
             builder.setCancelable(true);
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+            LayoutInflater inflater = getLayoutInflater();
+            View view = inflater.inflate(R.layout.activity_login, null);
+
+            TextInputEditText emailIn = view.findViewById(R.id.emailIn);
+            TextInputEditText passIn = view.findViewById(R.id.passIn);
+            Button signIn = view.findViewById(R.id.signIn);
+//            remember = view.findViewById(R.id.rememberBox);
+            TextView forget = view.findViewById(R.id.quenMatKhau);
+            TextView create = view.findViewById(R.id.dangky);
+
+            signIn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-//                    FragmentManager fragmentManager = getSupportFragmentManager();
-//                    fragmentManager
-//                            .beginTransaction()
-//                            .replace(R.id.,new Fragment3())
-//                            .commit();
+                public void onClick(View v) {
+                    String eI = emailIn.getText().toString();
+                    String pI = passIn.getText().toString();
+                    Boolean check = true;
+                    if (eI.trim().length() <= 0) {
+                        check = false;
+                        emailIn.setError("Enter your email.");
+                    }
+                    if (pI.trim().length() <= 0) {
+                        check = false;
+                        passIn.setError("Enter your password.");
+                    }
+                    if (check) {
+                        if (dao.checkLogin(eI, pI)) {
+                            Toast.makeText(OrderAcivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            Log.d("ok", "OK");
+                            SharedPreferences.Editor edit = sharedPreferences.edit();
+                            edit.putString("Email", eI);
+                            edit.putString("Password", pI);
+                            edit.commit();
+
+//                        startActivity(new Intent(getActivity(), MainActivity.class));
+                            Intent refresh = new Intent(OrderAcivity.this, BottomNavActivity.class);
+                            startActivity(refresh);
+                            OrderAcivity.this.overridePendingTransition(0, 0);
+                            OrderAcivity.this.finish();
+                        } else {
+                            Toast.makeText(OrderAcivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                            Log.d("ok", "KO OK");
+                        }
+                    }
                 }
             });
-            builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+
+            builder.setView(view);
+            AlertDialog alertDialog = builder.create();
+
+            builder.setPositiveButton("Sign Up", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                }
+            });
+
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 
                 }
             });
-            AlertDialog alertDialog = builder.create();
+
             alertDialog.show();
         } else {
 
