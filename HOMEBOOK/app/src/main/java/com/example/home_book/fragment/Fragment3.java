@@ -183,12 +183,12 @@ public class Fragment3 extends Fragment {
 
         //listview admin
 
-        list2.add(new ListModelMenu(R.drawable.add_money, "Xác nhận nạp tiền"));
-        list2.add(new ListModelMenu(R.drawable.ic_accounts, "Quản lý tài khoản"));
-        list2.add(new ListModelMenu(R.drawable.graph_black, "Thống kê"));
-        list2.add(new ListModelMenu(R.drawable.contact, "Liên hệ"));
-        list2.add(new ListModelMenu(R.drawable.in4, "Thông tin Ứng dụng"));
-        list2.add(new ListModelMenu(R.drawable.exit, "Đăng xuất"));
+        list2.add(new ListModelMenu(R.drawable.add_money, "Deposit Confirm"));
+        list2.add(new ListModelMenu(R.drawable.ic_accounts, "Account Manage"));
+        list2.add(new ListModelMenu(R.drawable.graph_black, "Statistic"));
+        list2.add(new ListModelMenu(R.drawable.contact, "Contact"));
+        list2.add(new ListModelMenu(R.drawable.in4, "Information"));
+        list2.add(new ListModelMenu(R.drawable.exit, "Log out"));
 
         ListMenuAdapter adapter2 = new ListMenuAdapter(getContext(), R.layout.item_menu, list2);
         listViewAdmin.setAdapter(adapter2);
