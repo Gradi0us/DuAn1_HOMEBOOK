@@ -16,11 +16,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +37,7 @@ import com.example.home_book.adapter.RatingAdapter;
 import com.example.home_book.fragment.CartFragment;
 import com.example.home_book.fragment.FavouriteFragment;
 import com.example.home_book.fragment.Fragment3;
+import com.example.home_book.fragment.LoginFragment;
 import com.example.home_book.fragment.fragmentNav.AcountFragment;
 import com.example.home_book.model.Favourite;
 import com.example.home_book.model.Room;
@@ -84,6 +89,14 @@ public class OrderAcivity extends AppCompatActivity {
     Button btnViewRate;
     int collaborate_id;
 
+    TextInputEditText birthUp,emailUp,passUp,passUpAgain,nameUp,phoneUp;
+    RadioButton radioCollaborate,radioMember;
+    int role1;
+    Button signUp;
+    Date date1;
+    TextView already,clickForDetails;
+    CheckBox checkAccept;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +124,6 @@ public class OrderAcivity extends AppCompatActivity {
         //
         currentDate = dateFormat.format(date);
         //
-
-        SharedPreferences sharedPreferences = getSharedPreferences("User_File", MODE_PRIVATE);
 
         dao = new DAO(this);
         Calendar calendar = Calendar.getInstance();
@@ -407,11 +418,12 @@ public class OrderAcivity extends AppCompatActivity {
         String pass = sP.getString("Password", "");
         if (email.equals("") || pass.equals("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Please login!");
+            builder.setTitle("Please login!");
             builder.setCancelable(true);
-
             LayoutInflater inflater = getLayoutInflater();
             View view = inflater.inflate(R.layout.activity_login, null);
+            builder.setView(view);
+            AlertDialog alertDialog = builder.create();
 
             TextInputEditText emailIn = view.findViewById(R.id.emailIn);
             TextInputEditText passIn = view.findViewById(R.id.passIn);
@@ -438,7 +450,7 @@ public class OrderAcivity extends AppCompatActivity {
                         if (dao.checkLogin(eI, pI)) {
                             Toast.makeText(OrderAcivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             Log.d("ok", "OK");
-                            SharedPreferences.Editor edit = sharedPreferences.edit();
+                            SharedPreferences.Editor edit = sP.edit();
                             edit.putString("Email", eI);
                             edit.putString("Password", pI);
                             edit.commit();
@@ -456,21 +468,144 @@ public class OrderAcivity extends AppCompatActivity {
                 }
             });
 
-            builder.setView(view);
-            AlertDialog alertDialog = builder.create();
-
-            builder.setPositiveButton("Sign Up", new DialogInterface.OnClickListener() {
+            create.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(OrderAcivity.this);
+                    LayoutInflater inflater = getLayoutInflater();
+                    View view = inflater.inflate(R.layout.activity_register, null);
+                    builder.setView(view);
+                    AlertDialog alertDialog1 = builder.create();
 
+                    signUp = view.findViewById(R.id.signUp);
+                    emailUp = view.findViewById(R.id.emailUp);
+                    passUp = view.findViewById(R.id.passUp);
+                    passUpAgain = view.findViewById(R.id.passUpAgain);
+                    nameUp = view.findViewById(R.id.nameUp);
+                    phoneUp = view.findViewById(R.id.phoneUp);
+                    birthUp = view.findViewById(R.id.birthUp);
+                    checkAccept = view.findViewById(R.id.checkAccept);
+                    clickForDetails = view.findViewById(R.id.clickForDetails);
+                    radioCollaborate = view.findViewById(R.id.collaborateUP);
+                    radioMember = view.findViewById(R.id.memberUp);
+                    dao = new DAO(OrderAcivity.this);
 
-                }
-            });
+                    birthUp.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                    yY = year; mM = month; dD = dayOfMonth;
+                                    GregorianCalendar gC = new GregorianCalendar(yY,mM,dD);
+                                    birthUp.setText(format.format(gC.getTime()));
+                                    date1 = gC.getTime();
+                                }
+                            };
 
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+                            Calendar calendar = Calendar.getInstance();
+                            yY = calendar.get(Calendar.YEAR);
+                            mM = calendar.get(Calendar.MONTH);
+                            dD = calendar.get(Calendar.DATE);
 
+                            DatePickerDialog d = new DatePickerDialog(OrderAcivity.this,0,chonDate,yY,mM,dD);
+                            d.show();
+                        }
+                    });
+
+                    signUp.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String email = emailUp.getText().toString();
+                            String pass = passUp.getText().toString();
+                            String passAgain = passUpAgain.getText().toString();
+                            String name = nameUp.getText().toString();
+                            String phone = phoneUp.getText().toString();
+                            String birth = birthUp.getText().toString();
+                            Animation animShake = AnimationUtils.loadAnimation(OrderAcivity.this, R.anim.shake);
+
+                            Boolean check = true;
+                            role1 = 1;
+                            int ava = 0,money = 0;
+                            birthUp.setError(null);
+
+                            if(!radioCollaborate.isChecked() && !radioMember.isChecked()){
+                                check = false;
+                                Toast.makeText(OrderAcivity.this,"Choose your role",Toast.LENGTH_SHORT).show();
+                                radioCollaborate.setAnimation(animShake);
+                                radioMember.setAnimation(animShake);
+                            }
+                            if(!checkAccept.isChecked()){
+                                check = false;
+                                Toast.makeText(OrderAcivity.this,"Accept the license",Toast.LENGTH_SHORT).show();
+                                checkAccept.setAnimation(animShake);
+                            }
+                            if(email.trim().length() <= 0){
+                                check = false;
+                                emailUp.setError("Enter the email.");
+                            }
+                            if(pass.trim().length() <= 0){
+                                check = false;
+                                passUp.setError("Enter the password.");
+                            }
+                            if(passAgain.trim().length() <= 0){
+                                check = false;
+                                passUpAgain.setError("Enter the password again.");
+                            }
+                            if(birth.trim().length() <= 0){
+                                check = false;
+                                birthUp.setError("Enter the birthday.");
+                            }
+                            if(name.trim().length() <= 0){
+                                check = false;
+                                nameUp.setError("Enter your name.");
+                            }
+                            if(phone.trim().length() <= 0){
+                                check = false;
+                                phoneUp.setError("Enter your phone number.");
+                            }
+                            else if(!passAgain.equals(pass)){
+                                check = false;
+                                passUpAgain.setError("The password again is not same as the password.");
+                            }
+                            else if(!email.matches("\\w+@\\w+\\.\\w{1,5}")){
+                                check = false;
+                                emailUp.setError("Email không đúng định dạng.");
+                            }
+                            else if(dao.checkEmail(email)){
+                                check = false;
+                                emailUp.setError("Email exists.");
+                            }
+                            if(check == true){
+                                if(radioCollaborate.isChecked()){
+                                    role1 = 0;
+                                }else if(radioMember.isChecked()){
+                                    role1 = 1;
+                                }
+                                Log.d("User","ADD OK");
+                                user x = new user(ava,name,email,pass,date1,phone,role1,money);
+                                dao.AddUser(x);
+                                Toast.makeText(OrderAcivity.this,"Add completed",Toast.LENGTH_SHORT).show();
+
+                                SharedPreferences.Editor edit = sP.edit();
+                                edit.putString("Email", email);
+                                edit.putString("Password", pass);
+                                edit.commit();
+
+//                        startActivity(new Intent(getActivity(), MainActivity.class));
+                                Intent refresh = new Intent(OrderAcivity.this, BottomNavActivity.class);
+                                startActivity(refresh);
+                                OrderAcivity.this.overridePendingTransition(0, 0);
+                                OrderAcivity.this.finish();
+
+                                alertDialog1.dismiss();
+                                alertDialog.dismiss();
+                            }
+                        }
+                    });
+
+                    alertDialog1.show();
                 }
             });
 
